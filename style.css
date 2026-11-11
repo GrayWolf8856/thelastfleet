@@ -1,0 +1,115 @@
+:root{
+  --bg:#0b1420;
+  --bg-soft:#0f1b2b;
+  --ink:#e9f1f5;
+  --ink-soft:#9fb3c4;
+  --line:#1e2f44;
+  --brand:#ff4034;
+  --brand-dark:#7dd3fc;
+  --accent:#ff4034;
+  --max:960px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.6;
+}
+a{color:var(--brand-dark);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+
+/* Header / nav */
+header.site{
+  position:sticky;top:0;z-index:50;
+  background:rgba(7,16,26,.97);
+  backdrop-filter:saturate(140%) blur(6px);
+  border-bottom:1px solid #1e293b;
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:1.12rem;letter-spacing:.2px}
+.brand:hover{text-decoration:none}
+.brand .logo{
+  width:30px;height:30px;border-radius:8px;
+  background:var(--brand);
+  display:grid;place-items:center;color:#fff;font-weight:800;font-size:.95rem;
+}
+.brand .tag{color:#7dd3fc}
+nav.links{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+nav.links a{color:#cbd5e1;font-size:.94rem;font-weight:500}
+nav.links a:hover{color:#fff;text-decoration:none}
+nav.links a.yt{
+  background:var(--brand);color:#fff;padding:7px 14px;border-radius:8px;font-weight:600;
+}
+nav.links a.yt:hover{background:var(--brand-dark)}
+
+/* Hero */
+.hero{
+  background:radial-gradient(1100px 420px at 70% -10%,#12405a 0%,#07101a 60%);
+  color:#fff;padding:78px 0 70px;
+}
+.hero h1{font-size:2.5rem;line-height:1.12;margin:0 0 14px;font-weight:800}
+.hero p.lead{font-size:1.2rem;color:#cbd5e1;max-width:640px;margin:0 0 26px}
+.hero .by{color:#7dd3fc;font-weight:600;letter-spacing:.4px;text-transform:uppercase;font-size:.8rem;margin-bottom:18px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-block;padding:12px 22px;border-radius:10px;font-weight:600;font-size:1rem;
+}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.primary:hover{background:#e0352b;text-decoration:none}
+.btn.ghost{background:transparent;color:#fff;border:1px solid #334155}
+.btn.ghost:hover{border-color:#64748b;text-decoration:none}
+
+/* Sections */
+section{padding:56px 0}
+section.alt{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+h2{font-size:1.7rem;margin:0 0 10px;font-weight:750}
+h3{font-size:1.18rem;margin:0 0 6px}
+.sub{color:var(--ink-soft);max-width:680px;margin:0 0 28px}
+.lede{color:var(--ink-soft);font-size:1.05rem}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{
+  background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:22px;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.card .ico{font-size:1.6rem;margin-bottom:8px}
+.card h3{margin-top:0}
+.card p{color:var(--ink-soft);margin:.4rem 0 0}
+
+/* Content pages */
+.page{padding:52px 0 20px}
+.page h1{font-size:2.1rem;margin:0 0 6px}
+.page .meta{color:var(--ink-soft);margin:0 0 26px}
+.prose h2{font-size:1.25rem;margin-top:2rem}
+.prose p,.prose li{color:#c5d3de}
+.highlight{background:#0f2233;border:1px solid #1f4460;border-radius:10px;padding:16px 18px;margin:20px 0}
+.consent-box{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:20px;margin:20px 0}
+.tag-pill{display:inline-block;background:#12283a;color:#7dd3fc;border-radius:999px;padding:3px 12px;font-size:.78rem;font-weight:600;margin-bottom:14px}
+
+/* Footer */
+footer.site{background:#07101a;border-top:1px solid var(--line);color:#94a3b8;padding:34px 0;margin-top:40px;font-size:.9rem}
+footer.site a{color:#7dd3fc}
+footer.site .row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+footer.site .links a{margin-left:18px}
+
+@media(max-width:560px){
+  .hero h1{font-size:2rem}
+  .nav{height:auto;padding:12px 0;flex-direction:column;gap:10px}
+  footer.site .links a{margin:0 12px 0 0}
+}
+
+/* The Last Fleet */
+.game{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:center;background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;padding:24px}
+.game img.shot{width:100%;height:auto;border-radius:10px;display:block}
+.game .title{display:flex;gap:14px;align-items:center;margin-bottom:10px}
+.game .title img{width:56px;height:56px;border-radius:13px}
+.game h3{font-size:1.4rem;margin:0}
+.game p{color:var(--ink-soft)}
+.pill{display:inline-block;border:1px solid var(--line);color:#7dd3fc;border-radius:999px;padding:2px 11px;font-size:.75rem;font-weight:700}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px;margin-bottom:34px}
+.shots img{width:100%;height:auto;border-radius:10px;display:block}
+@media(max-width:760px){.game{grid-template-columns:1fr}}
