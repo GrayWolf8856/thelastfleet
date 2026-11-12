@@ -5,15 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tradewinds — The Last Fleet</title>
 <meta name="description" content="Tradewinds is a trading-post management game set in The Last Fleet universe, from Crosswake Studios.">
+<meta name="theme-color" content="#060c14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tradewinds — The Last Fleet">
+<meta property="og:description" content="Tradewinds is a trading-post management game set in The Last Fleet universe, from Crosswake Studios.">
+<meta property="og:url" content="https://thelastfleet.com/tradewinds/">
+<meta property="og:image" content="https://thelastfleet.com/tradewinds/img/01_rig_golden_hour.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.png">
+<link rel="preload" href="../fonts/big-shoulders-stencil.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
 </head>
 <body>
 
 <header class="site">
-  <div class="wrap nav tabbed">
-    <a class="brand" href="../index.html"><span class="logo">LF</span>The&nbsp;Last&nbsp;<span class="tag">Fleet</span></a>
-    <nav class="links tabs">
+  <div class="wrap w nav tabbed">
+    <a class="brand b2" href="../index.html"><span class="bm">The Last Fleet</span><span class="bs">Crosswake Studios</span></a>
+    <nav class="links tabs" aria-label="Games">
       <a href="../holdout/">Holdout</a>
       <a href="../artemis-protocol/">Artemis Protocol</a>
       <a href="../runners/">Runners</a>
@@ -25,47 +34,90 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="wrap">
-    <div class="by">Trading-post management</div>
-    <h1>Tradewinds</h1>
+<section class="cine short">
+  <img class="cine-bg" src="img/01_rig_golden_hour.jpg" alt="" fetchpriority="high" style="--pos:40% 50%">
+  <div class="wrap w cine-in">
+    <div class="kick">Trading-post management</div>
+    <h1 class="mega m2">Tradewinds</h1>
     <p class="lead">Run a remote oil rig on the frontier and grow it into a major trading post. Keep the pumps running, trade with whoever sails by, and send runners out on routes where the far ones pay more and pirates can take everything on board.</p>
     <span class="pill">In development</span>
   </div>
 </section>
 
 <!--
-  Tradewinds page. Everything between the hero above and the footer below is yours to fill in.
+  Tradewinds page, for the chats that work on this game. Add your sections between the hero above and the footer.
   Site rules:
-    - Plain static HTML and CSS, no build step. Shared styles are in ../style.css; see ../holdout/index.html
-      for a finished game page (.shots screenshot grid, .grid of .card blocks).
-    - Put this game's images in an img/ folder inside this folder.
-    - No analytics, trackers, cookies or outside scripts. That includes embedded YouTube players:
-      link to videos instead unless Kyle says otherwise.
-    - Keep the header tabs and the footer the same as on the other pages.
-    - It must read well on a phone.
+    - Plain static HTML and CSS, no build step. Shared styles are in ../style.css, shared script in ../site.js.
+      See ../artemis-protocol/index.html for a finished page: trailer, story blocks (class "split"),
+      feature list (class "feats"), gallery (class "gal") and video grid (class "vids").
+    - Images for this game go in img/ in this folder. Real captures from the game only.
+    - Videos: once a video is public on YouTube, save its thumbnail as ../img/yt/<video id>.jpg and add
+      <a class="yt" href="https://www.youtube.com/watch?v=ID" data-yt="ID"><img src="../img/yt/ID.jpg" alt=""><span class="play"></span></a>
+      It plays in the page when pressed.
+    - Keep the header tabs and the footer the same as on the other pages. It must read well on a phone.
     - Do not state platforms, prices or release dates that Kyle has not approved.
 -->
-<section>
-  <div class="wrap">
-    <h2>More coming soon</h2>
-    <p class="sub">This page is being put together. Until then, you can follow development on our YouTube channel.</p>
-    <div class="btns">
-      <a class="btn ghost" href="https://www.youtube.com/@TheLastFleetGame" rel="noopener">YouTube: @TheLastFleetGame</a>
+<section class="sec" id="gallery">
+  <div class="wrap w">
+    <div class="sec-h">
+      <div class="kick">Gallery</div>
+      <h2>From the game</h2>
+      <p>Captured from the game while it is in development.</p>
+    </div>
+    <div class="gal" style="--ar:16/9">
+      <a href="img/02_rig_built_up.jpg"><img src="img/02_rig_built_up.jpg" alt="A built-up oil rig seen from above" loading="lazy"></a>
+      <a href="img/03_build_menu.jpg"><img src="img/03_build_menu.jpg" alt="The build menu on the rig" loading="lazy"></a>
+      <a href="img/04_sea_chart.jpg"><img src="img/04_sea_chart.jpg" alt="The sea chart of runner routes" loading="lazy"></a>
+      <a href="img/05_first_rig.jpg"><img src="img/05_first_rig.jpg" alt="A new rig on a calm sea" loading="lazy"></a>
     </div>
   </div>
 </section>
 
-<footer class="site">
-  <div class="wrap row">
-    <div>
-      <div>© 2026 Crosswake Studios</div>
-      <div class="contact">Contact: <a href="mailto:kyleecosper@gmail.com">kyleecosper@gmail.com</a></div>
+<section class="cta">
+  <div class="wrap">
+    <div class="kick c">Follow development</div>
+    <h2 class="h-st">More to come</h2>
+    <p>This page will grow as Tradewinds is built. Trailers and devlogs from The Last Fleet go up on our YouTube channel.</p>
+    <div class="btns">
+      <a class="btn gold" href="https://www.youtube.com/@TheLastFleetGame?sub_confirmation=1" rel="noopener">Subscribe on YouTube</a>
+      <a class="btn ghost" href="../index.html#games">All games</a>
     </div>
-    <div class="links">
-      <a href="../index.html">All games</a>
-      <a href="https://www.youtube.com/@TheLastFleetGame" rel="noopener">YouTube: @TheLastFleetGame</a>
+  </div>
+</section>
+
+<footer class="site big" id="contact">
+  <div class="wrap w">
+    <div class="cols">
+      <div>
+        <a class="brand b2" href="../index.html"><span class="bm">The Last Fleet</span><span class="bs">Crosswake Studios</span></a>
+        <p class="blurb">Naval games in one shared universe. Every choice leaves a wake.</p>
+      </div>
+      <div>
+        <h4>Games</h4>
+        <a href="../holdout/">Holdout</a>
+        <a href="../artemis-protocol/">Artemis Protocol</a>
+        <a href="../runners/">Runners</a>
+        <a href="../runners-lite/">Runners Lite</a>
+        <a href="../mayday/">Mayday</a>
+        <a href="../tradewinds/">Tradewinds</a>
+        <a href="../breakwater/">Breakwater</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="https://www.youtube.com/@TheLastFleetGame" rel="noopener">YouTube</a>
+        <a href="https://instagram.com/thelastfleetgame" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@thelastfleetgame" rel="noopener">TikTok</a>
+        <a href="https://x.com/TheLastFleet" rel="noopener">X</a>
+        <a href="https://patreon.com/TheLastFleetArtemisProtocol" rel="noopener">Patreon</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:kyleecosper@gmail.com">kyleecosper@gmail.com</a>
+        <a href="../holdout/support.html">Holdout support</a>
+        <a href="../holdout/privacy.html">Holdout privacy</a>
+      </div>
     </div>
+    <div class="fine">© 2026 Crosswake Studios</div>
   </div>
 </footer>
 

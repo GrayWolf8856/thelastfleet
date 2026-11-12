@@ -3,17 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Artemis Protocol — The Last Fleet</title>
-<meta name="description" content="Artemis Protocol is a naval survival real-time strategy game set in The Last Fleet universe, from Crosswake Studios.">
+<title>The Last Fleet: Artemis Protocol — Naval survival RTS</title>
+<meta name="description" content="The war is over. Nobody won. Command the last carrier of the Pacific Fleet, capture oil rigs, salvage wrecks and build a new navy from scrap. A naval survival RTS coming to Mac and Windows.">
+<meta name="theme-color" content="#060c14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Last Fleet: Artemis Protocol — Naval survival RTS">
+<meta property="og:description" content="The war is over. Nobody won. Command the last carrier of the Pacific Fleet, capture oil rigs, salvage wrecks and build a new navy from scrap. A naval survival RTS coming to Mac and Windows.">
+<meta property="og:url" content="https://thelastfleet.com/artemis-protocol/">
+<meta property="og:image" content="https://thelastfleet.com/artemis-protocol/img/10_artemis_dusk.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.png">
+<link rel="preload" href="../fonts/big-shoulders-stencil.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
 </head>
 <body>
 
 <header class="site">
-  <div class="wrap nav tabbed">
-    <a class="brand" href="../index.html"><span class="logo">LF</span>The&nbsp;Last&nbsp;<span class="tag">Fleet</span></a>
-    <nav class="links tabs">
+  <div class="wrap w nav tabbed">
+    <a class="brand b2" href="../index.html"><span class="bm">The Last Fleet</span><span class="bs">Crosswake Studios</span></a>
+    <nav class="links tabs" aria-label="Games">
       <a href="../holdout/">Holdout</a>
       <a href="../artemis-protocol/" class="on" aria-current="page">Artemis Protocol</a>
       <a href="../runners/">Runners</a>
@@ -25,47 +34,241 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="wrap">
-    <div class="by">Real-time strategy · Mac and Windows</div>
-    <h1>Artemis Protocol</h1>
-    <p class="lead">A naval survival strategy game on a drowned Earth. The war is over and nobody won. You command the carrier ARTEMIS and what is left of her battle group: salvage wrecks, take oil rigs and build a new fleet from scrap, because nothing like the old ships will ever be built again.</p>
-    <span class="pill">In development</span>
+<section class="cine">
+  <img class="cine-bg" src="img/10_artemis_dusk.jpg" alt="" fetchpriority="high" style="--pos:62% 50%">
+  <div class="wrap w cine-in">
+    <div class="kick">Naval survival RTS</div>
+    <h1 class="wm"><img class="wordmark" src="img/wordmark.png" alt="The Last Fleet: Artemis Protocol" width="900" height="253"></h1>
+    <p class="tagline">The war is over. Nobody won.</p>
+    <p class="lead">Command the last carrier of the Pacific Fleet. Capture oil rigs, salvage wrecks and build a new navy from scrap, because every ship built before the war is irreplaceable.</p>
+    <span class="pill">Coming to Mac and Windows</span>
+    <div class="btns">
+      <a class="btn gold" href="#trailer"><span class="tri"></span>Watch the trailer</a>
+      <a class="btn ghost" href="https://patreon.com/TheLastFleetArtemisProtocol" rel="noopener">Playtest on Patreon</a>
+    </div>
   </div>
 </section>
 
 <!--
-  Artemis Protocol page. Everything between the hero above and the footer below is yours to fill in.
+  Artemis Protocol page, for the chats that work on this game.
   Site rules:
-    - Plain static HTML and CSS, no build step. Shared styles are in ../style.css; see ../holdout/index.html
-      for a finished game page (.shots screenshot grid, .grid of .card blocks).
-    - Put this game's images in an img/ folder inside this folder.
-    - No analytics, trackers, cookies or outside scripts. That includes embedded YouTube players:
-      link to videos instead unless Kyle says otherwise.
-    - Keep the header tabs and the footer the same as on the other pages.
-    - It must read well on a phone.
-    - Do not state platforms, prices or release dates that Kyle has not approved.
+    - Plain static HTML and CSS, no build step. Shared styles are in ../style.css, shared script in ../site.js.
+    - Images for this game go in img/ in this folder. Video thumbnails go in ../img/yt/<video id>.jpg.
+    - To add a video, copy a <div class="vid"> block and change the video id (three places), title and label.
+      Only videos that are already public on the channel.
+    - To add a picture, copy a line in the gallery (class "gal").
+    - Follow media/marketing/BRAND_RULES.md: no spoilers, no dates, no unbuilt features.
+    - Keep the header tabs and the footer the same as on the other pages. It must read well on a phone.
 -->
-<section>
+<section class="sec dark" id="trailer">
   <div class="wrap">
-    <h2>More coming soon</h2>
-    <p class="sub">This page is being put together. Until then, you can follow development on our YouTube channel.</p>
-    <div class="btns">
-      <a class="btn ghost" href="https://www.youtube.com/@TheLastFleetGame" rel="noopener">YouTube: @TheLastFleetGame</a>
+    <div class="sec-h c">
+      <div class="kick c">Battle trailer</div>
+      <h2>The Strike</h2>
+    </div>
+    <a class="yt" href="https://www.youtube.com/watch?v=8trrPTSpZI4" data-yt="8trrPTSpZI4" rel="noopener" aria-label="Play: The Strike: Battle Trailer"><img src="../img/yt/8trrPTSpZI4.jpg" alt="" loading="lazy"><span class="play"></span></a>
+  </div>
+</section>
+
+<section class="sec" id="story">
+  <div class="wrap w">
+    <div class="split">
+      <img src="img/06_artemis_storm_front.jpg" alt="ARTEMIS under a storm front, a fire burning on the horizon" loading="lazy">
+      <div>
+        <div class="kick">The story</div>
+        <h2 class="h-st">The war is over. Nobody won.</h2>
+        <p>A ten-year war, a starving world, and then a single hour when every nation launched at once. The survivors call it the Exchange. The land is burned, irradiated or going under, and the seas rise with every passing month.</p>
+        <p>You are a newly promoted Captain with a carrier one week out of the yard, ARTEMIS, and her AI, ARI. You have a handful of escorts that can never be replaced. Keep them afloat, build a fleet from what the war left behind, and decide what the world after looks like.</p>
+      </div>
+    </div>
+    <div class="split flip">
+      <img src="img/13_fleet_formation.jpg" alt="A fleet in formation at sea" loading="lazy">
+      <div>
+        <div class="kick">The fleet</div>
+        <h2 class="h-st">The pre-war ceiling</h2>
+        <p>Your carrier and her escorts are the last of their kind. Everything you build after the war is improvised from salvage on captured oil rigs: welded, patched, and never as good. Lose a pre-war ship and she is gone for good.</p>
+        <blockquote class="ari">"What we can't make up in quality... we make up in quantity."<cite>ARI</cite></blockquote>
+      </div>
     </div>
   </div>
 </section>
 
-<footer class="site">
-  <div class="wrap row">
-    <div>
-      <div>© 2026 Crosswake Studios</div>
-      <div class="contact">Contact: <a href="mailto:kyleecosper@gmail.com">kyleecosper@gmail.com</a></div>
+<section class="sec dark" id="features">
+  <div class="wrap w">
+    <div class="sec-h">
+      <div class="kick">The game</div>
+      <h2>What you command</h2>
     </div>
-    <div class="links">
-      <a href="../index.html">All games</a>
-      <a href="https://www.youtube.com/@TheLastFleetGame" rel="noopener">YouTube: @TheLastFleetGame</a>
+    <ol class="feats">
+      <li><h3>The real Earth, drowned</h3><p>A campaign across a hex map of the real world, with the land blacked out and the sea rising, closing coastlines as it goes.</p></li>
+      <li><h3>A living ocean</h3><p>Ships sail between sectors; nothing teleports. Every sector holding your ships or bases keeps playing in real time while you look elsewhere.</p></li>
+      <li><h3>An economy of scraps</h3><p>Capture oil rigs and refine crude for fuel, salvage wrecks for steel, fish for food, and search drowned towns for the chips nobody can make any more.</p></li>
+      <li><h3>Build your platforms</h3><p>Turn captured rigs into fortified sea bases on a deck grid: refineries, crew quarters, stacked stores, helipads, cranes, gun towers and a shipyard.</p></li>
+      <li><h3>Supply lines you can see and steer</h3><p>Runners carry stock between your rigs. Watch a line go late, cut or broken, reroute it around danger, and assign escorts to protect it.</p></li>
+      <li><h3>Rivals that play like you do</h3><p>Five surviving navies, Meridian Maritime Security selling "protection", and Decimus, a rogue carrier AI that wants every ship afloat under his command. They build, fortify, expand and fight across the world map.</p></li>
+      <li><h3>Weather that matters</h3><p>Storms that swamp small craft and ground helicopters, fallout drifting on the water, and day and night over a sea built to look real.</p></li>
+      <li><h3>Air power</h3><p>Attack and scout helicopters from your rigs' helipads, and ARTEMIS's own strike wing.</p></li>
+      <li><h3>Fully voiced</h3><p>ARI, the Captain and the XO. Every line in the game is recorded.</p></li>
+      <li><h3>Four difficulty levels</h3><p>From Easy to Brutal, and a tutorial that starts the morning before the war.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="versus">
+  <div class="wrap w">
+    <div class="split">
+      <img src="img/03_rig_burning_red_lamps.jpg" alt="An oil rig on fire in the rain" loading="lazy">
+      <div>
+        <div class="kick">Multiplayer</div>
+        <h2 class="h-st">Versus</h2>
+        <p>2 to 4 players on the world map, hosted from one player's computer. Each starts on a random tile, grows by taking rigs and sectors, and spreads influence along supply lines. The last ARI standing wins.</p>
+      </div>
     </div>
+  </div>
+</section>
+
+<section class="sec dark" id="gallery">
+  <div class="wrap w">
+    <div class="sec-h">
+      <div class="kick">Gallery</div>
+      <h2>From the game</h2>
+    </div>
+    <div class="gal" style="--ar:12/5">
+      <a href="img/04_rig_explosion.jpg"><img src="img/04_rig_explosion.jpg" alt="An oil rig exploding in a night storm" loading="lazy"></a>
+      <a href="img/12_artemis_001_bow.jpg"><img src="img/12_artemis_001_bow.jpg" alt="The bow of the carrier ARTEMIS, hull 001" loading="lazy"></a>
+      <a href="img/02_destroyer_close_rain.jpg"><img src="img/02_destroyer_close_rain.jpg" alt="A destroyer in the rain, close" loading="lazy"></a>
+      <a href="img/14_harbour_burning.jpg"><img src="img/14_harbour_burning.jpg" alt="A harbour burning under attack" loading="lazy"></a>
+      <a href="img/08_artemis_dusk_jets.jpg"><img src="img/08_artemis_dusk_jets.jpg" alt="ARTEMIS at dusk with jets overhead" loading="lazy"></a>
+      <a href="img/09_ciws_tracers_night.jpg"><img src="img/09_ciws_tracers_night.jpg" alt="Tracer fire at night" loading="lazy"></a>
+      <a href="img/01_rig_burning_in_storm.jpg"><img src="img/01_rig_burning_in_storm.jpg" alt="A rig burning in a storm" loading="lazy"></a>
+      <a href="img/15_harbour_wall_strike.jpg"><img src="img/15_harbour_wall_strike.jpg" alt="A strike on a harbour wall" loading="lazy"></a>
+      <a href="img/05_storm_enemy_warship.jpg"><img src="img/05_storm_enemy_warship.jpg" alt="An enemy warship in a storm" loading="lazy"></a>
+      <a href="img/07_fleet_at_night_beacon.jpg"><img src="img/07_fleet_at_night_beacon.jpg" alt="The fleet at night around a red beacon" loading="lazy"></a>
+      <a href="img/06_artemis_storm_front.jpg"><img src="img/06_artemis_storm_front.jpg" alt="ARTEMIS under a storm front" loading="lazy"></a>
+      <a href="img/11_artemis_sunset_moon.jpg"><img src="img/11_artemis_sunset_moon.jpg" alt="ARTEMIS at sunset" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="videos">
+  <div class="wrap w">
+    <div class="sec-h">
+      <div class="kick">Watch</div>
+      <h2>Trailers and devlogs</h2>
+      <p>Thirty videos and counting. The newest are here; the rest are on the channel.</p>
+    </div>
+    <div class="vids">
+      <div class="vid">
+        <a class="yt sm" href="https://www.youtube.com/watch?v=pmIqmhCRDtY" data-yt="pmIqmhCRDtY" rel="noopener" aria-label="Play: Walker: Story Trailer"><img src="../img/yt/pmIqmhCRDtY.jpg" alt="" loading="lazy"><span class="play"></span></a>
+        <div class="t">Walker: Story Trailer</div>
+        <div class="k">Story trailer</div>
+      </div>
+      <div class="vid">
+        <a class="yt sm" href="https://www.youtube.com/watch?v=Ay5fLcXxLkc" data-yt="Ay5fLcXxLkc" rel="noopener" aria-label="Play: No Safe Harbour"><img src="../img/yt/Ay5fLcXxLkc.jpg" alt="" loading="lazy"><span class="play"></span></a>
+        <div class="t">No Safe Harbour</div>
+        <div class="k">Battle trailer</div>
+      </div>
+      <div class="vid">
+        <a class="yt sm" href="https://www.youtube.com/watch?v=Fom_Mmcvwfk" data-yt="Fom_Mmcvwfk" rel="noopener" aria-label="Play: Hold the Line"><img src="../img/yt/Fom_Mmcvwfk.jpg" alt="" loading="lazy"><span class="play"></span></a>
+        <div class="t">Hold the Line</div>
+        <div class="k">Battle trailer</div>
+      </div>
+      <div class="vid">
+        <a class="yt sm" href="https://www.youtube.com/watch?v=EMH2QgE4j3o" data-yt="EMH2QgE4j3o" rel="noopener" aria-label="Play: Storm Front"><img src="../img/yt/EMH2QgE4j3o.jpg" alt="" loading="lazy"><span class="play"></span></a>
+        <div class="t">Storm Front</div>
+        <div class="k">Battle trailer</div>
+      </div>
+      <div class="vid">
+        <a class="yt sm" href="https://www.youtube.com/watch?v=SQCmXQtOZ0g" data-yt="SQCmXQtOZ0g" rel="noopener" aria-label="Play: One World: The Seamless World"><img src="../img/yt/SQCmXQtOZ0g.jpg" alt="" loading="lazy"><span class="play"></span></a>
+        <div class="t">One World: The Seamless World</div>
+        <div class="k">Feature</div>
+      </div>
+      <div class="vid">
+        <a class="yt sm" href="https://www.youtube.com/watch?v=1EALpkPCB7Q" data-yt="1EALpkPCB7Q" rel="noopener" aria-label="Play: Devlog 21"><img src="../img/yt/1EALpkPCB7Q.jpg" alt="" loading="lazy"><span class="play"></span></a>
+        <div class="t">Devlog 21</div>
+        <div class="k">Devlog</div>
+      </div>
+      <div class="vid">
+        <a class="yt sm" href="https://www.youtube.com/watch?v=rRHRNBFDuEs" data-yt="rRHRNBFDuEs" rel="noopener" aria-label="Play: Devlog 19"><img src="../img/yt/rRHRNBFDuEs.jpg" alt="" loading="lazy"><span class="play"></span></a>
+        <div class="t">Devlog 19</div>
+        <div class="k">Devlog</div>
+      </div>
+      <div class="vid">
+        <a class="yt sm" href="https://www.youtube.com/watch?v=zrNLmsmvsWg" data-yt="zrNLmsmvsWg" rel="noopener" aria-label="Play: Devlog 18: Air Wing at Sea"><img src="../img/yt/zrNLmsmvsWg.jpg" alt="" loading="lazy"><span class="play"></span></a>
+        <div class="t">Devlog 18: Air Wing at Sea</div>
+        <div class="k">Devlog</div>
+      </div>
+      <div class="vid">
+        <a class="yt sm" href="https://www.youtube.com/watch?v=0XqWBqjqggE" data-yt="0XqWBqjqggE" rel="noopener" aria-label="Play: Devlog 17: Weapons and Sound"><img src="../img/yt/0XqWBqjqggE.jpg" alt="" loading="lazy"><span class="play"></span></a>
+        <div class="t">Devlog 17: Weapons and Sound</div>
+        <div class="k">Devlog</div>
+      </div>
+      <div class="vid">
+        <a class="yt sm" href="https://www.youtube.com/watch?v=xvkdI3Nq4v0" data-yt="xvkdI3Nq4v0" rel="noopener" aria-label="Play: Devlog 16: Sieges"><img src="../img/yt/xvkdI3Nq4v0.jpg" alt="" loading="lazy"><span class="play"></span></a>
+        <div class="t">Devlog 16: Sieges</div>
+        <div class="k">Devlog</div>
+      </div>
+      <div class="vid">
+        <a class="yt sm" href="https://www.youtube.com/watch?v=-AQ7wo54i-A" data-yt="-AQ7wo54i-A" rel="noopener" aria-label="Play: Devlog 15: Battle Damage"><img src="../img/yt/-AQ7wo54i-A.jpg" alt="" loading="lazy"><span class="play"></span></a>
+        <div class="t">Devlog 15: Battle Damage</div>
+        <div class="k">Devlog</div>
+      </div>
+      <div class="vid">
+        <a class="yt sm" href="https://www.youtube.com/watch?v=jI1L7ddur48" data-yt="jI1L7ddur48" rel="noopener" aria-label="Play: Devlog 14: The Globe"><img src="../img/yt/jI1L7ddur48.jpg" alt="" loading="lazy"><span class="play"></span></a>
+        <div class="t">Devlog 14: The Globe</div>
+        <div class="k">Devlog</div>
+      </div>
+    </div>
+    <div class="more"><a class="btn ghost" href="https://www.youtube.com/@TheLastFleetGame" rel="noopener">All videos on YouTube</a></div>
+  </div>
+</section>
+
+<section class="cta">
+  <img class="f-bg" src="img/11_artemis_sunset_moon.jpg" alt="" loading="lazy">
+  <div class="wrap">
+    <div class="kick c">Support the fleet</div>
+    <h2 class="h-st">Test the game early</h2>
+    <p>Playtest builds on Patreon, from $15/month.</p>
+    <div class="btns">
+      <a class="btn gold" href="https://patreon.com/TheLastFleetArtemisProtocol" rel="noopener">Join on Patreon</a>
+      <a class="btn ghost" href="https://www.youtube.com/@TheLastFleetGame?sub_confirmation=1" rel="noopener">Subscribe on YouTube</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site big" id="contact">
+  <div class="wrap w">
+    <div class="cols">
+      <div>
+        <a class="brand b2" href="../index.html"><span class="bm">The Last Fleet</span><span class="bs">Crosswake Studios</span></a>
+        <p class="blurb">Naval games in one shared universe. Every choice leaves a wake.</p>
+      </div>
+      <div>
+        <h4>Games</h4>
+        <a href="../holdout/">Holdout</a>
+        <a href="../artemis-protocol/">Artemis Protocol</a>
+        <a href="../runners/">Runners</a>
+        <a href="../runners-lite/">Runners Lite</a>
+        <a href="../mayday/">Mayday</a>
+        <a href="../tradewinds/">Tradewinds</a>
+        <a href="../breakwater/">Breakwater</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="https://www.youtube.com/@TheLastFleetGame" rel="noopener">YouTube</a>
+        <a href="https://instagram.com/thelastfleetgame" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@thelastfleetgame" rel="noopener">TikTok</a>
+        <a href="https://x.com/TheLastFleet" rel="noopener">X</a>
+        <a href="https://patreon.com/TheLastFleetArtemisProtocol" rel="noopener">Patreon</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:kyleecosper@gmail.com">kyleecosper@gmail.com</a>
+        <a href="../holdout/support.html">Holdout support</a>
+        <a href="../holdout/privacy.html">Holdout privacy</a>
+      </div>
+    </div>
+    <div class="fine">© 2026 Crosswake Studios</div>
   </div>
 </footer>
 
