@@ -142,3 +142,15 @@ footer.site .contact{margin-top:6px}
 @media(max-width:560px){
   footer.site .row{flex-direction:column;align-items:flex-start}
 }
+
+/* Game tabs in the header */
+.nav.tabbed{height:auto;min-height:64px;padding:10px 0;gap:8px 24px}
+nav.links.tabs{gap:4px 18px;justify-content:flex-end}
+nav.links.tabs a{padding:4px 0;border-bottom:2px solid transparent;white-space:nowrap}
+nav.links.tabs a.on{color:#fff;border-bottom-color:var(--accent)}
+.hero .pill{margin-top:4px}
+@media(max-width:900px){
+  .nav.tabbed{flex-direction:column;padding:12px 0}
+  nav.links.tabs{justify-content:center;gap:2px 16px}
+  nav.links.tabs a{font-size:.9rem}
+}
