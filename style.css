@@ -350,3 +350,8 @@ footer.site.big .cols a.brand{display:flex;padding:0}
   .cine .cine-in{padding-top:90px;padding-bottom:40px}
   .cine::after{background:linear-gradient(to top,var(--bg) 0%,rgba(11,20,32,.84) 30%,rgba(11,20,32,.2) 62%,rgba(6,12,20,.35) 100%)}
 }
+.mega .appicon{width:.82em;height:.82em;border-radius:.18em;vertical-align:-.06em;margin-right:.22em;box-shadow:0 6px 24px rgba(0,0,0,.5)}
+@media(min-width:760px){.gal.two{grid-template-columns:1fr 1fr}}
+.page h1{font-family:var(--stencil);font-weight:800;text-transform:uppercase;font-size:clamp(2.4rem,7vw,3.4rem);line-height:1;letter-spacing:.02em}
+.prose h2{font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#fff}
+a.tag-pill:hover{text-decoration:none;color:#fff}
