@@ -18,7 +18,7 @@
     a.replaceWith(box);
   });
 
-  // Gallery: pictures inside .gal open large; arrows or the side buttons step through.
+  // Gallery: pictures inside .gal (with or without captions) open large; arrows or the side buttons step through.
   var lb, set = [], at = 0;
   function show(i) {
     at = (i + set.length) % set.length;
@@ -30,7 +30,7 @@
     var a = e.target.closest && e.target.closest('.gal a');
     if (a) {
       e.preventDefault();
-      set = Array.prototype.slice.call(a.parentNode.querySelectorAll('a'));
+      set = Array.prototype.slice.call(a.closest('.gal').querySelectorAll('a'));
       lb = document.createElement('div');
       lb.className = 'lb';
       lb.innerHTML = '<img alt=""><button class="p" aria-label="Previous picture">‹</button><button class="n" aria-label="Next picture">›</button>';

@@ -355,3 +355,21 @@ footer.site.big .cols a.brand{display:flex;padding:0}
 .page h1{font-family:var(--stencil);font-weight:800;text-transform:uppercase;font-size:clamp(2.4rem,7vw,3.4rem);line-height:1;letter-spacing:.02em}
 .prose h2{font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#fff}
 a.tag-pill:hover{text-decoration:none;color:#fff}
+
+/* Artemis page additions: captioned pictures, follow strip, faction cards */
+.gal.caps{gap:22px 18px}
+.gal.caps figure{margin:0}
+.gal.caps figcaption{padding:12px 2px 0;color:var(--ink-soft);font-size:.98rem;line-height:1.45}
+.gal.caps figcaption b{display:block;font-family:var(--hud);font-weight:700;font-size:1.18rem;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:2px}
+.follow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 12px;margin-top:26px}
+.follow span{font-family:var(--spaced);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-right:6px}
+.follow .btn{padding:9px 18px;font-size:.92rem}
+.split .yt img{height:100%;border:0;border-radius:0}
+.split .cap{font-size:.92rem;color:var(--ink-soft);margin:12px 0 0}
+@media(min-width:760px){.vids.two{grid-template-columns:1fr 1fr}}
+.facs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px}
+.fac{padding:22px 22px 20px;border:1px solid rgba(255,255,255,.1);border-top:2px solid var(--gold);border-radius:4px;background:rgba(255,255,255,.03)}
+.fac .k{font-family:var(--spaced);font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.fac h3{font-family:var(--hud);font-weight:700;font-size:1.35rem;letter-spacing:.03em;text-transform:uppercase;color:#fff;margin:6px 0 6px}
+.fac p{margin:0;color:var(--ink-soft)}
+@media(max-width:600px){.follow span{width:100%;text-align:center;margin:0}}
