@@ -217,7 +217,7 @@
       // closed radiation sectors
       ctx.fillStyle = pattern('rad', 8, hatchPainter('rgba(201,224,74,0.55)', 1.3)); ctx.fill(CLOSED);
       ctx.setLineDash([5 / V.s, 4 / V.s]); ctx.lineWidth = 1.4 / V.s; ctx.strokeStyle = 'rgba(201,224,74,0.85)'; ctx.stroke(CLOSED); ctx.setLineDash([]);
-      // Dex's Reach
+      // Dex's Wake
       if (mode === 'holders') { ctx.fillStyle = pattern('dead', 9, hatchPainter('rgba(255,90,100,0.45)', 1.4)); ctx.fill(REACH); }
       // grid, faint, once sectors are big enough to read
       if (secPx > 26) { ctx.lineWidth = 1 / V.s; ctx.strokeStyle = 'rgba(200,225,240,' + Math.min(0.13, (secPx - 26) / 300) + ')'; ctx.stroke(GRID); }
