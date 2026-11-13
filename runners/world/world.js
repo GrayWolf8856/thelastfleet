@@ -99,7 +99,7 @@
     return p;
   }
   var BORDER = { holders: borderPath(function (s) { return s.t; }), seas: borderPath(function (s) { return s.s; }) };
-  var DEADMAN = new Path2D(); CODES.forEach(function (c) { if (SEC[c].t === 'drone_core') hexInto(DEADMAN, SEC[c]); });
+  var REACH = new Path2D(); CODES.forEach(function (c) { if (SEC[c].t === 'drone_core') hexInto(REACH, SEC[c]); });
 
   // ------------------------------------------------------------------ places and ports
   var PORTS = D.ports, PLACES = D.places;
@@ -217,8 +217,8 @@
       // closed radiation sectors
       ctx.fillStyle = pattern('rad', 8, hatchPainter('rgba(201,224,74,0.55)', 1.3)); ctx.fill(CLOSED);
       ctx.setLineDash([5 / V.s, 4 / V.s]); ctx.lineWidth = 1.4 / V.s; ctx.strokeStyle = 'rgba(201,224,74,0.85)'; ctx.stroke(CLOSED); ctx.setLineDash([]);
-      // Deadman's Land
-      if (mode === 'holders') { ctx.fillStyle = pattern('dead', 9, hatchPainter('rgba(255,90,100,0.45)', 1.4)); ctx.fill(DEADMAN); }
+      // Dex's Reach
+      if (mode === 'holders') { ctx.fillStyle = pattern('dead', 9, hatchPainter('rgba(255,90,100,0.45)', 1.4)); ctx.fill(REACH); }
       // grid, faint, once sectors are big enough to read
       if (secPx > 26) { ctx.lineWidth = 1 / V.s; ctx.strokeStyle = 'rgba(200,225,240,' + Math.min(0.13, (secPx - 26) / 300) + ')'; ctx.stroke(GRID); }
       // borders
