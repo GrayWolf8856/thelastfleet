@@ -601,13 +601,13 @@
     if (!ims.length) return noCap();
     return '<div class="gal">' + ims.map(function (im) {
       var alt = im.alt || ('A still from the game: ' + name);
-      return '<a href="' + esc(im.file) + '"><img data-cap src="' + esc(im.file) + '" alt="' + esc(alt) + '" loading="lazy"></a>';
+      return '<a href="' + esc(im.file) + '"><img data-cap loading="lazy" decoding="async" width="1280" height="720" src="' + esc(im.file) + '" alt="' + esc(alt) + '"></a>';
     }).join('') + '</div>';
   }
   function shipHTML(id, tag) {
     var sh = D.ships[id]; if (!sh) return '';
     var c = capShip(id), pic;
-    if (c) pic = '<a href="' + esc(c.file) + '"><img data-cap src="' + esc(c.file) + '" alt="' + esc(c.alt || ('The ' + sh.name + ', from the game')) + '" loading="lazy"></a>';
+    if (c) pic = '<a href="' + esc(c.file) + '"><img data-cap loading="lazy" decoding="async" width="1280" height="720" src="' + esc(c.file) + '" alt="' + esc(c.alt || ('The ' + sh.name + ', from the game')) + '"></a>';
     else pic = noCap(true);
     return '<figure class="ship">' + pic + '<figcaption><span class="tag">' + esc(tag) + '</span><b>' + esc(sh.name) + '</b>' + esc(sh.role) + '</figcaption></figure>';
   }
@@ -622,7 +622,8 @@
       '<p class="p-place">' + esc(p.place) + ' · danger ' + esc(sec.d) + ', ' + esc(riskWord[sec.d]).toLowerCase() + '</p>' +
       heldHTML(p.holder, p.dead ? '#3a4550' : t.color) +
       (p.about ? '<p class="p-about">' + esc(p.about) + '</p>' : '');
-    h += '<h3>The port</h3>' + galleryHTML(p.capture, p.name);
+    h += '<h3>The port</h3>' + (p.capture ? galleryHTML(p.capture, p.name) : noCap());
+    if (p.capture && p.capNote && capImages(p.capture).length) h += '<p class="cap-note">' + esc(p.capNote) + '</p>';
     var ships = p.yardShips.map(function (id) { return shipHTML(id, 'Sold here'); }).concat(p.seenShips.map(function (id) { return shipHTML(id, 'Seen here'); }));
     h += '<h3>Ships you see here</h3>';
     h += ships.length ? '<div class="ships gal">' + ships.join('') + '</div>' : '<p class="p-about">' + esc(p.yard) + '</p>';
@@ -766,6 +767,34 @@
     });
   }
 
+  // every ship the game has a still of: picture, name and a plain kind, nothing more
+  function buildShipGrid() {
+    var grid = document.getElementById('ship-grid'), sec = document.getElementById('ships');
+    if (!grid || !sec) return;
+    var ids = Object.keys(CAP.ships || {}).filter(function (id) { return capShip(id); });
+    if (!ids.length) return;
+    grid.innerHTML = ids.map(function (id) {
+      var c = CAP.ships[id], kind = D.shipKinds[c.kind] || '';
+      var nm = String(c.name || id).toLowerCase().replace(/(^|[\s-])\S/g, function (m) { return m.toUpperCase(); }).replace(/^Ari /, 'ARI ');
+      return '<figure class="ship"><a href="' + esc(c.file) + '"><img data-cap loading="lazy" decoding="async" width="1280" height="720" src="' + esc(c.file) + '" alt="' + esc(c.alt || nm) + '"></a>' +
+        '<figcaption>' + (kind ? '<span class="tag">' + esc(kind) + '</span>' : '') + '<b>' + esc(nm) + '</b></figcaption></figure>';
+    }).join('');
+    guardImages(grid);
+    sec.hidden = false;
+  }
+
+  // the grid's pictures are only put on the page when a reader scrolls near it, so none load on open
+  function shipGridWhenNear() {
+    var sec = document.getElementById('ships');
+    if (!sec || !Object.keys(CAP.ships || {}).some(capShip)) return;
+    sec.hidden = false;
+    if (!window.IntersectionObserver) { buildShipGrid(); return; }
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); buildShipGrid(); }
+    }, { rootMargin: '400px 0px' });
+    io.observe(sec);
+  }
+
   // ------------------------------------------------------------------ start
   buildLists();
   var lg = document.getElementById('legend');
@@ -779,6 +808,6 @@
   }
   route();
   fetch('captures.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
-    if (j && typeof j === 'object') { CAP.ports = j.ports || {}; CAP.ships = j.ships || {}; render(); }
+    if (j && typeof j === 'object') { CAP.ports = j.ports || {}; CAP.ships = j.ships || {}; render(); shipGridWhenNear(); }
   }).catch(function () { });
 })();

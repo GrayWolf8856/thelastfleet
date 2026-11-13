@@ -146,3 +146,9 @@
 }
 @media(max-width:380px){.ships{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.panel{animation:none}}
+.cap-note{margin:8px 0 0;font-size:.88rem;color:#9fb3c4;font-style:italic}
+.ship-grid{grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:14px}
+.ship-grid img{height:auto}
+#ships[hidden]{display:none}
+@media(max-width:700px){.ship-grid{grid-template-columns:1fr 1fr;gap:10px}}
+.ship-grid:empty{min-height:420px}
