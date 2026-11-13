@@ -1,485 +1,448 @@
 {
-  "captured_from": "The Last Fleet: Runners, development build, commit e380706d",
-  "ports": {
-    "ari": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/ari_1.jpg",
-          "alt": "Aerial view of ARI's home port: an oval concrete sea wall around a harbour, a dense town and container cranes along the inside, and a narrow mouth with a green and a red light, open sea all round."
-        },
-        {
-          "file": "img/ports/ari_2.jpg",
-          "alt": "From the water inside ARI's harbour at deck height: the long sea wall with flags and lookout posts, a tank farm, cranes and a lighthouse tower along the quay, and a small boat moored at the quay."
-        },
-        {
-          "file": "img/ports/ari_3.jpg",
-          "alt": "ARI's harbour mouth from the sea at deck height: the two ends of the sea wall with green and red navigation lights, flags and a name board on the wall, cranes behind."
-        }
-      ]
+ "captured_from": "The Last Fleet: Runners, development build, commit e380706d",
+ "ports": {
+  "ari": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/ari_1.jpg",
+     "alt": "Aerial view of ARI's home port: an oval concrete sea wall around a harbour, a dense town and container cranes along the inside, and a narrow mouth with a green and a red light, open sea all round."
     },
-    "federation": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/federation_1.jpg",
-          "alt": "Aerial view of the Fishing Federation anchorage: a walled harbour with brightly painted wooden houses along the quays, four long piers and a gate bridge between two towers, with an island beyond."
-        },
-        {
-          "file": "img/ports/federation_2.jpg",
-          "alt": "Close to a wooden pier on stilts: a crane, stacked cargo, barn-roofed red and green houses with orange roofs, and small figures on the pier."
-        },
-        {
-          "file": "img/ports/federation_3.jpg",
-          "alt": "The anchorage gate from the sea: a blue gate bridge between two towers with lighthouse lanterns and a fish figure on top, colourful houses along the wall."
-        }
-      ],
-      "note": "Drawn as a styled faction port (the RTS's fishing_federation layout), not as a small anchorage ring."
+    {
+     "file": "img/ports/ari_2.jpg",
+     "alt": "From the water inside ARI's harbour at deck height: the long sea wall with flags and lookout posts, a tank farm, cranes and a lighthouse tower along the quay, and a small boat moored at the quay."
     },
-    "breakwater": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/breakwater_1.jpg",
-          "alt": "Aerial view of Breakwater, The Commons: a rectangular wall of rusty, patched panels with a gap in the near side, enclosing three linked oil rig platforms and a small quay."
-        },
-        {
-          "file": "img/ports/breakwater_2.jpg",
-          "alt": "Deck-height view inside Breakwater: one of the rig platforms with lit windows and a derrick, a tug and a fuel boat at anchor, the patched wall behind."
-        }
-      ]
-    },
-    "last_resort": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/last_resort_1.jpg",
-          "alt": "Aerial view of The Last Resort: a round concrete ring wall with a gap, next to a green island, with two white cruise liners moored either side of a small pier with cranes."
-        },
-        {
-          "file": "img/ports/last_resort_2.jpg",
-          "alt": "Deck-height view between the two cruise liners, their cabin windows lit, looking at the small pier with cranes, a tug and other boats."
-        }
-      ]
-    },
-    "midway": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/midway_1.jpg",
-          "alt": "Aerial view of Midway: a wide ring of dark, ruined buildings and walls around a harbour with an island hub in the middle and gate towers, islands and distant ships beyond."
-        },
-        {
-          "file": "img/ports/midway_2.jpg",
-          "alt": "Inside Midway's harbour at deck height: dark gate towers joined by a bridge span, a ruined quayside and a small boat moored."
-        },
-        {
-          "file": "img/ports/midway_3.jpg",
-          "alt": "The toll-ring hub in the middle of Midway's harbour: a ring of dark towers with broken lattice spans, some hanging, and masts above, ruined walls behind."
-        }
-      ],
-      "note": "The game names it 'Midway (ruin)' and draws it ruined."
-    },
-    "usa_atl": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/usa_atl_1.jpg",
-          "alt": "Aerial view of Norfolk: a walled harbour with numbered wall sections, gate towers joined by a bridge, and long piers lined with hangars, islands beyond."
-        },
-        {
-          "file": "img/ports/usa_atl_2.jpg",
-          "alt": "Deck-height view of a long pier lined with arched hangar sheds, containers, cranes and radio masts, with ships moored."
-        },
-        {
-          "file": "img/ports/usa_atl_3.jpg",
-          "alt": "Norfolk's gate from the sea: two tiered grey towers marked 01 joined by a long bridge span, numbered wall sections either side."
-        }
-      ]
-    },
-    "uk": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/uk_1.jpg",
-          "alt": "Aerial view of Portsmouth: a rectangular stone wall with castle gate towers, red brick buildings and chimneys along the quays and a central pier, green-tinted sea."
-        },
-        {
-          "file": "img/ports/uk_2.jpg",
-          "alt": "Deck-height view of a quay of red brick warehouses, chimneys and a clock tower, with cranes and moored ships."
-        },
-        {
-          "file": "img/ports/uk_3.jpg",
-          "alt": "Portsmouth's gate from the sea: two stone towers with turrets and white banners with a red cross, joined by a covered bridge with an arch."
-        }
-      ]
-    },
-    "russia": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/russia_1.jpg",
-          "alt": "Aerial view of Severomorsk: a round sea wall lined with grey buildings and tower blocks, a tall tower in the middle of the town, and gantry gates."
-        },
-        {
-          "file": "img/ports/russia_2.jpg",
-          "alt": "Deck-height view inside: quayside sheds and a crane on the left, two ships moored, a gantry gate with blue saltire flags, and apartment blocks on the right."
-        },
-        {
-          "file": "img/ports/russia_3.jpg",
-          "alt": "Severomorsk's gate from the sea: a dark gantry with a red-and-white striped beam and two white flags with a blue saltire, walls, city and hills beyond."
-        }
-      ]
-    },
-    "china": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/china_1.jpg",
-          "alt": "Aerial view of Sanya: a star-shaped stone wall with red-roofed towers and large red gate arches, buildings along the quays, green islands beyond."
-        },
-        {
-          "file": "img/ports/china_2.jpg",
-          "alt": "Deck-height view inside: a red gate arch hung with red lanterns, a lighthouse tower, quayside buildings with curved roofs and cranes, a grey ship moored on the right."
-        },
-        {
-          "file": "img/ports/china_3.jpg",
-          "alt": "Sanya's gate from the sea: a tall dark red gate with a tiled roof and red lanterns, crenellated stone walls and a pagoda watchtower beside it."
-        }
-      ]
-    },
-    "iran": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/iran_1.jpg",
-          "alt": "Aerial view of Bandar Abbas: an oval stone wall with blue tiled details enclosing a long diagonal pier, on reddish-brown water with islands nearby."
-        },
-        {
-          "file": "img/ports/iran_2.jpg",
-          "alt": "Deck-height view across reddish-brown water to a long quay of white domed buildings, towers, tanks and moored ships."
-        },
-        {
-          "file": "img/ports/iran_3.jpg",
-          "alt": "The gate of Bandar Abbas from the sea: two tall towers with blue-tiled pointed arches joined by an arcaded bridge, walls with domes either side."
-        }
-      ]
-    },
-    "dead_ports": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/dead_ports_1.jpg",
-          "alt": "Aerial view of Yokosuka: a curved sea wall with a large red torii-style gate at the entrance, rows of buildings and quays inside, a coastline in the distance."
-        },
-        {
-          "file": "img/ports/dead_ports_2.jpg",
-          "alt": "Deck-height view inside Yokosuka: a long quay with sheds, cranes and moored ships, a large grey ship with lit windows on the right."
-        },
-        {
-          "file": "img/ports/dead_ports_3.jpg",
-          "alt": "Yokosuka's red torii-style gate over the harbour entrance seen from the sea, dark walls and white watch-houses either side, city towers inside."
-        }
-      ],
-      "note": "The game builds all five of these ports (Yokosuka, Busan, Mumbai, Rio de Janeiro, Sydney) as intact, working navy ports in their nations' styles; none is drawn derelict yet. The stills show Yokosuka as the game draws it today."
-    },
-    "rig": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/rig_1.jpg",
-          "alt": "An oil rig with a derrick and lit decks inside a round concrete ring wall with four gaps, another rig and a coastline in the distance."
-        },
-        {
-          "file": "img/ports/rig_2.jpg",
-          "alt": "Deck-height view through a gap in the ring wall: the rig's deck on its legs with lit windows and a crane, a fishing boat moored beneath, red and green lights at the gap."
-        }
-      ],
-      "note": "Tidewater rig (29G), a fishing-grounds rig."
-    },
-    "pirate_rig": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/pirate_rig_1.jpg",
-          "alt": "An oil rig with two tall arches over its derrick inside a round concrete ring wall with gaps and small watch posts."
-        },
-        {
-          "file": "img/ports/pirate_rig_2.jpg",
-          "alt": "Deck-height view through a gap in the ring wall: the rig's deck on its legs with lit windows and cyan lights, red and green lights either side of the gap."
-        }
-      ],
-      "note": "Gallows (27F), one of the two pirate holds in ARI's home waters. In the game today it is drawn exactly like any other rig: nothing on screen marks it as pirate-held except its floating name label (hidden in these stills)."
-    },
-    "destroyed_rig": {
-      "in_game": false,
-      "images": [],
-      "reason": "The game has no destroyed rig; the world plan only proposes a drawing (a broken ring with about half the arc standing)."
-    },
-    "fishing_ground": {
-      "in_game": true,
-      "images": [
-        {
-          "file": "img/ports/fishing_ground_1.jpg",
-          "alt": "Aerial view of a Federation fishing ground: a small round concrete ring wall with gaps, inside it a small pier with a shed and crane, a factory trawler and several fishing boats, an island beyond."
-        },
-        {
-          "file": "img/ports/fishing_ground_2.jpg",
-          "alt": "Deck-height view inside the ring: a wooden pier hung with tyres, a fishing boat moored, a small launch, and the ring wall with lamp posts and a watch post."
-        }
-      ],
-      "note": "Federation fishing grounds 1, off Lima (32L); all eight grounds use the same small anchorage."
+    {
+     "file": "img/ports/ari_3.jpg",
+     "alt": "ARI's harbour mouth from the sea at deck height: the two ends of the sea wall with green and red navigation lights, flags and a name board on the wall, cranes behind."
     }
+   ]
   },
-  "ships": {
-    "scrapper": {
-      "name": "Scrapper",
-      "in_game": true,
-      "file": "img/ships/scrapper.jpg",
-      "alt": "The Scrapper, a small rusty workboat with a black hull, white boot-top, a dirty white wheelhouse and a yellow deck crane, on open sea.",
-      "kind": "player hull",
-      "note": "Starter hull; sold at ARI's yard."
+  "federation": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/federation_1.jpg",
+     "alt": "Aerial view of the Fishing Federation anchorage: a walled harbour with brightly painted wooden houses along the quays, four long piers and a gate bridge between two towers, with an island beyond."
     },
-    "mule": {
-      "name": "Mule",
-      "in_game": true,
-      "file": "img/ships/mule.jpg",
-      "alt": "The Mule, a squat cream-painted cargo boat streaked with rust, with a high dark wheelhouse and a mast, on open sea.",
-      "kind": "player hull",
-      "note": "Sold at ARI's yard."
+    {
+     "file": "img/ports/federation_2.jpg",
+     "alt": "Close to a wooden pier on stilts: a crane, stacked cargo, barn-roofed red and green houses with orange roofs, and small figures on the pier."
     },
-    "dart": {
-      "name": "Dart",
-      "in_game": true,
-      "file": "img/ships/dart.jpg",
-      "alt": "The Dart, a long low blue-and-white container runner with an orange gantry, rust streaks along the hull, on open sea.",
-      "kind": "player hull",
-      "note": "Sold at ARI's yard. The same model sails as the 'RUNNER' traffic boat."
-    },
-    "barge_hound": {
-      "name": "Barge-Hound",
-      "in_game": true,
-      "file": "img/ships/barge_hound.jpg",
-      "alt": "The Barge-Hound, a rust-streaked grey-green tug with a heavy black bow fender, red towing gear, a lifeboat and a tall mast with a lamp.",
-      "kind": "player hull",
-      "note": "Built to order at ARI's yard for a Mule owner."
-    },
-    "skipjack": {
-      "name": "Skipjack",
-      "in_game": true,
-      "file": "img/ships/skipjack.jpg",
-      "alt": "The Skipjack, a grey-green patrol launch with a lit wheelhouse, a small gun turret forward and a radar mast.",
-      "kind": "player hull",
-      "note": "Built to order at ARI's yard for a Dart owner. The same model sails as the ARI patrol and escort."
-    },
-    "workhorse": {
-      "name": "Workhorse",
-      "in_game": true,
-      "file": "img/ships/workhorse.jpg",
-      "alt": "The Workhorse, a long green cargo hauler with an orange-red waterline, an open well deck and a wheelhouse aft, on open sea.",
-      "kind": "player hull",
-      "note": "In the game's catalogue, but no yard sells it yet (developer panel only)."
-    },
-    "gunrunner": {
-      "name": "Gunrunner",
-      "in_game": true,
-      "file": "img/ships/gunrunner.jpg",
-      "alt": "The Gunrunner, a rust-streaked armed trawler hull with a lit wheelhouse, a red lifeboat, a deck gun and a tall mast with a lamp.",
-      "kind": "player hull",
-      "note": "Built to order at ARI's yard for a Skipjack owner. Not on the world plan's list."
-    },
-    "blockade_runner": {
-      "name": "Blockade Runner",
-      "in_game": true,
-      "file": "img/ships/blockade_runner.jpg",
-      "alt": "The Blockade Runner, a long rust-streaked armoured gunboat with a gun turret forward, a lit wheelhouse and a red lifeboat.",
-      "kind": "player hull",
-      "note": "Built to order at ARI's yard."
-    },
-    "freighter": {
-      "name": "Freighter",
-      "in_game": true,
-      "file": "img/ships/freighter.jpg",
-      "alt": "The Freighter, a rusty black bulk carrier with four orange deck cranes and a white superstructure aft.",
-      "kind": "player hull",
-      "note": "Built to order at ARI's yard."
-    },
-    "corvette": {
-      "name": "Corvette",
-      "in_game": true,
-      "file": "img/ships/corvette.jpg",
-      "alt": "The Corvette, a dark rust-streaked warship hull with a gun forward, rails along the deck and a tall mast.",
-      "kind": "player hull",
-      "note": "In the game's catalogue, but no yard sells it yet (developer panel only)."
-    },
-    "leviathan": {
-      "name": "Leviathan",
-      "in_game": true,
-      "file": "img/ships/leviathan.jpg",
-      "alt": "The Leviathan, a long rusty container ship with two orange deck cranes and a white superstructure aft.",
-      "kind": "player hull",
-      "note": "Built to order at ARI's yard."
-    },
-    "frigate": {
-      "name": "Frigate",
-      "in_game": true,
-      "file": "img/ships/frigate.jpg",
-      "alt": "A frigate, a rust-streaked dark warship with a red gun turret forward, lit bridge windows and a tall mast with a lamp.",
-      "kind": "navy warship hull",
-      "note": "A naval hull in the game's catalogue that only the developer panel puts a captain aboard; no navy ship sails as an NPC yet."
-    },
-    "destroyer": {
-      "name": "Destroyer",
-      "in_game": true,
-      "file": "img/ships/destroyer.jpg",
-      "alt": "A destroyer, a rust-streaked dark warship with a red gun turret forward, a tall lit bridge with a mast and lamp.",
-      "kind": "navy warship hull",
-      "note": "Developer panel only; no navy ship sails as an NPC yet."
-    },
-    "missile_cruiser": {
-      "name": "Missile Cruiser",
-      "in_game": true,
-      "file": "img/ships/missile_cruiser.jpg",
-      "alt": "A missile cruiser, a long dark rust-streaked warship with launcher decks, a red gun turret forward and a bridge aft.",
-      "kind": "navy warship hull",
-      "note": "Developer panel only; no navy ship sails as an NPC yet."
-    },
-    "battleship": {
-      "name": "Battleship",
-      "in_game": true,
-      "file": "img/ships/battleship.jpg",
-      "alt": "A battleship, a long dark rust-streaked warship with red gun turrets, a funnel and a tall bridge.",
-      "kind": "navy warship hull",
-      "note": "Developer panel only; no navy ship sails as an NPC yet."
-    },
-    "trader": {
-      "name": "TRADER",
-      "in_game": true,
-      "file": "img/ships/trader.jpg",
-      "alt": "A grey bunker boat with large fuel tanks on deck, an orange crane arm and a lit wheelhouse, on open sea.",
-      "kind": "traffic",
-      "note": "Neutral traffic."
-    },
-    "tug": {
-      "name": "TUG",
-      "in_game": true,
-      "file": "img/ships/tug.jpg",
-      "alt": "A grey harbour tug with a black bow fender, orange towing gear, an orange lifeboat and a lit wheelhouse.",
-      "kind": "traffic",
-      "note": "Neutral traffic; also moored at Breakwater and The Last Resort."
-    },
-    "fishing_boat": {
-      "name": "FISHING BOAT",
-      "in_game": true,
-      "file": "img/ships/fishing_boat.jpg",
-      "alt": "A grey fishing boat with a lit wheelhouse, a net drum and an orange gantry with a hanging net, on open sea.",
-      "kind": "traffic",
-      "note": "Neutral traffic; also moored at the Federation ports and fishing grounds."
-    },
-    "ari_patrol": {
-      "name": "ARI PATROL",
-      "in_game": true,
-      "file": "img/ships/ari_patrol.jpg",
-      "alt": "An ARI patrol launch with a dark grey hull and orange stripe, a lit wheelhouse, a deck gun forward and a radar mast.",
-      "kind": "ARI patrol boat",
-      "note": "ARI's patrol boats; the hired 'ARI ESCORT' uses the same model. The game has no separate 'ARI cutter'."
-    },
-    "trawler": {
-      "name": "TRAWLER",
-      "in_game": true,
-      "file": "img/ships/trawler.jpg",
-      "alt": "A converted trawler with a black hull, a red wheelhouse, an orange lifeboat, an orange gantry aft and a deck gun.",
-      "kind": "traffic",
-      "note": "Neutral traffic."
-    },
-    "supply_ship": {
-      "name": "SUPPLY SHIP",
-      "in_game": true,
-      "file": "img/ships/supply_ship.jpg",
-      "alt": "A blue offshore supply ship with a high white bridge forward, a long open deck aft with a small crane.",
-      "kind": "traffic",
-      "note": "Neutral traffic."
-    },
-    "factory_trawler": {
-      "name": "FACTORY TRAWLER",
-      "in_game": true,
-      "file": "img/ships/factory_trawler.jpg",
-      "alt": "A large blue factory trawler with a white superstructure and orange gantries and cranes aft.",
-      "kind": "traffic",
-      "note": "Neutral traffic; also moored at the Federation ports."
-    },
-    "tanker": {
-      "name": "TANKER",
-      "in_game": true,
-      "file": "img/ships/tanker.jpg",
-      "alt": "A long grey refitted tanker with pipework along the deck and a white superstructure aft.",
-      "kind": "traffic",
-      "note": "Neutral traffic."
-    },
-    "pirate_skiff": {
-      "name": "PIRATE SKIFF",
-      "in_game": true,
-      "file": "img/ships/pirate_skiff.jpg",
-      "alt": "A pirate skiff, a low dark raider boat with red trim, an open cabin frame and two antennas.",
-      "kind": "pirate"
-    },
-    "pirate_gunboat": {
-      "name": "PIRATE GUNBOAT",
-      "in_game": true,
-      "file": "img/ships/pirate_gunboat.jpg",
-      "alt": "A pirate gunboat, a long dark hull with red trim, a boxy superstructure and a mast.",
-      "kind": "pirate"
-    },
-    "pirate_barrage": {
-      "name": "PIRATE BARRAGE BOAT",
-      "in_game": true,
-      "file": "img/ships/pirate_barrage.jpg",
-      "alt": "A pirate barrage boat, a dark hull with red trim and rocket launcher racks on the after deck.",
-      "kind": "pirate"
-    },
-    "pirate_heavy": {
-      "name": "PIRATE HEAVY",
-      "in_game": true,
-      "file": "img/ships/pirate_heavy.jpg",
-      "alt": "A pirate heavy, a rust-streaked dark sub-hunter with a red superstructure, red lifeboats and a gun turret forward.",
-      "kind": "pirate",
-      "note": "Appears at higher difficulty."
-    },
-    "pirate_flagship": {
-      "name": "PIRATE FLAGSHIP",
-      "in_game": true,
-      "file": "img/ships/pirate_flagship.jpg",
-      "alt": "A pirate flagship, a long seized battleship painted dark red and black with big gun turrets and a funnel.",
-      "kind": "pirate",
-      "note": "Appears at higher difficulty with three skiff escorts."
-    },
-    "cruise_liner": {
-      "name": "Cruise liner",
-      "in_game": true,
-      "file": "img/ships/cruise_liner.jpg",
-      "alt": "A white cruise liner with rows of lit cabin windows and orange lifeboats along her side, on open sea.",
-      "kind": "port ship",
-      "note": "Moored at The Last Resort; it never sails. No in-game name label (name from the game's ship data)."
-    },
-    "ghost": {
-      "name": "Ghost",
-      "in_game": false,
-      "reason": "Not in the main game; it exists only in the rejected Lite experiment kept for reference."
-    },
-    "shade": {
-      "name": "Shade",
-      "in_game": false,
-      "reason": "Not built: the world plan's black-market stealth hull has no model or catalogue entry."
-    },
-    "polynya": {
-      "name": "Polynya",
-      "in_game": false,
-      "reason": "Not built: the world plan's ice-strengthened hull is a working name only."
-    },
-    "drone": {
-      "name": "Drones",
-      "in_game": false,
-      "reason": "No drones are in the game; drone zones are world-plan lore only."
+    {
+     "file": "img/ports/federation_3.jpg",
+     "alt": "The anchorage gate from the sea: a blue gate bridge between two towers with lighthouse lanterns and a fish figure on top, colourful houses along the wall."
     }
+   ]
+  },
+  "breakwater": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/breakwater_1.jpg",
+     "alt": "Aerial view of Breakwater, The Commons: a rectangular wall of rusty, patched panels with a gap in the near side, enclosing three linked oil rig platforms and a small quay."
+    },
+    {
+     "file": "img/ports/breakwater_2.jpg",
+     "alt": "Deck-height view inside Breakwater: one of the rig platforms with lit windows and a derrick, a tug and a fuel boat at anchor, the patched wall behind."
+    }
+   ]
+  },
+  "last_resort": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/last_resort_1.jpg",
+     "alt": "Aerial view of The Last Resort: a round concrete ring wall with a gap, next to a green island, with two white cruise liners moored either side of a small pier with cranes."
+    },
+    {
+     "file": "img/ports/last_resort_2.jpg",
+     "alt": "Deck-height view between the two cruise liners, their cabin windows lit, looking at the small pier with cranes, a tug and other boats."
+    }
+   ]
+  },
+  "midway": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/midway_1.jpg",
+     "alt": "Aerial view of Midway: a wide ring of dark, ruined buildings and walls around a harbour with an island hub in the middle and gate towers, islands and distant ships beyond."
+    },
+    {
+     "file": "img/ports/midway_2.jpg",
+     "alt": "Inside Midway's harbour at deck height: dark gate towers joined by a bridge span, a ruined quayside and a small boat moored."
+    },
+    {
+     "file": "img/ports/midway_3.jpg",
+     "alt": "The toll-ring hub in the middle of Midway's harbour: a ring of dark towers with broken lattice spans, some hanging, and masts above, ruined walls behind."
+    }
+   ]
+  },
+  "usa_atl": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/usa_atl_1.jpg",
+     "alt": "Aerial view of Norfolk: a walled harbour with numbered wall sections, gate towers joined by a bridge, and long piers lined with hangars, islands beyond."
+    },
+    {
+     "file": "img/ports/usa_atl_2.jpg",
+     "alt": "Deck-height view of a long pier lined with arched hangar sheds, containers, cranes and radio masts, with ships moored."
+    },
+    {
+     "file": "img/ports/usa_atl_3.jpg",
+     "alt": "Norfolk's gate from the sea: two tiered grey towers marked 01 joined by a long bridge span, numbered wall sections either side."
+    }
+   ]
+  },
+  "uk": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/uk_1.jpg",
+     "alt": "Aerial view of Portsmouth: a rectangular stone wall with castle gate towers, red brick buildings and chimneys along the quays and a central pier, green-tinted sea."
+    },
+    {
+     "file": "img/ports/uk_2.jpg",
+     "alt": "Deck-height view of a quay of red brick warehouses, chimneys and a clock tower, with cranes and moored ships."
+    },
+    {
+     "file": "img/ports/uk_3.jpg",
+     "alt": "Portsmouth's gate from the sea: two stone towers with turrets and white banners with a red cross, joined by a covered bridge with an arch."
+    }
+   ]
+  },
+  "russia": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/russia_1.jpg",
+     "alt": "Aerial view of Severomorsk: a round sea wall lined with grey buildings and tower blocks, a tall tower in the middle of the town, and gantry gates."
+    },
+    {
+     "file": "img/ports/russia_2.jpg",
+     "alt": "Deck-height view inside: quayside sheds and a crane on the left, two ships moored, a gantry gate with blue saltire flags, and apartment blocks on the right."
+    },
+    {
+     "file": "img/ports/russia_3.jpg",
+     "alt": "Severomorsk's gate from the sea: a dark gantry with a red-and-white striped beam and two white flags with a blue saltire, walls, city and hills beyond."
+    }
+   ]
+  },
+  "china": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/china_1.jpg",
+     "alt": "Aerial view of Sanya: a star-shaped stone wall with red-roofed towers and large red gate arches, buildings along the quays, green islands beyond."
+    },
+    {
+     "file": "img/ports/china_2.jpg",
+     "alt": "Deck-height view inside: a red gate arch hung with red lanterns, a lighthouse tower, quayside buildings with curved roofs and cranes, a grey ship moored on the right."
+    },
+    {
+     "file": "img/ports/china_3.jpg",
+     "alt": "Sanya's gate from the sea: a tall dark red gate with a tiled roof and red lanterns, crenellated stone walls and a pagoda watchtower beside it."
+    }
+   ]
+  },
+  "iran": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/iran_1.jpg",
+     "alt": "Aerial view of Bandar Abbas: an oval stone wall with blue tiled details enclosing a long diagonal pier, on reddish-brown water with islands nearby."
+    },
+    {
+     "file": "img/ports/iran_2.jpg",
+     "alt": "Deck-height view across reddish-brown water to a long quay of white domed buildings, towers, tanks and moored ships."
+    },
+    {
+     "file": "img/ports/iran_3.jpg",
+     "alt": "The gate of Bandar Abbas from the sea: two tall towers with blue-tiled pointed arches joined by an arcaded bridge, walls with domes either side."
+    }
+   ]
+  },
+  "dead_ports": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/dead_ports_1.jpg",
+     "alt": "Aerial view of Yokosuka: a curved sea wall with a large red torii-style gate at the entrance, rows of buildings and quays inside, a coastline in the distance."
+    },
+    {
+     "file": "img/ports/dead_ports_2.jpg",
+     "alt": "Deck-height view inside Yokosuka: a long quay with sheds, cranes and moored ships, a large grey ship with lit windows on the right."
+    },
+    {
+     "file": "img/ports/dead_ports_3.jpg",
+     "alt": "Yokosuka's red torii-style gate over the harbour entrance seen from the sea, dark walls and white watch-houses either side, city towers inside."
+    }
+   ]
+  },
+  "rig": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/rig_1.jpg",
+     "alt": "An oil rig with a derrick and lit decks inside a round concrete ring wall with four gaps, another rig and a coastline in the distance."
+    },
+    {
+     "file": "img/ports/rig_2.jpg",
+     "alt": "Deck-height view through a gap in the ring wall: the rig's deck on its legs with lit windows and a crane, a fishing boat moored beneath, red and green lights at the gap."
+    }
+   ]
+  },
+  "pirate_rig": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/pirate_rig_1.jpg",
+     "alt": "An oil rig with two tall arches over its derrick inside a round concrete ring wall with gaps and small watch posts."
+    },
+    {
+     "file": "img/ports/pirate_rig_2.jpg",
+     "alt": "Deck-height view through a gap in the ring wall: the rig's deck on its legs with lit windows and cyan lights, red and green lights either side of the gap."
+    }
+   ]
+  },
+  "destroyed_rig": {
+   "in_game": false,
+   "images": []
+  },
+  "fishing_ground": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/fishing_ground_1.jpg",
+     "alt": "Aerial view of a Federation fishing ground: a small round concrete ring wall with gaps, inside it a small pier with a shed and crane, a factory trawler and several fishing boats, an island beyond."
+    },
+    {
+     "file": "img/ports/fishing_ground_2.jpg",
+     "alt": "Deck-height view inside the ring: a wooden pier hung with tyres, a fishing boat moored, a small launch, and the ring wall with lamp posts and a watch post."
+    }
+   ]
   }
+ },
+ "ships": {
+  "scrapper": {
+   "name": "Scrapper",
+   "in_game": true,
+   "file": "img/ships/scrapper.jpg",
+   "alt": "The Scrapper, a small rusty workboat with a black hull, white boot-top, a dirty white wheelhouse and a yellow deck crane, on open sea.",
+   "kind": "player hull"
+  },
+  "mule": {
+   "name": "Mule",
+   "in_game": true,
+   "file": "img/ships/mule.jpg",
+   "alt": "The Mule, a squat cream-painted cargo boat streaked with rust, with a high dark wheelhouse and a mast, on open sea.",
+   "kind": "player hull"
+  },
+  "dart": {
+   "name": "Dart",
+   "in_game": true,
+   "file": "img/ships/dart.jpg",
+   "alt": "The Dart, a long low blue-and-white container runner with an orange gantry, rust streaks along the hull, on open sea.",
+   "kind": "player hull"
+  },
+  "barge_hound": {
+   "name": "Barge-Hound",
+   "in_game": true,
+   "file": "img/ships/barge_hound.jpg",
+   "alt": "The Barge-Hound, a rust-streaked grey-green tug with a heavy black bow fender, red towing gear, a lifeboat and a tall mast with a lamp.",
+   "kind": "player hull"
+  },
+  "skipjack": {
+   "name": "Skipjack",
+   "in_game": true,
+   "file": "img/ships/skipjack.jpg",
+   "alt": "The Skipjack, a grey-green patrol launch with a lit wheelhouse, a small gun turret forward and a radar mast.",
+   "kind": "player hull"
+  },
+  "workhorse": {
+   "name": "Workhorse",
+   "in_game": true,
+   "file": "img/ships/workhorse.jpg",
+   "alt": "The Workhorse, a long green cargo hauler with an orange-red waterline, an open well deck and a wheelhouse aft, on open sea.",
+   "kind": "player hull"
+  },
+  "gunrunner": {
+   "name": "Gunrunner",
+   "in_game": true,
+   "file": "img/ships/gunrunner.jpg",
+   "alt": "The Gunrunner, a rust-streaked armed trawler hull with a lit wheelhouse, a red lifeboat, a deck gun and a tall mast with a lamp.",
+   "kind": "player hull"
+  },
+  "blockade_runner": {
+   "name": "Blockade Runner",
+   "in_game": true,
+   "file": "img/ships/blockade_runner.jpg",
+   "alt": "The Blockade Runner, a long rust-streaked armoured gunboat with a gun turret forward, a lit wheelhouse and a red lifeboat.",
+   "kind": "player hull"
+  },
+  "freighter": {
+   "name": "Freighter",
+   "in_game": true,
+   "file": "img/ships/freighter.jpg",
+   "alt": "The Freighter, a rusty black bulk carrier with four orange deck cranes and a white superstructure aft.",
+   "kind": "player hull"
+  },
+  "corvette": {
+   "name": "Corvette",
+   "in_game": true,
+   "file": "img/ships/corvette.jpg",
+   "alt": "The Corvette, a dark rust-streaked warship hull with a gun forward, rails along the deck and a tall mast.",
+   "kind": "player hull"
+  },
+  "leviathan": {
+   "name": "Leviathan",
+   "in_game": true,
+   "file": "img/ships/leviathan.jpg",
+   "alt": "The Leviathan, a long rusty container ship with two orange deck cranes and a white superstructure aft.",
+   "kind": "player hull"
+  },
+  "frigate": {
+   "name": "Frigate",
+   "in_game": true,
+   "file": "img/ships/frigate.jpg",
+   "alt": "A frigate, a rust-streaked dark warship with a red gun turret forward, lit bridge windows and a tall mast with a lamp.",
+   "kind": "navy warship hull"
+  },
+  "destroyer": {
+   "name": "Destroyer",
+   "in_game": true,
+   "file": "img/ships/destroyer.jpg",
+   "alt": "A destroyer, a rust-streaked dark warship with a red gun turret forward, a tall lit bridge with a mast and lamp.",
+   "kind": "navy warship hull"
+  },
+  "missile_cruiser": {
+   "name": "Missile Cruiser",
+   "in_game": true,
+   "file": "img/ships/missile_cruiser.jpg",
+   "alt": "A missile cruiser, a long dark rust-streaked warship with launcher decks, a red gun turret forward and a bridge aft.",
+   "kind": "navy warship hull"
+  },
+  "battleship": {
+   "name": "Battleship",
+   "in_game": true,
+   "file": "img/ships/battleship.jpg",
+   "alt": "A battleship, a long dark rust-streaked warship with red gun turrets, a funnel and a tall bridge.",
+   "kind": "navy warship hull"
+  },
+  "trader": {
+   "name": "TRADER",
+   "in_game": true,
+   "file": "img/ships/trader.jpg",
+   "alt": "A grey bunker boat with large fuel tanks on deck, an orange crane arm and a lit wheelhouse, on open sea.",
+   "kind": "traffic"
+  },
+  "tug": {
+   "name": "TUG",
+   "in_game": true,
+   "file": "img/ships/tug.jpg",
+   "alt": "A grey harbour tug with a black bow fender, orange towing gear, an orange lifeboat and a lit wheelhouse.",
+   "kind": "traffic"
+  },
+  "fishing_boat": {
+   "name": "FISHING BOAT",
+   "in_game": true,
+   "file": "img/ships/fishing_boat.jpg",
+   "alt": "A grey fishing boat with a lit wheelhouse, a net drum and an orange gantry with a hanging net, on open sea.",
+   "kind": "traffic"
+  },
+  "ari_patrol": {
+   "name": "ARI PATROL",
+   "in_game": true,
+   "file": "img/ships/ari_patrol.jpg",
+   "alt": "An ARI patrol launch with a dark grey hull and orange stripe, a lit wheelhouse, a deck gun forward and a radar mast.",
+   "kind": "ARI patrol boat"
+  },
+  "trawler": {
+   "name": "TRAWLER",
+   "in_game": true,
+   "file": "img/ships/trawler.jpg",
+   "alt": "A converted trawler with a black hull, a red wheelhouse, an orange lifeboat, an orange gantry aft and a deck gun.",
+   "kind": "traffic"
+  },
+  "supply_ship": {
+   "name": "SUPPLY SHIP",
+   "in_game": true,
+   "file": "img/ships/supply_ship.jpg",
+   "alt": "A blue offshore supply ship with a high white bridge forward, a long open deck aft with a small crane.",
+   "kind": "traffic"
+  },
+  "factory_trawler": {
+   "name": "FACTORY TRAWLER",
+   "in_game": true,
+   "file": "img/ships/factory_trawler.jpg",
+   "alt": "A large blue factory trawler with a white superstructure and orange gantries and cranes aft.",
+   "kind": "traffic"
+  },
+  "tanker": {
+   "name": "TANKER",
+   "in_game": true,
+   "file": "img/ships/tanker.jpg",
+   "alt": "A long grey refitted tanker with pipework along the deck and a white superstructure aft.",
+   "kind": "traffic"
+  },
+  "pirate_skiff": {
+   "name": "PIRATE SKIFF",
+   "in_game": true,
+   "file": "img/ships/pirate_skiff.jpg",
+   "alt": "A pirate skiff, a low dark raider boat with red trim, an open cabin frame and two antennas.",
+   "kind": "pirate"
+  },
+  "pirate_gunboat": {
+   "name": "PIRATE GUNBOAT",
+   "in_game": true,
+   "file": "img/ships/pirate_gunboat.jpg",
+   "alt": "A pirate gunboat, a long dark hull with red trim, a boxy superstructure and a mast.",
+   "kind": "pirate"
+  },
+  "pirate_barrage": {
+   "name": "PIRATE BARRAGE BOAT",
+   "in_game": true,
+   "file": "img/ships/pirate_barrage.jpg",
+   "alt": "A pirate barrage boat, a dark hull with red trim and rocket launcher racks on the after deck.",
+   "kind": "pirate"
+  },
+  "pirate_heavy": {
+   "name": "PIRATE HEAVY",
+   "in_game": true,
+   "file": "img/ships/pirate_heavy.jpg",
+   "alt": "A pirate heavy, a rust-streaked dark sub-hunter with a red superstructure, red lifeboats and a gun turret forward.",
+   "kind": "pirate"
+  },
+  "pirate_flagship": {
+   "name": "PIRATE FLAGSHIP",
+   "in_game": true,
+   "file": "img/ships/pirate_flagship.jpg",
+   "alt": "A pirate flagship, a long seized battleship painted dark red and black with big gun turrets and a funnel.",
+   "kind": "pirate"
+  },
+  "cruise_liner": {
+   "name": "Cruise liner",
+   "in_game": true,
+   "file": "img/ships/cruise_liner.jpg",
+   "alt": "A white cruise liner with rows of lit cabin windows and orange lifeboats along her side, on open sea.",
+   "kind": "port ship"
+  },
+  "ghost": {
+   "name": "Ghost",
+   "in_game": false
+  },
+  "shade": {
+   "name": "Shade",
+   "in_game": false
+  },
+  "polynya": {
+   "name": "Polynya",
+   "in_game": false
+  },
+  "drone": {
+   "name": "Drones",
+   "in_game": false
+  }
+ }
 }
