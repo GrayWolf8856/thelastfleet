@@ -95,6 +95,11 @@
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
 
   var RIG_COL = '#cfd8de', RIG_HELD = '#e06666';
+  // rig status: Runner Lite's rig map plus the 2055 plan's holders (world-data.js "st")
+  var RIG_ST = { working: { name: 'Working', label: 'Working rig', col: '#cfd8de' }, destroyed: { name: 'Destroyed', label: 'Destroyed rig', col: '#8a96a0' },
+    twin: { name: 'Twin', label: 'Twin rig', col: '#9fd4e8' }, pirate: { name: 'Pirate-held', label: 'Pirate-held rig', col: '#e06666' },
+    breakwater: { name: 'Breakwater', label: 'Breakwater rig', col: '#5b9be0' } };
+  var RIG_ORDER = ['working', 'destroyed', 'twin', 'pirate', 'breakwater'];
 
   // ------------------------------------------------------------------ paths (world metres), built once
   var LAND = new Path2D(), LS = D.meta.landScale;
@@ -206,7 +211,7 @@
   var DPR = 1, CW = 0, CH = 0;
   var V = { s: 0.003, cx: W / 2, cy: (ROWS - 1) * SH / 2 };
   var G = { lam: 170 * DEG, phi: 12 * DEG, R: 300, cx: 0, cy: 0 };
-  var view = 'flat', mode = 'holders', filter = 'all', sel = null, hits = [], started = false, OFF = [0];
+  var view = 'flat', mode = 'holders', filter = 'all', rigSt = 'all', sel = null, hits = [], started = false, OFF = [0];
   function minScale() { return Math.min(CW / W, CH / (BOTTOM - TOP)) * 0.98; }
   function maxScale() { return 900 / SW; }
   function gMinR() { return Math.min(CW, CH) * 0.42; }
@@ -584,18 +589,36 @@
     }
   }
 
-  function markerKind(it) { return it.isRig ? (it.held ? 'righeld' : 'rig') : it.isPort ? (it.mystery ? 'aiport' : it.dead ? 'dead' : 'port') : it.kind; }
-  function markerColor(it) { return it.isRig ? (it.held ? RIG_HELD : RIG_COL) : it.isPort ? (it.mystery ? AI_COL : it.dead ? '#3a4550' : T[it.terr].color) : KIND_COL[it.kind]; }
+  function markerKind(it) { return it.isRig ? 'rig_' + (it.st || 'working') : it.isPort ? (it.mystery ? 'aiport' : it.dead ? 'dead' : 'port') : it.kind; }
+  function markerColor(it) { return it.isRig ? (RIG_ST[it.st] || RIG_ST.working).col : it.isPort ? (it.mystery ? AI_COL : it.dead ? '#3a4550' : T[it.terr].color) : KIND_COL[it.kind]; }
   function drawGlyph(g, kind, X, Y, col, big, small) {
-    if (kind === 'rig' || kind === 'righeld') {   // an oil rig: a small square deck with a derrick
-      var r = small ? 3 : 4.6;
-      g.beginPath(); g.rect(X - r - 1.5, Y - r - 1.5, 2 * r + 3, 2 * r + 3); g.fillStyle = '#06101a'; g.fill();
-      g.beginPath(); g.rect(X - r, Y - r, 2 * r, 2 * r); g.fillStyle = col; g.fill();
-      if (!small) { g.beginPath(); g.moveTo(X - r * 0.5, Y + r * 0.6); g.lineTo(X, Y - r * 0.7); g.lineTo(X + r * 0.5, Y + r * 0.6); g.lineWidth = 1.3; g.strokeStyle = '#06101a'; g.stroke(); }
-      return;
-    }
+    if (kind.indexOf('rig_') === 0) { rigGlyph(g, kind.slice(4), X, Y, col, small); return; }
     glyph(g, kind, X, Y, col, big);
   }
+
+  // rigs, one shape per status so they read without colour: working = solid deck with a derrick; destroyed = hollow
+  // deck crossed out; twin = two decks side by side; pirate-held = solid deck with a dark triangle; Breakwater = deck in a ring
+  function rigGlyph(g, st, X, Y, col, small) {
+    var r = small ? 3 : 4.6, dark = '#06101a';
+    function deck(cx, cy, rr) { g.beginPath(); g.rect(cx - rr - 1.5, cy - rr - 1.5, 2 * rr + 3, 2 * rr + 3); g.fillStyle = dark; g.fill(); g.beginPath(); g.rect(cx - rr, cy - rr, 2 * rr, 2 * rr); g.fillStyle = col; g.fill(); }
+    function derrick(cx, cy, rr) { g.beginPath(); g.moveTo(cx - rr * 0.5, cy + rr * 0.6); g.lineTo(cx, cy - rr * 0.7); g.lineTo(cx + rr * 0.5, cy + rr * 0.6); g.lineWidth = 1.3; g.strokeStyle = dark; g.stroke(); }
+    if (st === 'destroyed') {
+      g.beginPath(); g.rect(X - r - 1, Y - r - 1, 2 * r + 2, 2 * r + 2); g.fillStyle = 'rgba(6,16,26,0.85)'; g.fill();
+      g.beginPath(); g.rect(X - r, Y - r, 2 * r, 2 * r); g.lineWidth = 1.4; g.strokeStyle = col; g.stroke();
+      g.beginPath(); g.moveTo(X - r - 1.5, Y - r - 1.5); g.lineTo(X + r + 1.5, Y + r + 1.5); g.moveTo(X + r + 1.5, Y - r - 1.5); g.lineTo(X - r - 1.5, Y + r + 1.5);
+      g.lineWidth = 3.2; g.strokeStyle = dark; g.stroke(); g.lineWidth = 1.5; g.strokeStyle = '#ff6a4d'; g.stroke();
+    } else if (st === 'twin') {
+      var q = r * 0.78; deck(X - q * 1.15, Y + q * 0.25, q); deck(X + q * 1.15, Y - q * 0.25, q);
+      if (!small) { derrick(X - q * 1.15, Y + q * 0.25, q); derrick(X + q * 1.15, Y - q * 0.25, q); }
+    } else if (st === 'pirate') {
+      deck(X, Y, r);
+      g.beginPath(); g.moveTo(X, Y - r * 0.75); g.lineTo(X + r * 0.75, Y + r * 0.6); g.lineTo(X - r * 0.75, Y + r * 0.6); g.closePath(); g.fillStyle = dark; g.fill();
+    } else if (st === 'breakwater') {
+      g.beginPath(); g.arc(X, Y, r * 2, 0, 7); g.lineWidth = 3.4; g.strokeStyle = dark; g.stroke(); g.lineWidth = 1.6; g.strokeStyle = col; g.stroke();
+      deck(X, Y, r * 0.8); if (!small) derrick(X, Y, r * 0.8);
+    } else { deck(X, Y, r); if (!small) derrick(X, Y, r); }
+  }
+  function rigShown(r) { return rigSt === 'all' || r.st === rigSt; }
 
   // which places show: the filter decides; with "All", ports always and minor places as you zoom in
   function visibleRank(px) { return px >= 95 ? 3 : px >= 50 ? 2 : 1; }
@@ -606,6 +629,7 @@
       PLACES.forEach(function (p) { if (p.rank <= vr) items.push(p); });
       if (px >= 95) { items = items.concat(RIGS); small = true; }
     } else if (filter === 'seas') items = [];
+    else if (filter === 'rigs') items = RIGS.filter(rigShown);
     else items = CAT[filter].slice();
     var selItem = sel && sel.item;
     if (selItem && !selItem.isSea && items.indexOf(selItem) < 0) items.push(selItem);
@@ -968,12 +992,17 @@
   }
 
   function rigHTML(r) {
-    var s = SEC[r.s];
-    var h = '<div class="p-k">Oil rig · Sector ' + esc(r.s) + '</div>' +
+    var s = SEC[r.s], st = RIG_ST[r.st] || RIG_ST.working, tw = r.twin && BY_HASH[r.twin];
+    var h = '<div class="p-k">' + esc(st.label) + ' · Sector ' + esc(r.s) + '</div>' +
       '<h2 id="panel-title" tabindex="-1">' + esc(r.name) + '</h2>' +
       '<p class="p-place">' + esc(s.p || r.s) + ' · danger ' + esc(s.d) + ', ' + esc(riskWord[s.d]).toLowerCase() + '</p>' +
-      (r.held ? heldHTML(r.held, r.held === 'Breakwater' ? T.breakwater.color : RIG_HELD) : '<p class="p-place">Water held by ' + esc(T[s.t].name) + '</p>');
-    if (r.capture && capImages(r.capture).length) h += '<h3>From the game</h3>' + galleryHTML(r.capture, r.name);
+      (r.held ? heldHTML(r.held, r.st === 'breakwater' ? T.breakwater.color : RIG_HELD) : '<p class="p-place">Water: ' + esc(T[s.t].name) + '</p>');
+    if (r.st === 'destroyed') h += '<p class="p-about">This rig is destroyed.</p>';
+    else if (r.st === 'twin') h += '<p class="p-about">Two rigs inside one sea wall.</p>' +
+      (tw ? '<p class="p-about">Its partner: <button type="button" class="p-twin" data-open="' + esc(tw.hash) + '">' + esc(tw.name) + ' · ' + esc(tw.s) + '</button></p>' : '');
+    else if (r.st === 'breakwater') h += '<p class="p-about">One of the three old rigs joined into Breakwater\'s walled harbour.</p>';
+    else if (r.st === 'working') h += '<p class="p-about">A working rig.</p>';
+    if (r.st !== 'destroyed' && r.capture && capImages(r.capture).length) h += '<h3>From the game</h3>' + galleryHTML(r.capture, r.name);
     h += seaHTML(s.s) + '<a class="p-link" href="#' + esc(r.hash) + '">Link to this rig</a>';
     return h;
   }
@@ -1030,6 +1059,8 @@
     else if (!ro.hidden) { hideReadout(); sel = null; requestDraw(); }
   }, true);
   pbody.addEventListener('click', function (e) {
+    var tb = e.target.closest && e.target.closest('button.p-twin');
+    if (tb) { openItem(BY_HASH[tb.dataset.open], { push: true, fly: true }); return; }
     var a = e.target.closest && e.target.closest('a.p-link');
     if (a) { e.preventDefault(); var url = location.href.split('#')[0] + a.getAttribute('href'); if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { a.textContent = 'Link copied'; }, function () { }); history.replaceState(null, '', a.getAttribute('href')); }
   });
@@ -1039,7 +1070,7 @@
   var qEl = document.getElementById('finder-q'), showBtn = document.getElementById('show-btn'), showLabel = document.getElementById('show-label');
   function kindLabel(it) {
     if (it.isPort) return it.mystery ? 'Automated port' : it.dead ? 'Dead navy port' : 'Port';
-    if (it.isRig) return it.held ? 'Rig, held by ' + it.held : 'Oil rig';
+    if (it.isRig) return it.st === 'pirate' ? 'Pirate-held rig' : (RIG_ST[it.st] || RIG_ST.working).label;
     if (it.isSea) return 'Sea';
     return it.kindName;
   }
@@ -1051,7 +1082,7 @@
   }
   // groups for the list: ports by kind, rigs by sea, places by kind
   function groupsFor(f) {
-    var items = CAT[f], groups = [], at = {};
+    var items = f === 'rigs' ? CAT.rigs.filter(rigShown) : CAT[f], groups = [], at = {};
     function add(name, it) { if (!(name in at)) { at[name] = groups.length; groups.push({ name: name, items: [] }); } groups[at[name]].items.push(it); }
     items.forEach(function (it) {
       if (it.isPort) add(it.mystery ? 'Automated port' : it.dead ? 'Dead navy ports' : 'Ports', it);
@@ -1085,7 +1116,28 @@
     listEl.innerHTML = h || '<p class="f-empty">Nothing to show.</p>';
     qEl.value = '';
     document.getElementById('finder-search').hidden = !(filter === 'rigs' || filter === 'all');
+    buildRigChips();
     markListed();
+  }
+  // the rig status chips: shown with the Rigs filter; they narrow the list and the markers together
+  var rigChipsEl = document.getElementById('rig-chips');
+  function buildRigChips() {
+    rigChipsEl.hidden = filter !== 'rigs';
+    if (rigChipsEl.hidden) return;
+    rigChipsEl.innerHTML = '';
+    ['all'].concat(RIG_ORDER).forEach(function (k) {
+      var n = k === 'all' ? RIGS.length : RIGS.filter(function (r) { return r.st === k; }).length;
+      var b = document.createElement('button');
+      b.type = 'button'; b.dataset.st = k; b.setAttribute('aria-pressed', String(k === rigSt));
+      if (k !== 'all') b.appendChild(glyphCanvas('rig_' + k, RIG_ST[k].col));
+      b.appendChild(document.createTextNode(k === 'all' ? 'All' : RIG_ST[k].name));
+      var sp = document.createElement('span'); sp.className = 'n'; sp.textContent = n; b.appendChild(sp);
+      b.addEventListener('click', function () {
+        rigSt = k; var q = qEl.value; buildList(); if (q) { qEl.value = q; qEl.dispatchEvent(new Event('input')); }
+        requestDraw();
+      });
+      rigChipsEl.appendChild(b);
+    });
   }
   function markListed() {
     listEl.querySelectorAll('button[data-h]').forEach(function (b) { b.setAttribute('aria-current', String(!!(sel && sel.item && sel.item.hash === b.dataset.h))); });
@@ -1167,7 +1219,7 @@
     body.innerHTML = h;
     var ul = document.getElementById('legend-marks');
     var all = { ports: [['port', T.ari.color, 'Port'], ['dead', '#3a4550', 'Dead navy port'], ['aiport', AI_COL, 'Automated port']],
-      rigs: [['rig', RIG_COL, 'Oil rig'], ['righeld', RIG_HELD, 'Rig held by someone']],
+      rigs: RIG_ORDER.map(function (k) { return ['rig_' + k, RIG_ST[k].col, RIG_ST[k].label]; }),
       pirates: [['toll', KIND_COL.toll, 'Toll line'], ['stronghold', KIND_COL.stronghold, 'Pirate stronghold'], ['crew', KIND_COL.crew, 'Pirate crew base']],
       danger: [['gate', KIND_COL.gate, 'Sea gate'], ['drone', KIND_COL.drone, 'Drone water'], ['fallout', KIND_COL.fallout, 'Fallout coast'], ['no_fuel', KIND_COL.no_fuel, 'No-fuel water']],
       wrecks: [['graveyard', KIND_COL.graveyard, 'Ship graveyard'], ['city', KIND_COL.city, 'Drowned city'], ['salvage', KIND_COL.salvage, 'Salvage field']],
