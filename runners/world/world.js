@@ -103,7 +103,7 @@
   // who controls a standing rig (world-data.js "ctl"); structure ("st") is separate: a twin is a structure, not a control
   var RIG_CTL = {
     free: { name: 'Free trading', label: 'Free trading rig', col: '#7fd8b8', text: 'Open for trade.' },
-    housing: { name: 'Housing', label: 'Housing rig', col: '#e3c48a', text: 'People live here. They do not trade and they do not attack.' },
+    housing: { name: 'Lantern rig', chip: 'Lantern rigs', short: 'lantern', label: 'Lantern rig', col: '#e3c48a', text: 'People live here. They do not trade and they do not attack. Lit at night.' },
     tribute: { name: 'Paying tribute', label: 'Rig paying tribute', col: '#e8a052', text: 'Pays pirates to be left alone. Still trades.' },
     pirate: { name: 'Pirate-held', label: 'Pirate-held rig', col: '#e06666' },
     dark: { name: 'Dark', label: 'Dark rig', col: '#55616c', text: 'No signal. Nobody answers.' },
@@ -111,6 +111,7 @@
   // the chips under Rigs: five controls, then three structures
   var RIG_CHIPS = [['free', 'ctl'], ['housing', 'ctl'], ['tribute', 'ctl'], ['pirate', 'ctl'], ['dark', 'ctl'], ['destroyed', 'st'], ['twin', 'st'], ['breakwater', 'st']];
   function rigChip(k) { return RIG_CTL[k] && k !== 'breakwater' ? RIG_CTL[k] : RIG_ST[k]; }
+  function chipName(k) { var c = rigChip(k); return c.chip || c.name; }
 
   // ------------------------------------------------------------------ paths (world metres), built once
   var LAND = new Path2D(), LS = D.meta.landScale;
@@ -611,7 +612,7 @@
   // deck crossed out; twin = two decks side by side; pirate-held = solid deck with a dark triangle; Breakwater = deck in a ring
   // rigs: the outline shape says what is standing (one deck; two decks for a twin; crossed out when destroyed; a ring for
   // Breakwater) and the mark inside says who controls it, so they read without colour: a derrick = free trading,
-  // a roof = housing, a coin = paying tribute, a dark triangle = pirate-held, an empty dark deck = dark
+  // a roof = lantern rig (people live there), a coin = paying tribute, a dark triangle = pirate-held, an empty dark deck = dark
   function rigGlyph(g, st, ctl, X, Y, col, small) {
     var r = small ? 3 : 4.6, dark = '#06101a';
     function mark(cx, cy, rr) {
@@ -1103,7 +1104,7 @@
     if (it.isRig) {
       if (it.st === 'destroyed') return 'Destroyed rig';
       var cl = RIG_CTL[it.ctl] || RIG_CTL.free;
-      return it.st === 'twin' ? 'Twin rig, ' + cl.name.toLowerCase() : cl.label;
+      return it.st === 'twin' ? 'Twin rig, ' + (cl.short || cl.name.toLowerCase()) : cl.label;
     }
     if (it.isSea) return 'Sea';
     return it.kindName;
@@ -1164,7 +1165,7 @@
       var b = document.createElement('button');
       b.type = 'button'; b.dataset.st = k; b.setAttribute('aria-pressed', String(k === rigSt));
       if (k !== 'all') b.appendChild(glyphCanvas(ch[1] === 'ctl' ? 'rig_working_' + k : 'rig_' + k + '_' + (k === 'breakwater' ? 'breakwater' : 'free'), ch[1] === 'ctl' ? RIG_CTL[k].col : k === 'destroyed' ? RIG_ST.destroyed.col : RIG_CTL[k === 'breakwater' ? 'breakwater' : 'free'].col));
-      b.appendChild(document.createTextNode(k === 'all' ? 'All' : rigChip(k).name));
+      b.appendChild(document.createTextNode(k === 'all' ? 'All' : chipName(k)));
       var sp = document.createElement('span'); sp.className = 'n'; sp.textContent = n; b.appendChild(sp);
       b.addEventListener('click', function () {
         rigSt = k; var q = qEl.value; buildList(); if (q) { qEl.value = q; qEl.dispatchEvent(new Event('input')); }
