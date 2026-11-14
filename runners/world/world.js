@@ -1085,7 +1085,16 @@
     var c = capShip(id), pic;
     if (c) pic = '<a href="' + esc(c.file) + '"><img data-cap loading="lazy" decoding="async" width="1280" height="720" src="' + esc(c.file) + '" alt="' + esc(c.alt || ('The ' + sh.name + ', from the game')) + '"></a>';
     else pic = noCap(true);
-    return '<figure class="ship">' + pic + '<figcaption><span class="tag">' + esc(tag) + '</span><b>' + esc(sh.name) + '</b>' + esc(sh.role) + '</figcaption></figure>';
+    return '<figure class="ship">' + pic + '<figcaption><span class="tag">' + esc(tag) + (sh.class ? ' · ' + esc(sh.class) : '') + '</span><b>' + esc(sh.name) + '</b>' + esc(sh.role) +
+      (tag === 'Sold here' && sh.stats ? statsHTML(sh.stats) : '') + '</figcaption></figure>';
+  }
+  // the ship card's numbers (approved for the site, 13 Nov 2026): a compact grid that wraps on a phone
+  function statsHTML(t) {
+    var n = function (v) { return Number(v).toLocaleString('en-GB'); };
+    var cargo = (t.containers ? t.containers + ' × 20 ft' : 'No boxes') + ' · ' + t.pallets + ' pallet' + (t.pallets === 1 ? '' : 's');
+    var rows = [['Level', t.level], ['Price', t.free ? 'Free' : n(t.price) + ' CR'], ['Speed', t.speed + ' m/s'], ['Hull', n(t.hull) + ' HP'],
+      ['Cargo', cargo], ['Guns', t.mounts + ' mount' + (t.mounts === 1 ? '' : 's')], ['Size', t.length + ' × ' + t.beam + ' m']];
+    return '<dl class="ship-stats">' + rows.map(function (r) { return '<div' + (r[0] === 'Cargo' || r[0] === 'Size' ? ' class="wide"' : '') + '><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>'; }).join('') + '</dl>';
   }
   function seaHTML(id) {
     var s = SEAS[id]; if (!s) return '';
