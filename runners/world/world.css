@@ -212,3 +212,4 @@
 .p-zkey{list-style:none;margin:0 0 6px;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:4px;background:rgba(255,255,255,.03)}
 .p-zkey li{display:flex;align-items:center;gap:10px;padding:3px 0;color:#e9f1f5;font-family:var(--hud);font-weight:600;letter-spacing:.03em}
 .p-zkey .sw{width:18px;height:18px}
+.sw.sw-route{background:linear-gradient(90deg,#ff6a4d 0 45%,#ffb3a3 45% 55%,#ff6a4d 55%);height:5px;border:1px solid #06101a;align-self:center}

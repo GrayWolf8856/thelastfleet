@@ -178,6 +178,18 @@
     p.outlineSel = outline(p.sectors || [], 0.97); p.edgesSel = edgesOf(p.sectors || [], 0.97);
   });
   var tollPlaces = PLACES.filter(function (p) { return p.kind === 'toll'; });
+  // flooded land: the drowned sectors, and the cuts that are seaways through flooded land (the Suez Cut, the Cut). The
+  // sea has the old land there, so it is drawn as water with the old coastline as a faint dotted line.
+  var FLOOD_CODES = drownedCodes.slice();
+  PLACES.forEach(function (p) { if (p.flooded) p.sectors.forEach(function (c) { if (FLOOD_CODES.indexOf(c) < 0 && SEC[c].k !== 'closed') FLOOD_CODES.push(c); }); });
+  var FLOOD = new Path2D(); FLOOD_CODES.forEach(function (c) { hexInto(FLOOD, SEC[c]); });
+  // sailing lines through the seaways, sector centre to sector centre in the order the plan gives
+  var ROUTES = PLACES.filter(function (p) { return p.route; }).map(function (p) {
+    var pts = p.route.map(function (c) { return [SEC[c].x, SEC[c].y]; }), path = new Path2D(), ll = [];
+    pts.forEach(function (q, i) { i ? path.lineTo(q[0], q[1]) : path.moveTo(q[0], q[1]); });
+    for (var i = 0; i + 1 < pts.length; i++) { var seg = []; for (var t = 0; t <= 4; t++) { var f = t / 4; seg.push(lamOf(pts[i][0] + (pts[i + 1][0] - pts[i][0]) * f), phiOf(pts[i][1] + (pts[i + 1][1] - pts[i][1]) * f)); } ll.push(seg); }
+    return { it: p, path: path, ll: ll, pts: pts };
+  });
   // separate stretches of a scattered place (the Hot Coast rings twelve closed zones): one label each when it is chosen
   function stretches(codes, skipAt) {
     var set = {}, seen = {}, out = [];
@@ -403,13 +415,7 @@
 
   function fillColor(m, key) {
     if (m === 'holders') { var t = T[key]; return hexA(t.color, key === 'lawless' ? 0.42 : key === 'drone_core' ? 0.62 : key === 'radiation' ? 0.28 : 0.4); }
-    if (m === 'seas') return hexA(SEAS[key].color, 0.3);
-    return hexA(RISK_COL[key - 1], 0.52);
-  }
-
-  function fillColor(m, key) {
-    if (m === 'holders') { var t = T[key]; return hexA(t.color, key === 'lawless' ? 0.42 : key === 'drone_core' ? 0.62 : key === 'radiation' ? 0.28 : 0.4); }
-    if (m === 'seas') return hexA(SEAS[key].color, 0.3);
+    if (m === 'seas') return hexA(SEAS[key].color, 0.5);   // strong enough that a pale sea (the Choked Sea) does not read as land
     return hexA(RISK_COL[key - 1], 0.52);
   }
 
@@ -448,11 +454,13 @@
       ctx.lineWidth = 1.1 / V.s; ctx.strokeStyle = 'rgba(217,201,163,0.55)'; ctx.stroke(LAND);
     });
     each(function () {
-      // drowned land: the sea has it now
-      ctx.fillStyle = 'rgba(12,35,56,0.72)'; ctx.fill(DROWNED);
-      var dg = DROWNED_FILL[mode];
-      for (var k2 in dg) { ctx.fillStyle = fillColor(mode, k2); ctx.fill(dg[k2]); }
-      ctx.fillStyle = pattern('wave', 14, wavePainter); ctx.fill(DROWNED);
+      // flooded land: the sea has it now. Water over it, the sea or holder colour, waves, and the old coast dotted
+      ctx.save(); ctx.clip(FLOOD);
+      ctx.fillStyle = '#0c2338'; ctx.fillRect(-SW, TOP - 80000, W + 2 * SW, BOTTOM - TOP + 160000);
+      var g = FILL[mode]; for (var k2 in g) { ctx.fillStyle = fillColor(mode, k2); ctx.fill(g[k2]); }
+      ctx.fillStyle = pattern('wave', 14, wavePainter); ctx.fill(FLOOD);
+      ctx.setLineDash([2 / V.s, 3 / V.s]); ctx.lineWidth = 1 / V.s; ctx.strokeStyle = 'rgba(217,201,163,0.4)'; ctx.stroke(LAND); ctx.setLineDash([]);
+      ctx.restore();
     });
     each(function () {
       ctx.fillStyle = 'rgba(16,18,8,0.86)'; ctx.fill(CLOSED);
@@ -467,6 +475,14 @@
         ctx.lineCap = 'round';
         ctx.lineWidth = 3.2 / V.s; ctx.strokeStyle = 'rgba(3,8,14,0.7)'; ctx.stroke(b);
         ctx.lineWidth = 1.3 / V.s; ctx.strokeStyle = mode === 'holders' ? 'rgba(236,228,206,0.85)' : 'rgba(200,225,240,0.6)'; ctx.stroke(b);
+      }
+      if ((filter === 'all' || filter === 'pirates') && !area || area && area.it.route) {
+        ROUTES.forEach(function (r) {   // the seaway: a sailing line through the cut, in toll red
+          ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+          ctx.lineWidth = 6 / V.s; ctx.strokeStyle = 'rgba(3,8,14,0.8)'; ctx.stroke(r.path);
+          ctx.lineWidth = 3 / V.s; ctx.strokeStyle = '#ffb3a3'; ctx.stroke(r.path);
+          ctx.setLineDash([7 / V.s, 6 / V.s]); ctx.lineWidth = 3 / V.s; ctx.strokeStyle = '#ff6a4d'; ctx.stroke(r.path); ctx.setLineDash([]);
+        });
       }
       if ((filter === 'all' || filter === 'pirates') && !area) {
         tollPlaces.forEach(function (p) {   // toll lines: a dashed line round the water they hold
@@ -509,8 +525,13 @@
     ctx.fillStyle = '#1b2422'; ctx.fill('evenodd');
     ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(217,201,163,0.55)'; ctx.stroke();
     // drowned land, radiation, Dex's Wake
-    ctx.beginPath(); gHexes(DROWNED_CODES); ctx.fillStyle = 'rgba(12,35,56,0.72)'; ctx.fill();
-    for (k in gr) { var dc = gr[k].filter(function (c) { return SEC[c].k === 'drowned'; }); if (!dc.length) continue; ctx.beginPath(); gHexes(dc); ctx.fillStyle = fillColor(mode, k); ctx.fill(); }
+    ctx.save(); ctx.beginPath(); gHexes(FLOOD_CODES); ctx.clip();
+    ctx.fillStyle = '#0c2338'; ctx.fillRect(G.cx - R, G.cy - R, 2 * R, 2 * R);
+    for (k in gr) { var dc = gr[k].filter(function (c) { return FLOOD_CODES.indexOf(c) >= 0; }); if (!dc.length) continue; ctx.beginPath(); gHexes(dc); ctx.fillStyle = fillColor(mode, k); ctx.fill(); }
+    ctx.beginPath(); gHexes(FLOOD_CODES); ctx.fillStyle = flatPattern('waveg', 14, wavePainter); ctx.fill();
+    ctx.beginPath(); for (var li = 0; li < LAND_LL.length; li++) gRing(LAND_LL[li], LAND_LL[li].length);
+    ctx.setLineDash([2, 3]); ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(217,201,163,0.4)'; ctx.stroke(); ctx.setLineDash([]);
+    ctx.restore();
     ctx.beginPath(); gHexes(CLOSED_CODES); ctx.fillStyle = 'rgba(16,18,8,0.86)'; ctx.fill();
     ctx.fillStyle = flatPattern('radhzg', 10, hatchPainter(RAD_YEL, 2.6)); ctx.fill(); ctx.lineWidth = 1.6; ctx.strokeStyle = RAD_YEL; ctx.stroke();
     if (mode === 'holders') { ctx.beginPath(); gHexes(REACH_CODES); ctx.fillStyle = flatPattern('deadg', 9, hatchPainter('rgba(255,90,100,0.45)', 1.4)); ctx.fill(); }
@@ -525,6 +546,13 @@
       ctx.lineWidth = 1.3; ctx.strokeStyle = mode === 'holders' ? 'rgba(236,228,206,0.85)' : 'rgba(200,225,240,0.6)'; ctx.stroke();
     }
     var area = areaSel();
+    if ((filter === 'all' || filter === 'pirates') && !area || area && area.it.route) {
+      ROUTES.forEach(function (r) {
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.beginPath(); gLines(r.ll);
+        ctx.lineWidth = 6; ctx.strokeStyle = 'rgba(3,8,14,0.8)'; ctx.stroke(); ctx.lineWidth = 3; ctx.strokeStyle = '#ffb3a3'; ctx.stroke();
+        ctx.setLineDash([7, 6]); ctx.strokeStyle = '#ff6a4d'; ctx.stroke(); ctx.setLineDash([]);
+      });
+    }
     if ((filter === 'all' || filter === 'pirates') && !area) {
       ctx.beginPath(); tollPlaces.forEach(function (p) { gLines(p.edges); });
       ctx.setLineDash([6, 4]); ctx.lineWidth = 2.2; ctx.strokeStyle = 'rgba(255,106,77,0.95)'; ctx.stroke(); ctx.setLineDash([]);
@@ -1351,7 +1379,8 @@
         '<div class="ramp-ends"><span>' + esc(riskWord[1]) + '</span><span>' + esc(riskWord[10]) + '</span></div>';
     }
     h += '<h3>On the chart</h3><ul id="legend-marks"></ul>';
-    h += '<h3>Water</h3><ul><li><span class="sw" style="background:#0c2338;background-image:repeating-linear-gradient(0deg,rgba(160,215,235,.4) 0 1px,transparent 1px 5px)"></span>Drowned land</li>' +
+    h += '<h3>Water</h3><ul><li><span class="sw" style="background:#0c2338;background-image:repeating-linear-gradient(0deg,rgba(160,215,235,.4) 0 1px,transparent 1px 5px);border-style:dotted"></span>Flooded land: open water now</li>' +
+      '<li><span class="sw sw-route"></span>Seaway through flooded land</li>' +
       '<li><span class="sw sw-rad"></span>Closed radiation zone: no entry</li>' +
       '<li><span class="sw sw-hot"></span>Hot Coast: no rescue</li>' +
       '<li><span class="sw" style="background:#1b2422;border-color:#d9c9a3"></span>Land</li></ul>';
