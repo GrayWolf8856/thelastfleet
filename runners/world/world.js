@@ -254,6 +254,7 @@
   var DPR = 1, CW = 0, CH = 0;
   var V = { s: 0.003, cx: W / 2, cy: (ROWS - 1) * SH / 2 };
   var G = { lam: 170 * DEG, phi: 12 * DEG, R: 300, cx: 0, cy: 0 };
+  var testQuiet = false;
   var view = 'flat', mode = 'holders', filter = 'all', rigSt = 'all', sel = null, hits = [], started = false, OFF = [0];
   function minScale() { return Math.min(CW / W, CH / (BOTTOM - TOP)) * 0.98; }
   function maxScale() { return 900 / SW; }
@@ -326,21 +327,61 @@
     var lam = G.lam + Math.atan2(x * sc, rho * cc * gs.cp - y * sc * gs.sp);
     return [lam, phi];
   }
+  // Clip at the horizon. A point behind the globe is never drawn; an edge that crosses the horizon is cut where it
+  // crosses, and a ring that dips behind the globe follows the rim from where it left to where it comes back. (Pinning
+  // hidden points to the rim drew straight lines across the disc between far-apart rim points, so a continent turning
+  // over the edge flooded the front of the globe with land colour.)
+  var U1 = [0, 0, 0], U2 = [0, 0, 0];
+  function gUnit(lam, phi, out) {
+    var cph = Math.cos(phi), dl = lam - G.lam, cdl = Math.cos(dl), sph = Math.sin(phi);
+    out[0] = cph * Math.sin(dl); out[1] = gs.cp * sph - gs.sp * cph * cdl; out[2] = gs.sp * sph + gs.cp * cph * cdl;
+    return out;
+  }
+  // the point where the edge a -> b crosses the horizon, as a screen angle on the rim
+  function gCross(a, b) {
+    var t = a[2] / (a[2] - b[2]), x = a[0] + (b[0] - a[0]) * t, y = a[1] + (b[1] - a[1]) * t;
+    return Math.atan2(-y, x);
+  }
+  function rimPt(ang) { return [G.cx + G.R * Math.cos(ang), G.cy + G.R * Math.sin(ang)]; }
   // add a ring of [lam, phi] pairs to the current path; false if it is wholly behind the globe
   function gRing(ll, n) {
-    var any = false, i;
-    for (i = 0; i < n; i += 2) { gProj(ll[i], ll[i + 1], P3); if (P3[2] > -0.02) { any = true; break; } }
-    if (!any) return false;
-    for (i = 0; i < n; i += 2) { gProj(ll[i], ll[i + 1], P3); i ? ctx.lineTo(P3[0], P3[1]) : ctx.moveTo(P3[0], P3[1]); }
+    var N = n >> 1, i, start = -1, vis = new Array(N), P = new Array(N);
+    for (i = 0; i < N; i++) { var u = gUnit(ll[2 * i], ll[2 * i + 1], [0, 0, 0]); P[i] = u; vis[i] = u[2] > 0; if (vis[i] && start < 0) start = i; }
+    if (start < 0) return false;
+    var first = true, exitAng = null;
+    function to(X, Y) { if (first) { ctx.moveTo(X, Y); first = false; } else ctx.lineTo(X, Y); }
+    to(G.cx + G.R * P[start][0], G.cy - G.R * P[start][1]);
+    for (var k = 0; k < N; k++) {
+      var a = (start + k) % N, b = (a + 1) % N;
+      if (vis[a] && vis[b]) { if (b !== start) to(G.cx + G.R * P[b][0], G.cy - G.R * P[b][1]); }
+      else if (vis[a] && !vis[b]) { exitAng = gCross(P[a], P[b]); var e = rimPt(exitAng); to(e[0], e[1]); }
+      else if (!vis[a] && vis[b]) {
+        var inAng = gCross(P[a], P[b]);
+        if (exitAng !== null) {   // follow the rim the short way round from where the ring left to where it returns
+          var d = ((inAng - exitAng) % (2 * Math.PI) + 3 * Math.PI) % (2 * Math.PI) - Math.PI;
+          ctx.arc(G.cx, G.cy, G.R, exitAng, exitAng + d, d < 0);
+        }
+        var q = rimPt(inAng); to(q[0], q[1]);
+        if (b !== start) to(G.cx + G.R * P[b][0], G.cy - G.R * P[b][1]);
+        exitAng = null;
+      }
+    }
     ctx.closePath();
     return true;
   }
+  // open polylines (edges, graticule): only the visible pieces, cut at the horizon
   function gLines(edges) {
     for (var e = 0; e < edges.length; e++) {
-      var ed = edges[e], vis = false, j;
-      for (j = 0; j < ed.length; j += 2) { gProj(ed[j], ed[j + 1], P3); if (P3[2] > 0) { vis = true; break; } }
-      if (!vis) continue;
-      for (j = 0; j < ed.length; j += 2) { gProj(ed[j], ed[j + 1], P3); j ? ctx.lineTo(P3[0], P3[1]) : ctx.moveTo(P3[0], P3[1]); }
+      var ed = edges[e], pen = false;
+      gUnit(ed[0], ed[1], U1);
+      if (U1[2] > 0) { ctx.moveTo(G.cx + G.R * U1[0], G.cy - G.R * U1[1]); pen = true; }
+      for (var j = 2; j < ed.length; j += 2) {
+        gUnit(ed[j], ed[j + 1], U2);
+        if (U1[2] > 0 && U2[2] > 0) ctx.lineTo(G.cx + G.R * U2[0], G.cy - G.R * U2[1]);
+        else if (U1[2] > 0 && U2[2] <= 0) { var x = rimPt(gCross(U1, U2)); ctx.lineTo(x[0], x[1]); pen = false; }
+        else if (U1[2] <= 0 && U2[2] > 0) { var y = rimPt(gCross(U1, U2)); ctx.moveTo(y[0], y[1]); ctx.lineTo(G.cx + G.R * U2[0], G.cy - G.R * U2[1]); pen = true; }
+        U1[0] = U2[0]; U1[1] = U2[1]; U1[2] = U2[2];
+      }
     }
   }
   function gHexes(codes) { for (var i = 0; i < codes.length; i++) { var s = SEC[codes[i]]; gRing(s.ll, s.ll.length); } }
@@ -387,70 +428,69 @@
     if (ar && ar.parts) ar.parts.forEach(function (pt) {
       posOf(pt.at.x, pt.at.y).forEach(function (q) { label(ar.it.name, q[0], q[1], { size: 12.5, center: true, color: HOT_COL, weight: 700 }); });
     });
+    if (testQuiet) return;
     drawMarkers(px);
     if (mode === 'seas' || filter === 'seas') drawSeaNames(px);
   }
   function drawFlat() {
     OFF = offsets();
-    var px = SW * V.s;
-    for (var i = 0; i < OFF.length; i++) {
-      var off = OFF[i]; worldT(off);
-      // open water
-      ctx.fillStyle = '#0c2338'; ctx.fillRect(-SW, TOP - 80000, W + 2 * SW, BOTTOM - TOP + 160000);
-      // who holds the water / which sea / how dangerous
-      var g = FILL[mode];
-      for (var k in g) { ctx.fillStyle = fillColor(mode, k); ctx.fill(g[k]); }
-      // land
+    var px = SW * V.s, area = areaSel();
+    // The world is drawn once per copy (the flat chart wraps east to west). Each layer is drawn on every copy before the
+    // next layer starts, so one copy's sea never paints over the edge of the copy beside it (that wiped the fill of the
+    // hexes on the seam, column 38).
+    function each(fn) { for (var i = 0; i < OFF.length; i++) { worldT(OFF[i]); fn(OFF[i]); } }
+    each(function () { ctx.fillStyle = '#0c2338'; ctx.fillRect(-SW / 2, TOP - 80000, W, BOTTOM - TOP + 160000); });
+    each(function () { var g = FILL[mode]; for (var k in g) { ctx.fillStyle = fillColor(mode, k); ctx.fill(g[k]); } });
+    each(function () {
       ctx.fillStyle = '#1b2422'; ctx.fill(LAND, 'evenodd');
       ctx.fillStyle = pattern('land', 7, function (gg) { gg.fillStyle = 'rgba(217,201,163,0.05)'; gg.fillRect(1, 1, 1, 1); });
       ctx.fill(LAND, 'evenodd');
       ctx.lineWidth = 1.1 / V.s; ctx.strokeStyle = 'rgba(217,201,163,0.55)'; ctx.stroke(LAND);
+    });
+    each(function () {
       // drowned land: the sea has it now
       ctx.fillStyle = 'rgba(12,35,56,0.72)'; ctx.fill(DROWNED);
       var dg = DROWNED_FILL[mode];
       for (var k2 in dg) { ctx.fillStyle = fillColor(mode, k2); ctx.fill(dg[k2]); }
       ctx.fillStyle = pattern('wave', 14, wavePainter); ctx.fill(DROWNED);
-      // closed radiation sectors
+    });
+    each(function () {
       ctx.fillStyle = 'rgba(16,18,8,0.86)'; ctx.fill(CLOSED);
       ctx.fillStyle = pattern('radhz', 10, hatchPainter(RAD_YEL, 2.6)); ctx.fill(CLOSED);
       ctx.lineWidth = 1.8 / V.s; ctx.strokeStyle = RAD_YEL; ctx.stroke(CLOSED);
-      // Dex's Wake
       if (mode === 'holders') { ctx.fillStyle = pattern('dead', 9, hatchPainter('rgba(255,90,100,0.45)', 1.4)); ctx.fill(REACH); }
-      // grid, faint, once sectors are big enough to read
+    });
+    each(function () {
       if (px > 26) { ctx.lineWidth = 1 / V.s; ctx.strokeStyle = 'rgba(200,225,240,' + Math.min(0.13, (px - 26) / 300) + ')'; ctx.stroke(GRID); }
-      // borders
       var b = BORDER[mode];
       if (b) {
         ctx.lineCap = 'round';
         ctx.lineWidth = 3.2 / V.s; ctx.strokeStyle = 'rgba(3,8,14,0.7)'; ctx.stroke(b);
         ctx.lineWidth = 1.3 / V.s; ctx.strokeStyle = mode === 'holders' ? 'rgba(236,228,206,0.85)' : 'rgba(200,225,240,0.6)'; ctx.stroke(b);
       }
-      var area = areaSel();
       if ((filter === 'all' || filter === 'pirates') && !area) {
-        // toll lines: a dashed line round the water they hold
-        tollPlaces.forEach(function (p) {
+        tollPlaces.forEach(function (p) {   // toll lines: a dashed line round the water they hold
           ctx.setLineDash([6 / V.s, 4 / V.s]); ctx.lineWidth = 2.2 / V.s; ctx.strokeStyle = 'rgba(255,106,77,0.95)'; ctx.stroke(p.outline); ctx.setLineDash([]);
         });
       }
       if ((filter === 'all' && px > 46 || filter === 'danger') && hotCoast && !area) {
         ctx.setLineDash([2 / V.s, 4 / V.s]); ctx.lineWidth = 1.2 / V.s; ctx.strokeStyle = hexA(HOT_COL, 0.55); ctx.stroke(hotCoast.outline); ctx.setLineDash([]);
       }
-      // a chosen area reads as one shape: everything else dims, the area gets a band, the radiation zones stay sharp
-      if (area) {
-        ctx.save(); ctx.beginPath(); ctx.rect(-SW / 2, TOP - 90000, W, BOTTOM - TOP + 180000); ctx.clip();   // one copy of the world per wrap
-        ctx.fillStyle = 'rgba(4,10,16,0.5)'; ctx.fill(area.dimFlat, 'evenodd'); ctx.restore();
-        ctx.fillStyle = hexA(area.col, 0.22); ctx.fill(area.bandFlat);
-        if (area.it === hotCoast) { ctx.lineWidth = 2.4 / V.s; ctx.strokeStyle = RAD_YEL; ctx.stroke(CLOSED); }
+    });
+    // a chosen area reads as one shape: everything else dims, the area gets a band, the radiation zones stay sharp
+    if (area) each(function () {
+      ctx.save(); ctx.beginPath(); ctx.rect(-SW / 2, TOP - 90000, W, BOTTOM - TOP + 180000); ctx.clip();   // one copy of the world per wrap
+      ctx.fillStyle = 'rgba(4,10,16,0.5)'; ctx.fill(area.dimFlat, 'evenodd'); ctx.restore();
+      ctx.fillStyle = hexA(area.col, 0.22); ctx.fill(area.bandFlat);
+      if (area.it === hotCoast) { ctx.lineWidth = 2.4 / V.s; ctx.strokeStyle = RAD_YEL; ctx.stroke(CLOSED); }
+    });
+    if (sel) each(function () {
+      var path = sel.code ? (function () { var p = new Path2D(); hexInto(p, SEC[sel.code], 0.97); return p; })() : sel.item && !sel.item.isPort && !sel.item.isRig && sel.item.outlineSel;
+      if (path) {
+        ctx.lineWidth = 4.5 / V.s; ctx.strokeStyle = 'rgba(3,8,14,0.75)'; ctx.stroke(path);
+        ctx.lineWidth = 2.4 / V.s; ctx.strokeStyle = area ? area.col : '#f0c773'; ctx.stroke(path);
       }
-      // selection
-      if (sel) {
-        var path = sel.code ? (function () { var p = new Path2D(); hexInto(p, SEC[sel.code], 0.97); return p; })() : sel.item && !sel.item.isPort && !sel.item.isRig && sel.item.outlineSel;
-        if (path) {
-          ctx.lineWidth = 4.5 / V.s; ctx.strokeStyle = 'rgba(3,8,14,0.75)'; ctx.stroke(path);
-          ctx.lineWidth = 2.4 / V.s; ctx.strokeStyle = area ? area.col : '#f0c773'; ctx.stroke(path);
-        }
-      }
-    }
+    });
   }
   function drawGlobe() {
     gPrep();
@@ -1387,6 +1427,21 @@
       if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); buildShipGrid(); }
     }, { rootMargin: '400px 0px' });
     io.observe(sec);
+  }
+
+  // a hook for the automated checks only (the page must be opened with ?charttest): set the view and sample positions
+  if (/[?&]charttest\b/.test(location.search)) {
+    var probe = document.createElement('canvas').getContext('2d');
+    window.__chart = {
+      setGlobe: function (lonDeg, latDeg, scale) { if (view !== 'globe') setView('globe'); stopFly(); G.lam = lonDeg * DEG; G.phi = latDeg * DEG; if (scale) G.R = gMinR() * scale; clampView(); draw(); },
+      setFlat: function (x, y, s_) { if (view !== 'flat') setView('flat'); stopFly(); V.cx = x; V.cy = y; if (s_) V.s = s_; clampView(); draw(); },
+      view: function () { return { view: view, cx: V.cx, cy: V.cy, s: V.s, lam: G.lam, phi: G.phi, R: G.R, CW: CW, CH: CH }; },
+      // screen positions of a world point now, and whether the globe shows it well inside the rim
+      at: function (x, y) { if (view === 'globe') { gPrep(); gProj(lamOf(x), phiOf(y), P3); return { pts: P3[2] > 0.25 ? [[P3[0], P3[1]]] : [], z: P3[2] }; } OFF = offsets(); return { pts: posOf(x, y) }; },
+      quiet: function (q) { testQuiet = !!q; draw(); },
+      isLand: function (x, y) { return probe.isPointInPath(LAND, x, y, 'evenodd'); },
+      sectors: function () { return CODES.map(function (c) { var s_ = SEC[c]; return { c: c, x: s_.x, y: s_.y, t: s_.t, k: s_.k, col: T[s_.t].color }; }); }
+    };
   }
 
   // ------------------------------------------------------------------ start
