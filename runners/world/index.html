@@ -60,20 +60,32 @@
 
 <section class="w-map" aria-label="Map of the world">
   <div class="map" id="map">
-    <canvas id="chart" tabindex="0" role="img" aria-label="Chart of the flooded world. Drag to move, pinch or scroll to zoom, arrow keys to move, plus and minus keys to zoom. Every port and place is also listed below the map."></canvas>
+    <canvas id="chart" tabindex="0" role="img" aria-label="Chart of the flooded world. Drag to move, pinch or scroll to zoom, arrow keys to move, plus and minus keys to zoom. Use Show to list ports, rigs and places; every port and place is also listed below the map."></canvas>
     <div class="map-ui top-left">
       <div class="seg" role="group" aria-label="Colour the water by">
         <button type="button" data-mode="holders" aria-pressed="true">Holders</button>
         <button type="button" data-mode="seas" aria-pressed="false">Seas</button>
         <button type="button" data-mode="danger" aria-pressed="false">Danger</button>
       </div>
-      <button type="button" class="tog" id="tog-places" aria-pressed="true">Places</button>
+      <button type="button" class="tog show-btn" id="show-btn" aria-expanded="false" aria-controls="finder">Show: <b id="show-label">All</b></button>
+      <div class="seg view-seg" role="group" aria-label="Map or globe">
+        <button type="button" data-view="flat" aria-pressed="true">Flat</button>
+        <button type="button" data-view="globe" aria-pressed="false">Globe</button>
+      </div>
     </div>
     <div class="map-ui top-right">
       <button type="button" class="zb" id="zoom-in" aria-label="Zoom in">+</button>
       <button type="button" class="zb" id="zoom-out" aria-label="Zoom out">−</button>
       <button type="button" class="zb wide" id="zoom-reset" aria-label="Show the whole world">World</button>
     </div>
+    <section class="finder" id="finder" hidden aria-label="Find on the chart">
+      <div class="finder-head">
+        <div class="chips" id="chips" role="group" aria-label="Show only"></div>
+        <button type="button" class="finder-x" id="finder-close" aria-label="Close the list">×</button>
+      </div>
+      <label class="finder-search" id="finder-search"><span class="sr">Find by name or sector</span><input type="search" id="finder-q" placeholder="Find by name or sector" autocomplete="off"></label>
+      <div class="finder-list" id="finder-list"></div>
+    </section>
     <details class="legend" id="legend">
       <summary>Key</summary>
       <div class="legend-body" id="legend-body"></div>
