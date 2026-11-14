@@ -100,6 +100,17 @@
     twin: { name: 'Twin', label: 'Twin rig', col: '#9fd4e8' }, pirate: { name: 'Pirate-held', label: 'Pirate-held rig', col: '#e06666' },
     breakwater: { name: 'Breakwater', label: 'Breakwater rig', col: '#5b9be0' } };
   var RIG_ORDER = ['working', 'destroyed', 'twin', 'pirate', 'breakwater'];
+  // who controls a standing rig (world-data.js "ctl"); structure ("st") is separate: a twin is a structure, not a control
+  var RIG_CTL = {
+    free: { name: 'Free trading', label: 'Free trading rig', col: '#7fd8b8', text: 'Open for trade.' },
+    housing: { name: 'Housing', label: 'Housing rig', col: '#e3c48a', text: 'People live here. They do not trade and they do not attack.' },
+    tribute: { name: 'Paying tribute', label: 'Rig paying tribute', col: '#e8a052', text: 'Pays pirates to be left alone. Still trades.' },
+    pirate: { name: 'Pirate-held', label: 'Pirate-held rig', col: '#e06666' },
+    dark: { name: 'Dark', label: 'Dark rig', col: '#55616c', text: 'No signal. Nobody answers.' },
+    breakwater: { name: 'Breakwater', label: 'Breakwater rig', col: '#5b9be0' } };
+  // the chips under Rigs: five controls, then three structures
+  var RIG_CHIPS = [['free', 'ctl'], ['housing', 'ctl'], ['tribute', 'ctl'], ['pirate', 'ctl'], ['dark', 'ctl'], ['destroyed', 'st'], ['twin', 'st'], ['breakwater', 'st']];
+  function rigChip(k) { return RIG_CTL[k] && k !== 'breakwater' ? RIG_CTL[k] : RIG_ST[k]; }
 
   // ------------------------------------------------------------------ paths (world metres), built once
   var LAND = new Path2D(), LS = D.meta.landScale;
@@ -589,19 +600,35 @@
     }
   }
 
-  function markerKind(it) { return it.isRig ? 'rig_' + (it.st || 'working') : it.isPort ? (it.mystery ? 'aiport' : it.dead ? 'dead' : 'port') : it.kind; }
-  function markerColor(it) { return it.isRig ? (RIG_ST[it.st] || RIG_ST.working).col : it.isPort ? (it.mystery ? AI_COL : it.dead ? '#3a4550' : T[it.terr].color) : KIND_COL[it.kind]; }
+  function markerKind(it) { return it.isRig ? 'rig_' + (it.st || 'working') + '_' + (it.ctl || 'none') : it.isPort ? (it.mystery ? 'aiport' : it.dead ? 'dead' : 'port') : it.kind; }
+  function markerColor(it) { return it.isRig ? (it.ctl ? RIG_CTL[it.ctl].col : RIG_ST.destroyed.col) : it.isPort ? (it.mystery ? AI_COL : it.dead ? '#3a4550' : T[it.terr].color) : KIND_COL[it.kind]; }
   function drawGlyph(g, kind, X, Y, col, big, small) {
-    if (kind.indexOf('rig_') === 0) { rigGlyph(g, kind.slice(4), X, Y, col, small); return; }
+    if (kind.indexOf('rig_') === 0) { var kp = kind.split('_'); rigGlyph(g, kp[1], kp[2], X, Y, col, small); return; }
     glyph(g, kind, X, Y, col, big);
   }
 
   // rigs, one shape per status so they read without colour: working = solid deck with a derrick; destroyed = hollow
   // deck crossed out; twin = two decks side by side; pirate-held = solid deck with a dark triangle; Breakwater = deck in a ring
-  function rigGlyph(g, st, X, Y, col, small) {
+  // rigs: the outline shape says what is standing (one deck; two decks for a twin; crossed out when destroyed; a ring for
+  // Breakwater) and the mark inside says who controls it, so they read without colour: a derrick = free trading,
+  // a roof = housing, a coin = paying tribute, a dark triangle = pirate-held, an empty dark deck = dark
+  function rigGlyph(g, st, ctl, X, Y, col, small) {
     var r = small ? 3 : 4.6, dark = '#06101a';
-    function deck(cx, cy, rr) { g.beginPath(); g.rect(cx - rr - 1.5, cy - rr - 1.5, 2 * rr + 3, 2 * rr + 3); g.fillStyle = dark; g.fill(); g.beginPath(); g.rect(cx - rr, cy - rr, 2 * rr, 2 * rr); g.fillStyle = col; g.fill(); }
-    function derrick(cx, cy, rr) { g.beginPath(); g.moveTo(cx - rr * 0.5, cy + rr * 0.6); g.lineTo(cx, cy - rr * 0.7); g.lineTo(cx + rr * 0.5, cy + rr * 0.6); g.lineWidth = 1.3; g.strokeStyle = dark; g.stroke(); }
+    function mark(cx, cy, rr) {
+      if (small && ctl !== 'pirate') return;
+      g.beginPath();
+      if (ctl === 'free' || ctl === 'breakwater') { g.moveTo(cx - rr * 0.5, cy + rr * 0.6); g.lineTo(cx, cy - rr * 0.7); g.lineTo(cx + rr * 0.5, cy + rr * 0.6); g.lineWidth = 1.3; g.strokeStyle = dark; g.stroke(); }
+      else if (ctl === 'housing') { g.moveTo(cx - rr * 0.65, cy - rr * 0.05); g.lineTo(cx, cy - rr * 0.7); g.lineTo(cx + rr * 0.65, cy - rr * 0.05); g.moveTo(cx - rr * 0.45, cy - rr * 0.1); g.lineTo(cx - rr * 0.45, cy + rr * 0.65); g.lineTo(cx + rr * 0.45, cy + rr * 0.65); g.lineTo(cx + rr * 0.45, cy - rr * 0.1); g.lineWidth = 1.3; g.strokeStyle = dark; g.stroke(); }
+      else if (ctl === 'tribute') { g.arc(cx, cy, rr * 0.45, 0, 7); g.lineWidth = 1.5; g.strokeStyle = dark; g.stroke(); }
+      else if (ctl === 'pirate') { g.moveTo(cx, cy - rr * 0.75); g.lineTo(cx + rr * 0.75, cy + rr * 0.6); g.lineTo(cx - rr * 0.75, cy + rr * 0.6); g.closePath(); g.fillStyle = dark; g.fill(); }
+    }
+    function deck(cx, cy, rr) {
+      g.beginPath(); g.rect(cx - rr - 1.5, cy - rr - 1.5, 2 * rr + 3, 2 * rr + 3); g.fillStyle = dark; g.fill();
+      g.beginPath(); g.rect(cx - rr, cy - rr, 2 * rr, 2 * rr);
+      if (ctl === 'dark') { g.fillStyle = '#10171e'; g.fill(); g.lineWidth = 1.3; g.strokeStyle = col; g.stroke(); }
+      else { g.fillStyle = col; g.fill(); }
+      mark(cx, cy, rr);
+    }
     if (st === 'destroyed') {
       g.beginPath(); g.rect(X - r - 1, Y - r - 1, 2 * r + 2, 2 * r + 2); g.fillStyle = 'rgba(6,16,26,0.85)'; g.fill();
       g.beginPath(); g.rect(X - r, Y - r, 2 * r, 2 * r); g.lineWidth = 1.4; g.strokeStyle = col; g.stroke();
@@ -609,16 +636,16 @@
       g.lineWidth = 3.2; g.strokeStyle = dark; g.stroke(); g.lineWidth = 1.5; g.strokeStyle = '#ff6a4d'; g.stroke();
     } else if (st === 'twin') {
       var q = r * 0.78; deck(X - q * 1.15, Y + q * 0.25, q); deck(X + q * 1.15, Y - q * 0.25, q);
-      if (!small) { derrick(X - q * 1.15, Y + q * 0.25, q); derrick(X + q * 1.15, Y - q * 0.25, q); }
-    } else if (st === 'pirate') {
-      deck(X, Y, r);
-      g.beginPath(); g.moveTo(X, Y - r * 0.75); g.lineTo(X + r * 0.75, Y + r * 0.6); g.lineTo(X - r * 0.75, Y + r * 0.6); g.closePath(); g.fillStyle = dark; g.fill();
     } else if (st === 'breakwater') {
       g.beginPath(); g.arc(X, Y, r * 2, 0, 7); g.lineWidth = 3.4; g.strokeStyle = dark; g.stroke(); g.lineWidth = 1.6; g.strokeStyle = col; g.stroke();
-      deck(X, Y, r * 0.8); if (!small) derrick(X, Y, r * 0.8);
-    } else { deck(X, Y, r); if (!small) derrick(X, Y, r); }
+      deck(X, Y, r * 0.8);
+    } else deck(X, Y, r);
   }
-  function rigShown(r) { return rigSt === 'all' || r.st === rigSt; }
+  function rigShown(r) {
+    if (rigSt === 'all') return true;
+    var c = RIG_CHIPS.filter(function (x) { return x[0] === rigSt; })[0];
+    return c && (c[1] === 'ctl' ? r.ctl === rigSt : r.st === rigSt);
+  }
 
   // which places show: the filter decides; with "All", ports always and minor places as you zoom in
   function visibleRank(px) { return px >= 95 ? 3 : px >= 50 ? 2 : 1; }
@@ -992,16 +1019,19 @@
   }
 
   function rigHTML(r) {
-    var s = SEC[r.s], st = RIG_ST[r.st] || RIG_ST.working, tw = r.twin && BY_HASH[r.twin];
-    var h = '<div class="p-k">' + esc(st.label) + ' · Sector ' + esc(r.s) + '</div>' +
+    var s = SEC[r.s], tw = r.twin && BY_HASH[r.twin], cl = r.ctl && RIG_CTL[r.ctl];
+    var kick = r.st === 'destroyed' ? 'Destroyed rig' : r.st === 'twin' ? 'Twin rig' : r.st === 'breakwater' ? 'Breakwater rig' : 'Oil rig';
+    var h = '<div class="p-k">' + esc(kick) + ' · Sector ' + esc(r.s) + '</div>' +
       '<h2 id="panel-title" tabindex="-1">' + esc(r.name) + '</h2>' +
       '<p class="p-place">' + esc(s.p || r.s) + ' · danger ' + esc(s.d) + ', ' + esc(riskWord[s.d]).toLowerCase() + '</p>' +
-      (r.held ? heldHTML(r.held, r.st === 'breakwater' ? T.breakwater.color : RIG_HELD) : '<p class="p-place">Water: ' + esc(T[s.t].name) + '</p>');
+      '<p class="p-place">Water: ' + esc(T[s.t].name) + '</p>' +
+      (cl && r.ctl !== 'breakwater' ? '<p class="p-ctl"><span class="sw" style="background:' + cl.col + '"></span><b>' + esc(cl.name) + '</b></p>' : '') +
+      (r.held ? heldHTML(r.held, r.st === 'breakwater' ? T.breakwater.color : RIG_HELD) : '') +
+      (cl && cl.text ? '<p class="p-about">' + esc(cl.text) + '</p>' : '');
     if (r.st === 'destroyed') h += '<p class="p-about">This rig is destroyed.</p>';
     else if (r.st === 'twin') h += '<p class="p-about">Two rigs inside one sea wall.</p>' +
       (tw ? '<p class="p-about">Its partner: <button type="button" class="p-twin" data-open="' + esc(tw.hash) + '">' + esc(tw.name) + ' · ' + esc(tw.s) + '</button></p>' : '');
     else if (r.st === 'breakwater') h += '<p class="p-about">One of the three old rigs joined into Breakwater\'s walled harbour.</p>';
-    else if (r.st === 'working') h += '<p class="p-about">A working rig.</p>';
     if (r.st !== 'destroyed' && r.capture && capImages(r.capture).length) h += '<h3>From the game</h3>' + galleryHTML(r.capture, r.name);
     h += seaHTML(s.s) + '<a class="p-link" href="#' + esc(r.hash) + '">Link to this rig</a>';
     return h;
@@ -1070,7 +1100,11 @@
   var qEl = document.getElementById('finder-q'), showBtn = document.getElementById('show-btn'), showLabel = document.getElementById('show-label');
   function kindLabel(it) {
     if (it.isPort) return it.mystery ? 'Automated port' : it.dead ? 'Dead navy port' : 'Port';
-    if (it.isRig) return it.st === 'pirate' ? 'Pirate-held rig' : (RIG_ST[it.st] || RIG_ST.working).label;
+    if (it.isRig) {
+      if (it.st === 'destroyed') return 'Destroyed rig';
+      var cl = RIG_CTL[it.ctl] || RIG_CTL.free;
+      return it.st === 'twin' ? 'Twin rig, ' + cl.name.toLowerCase() : cl.label;
+    }
     if (it.isSea) return 'Sea';
     return it.kindName;
   }
@@ -1125,12 +1159,12 @@
     rigChipsEl.hidden = filter !== 'rigs';
     if (rigChipsEl.hidden) return;
     rigChipsEl.innerHTML = '';
-    ['all'].concat(RIG_ORDER).forEach(function (k) {
-      var n = k === 'all' ? RIGS.length : RIGS.filter(function (r) { return r.st === k; }).length;
+    [['all', '']].concat(RIG_CHIPS).forEach(function (ch) {
+      var k = ch[0], saved = rigSt; rigSt = k; var n = RIGS.filter(rigShown).length; rigSt = saved;
       var b = document.createElement('button');
       b.type = 'button'; b.dataset.st = k; b.setAttribute('aria-pressed', String(k === rigSt));
-      if (k !== 'all') b.appendChild(glyphCanvas('rig_' + k, RIG_ST[k].col));
-      b.appendChild(document.createTextNode(k === 'all' ? 'All' : RIG_ST[k].name));
+      if (k !== 'all') b.appendChild(glyphCanvas(ch[1] === 'ctl' ? 'rig_working_' + k : 'rig_' + k + '_' + (k === 'breakwater' ? 'breakwater' : 'free'), ch[1] === 'ctl' ? RIG_CTL[k].col : k === 'destroyed' ? RIG_ST.destroyed.col : RIG_CTL[k === 'breakwater' ? 'breakwater' : 'free'].col));
+      b.appendChild(document.createTextNode(k === 'all' ? 'All' : rigChip(k).name));
       var sp = document.createElement('span'); sp.className = 'n'; sp.textContent = n; b.appendChild(sp);
       b.addEventListener('click', function () {
         rigSt = k; var q = qEl.value; buildList(); if (q) { qEl.value = q; qEl.dispatchEvent(new Event('input')); }
@@ -1219,7 +1253,8 @@
     body.innerHTML = h;
     var ul = document.getElementById('legend-marks');
     var all = { ports: [['port', T.ari.color, 'Port'], ['dead', '#3a4550', 'Dead navy port'], ['aiport', AI_COL, 'Automated port']],
-      rigs: RIG_ORDER.map(function (k) { return ['rig_' + k, RIG_ST[k].col, RIG_ST[k].label]; }),
+      rigs: ['free', 'housing', 'tribute', 'pirate', 'dark'].map(function (k) { return ['rig_working_' + k, RIG_CTL[k].col, RIG_CTL[k].label]; })
+        .concat([['rig_twin_free', RIG_CTL.free.col, 'Twin rig (two decks)'], ['rig_destroyed_none', RIG_ST.destroyed.col, 'Destroyed rig'], ['rig_breakwater_breakwater', RIG_CTL.breakwater.col, 'Breakwater rig']]),
       pirates: [['toll', KIND_COL.toll, 'Toll line'], ['stronghold', KIND_COL.stronghold, 'Pirate stronghold'], ['crew', KIND_COL.crew, 'Pirate crew base']],
       danger: [['gate', KIND_COL.gate, 'Sea gate'], ['drone', KIND_COL.drone, 'Drone water'], ['fallout', KIND_COL.fallout, 'Fallout coast'], ['no_fuel', KIND_COL.no_fuel, 'No-fuel water']],
       wrecks: [['graveyard', KIND_COL.graveyard, 'Ship graveyard'], ['city', KIND_COL.city, 'Drowned city'], ['salvage', KIND_COL.salvage, 'Salvage field']],

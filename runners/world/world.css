@@ -202,3 +202,4 @@
   .rig-chips::-webkit-scrollbar{display:none}
   .map .rig-chips button{flex:none}
 }
+.p-ctl{display:flex;align-items:center;gap:8px;font-family:var(--hud);font-weight:600;letter-spacing:.04em;font-size:1rem;color:#fff;margin:0 0 6px}
