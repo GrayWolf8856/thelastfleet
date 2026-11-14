@@ -222,6 +222,39 @@
      "alt": "Deck-height view inside the ring: a wooden pier hung with tyres, a fishing boat moored, a small launch, and the ring wall with lamp posts and a watch post."
     }
    ]
+  },
+  "unknown_port": {
+   "in_game": true,
+   "images": [
+    {
+     "file": "img/ports/unknown_port_1.jpg",
+     "alt": "The unknown port from the water in heavy rain: a low line of broken concrete sea walls, a yellow gantry crane and a blocky grey tower."
+    },
+    {
+     "file": "img/ports/unknown_port_2.jpg",
+     "alt": "The unknown port from above in the rain: concrete platforms behind broken sea walls, a yellow gantry over the water, robot crane arms and a tall grey tower with masts."
+    },
+    {
+     "file": "img/ports/unknown_port_3.jpg",
+     "alt": "Inside the walls at water level: a wide yellow gantry over open water, the grey tower with a cold blue display, and rust-red quay walls."
+    },
+    {
+     "file": "img/ports/unknown_port_4.jpg",
+     "alt": "The grey tower close up between the legs of the yellow gantry: blue light strips, a dish, masts with red lights and rusted platework."
+    },
+    {
+     "file": "img/ports/unknown_port_5.jpg",
+     "alt": "The broken sea wall from the water: leaning concrete blocks, bent steel, the tower and the gantry behind."
+    },
+    {
+     "file": "img/ports/unknown_port_6.jpg",
+     "alt": "The east side from the water: ragged concrete walls, a crane arm and the gantry rising behind them."
+    },
+    {
+     "file": "img/ports/unknown_port_7.jpg",
+     "alt": "The unknown port at night in the rain: the gantry and tower dark except for small cold blue and red indicator lights."
+    }
+   ]
   }
  },
  "ships": {

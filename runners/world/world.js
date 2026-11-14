@@ -56,6 +56,7 @@
   var T = D.territories, SEAS = D.seas;
   var RISK_COL = ['#2c8c7f', '#3f9f86', '#78ad6e', '#a9b25a', '#cfa64a', '#d98a3c', '#d9673a', '#cc4434', '#b02a32', '#8a1020'];
   var riskWord = {}; D.risk.forEach(function (r) { riskWord[r[0]] = r[1]; });
+  var AI_COL = '#7cf0ff';
   var KIND_COL = { toll: '#ff6a4d', stronghold: '#ff6a4d', crew: '#e06666', gate: '#e3b55c', fallout: '#c9e04a', drone: '#ff2d4a',
     city: '#d6b98a', graveyard: '#b9c3cc', fishing: '#f1c232', salvage: '#d6b98a', no_fuel: '#a79bf0' };
   function hexA(hex, a) {
@@ -139,7 +140,7 @@
     V.cx = ((V.cx % W) + W) % W;
     // the chart may slide a little past the world's top and bottom, so a place near the edge can sit
     // in the part of the chart a panel leaves open
-    var half = CH / 2 / V.s, slack = 0.35 * CH / V.s;
+    var pn = document.getElementById('panel'), half = CH / 2 / V.s, slack = (pn && !pn.hidden ? 0.75 : 0.35) * CH / V.s;
     if (BOTTOM - TOP <= 2 * half) V.cy = (TOP + BOTTOM) / 2;
     else V.cy = Math.max(TOP + half - slack, Math.min(BOTTOM - half + slack, V.cy));
   }
@@ -358,13 +359,17 @@
     } else if (kind === 'salvage') {
       g.beginPath(); g.arc(X, Y, 7, 0, 7); g.fillStyle = dark; g.fill(); g.lineWidth = 2; g.strokeStyle = col; g.stroke();
       g.beginPath(); g.arc(X, Y, 2.5, 0, 7); g.fillStyle = col; g.fill();
+    } else if (kind === 'aiport') {   // the automated port: a square inside a diamond, nothing human about it
+      g.beginPath(); g.moveTo(X, Y - 9); g.lineTo(X + 9, Y); g.lineTo(X, Y + 9); g.lineTo(X - 9, Y); g.closePath();
+      g.fillStyle = dark; g.fill(); g.lineWidth = 2; g.strokeStyle = col; g.stroke();
+      g.fillStyle = col; g.fillRect(X - 3.2, Y - 3.2, 6.4, 6.4);
     } else if (kind === 'no_fuel') {
       g.beginPath(); g.arc(X, Y, 7, 0, 7); g.fillStyle = dark; g.fill();
       g.setLineDash([2.5, 2]); g.lineWidth = 2; g.strokeStyle = col; g.stroke(); g.setLineDash([]);
     }
   }
-  function markerKind(it) { return it.isPort ? (it.dead ? 'dead' : 'port') : it.kind; }
-  function markerColor(it) { return it.isPort ? (it.dead ? '#3a4550' : T[it.terr].color) : KIND_COL[it.kind]; }
+  function markerKind(it) { return it.isPort ? (it.mystery ? 'aiport' : it.dead ? 'dead' : 'port') : it.kind; }
+  function markerColor(it) { return it.isPort ? (it.mystery ? AI_COL : it.dead ? '#3a4550' : T[it.terr].color) : KIND_COL[it.kind]; }
 
   // which places show at this zoom: ports always; minor places as you zoom in
   function visibleRank(secPx) { return secPx >= 95 ? 3 : secPx >= 50 ? 2 : 1; }
@@ -496,8 +501,11 @@
   // fly the chart to a place
   var flyAnim = null;
   function stopFly() { if (flyAnim) { cancelAnimationFrame(flyAnim); flyAnim = null; } }
+  // where the map will sit once a scroll that has just been asked for is done (smooth scrolling moves it later)
+  var mapTopAfterScroll = null;
   function visibleCentre() {
     var mr = mapEl.getBoundingClientRect(), x0 = 0, y0 = 0, x1 = CW, y1 = CH;
+    if (mapTopAfterScroll != null) mr = { left: mr.left, top: mapTopAfterScroll };
     var pn = document.getElementById('panel');
     if (!pn.hidden) {
       var pl = pn.offsetLeft, pt = pn.offsetTop;   // layout box: ignores the slide-in animation
@@ -615,7 +623,18 @@
     var s = SEAS[id]; if (!s) return '';
     return '<h3>The water round it</h3><div class="p-sea"><p><b>' + esc(s.name) + '.</b> ' + esc(s.what) + '</p><p>' + esc(s.look) + '</p></div>';
   }
+  function mysteryHTML(p) {
+    var sec = SEC[p.sector];
+    return '<div class="p-k">Automated port · Sector ' + esc(p.sector) + '</div>' +
+      '<h2 id="panel-title" tabindex="-1">' + esc(p.name) + '</h2>' +
+      '<p class="p-place">' + esc(p.place) + ' · danger ' + esc(sec.d) + ', ' + esc(riskWord[sec.d]).toLowerCase() + '</p>' +
+      '<p class="p-about">' + esc(p.about) + '</p>' +
+      '<h3>The port</h3>' + galleryHTML(p.capture, p.name) +
+      '<h3>What is special here</h3><ul class="p-list">' + p.special.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' +
+      seaHTML(p.sea) + '<a class="p-link" href="#' + esc(p.hash) + '">Link to this port</a>';
+  }
   function portHTML(p) {
+    if (p.mystery) return mysteryHTML(p);
     var t = T[p.terr], sec = SEC[p.sector];
     var h = '<div class="p-k">' + (p.dead ? 'Dead navy port' : 'Port') + ' · Sector ' + esc(p.sector) + '</div>' +
       '<h2 id="panel-title" tabindex="-1">' + esc(p.name) + '</h2>' +
@@ -666,8 +685,16 @@
     if (o.push && location.hash !== '#' + it.hash) history.pushState(null, '', '#' + it.hash);
     var h = document.getElementById('panel-title'); if (h) h.focus({ preventScroll: true });
     panel.querySelector('.panel-in').scrollTop = 0;
-    if (o.scroll) { var mr = mapEl.getBoundingClientRect(); if (mr.top > 140 || mr.bottom < 200) mapEl.scrollIntoView({ behavior: o.instant ? 'auto' : 'smooth', block: 'start' }); }
+    mapTopAfterScroll = null;
+    if (o.scroll) {
+      var mr = mapEl.getBoundingClientRect();
+      if (mr.top > 140 || mr.bottom < 200) {
+        mapEl.scrollIntoView({ behavior: o.instant ? 'instant' : 'smooth', block: 'start' });
+        mapTopAfterScroll = parseFloat(getComputedStyle(mapEl).scrollMarginTop) || 0;
+      }
+    }
     if (o.fly !== false) flyTo(it.x, it.y, scaleFor(it)); else requestDraw();
+    mapTopAfterScroll = null;
   }
   function closePanel(fromRoute) {
     if (panel.hidden) return;
@@ -727,7 +754,7 @@
       '<li><span class="sw" style="background:#1b2422;border-color:#d9c9a3"></span>Land</li></ul>';
     body.innerHTML = h;
     var ul = document.getElementById('legend-marks');
-    var marks = [['port', T.ari.color, 'Port'], ['dead', '#3a4550', 'Dead navy port']];
+    var marks = [['port', T.ari.color, 'Port'], ['dead', '#3a4550', 'Dead navy port'], ['aiport', AI_COL, 'Automated port']];
     if (showPlaces) marks = marks.concat([['toll', KIND_COL.toll, 'Toll line'], ['stronghold', KIND_COL.stronghold, 'Pirate stronghold'], ['crew', KIND_COL.crew, 'Pirate crew base'],
       ['gate', KIND_COL.gate, 'Sea gate'], ['drone', KIND_COL.drone, 'Drone water'], ['fallout', KIND_COL.fallout, 'Fallout coast'], ['graveyard', KIND_COL.graveyard, 'Ship graveyard'],
       ['city', KIND_COL.city, 'Drowned city'], ['fishing', KIND_COL.fishing, 'Fishing grounds'], ['salvage', KIND_COL.salvage, 'Salvage field'], ['no_fuel', KIND_COL.no_fuel, 'No-fuel water']]);
@@ -738,9 +765,9 @@
     var pl = document.getElementById('port-list');
     PORTS.forEach(function (p) {
       var li = document.createElement('li'), b = document.createElement('button');
-      b.type = 'button'; b.className = 'card-btn'; b.style.setProperty('--c', p.dead ? '#6b7884' : T[p.terr].color);
-      b.innerHTML = '<span class="ck">' + (p.dead ? 'Dead navy port' : 'Port') + ' · ' + esc(p.sector) + '</span><span class="cn">' + esc(p.name.replace('Dead port: ', '')) +
-        '</span><span class="cs">' + esc(p.place) + ' · held by ' + esc(p.holder) + '</span>';
+      b.type = 'button'; b.className = 'card-btn'; b.style.setProperty('--c', p.mystery ? AI_COL : p.dead ? '#6b7884' : T[p.terr].color);
+      b.innerHTML = '<span class="ck">' + (p.mystery ? 'Automated port' : p.dead ? 'Dead navy port' : 'Port') + ' · ' + esc(p.sector) + '</span><span class="cn">' + esc(p.name.replace('Dead port: ', '')) +
+        '</span><span class="cs">' + esc(p.place) + (p.mystery ? '' : ' · held by ' + esc(p.holder)) + '</span>';
       b.addEventListener('click', function () { openItem(p, { push: true, fly: true, scroll: true }); });
       li.appendChild(b); pl.appendChild(li);
     });
