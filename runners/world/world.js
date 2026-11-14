@@ -86,7 +86,9 @@
   var RISK_COL = ['#2c8c7f', '#3f9f86', '#78ad6e', '#a9b25a', '#cfa64a', '#d98a3c', '#d9673a', '#cc4434', '#b02a32', '#8a1020'];
   var riskWord = {}; D.risk.forEach(function (r) { riskWord[r[0]] = r[1]; });
   var AI_COL = '#7cf0ff';
-  var KIND_COL = { toll: '#ff6a4d', stronghold: '#ff6a4d', crew: '#e06666', gate: '#e3b55c', fallout: '#c9e04a', drone: '#ff2d4a',
+  // the Hot Coast is orange (no rescue); the closed radiation zones it rings are black and yellow stripes (no entry)
+  var HOT_COL = '#ff9a3c', RAD_YEL = '#f2dc2e';
+  var KIND_COL = { toll: '#ff6a4d', stronghold: '#ff6a4d', crew: '#e06666', gate: '#e3b55c', fallout: HOT_COL, drone: '#ff2d4a',
     city: '#d6b98a', graveyard: '#b9c3cc', fishing: '#f1c232', salvage: '#d6b98a', no_fuel: '#a79bf0' };
   function hexA(hex, a) {
     var n = parseInt(hex.slice(1), 16);
@@ -176,6 +178,35 @@
     p.outlineSel = outline(p.sectors || [], 0.97); p.edgesSel = edgesOf(p.sectors || [], 0.97);
   });
   var tollPlaces = PLACES.filter(function (p) { return p.kind === 'toll'; });
+  // separate stretches of a scattered place (the Hot Coast rings twelve closed zones): one label each when it is chosen
+  function stretches(codes, skipAt) {
+    var set = {}, seen = {}, out = [];
+    codes.forEach(function (c) { set[c] = 1; });
+    codes.forEach(function (c) {
+      if (seen[c]) return;
+      var comp = [], q = [c]; seen[c] = 1;
+      while (q.length) { var a = q.pop(); comp.push(a); for (var d = 0; d < 6; d++) { var n = neighbour(SEC[a], d); if (n && set[n] && !seen[n]) { seen[n] = 1; q.push(n); } } }
+      // label at the member nearest the stretch's middle (on the circle, so a stretch across the date line holds together)
+      var ang = comp.map(function (k) { return SEC[k].x / W * 2 * Math.PI; });
+      var mx = (Math.atan2(ang.reduce(function (s_, a_) { return s_ + Math.sin(a_); }, 0), ang.reduce(function (s_, a_) { return s_ + Math.cos(a_); }, 0)) / (2 * Math.PI) * W + W) % W;
+      var my = comp.reduce(function (s_, k) { return s_ + SEC[k].y; }, 0) / comp.length;
+      comp.sort(function (a_, b_) { var da = Math.hypot(((SEC[a_].x - mx + W * 1.5) % W) - W / 2, SEC[a_].y - my), db = Math.hypot(((SEC[b_].x - mx + W * 1.5) % W) - W / 2, SEC[b_].y - my); return da - db || (a_ < b_ ? -1 : 1); });
+      if (comp.indexOf(skipAt) < 0) out.push({ at: SEC[comp[0]], n: comp.length });   // the marker already names its own stretch
+    });
+    return out;
+  }
+  // the chosen place, when it is an area of several sectors: the paths that dim the rest and band it
+  var areaCache = {};
+  function areaSel() {
+    var it = sel && sel.item;
+    if (!it || it.isPort || it.isRig || !it.sectors || it.sectors.length < 2) return null;
+    if (areaCache[it.hash]) return areaCache[it.hash];
+    var keep = it.sectors.slice(); if (it === hotCoast) keep = keep.concat(CLOSED_CODES);
+    var dim = new Path2D(); dim.rect(-SW * 2, TOP - 90000, W + 4 * SW, BOTTOM - TOP + 180000); keep.forEach(function (c) { hexInto(dim, SEC[c]); });
+    var band = new Path2D(); it.sectors.forEach(function (c) { hexInto(band, SEC[c]); });
+    var col = it.isSea ? SEAS[it.id].color : it === hotCoast ? HOT_COL : (KIND_COL[it.kind] || '#f0c773');
+    return (areaCache[it.hash] = { it: it, keep: keep, dimFlat: dim, bandFlat: band, col: col, parts: it.kind === 'fallout' ? stretches(it.sectors, hexAt(it.x, it.y)) : null });
+  }
   var hotCoast = PLACES.filter(function (p) { return p.id === 'hot_coast'; })[0];
   // where to letter each sea's name: the member with the most members around it
   var SEA_LABEL = {}, SEA_ITEMS = [];
@@ -352,6 +383,10 @@
     reserveUI();
     var px = secPx();
     if (mode === 'danger' && px > 30) drawRiskNumbers(px);
+    var ar = areaSel();
+    if (ar && ar.parts) ar.parts.forEach(function (pt) {
+      posOf(pt.at.x, pt.at.y).forEach(function (q) { label(ar.it.name, q[0], q[1], { size: 12.5, center: true, color: HOT_COL, weight: 700 }); });
+    });
     drawMarkers(px);
     if (mode === 'seas' || filter === 'seas') drawSeaNames(px);
   }
@@ -376,8 +411,9 @@
       for (var k2 in dg) { ctx.fillStyle = fillColor(mode, k2); ctx.fill(dg[k2]); }
       ctx.fillStyle = pattern('wave', 14, wavePainter); ctx.fill(DROWNED);
       // closed radiation sectors
-      ctx.fillStyle = pattern('rad', 8, hatchPainter('rgba(201,224,74,0.55)', 1.3)); ctx.fill(CLOSED);
-      ctx.setLineDash([5 / V.s, 4 / V.s]); ctx.lineWidth = 1.4 / V.s; ctx.strokeStyle = 'rgba(201,224,74,0.85)'; ctx.stroke(CLOSED); ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(16,18,8,0.86)'; ctx.fill(CLOSED);
+      ctx.fillStyle = pattern('radhz', 10, hatchPainter(RAD_YEL, 2.6)); ctx.fill(CLOSED);
+      ctx.lineWidth = 1.8 / V.s; ctx.strokeStyle = RAD_YEL; ctx.stroke(CLOSED);
       // Dex's Wake
       if (mode === 'holders') { ctx.fillStyle = pattern('dead', 9, hatchPainter('rgba(255,90,100,0.45)', 1.4)); ctx.fill(REACH); }
       // grid, faint, once sectors are big enough to read
@@ -389,21 +425,29 @@
         ctx.lineWidth = 3.2 / V.s; ctx.strokeStyle = 'rgba(3,8,14,0.7)'; ctx.stroke(b);
         ctx.lineWidth = 1.3 / V.s; ctx.strokeStyle = mode === 'holders' ? 'rgba(236,228,206,0.85)' : 'rgba(200,225,240,0.6)'; ctx.stroke(b);
       }
-      if (filter === 'all' || filter === 'pirates') {
+      var area = areaSel();
+      if ((filter === 'all' || filter === 'pirates') && !area) {
         // toll lines: a dashed line round the water they hold
         tollPlaces.forEach(function (p) {
           ctx.setLineDash([6 / V.s, 4 / V.s]); ctx.lineWidth = 2.2 / V.s; ctx.strokeStyle = 'rgba(255,106,77,0.95)'; ctx.stroke(p.outline); ctx.setLineDash([]);
         });
       }
-      if ((filter === 'all' && px > 46 || filter === 'danger') && hotCoast && !(sel && sel.item === hotCoast)) {
-        ctx.setLineDash([2 / V.s, 4 / V.s]); ctx.lineWidth = 1.2 / V.s; ctx.strokeStyle = 'rgba(201,224,74,0.5)'; ctx.stroke(hotCoast.outline); ctx.setLineDash([]);
+      if ((filter === 'all' && px > 46 || filter === 'danger') && hotCoast && !area) {
+        ctx.setLineDash([2 / V.s, 4 / V.s]); ctx.lineWidth = 1.2 / V.s; ctx.strokeStyle = hexA(HOT_COL, 0.55); ctx.stroke(hotCoast.outline); ctx.setLineDash([]);
+      }
+      // a chosen area reads as one shape: everything else dims, the area gets a band, the radiation zones stay sharp
+      if (area) {
+        ctx.save(); ctx.beginPath(); ctx.rect(-SW / 2, TOP - 90000, W, BOTTOM - TOP + 180000); ctx.clip();   // one copy of the world per wrap
+        ctx.fillStyle = 'rgba(4,10,16,0.5)'; ctx.fill(area.dimFlat, 'evenodd'); ctx.restore();
+        ctx.fillStyle = hexA(area.col, 0.22); ctx.fill(area.bandFlat);
+        if (area.it === hotCoast) { ctx.lineWidth = 2.4 / V.s; ctx.strokeStyle = RAD_YEL; ctx.stroke(CLOSED); }
       }
       // selection
       if (sel) {
         var path = sel.code ? (function () { var p = new Path2D(); hexInto(p, SEC[sel.code], 0.97); return p; })() : sel.item && !sel.item.isPort && !sel.item.isRig && sel.item.outlineSel;
         if (path) {
           ctx.lineWidth = 4.5 / V.s; ctx.strokeStyle = 'rgba(3,8,14,0.75)'; ctx.stroke(path);
-          ctx.lineWidth = 2.2 / V.s; ctx.strokeStyle = '#f0c773'; ctx.stroke(path);
+          ctx.lineWidth = 2.4 / V.s; ctx.strokeStyle = area ? area.col : '#f0c773'; ctx.stroke(path);
         }
       }
     }
@@ -427,8 +471,8 @@
     // drowned land, radiation, Dex's Wake
     ctx.beginPath(); gHexes(DROWNED_CODES); ctx.fillStyle = 'rgba(12,35,56,0.72)'; ctx.fill();
     for (k in gr) { var dc = gr[k].filter(function (c) { return SEC[c].k === 'drowned'; }); if (!dc.length) continue; ctx.beginPath(); gHexes(dc); ctx.fillStyle = fillColor(mode, k); ctx.fill(); }
-    ctx.beginPath(); gHexes(CLOSED_CODES); ctx.fillStyle = 'rgba(201,224,74,0.3)'; ctx.fill();
-    ctx.setLineDash([5, 4]); ctx.lineWidth = 1.3; ctx.strokeStyle = 'rgba(201,224,74,0.85)'; ctx.stroke(); ctx.setLineDash([]);
+    ctx.beginPath(); gHexes(CLOSED_CODES); ctx.fillStyle = 'rgba(16,18,8,0.86)'; ctx.fill();
+    ctx.fillStyle = flatPattern('radhzg', 10, hatchPainter(RAD_YEL, 2.6)); ctx.fill(); ctx.lineWidth = 1.6; ctx.strokeStyle = RAD_YEL; ctx.stroke();
     if (mode === 'holders') { ctx.beginPath(); gHexes(REACH_CODES); ctx.fillStyle = flatPattern('deadg', 9, hatchPainter('rgba(255,90,100,0.45)', 1.4)); ctx.fill(); }
     // grid and graticule
     if (px > 26) { ctx.beginPath(); gHexes(CODES); ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(200,225,240,' + Math.min(0.13, (px - 26) / 300) + ')'; ctx.stroke(); }
@@ -440,18 +484,25 @@
       ctx.lineWidth = 3.2; ctx.strokeStyle = 'rgba(3,8,14,0.7)'; ctx.stroke();
       ctx.lineWidth = 1.3; ctx.strokeStyle = mode === 'holders' ? 'rgba(236,228,206,0.85)' : 'rgba(200,225,240,0.6)'; ctx.stroke();
     }
-    if (filter === 'all' || filter === 'pirates') {
+    var area = areaSel();
+    if ((filter === 'all' || filter === 'pirates') && !area) {
       ctx.beginPath(); tollPlaces.forEach(function (p) { gLines(p.edges); });
       ctx.setLineDash([6, 4]); ctx.lineWidth = 2.2; ctx.strokeStyle = 'rgba(255,106,77,0.95)'; ctx.stroke(); ctx.setLineDash([]);
     }
-    if ((filter === 'all' && px > 46 || filter === 'danger') && hotCoast && !(sel && sel.item === hotCoast)) {
-      ctx.beginPath(); gLines(hotCoast.edges); ctx.setLineDash([2, 4]); ctx.lineWidth = 1.2; ctx.strokeStyle = 'rgba(201,224,74,0.5)'; ctx.stroke(); ctx.setLineDash([]);
+    if ((filter === 'all' && px > 46 || filter === 'danger') && hotCoast && !area) {
+      ctx.beginPath(); gLines(hotCoast.edges); ctx.setLineDash([2, 4]); ctx.lineWidth = 1.2; ctx.strokeStyle = hexA(HOT_COL, 0.55); ctx.stroke(); ctx.setLineDash([]);
+    }
+    if (area) {
+      ctx.beginPath(); ctx.rect(G.cx - R - 2, G.cy - R - 2, 2 * R + 4, 2 * R + 4); gHexes(area.keep);
+      ctx.fillStyle = 'rgba(4,10,16,0.5)'; ctx.fill('evenodd');
+      ctx.beginPath(); gHexes(area.it.sectors); ctx.fillStyle = hexA(area.col, 0.22); ctx.fill();
+      if (area.it === hotCoast) { ctx.beginPath(); gHexes(CLOSED_CODES); ctx.lineWidth = 2.2; ctx.strokeStyle = RAD_YEL; ctx.stroke(); }
     }
     if (sel) {
       var ed = sel.code ? edgesOf([sel.code], 0.97) : sel.item && !sel.item.isPort && !sel.item.isRig && sel.item.edgesSel;
       if (ed) {
         ctx.beginPath(); gLines(ed);
-        ctx.lineWidth = 4.5; ctx.strokeStyle = 'rgba(3,8,14,0.75)'; ctx.stroke(); ctx.lineWidth = 2.2; ctx.strokeStyle = '#f0c773'; ctx.stroke();
+        ctx.lineWidth = 4.5; ctx.strokeStyle = 'rgba(3,8,14,0.75)'; ctx.stroke(); ctx.lineWidth = 2.4; ctx.strokeStyle = area ? area.col : '#f0c773'; ctx.stroke();
       }
     }
     // shade toward the rim so it reads as a sphere
@@ -569,10 +620,10 @@
     } else if (kind === 'gate') {
       g.lineWidth = 6; g.strokeStyle = dark; g.beginPath(); g.moveTo(X - 4, Y - 7); g.lineTo(X - 4, Y + 7); g.moveTo(X + 4, Y - 7); g.lineTo(X + 4, Y + 7); g.stroke();
       g.lineWidth = 3; g.strokeStyle = col; g.stroke();
-    } else if (kind === 'fallout') {
-      g.beginPath(); g.arc(X, Y, 8, 0, 7); g.fillStyle = dark; g.fill();
-      for (var a = 0; a < 3; a++) { var t0 = -Math.PI / 2 + a * 2 * Math.PI / 3 - 0.5; g.beginPath(); g.moveTo(X, Y); g.arc(X, Y, 6.5, t0, t0 + 1); g.closePath(); g.fillStyle = col; g.fill(); }
-      g.beginPath(); g.arc(X, Y, 1.6, 0, 7); g.fill();
+    } else if (kind === 'fallout') {   // the Hot Coast: a lifebuoy struck through, for "no rescue here"
+      g.beginPath(); g.arc(X, Y, 8.5, 0, 7); g.fillStyle = dark; g.fill();
+      g.beginPath(); g.arc(X, Y, 5.6, 0, 7); g.lineWidth = 3; g.strokeStyle = col; g.stroke();
+      g.beginPath(); g.moveTo(X - 6.5, Y + 6.5); g.lineTo(X + 6.5, Y - 6.5); g.lineWidth = 3.4; g.strokeStyle = dark; g.stroke(); g.lineWidth = 1.8; g.strokeStyle = '#fff'; g.stroke();
     } else if (kind === 'drone') {
       g.beginPath(); g.arc(X, Y, 8.5, 0, 7); g.fillStyle = dark; g.fill();
       g.beginPath(); g.arc(X, Y, 6.5, 0, 7); g.fillStyle = col; g.fill();
@@ -875,8 +926,10 @@
     flyAnim = requestAnimationFrame(step);
   }
   function scaleFor(it) {
-    var secs = it.sectors && it.sectors.length > 1 && !it.isPort ? it.sectors : null;
+    // a place scattered round the world (the Hot Coast) goes to its marker at a readable size, not "fit everything"
+    var secs = it.sectors && it.sectors.length > 1 && !it.isPort && it.kind !== 'fallout' ? it.sectors : null;
     var vc = visibleCentre();
+    if (it.kind === 'fallout') return Math.max(view === 'globe' ? 0 : V.s, (vc[2] < 500 ? 40 : 46) / SW);
     if (secs) {
       var xs = secs.map(function (c) { return SEC[c].x; }), ys = secs.map(function (c) { return SEC[c].y; });
       var x0 = xs[0], spanX = 0;
@@ -1011,7 +1064,9 @@
       (p.holder ? heldHTML(p.holder, KIND_COL[p.kind]) : '') +
       '<p class="p-about">' + esc(p.what) + '</p>';
     if (p.capture && capImages(p.capture).length) h += '<h3>From the game</h3>' + galleryHTML(p.capture, p.name);
-    h += '<dl class="facts">' + (p.rule ? '<dt>' + (p.kind === 'toll' ? 'The toll' : p.kind === 'crew' ? 'How they work' : 'The rule') + '</dt><dd>' + esc(p.rule) + '</dd>' : '') +
+    var zk = zoneKey(p);
+    if (zk) h += '<ul class="p-zkey">' + zk.map(function (r) { return '<li><span class="sw ' + r[0] + '"></span>' + esc(r[1]) + '</li>'; }).join('') + '</ul>';
+    h += '<dl class="facts">' + (p.rule ? '<dt>' + (p.kind === 'toll' ? 'The toll' : p.kind === 'crew' ? 'How they work' : catOf(p) === 'danger' ? 'The danger' : 'The rule') + '</dt><dd>' + esc(p.rule) + '</dd>' : '') +
       (p.detour ? '<dt>The way round</dt><dd>' + esc(p.detour) + '</dd>' : '') +
       (p.reward ? '<dt>The reward</dt><dd>' + esc(p.reward) + '</dd>' : '') + '</dl>';
     if (p.sectors && p.sectors.length === 1) { var s = SEC[p.sectors[0]]; if (s) h += seaHTML(s.s); }
@@ -1019,6 +1074,13 @@
     return h;
   }
 
+  // the two-row key inside a danger zone's panel: what the outline is, and what sits inside it
+  function zoneKey(p) {
+    if (p.kind === 'fallout') return [['sw-hot', 'Hot Coast: no rescue here'], ['sw-rad', 'Closed radiation zone: no entry']];
+    if (p.kind === 'drone') return [['sw-picket', T.drone_ring.name + ': deadly if you stop'], ['sw-kill', T.drone_core.name + ' kill zone: nothing comes back']];
+    if (p.kind === 'no_fuel') return [['sw-nofuel', 'No rig in reach to refuel']];
+    return null;
+  }
   function rigHTML(r) {
     var s = SEC[r.s], tw = r.twin && BY_HASH[r.twin], cl = r.ctl && RIG_CTL[r.ctl];
     var kick = r.st === 'destroyed' ? 'Destroyed rig' : r.st === 'twin' ? 'Twin rig' : r.st === 'breakwater' ? 'Breakwater rig' : 'Oil rig';
@@ -1237,7 +1299,8 @@
       Object.keys(T).forEach(function (id) { var t = T[id]; (groups[t.group] = groups[t.group] || []).push(id); });
       Object.keys(groups).forEach(function (g) {
         h += '<h3>' + esc(g) + '</h3><ul>' + groups[g].map(function (id) {
-          var t = T[id], hatch = id === 'radiation' || id === 'drone_core';
+          var t = T[id], hatch = id === 'drone_core';
+          if (id === 'radiation') return '<li><span class="sw sw-rad"></span>Closed radiation zone</li>';
           return '<li><span class="sw' + (hatch ? ' hatch' : '') + '" style="background-color:' + t.color + '"></span>' + esc(t.name) + '</li>';
         }).join('') + '</ul>';
       });
@@ -1249,7 +1312,8 @@
     }
     h += '<h3>On the chart</h3><ul id="legend-marks"></ul>';
     h += '<h3>Water</h3><ul><li><span class="sw" style="background:#0c2338;background-image:repeating-linear-gradient(0deg,rgba(160,215,235,.4) 0 1px,transparent 1px 5px)"></span>Drowned land</li>' +
-      '<li><span class="sw hatch" style="background-color:#b6d43a"></span>Radiation, closed</li>' +
+      '<li><span class="sw sw-rad"></span>Closed radiation zone: no entry</li>' +
+      '<li><span class="sw sw-hot"></span>Hot Coast: no rescue</li>' +
       '<li><span class="sw" style="background:#1b2422;border-color:#d9c9a3"></span>Land</li></ul>';
     body.innerHTML = h;
     var ul = document.getElementById('legend-marks');
@@ -1257,7 +1321,7 @@
       rigs: ['free', 'housing', 'tribute', 'pirate', 'dark'].map(function (k) { return ['rig_working_' + k, RIG_CTL[k].col, RIG_CTL[k].label]; })
         .concat([['rig_twin_free', RIG_CTL.free.col, 'Twin rig (two decks)'], ['rig_destroyed_none', RIG_ST.destroyed.col, 'Destroyed rig'], ['rig_breakwater_breakwater', RIG_CTL.breakwater.col, 'Breakwater rig']]),
       pirates: [['toll', KIND_COL.toll, 'Toll line'], ['stronghold', KIND_COL.stronghold, 'Pirate stronghold'], ['crew', KIND_COL.crew, 'Pirate crew base']],
-      danger: [['gate', KIND_COL.gate, 'Sea gate'], ['drone', KIND_COL.drone, 'Drone water'], ['fallout', KIND_COL.fallout, 'Fallout coast'], ['no_fuel', KIND_COL.no_fuel, 'No-fuel water']],
+      danger: [['gate', KIND_COL.gate, 'Sea gate'], ['drone', KIND_COL.drone, 'Drone water'], ['fallout', KIND_COL.fallout, 'Hot Coast (no rescue)'], ['no_fuel', KIND_COL.no_fuel, 'No-fuel water']],
       wrecks: [['graveyard', KIND_COL.graveyard, 'Ship graveyard'], ['city', KIND_COL.city, 'Drowned city'], ['salvage', KIND_COL.salvage, 'Salvage field']],
       fishing: [['fishing', KIND_COL.fishing, 'Fishing grounds']], seas: [] };
     var marks = filter === 'all' ? [].concat(all.ports, all.pirates, all.danger, all.wrecks, all.fishing, all.rigs) : all[filter] || [];

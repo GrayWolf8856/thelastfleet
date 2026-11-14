@@ -203,3 +203,12 @@
   .map .rig-chips button{flex:none}
 }
 .p-ctl{display:flex;align-items:center;gap:8px;font-family:var(--hud);font-weight:600;letter-spacing:.04em;font-size:1rem;color:#fff;margin:0 0 6px}
+/* the closed radiation zones (no entry) and the Hot Coast round them (no rescue), as swatches */
+.sw.sw-rad{background:#10120a repeating-linear-gradient(135deg,#f2dc2e 0 2px,transparent 2px 5px);border-color:#f2dc2e}
+.sw.sw-hot{background:rgba(255,154,60,.28);border:2px solid #ff9a3c}
+.sw.sw-picket{background:#a01226;border-color:#ff8a95}
+.sw.sw-kill{background:#c0142e repeating-linear-gradient(135deg,rgba(255,90,100,.7) 0 2px,transparent 2px 5px);border-color:#ff8a95}
+.sw.sw-nofuel{background:rgba(167,155,240,.25);border:2px solid #a79bf0}
+.p-zkey{list-style:none;margin:0 0 6px;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:4px;background:rgba(255,255,255,.03)}
+.p-zkey li{display:flex;align-items:center;gap:10px;padding:3px 0;color:#e9f1f5;font-family:var(--hud);font-weight:600;letter-spacing:.03em}
+.p-zkey .sw{width:18px;height:18px}
