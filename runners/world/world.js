@@ -178,6 +178,12 @@
     p.outlineSel = outline(p.sectors || [], 0.97); p.edgesSel = edgesOf(p.sectors || [], 0.97);
   });
   var tollPlaces = PLACES.filter(function (p) { return p.kind === 'toll'; });
+  // roaming pirate water (the three open-ocean factions): drawn as a hatch over open sea, not as held territory
+  var ROAM = Object.keys(D.factions || {}).filter(function (f) { return D.factions[f].roams; }).map(function (f) {
+    var codes = CODES.filter(function (c) { return SEC[c].rm === f; }), path = new Path2D();
+    codes.forEach(function (c) { hexInto(path, SEC[c]); });
+    return { id: f, f: D.factions[f], codes: codes, path: path, edges: edgesOf(codes, 0.97), outline: outline(codes, 0.97) };
+  });
   // flooded land: the drowned sectors, and the cuts that are seaways through flooded land (the Suez Cut, the Cut). The
   // sea has the old land there, so it is drawn as water with the old coastline as a faint dotted line.
   var FLOOD_CODES = drownedCodes.slice();
@@ -216,7 +222,7 @@
     var keep = it.sectors.slice(); if (it === hotCoast) keep = keep.concat(CLOSED_CODES);
     var dim = new Path2D(); dim.rect(-SW * 2, TOP - 90000, W + 4 * SW, BOTTOM - TOP + 180000); keep.forEach(function (c) { hexInto(dim, SEC[c]); });
     var band = new Path2D(); it.sectors.forEach(function (c) { hexInto(band, SEC[c]); });
-    var col = it.isSea ? SEAS[it.id].color : it === hotCoast ? HOT_COL : (KIND_COL[it.kind] || '#f0c773');
+    var col = it.isSea ? SEAS[it.id].color : it === hotCoast ? HOT_COL : it.kind === 'faction' ? it.color : (KIND_COL[it.kind] || '#f0c773');
     return (areaCache[it.hash] = { it: it, keep: keep, dimFlat: dim, bandFlat: band, col: col, parts: it.kind === 'fallout' ? stretches(it.sectors, hexAt(it.x, it.y)) : null });
   }
   var hotCoast = PLACES.filter(function (p) { return p.id === 'hot_coast'; })[0];
@@ -243,7 +249,7 @@
     if (it.isPort) return 'ports';
     if (it.isRig) return 'rigs';
     if (it.isSea) return 'seas';
-    return { toll: 'pirates', stronghold: 'pirates', crew: 'pirates', fishing: 'fishing', graveyard: 'wrecks', city: 'wrecks', salvage: 'wrecks',
+    return { faction: 'pirates', toll: 'pirates', stronghold: 'pirates', crew: 'pirates', fishing: 'fishing', graveyard: 'wrecks', city: 'wrecks', salvage: 'wrecks',
       gate: 'danger', fallout: 'danger', drone: 'danger', no_fuel: 'danger' }[it.kind] || 'other';
   }
   var FILTERS = [
@@ -493,6 +499,12 @@
         ctx.setLineDash([2 / V.s, 4 / V.s]); ctx.lineWidth = 1.2 / V.s; ctx.strokeStyle = hexA(HOT_COL, 0.55); ctx.stroke(hotCoast.outline); ctx.setLineDash([]);
       }
     });
+    if (mode === 'holders' && (filter === 'all' || filter === 'pirates')) each(function () {
+      ROAM.forEach(function (r) {
+        ctx.fillStyle = pattern('roam_' + r.id, 11, hatchPainter(hexA(r.f.color, 0.55), 1.6)); ctx.fill(r.path);
+        ctx.setLineDash([3 / V.s, 4 / V.s]); ctx.lineWidth = 1.6 / V.s; ctx.strokeStyle = hexA(r.f.color, 0.9); ctx.stroke(r.outline); ctx.setLineDash([]);
+      });
+    });
     // a chosen area reads as one shape: everything else dims, the area gets a band, the radiation zones stay sharp
     if (area) each(function () {
       ctx.save(); ctx.beginPath(); ctx.rect(-SW / 2, TOP - 90000, W, BOTTOM - TOP + 180000); ctx.clip();   // one copy of the world per wrap
@@ -560,6 +572,10 @@
     if ((filter === 'all' && px > 46 || filter === 'danger') && hotCoast && !area) {
       ctx.beginPath(); gLines(hotCoast.edges); ctx.setLineDash([2, 4]); ctx.lineWidth = 1.2; ctx.strokeStyle = hexA(HOT_COL, 0.55); ctx.stroke(); ctx.setLineDash([]);
     }
+    if (mode === 'holders' && (filter === 'all' || filter === 'pirates')) ROAM.forEach(function (r) {
+      ctx.beginPath(); gHexes(r.codes); ctx.fillStyle = flatPattern('roamg_' + r.id, 11, hatchPainter(hexA(r.f.color, 0.55), 1.6)); ctx.fill();
+      ctx.beginPath(); gLines(r.edges); ctx.setLineDash([3, 4]); ctx.lineWidth = 1.6; ctx.strokeStyle = hexA(r.f.color, 0.9); ctx.stroke(); ctx.setLineDash([]);
+    });
     if (area) {
       ctx.beginPath(); ctx.rect(G.cx - R - 2, G.cy - R - 2, 2 * R + 4, 2 * R + 4); gHexes(area.keep);
       ctx.fillStyle = 'rgba(4,10,16,0.5)'; ctx.fill('evenodd');
@@ -714,6 +730,10 @@
       g.beginPath(); g.moveTo(X, Y - 9); g.lineTo(X + 9, Y); g.lineTo(X, Y + 9); g.lineTo(X - 9, Y); g.closePath();
       g.fillStyle = dark; g.fill(); g.lineWidth = 2; g.strokeStyle = col; g.stroke();
       g.fillStyle = col; g.fillRect(X - 3.2, Y - 3.2, 6.4, 6.4);
+    } else if (kind === 'faction') {   // a large pirate faction: a heavy hexagon in its colour
+      g.beginPath(); for (var hi = 0; hi < 6; hi++) { var ha = Math.PI / 6 + hi * Math.PI / 3; g.lineTo(X + 9.5 * Math.cos(ha), Y + 9.5 * Math.sin(ha)); } g.closePath();
+      g.fillStyle = dark; g.fill(); g.lineWidth = 3; g.strokeStyle = col; g.stroke();
+      g.beginPath(); g.arc(X, Y, 3, 0, 7); g.fillStyle = col; g.fill();
     } else if (kind === 'no_fuel') {
       g.beginPath(); g.arc(X, Y, 7, 0, 7); g.fillStyle = dark; g.fill();
       g.setLineDash([2.5, 2]); g.lineWidth = 2; g.strokeStyle = col; g.stroke(); g.setLineDash([]);
@@ -721,7 +741,7 @@
   }
 
   function markerKind(it) { return it.isRig ? 'rig_' + (it.st || 'working') + '_' + (it.ctl || 'none') : it.isPort ? (it.mystery ? 'aiport' : it.dead ? 'dead' : 'port') : it.kind; }
-  function markerColor(it) { return it.isRig ? (it.ctl ? RIG_CTL[it.ctl].col : RIG_ST.destroyed.col) : it.isPort ? (it.mystery ? AI_COL : it.dead ? '#3a4550' : T[it.terr].color) : KIND_COL[it.kind]; }
+  function markerColor(it) { if (it.kind === 'faction') return it.color; return it.isRig ? (it.ctl ? RIG_CTL[it.ctl].col : RIG_ST.destroyed.col) : it.isPort ? (it.mystery ? AI_COL : it.dead ? '#3a4550' : T[it.terr].color) : KIND_COL[it.kind]; }
   function drawGlyph(g, kind, X, Y, col, big, small) {
     if (kind.indexOf('rig_') === 0) { var kp = kind.split('_'); rigGlyph(g, kp[1], kp[2], X, Y, col, small); return; }
     glyph(g, kind, X, Y, col, big);
@@ -1031,6 +1051,7 @@
       '<div class="ro-k">Sector ' + esc(code) + '</div><h2>' + esc(s.p || code) + '</h2><dl>' +
       '<dt>Water</dt><dd><span class="dg"><span class="sw" style="background:' + t.color + '"></span>' + esc(t.name) + '</span></dd>' +
       (sea ? '<dt>Sea</dt><dd>' + esc(sea.name) + '</dd>' : '') +
+      (s.rm && D.factions[s.rm] ? '<dt>Pirates</dt><dd>' + esc(D.factions[s.rm].name) + ' roam here</dd>' : '') +
       '<dt>Danger</dt><dd>' + dangerHTML(s) + '</dd>' +
       (hz ? '<dt>Hazards</dt><dd>' + esc(hz) + '</dd>' : '') +
       (sv ? '<dt>Salvage</dt><dd>' + esc(sv) + '</dd>' : '') +
@@ -1135,7 +1156,19 @@
     h += '<a class="p-link" href="#' + esc(p.hash) + '">Link to this port</a>';
     return h;
   }
+  function factionHTML(p) {
+    var h = '<div class="p-k">' + esc(p.kindName) + ' · ' + p.sectors.length + ' sectors</div>' +
+      '<h2 id="panel-title" tabindex="-1">' + esc(p.name) + '</h2>' +
+      '<p class="p-place"><span class="sw' + (p.roams ? ' sw-roam' : '') + '" style="--c:' + p.color + ';background-color:' + p.color + '"></span> ' + (p.roams ? 'Roaming water, not held territory' : 'Held water') + '</p>' +
+      '<p class="p-about">' + esc(p.what) + '</p><dl class="facts">' +
+      '<dt>How they live</dt><dd>' + esc(p.lives) + '</dd>' +
+      '<dt>' + (p.roams ? 'Their base' : 'Their seat') + '</dt><dd>' + esc(p.base) + '</dd>' +
+      '<dt>How to know their ships</dt><dd>' + esc(p.marking) + '</dd></dl>' +
+      '<a class="p-link" href="#' + esc(p.hash) + '">Link to this place</a>';
+    return h;
+  }
   function placeHTML(p) {
+    if (p.kind === 'faction') return factionHTML(p);
     var h = '<div class="p-k">' + esc(p.kindName) + (p.sectors && p.sectors.length === 1 ? ' · Sector ' + esc(p.sectors[0]) : p.sectors ? ' · ' + p.sectors.length + ' sectors' : '') + '</div>' +
       '<h2 id="panel-title" tabindex="-1">' + esc(p.name) + '</h2>' +
       (p.holder ? heldHTML(p.holder, KIND_COL[p.kind]) : '') +
@@ -1374,10 +1407,12 @@
     if (mode === 'holders') {
       var groups = {};
       Object.keys(T).forEach(function (id) { var t = T[id]; (groups[t.group] = groups[t.group] || []).push(id); });
+      groups['Pirates roaming the open ocean'] = Object.keys(D.factions || {}).filter(function (f) { return D.factions[f].roams; }).map(function (f) { return 'roam:' + f; });
       Object.keys(groups).forEach(function (g) {
         h += '<h3>' + esc(g) + '</h3><ul>' + groups[g].map(function (id) {
           var t = T[id], hatch = id === 'drone_core';
           if (id === 'radiation') return '<li><span class="sw sw-rad"></span>Closed radiation zone</li>';
+          if (id.indexOf('roam:') === 0) { var rf = D.factions[id.slice(5)]; return '<li><span class="sw sw-roam" style="--c:' + rf.color + '"></span>' + esc(rf.name) + '</li>'; }
           return '<li><span class="sw' + (hatch ? ' hatch' : '') + '" style="background-color:' + t.color + '"></span>' + esc(t.name) + '</li>';
         }).join('') + '</ul>';
       });
@@ -1398,7 +1433,7 @@
     var all = { ports: [['port', T.ari.color, 'Port'], ['dead', '#3a4550', 'Dead navy port'], ['aiport', AI_COL, 'Automated port']],
       rigs: ['free', 'housing', 'tribute', 'pirate', 'dark'].map(function (k) { return ['rig_working_' + k, RIG_CTL[k].col, RIG_CTL[k].label]; })
         .concat([['rig_twin_free', RIG_CTL.free.col, 'Twin rig (two decks)'], ['rig_destroyed_none', RIG_ST.destroyed.col, 'Destroyed rig'], ['rig_breakwater_breakwater', RIG_CTL.breakwater.col, 'Breakwater rig']]),
-      pirates: [['toll', KIND_COL.toll, 'Toll line'], ['stronghold', KIND_COL.stronghold, 'Pirate stronghold'], ['crew', KIND_COL.crew, 'Pirate crew base']],
+      pirates: [['faction', '#d0312d', 'Large pirate faction'], ['toll', KIND_COL.toll, 'Toll line'], ['stronghold', KIND_COL.stronghold, 'Pirate stronghold'], ['crew', KIND_COL.crew, 'Pirate crew base']],
       danger: [['gate', KIND_COL.gate, 'Sea gate'], ['drone', KIND_COL.drone, 'Drone water'], ['fallout', KIND_COL.fallout, 'Hot Coast (no rescue)'], ['no_fuel', KIND_COL.no_fuel, 'No-fuel water']],
       wrecks: [['graveyard', KIND_COL.graveyard, 'Ship graveyard'], ['city', KIND_COL.city, 'Drowned city'], ['salvage', KIND_COL.salvage, 'Salvage field']],
       fishing: [['fishing', KIND_COL.fishing, 'Fishing grounds']], seas: [] };

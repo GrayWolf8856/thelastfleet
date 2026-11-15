@@ -218,3 +218,5 @@
 .ship-stats div.wide{grid-column:1/-1}
 .ship-stats dt{font-family:var(--spaced);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:#8ea1b3;margin:0}
 .ship-stats dd{margin:0;font-family:var(--hud);font-weight:600;font-size:.9rem;color:#e9f1f5;line-height:1.2;overflow-wrap:anywhere}
+.sw.sw-roam{background:#0c2338 repeating-linear-gradient(135deg,var(--c) 0 2px,transparent 2px 5px)!important;border:1px dashed var(--c)}
+.p-place .sw{display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:4px}
