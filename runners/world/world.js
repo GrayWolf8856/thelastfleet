@@ -1157,14 +1157,27 @@
     return h;
   }
   function factionHTML(p) {
+    var c = p.colours || {};
+    var sw = function (hex, lab) { return '<span class="fs"><i style="background:' + esc(hex) + '"></i>' + esc(lab) + '</span>'; };
     var h = '<div class="p-k">' + esc(p.kindName) + ' · ' + p.sectors.length + ' sectors</div>' +
-      '<h2 id="panel-title" tabindex="-1">' + esc(p.name) + '</h2>' +
-      '<p class="p-place"><span class="sw' + (p.roams ? ' sw-roam' : '') + '" style="--c:' + p.color + ';background-color:' + p.color + '"></span> ' + (p.roams ? 'Roaming water, not held territory' : 'Held water') + '</p>' +
-      '<p class="p-about">' + esc(p.what) + '</p><dl class="facts">' +
+      '<div class="f-head">' + (p.logo ? '<img class="f-logo" src="' + esc(p.logo) + '" alt="The ' + esc(p.name.replace(/^The /, '')) + ' logo, a spray-painted stencil mark" width="96" height="96" style="background:' + esc(c.hull || '#000') + '">' : '') +
+      '<div><h2 id="panel-title" tabindex="-1">' + esc(p.name) + '</h2>' +
+      '<p class="p-place"><span class="sw' + (p.roams ? ' sw-roam' : '') + '" style="--c:' + p.color + ';background-color:' + p.color + '"></span> ' + (p.roams ? 'Roaming water, not held territory' : 'Held water') + '</p></div></div>' +
+      (c.hull ? '<div class="f-colours">' + sw(c.hull, 'Hull') + sw(c.upper, 'Upperworks') + sw(c.accent, 'Accent') + '</div>' : '') +
+      '<p class="p-about">' + esc(p.what) + '</p>' +
+      (p.character ? '<p class="f-char">' + esc(p.character) + '</p>' : '') + '<dl class="facts">' +
       '<dt>How they live</dt><dd>' + esc(p.lives) + '</dd>' +
+      (p.exports ? '<dt>What they sell</dt><dd>' + esc(p.exports) + '</dd>' : '') +
       '<dt>' + (p.roams ? 'Their base' : 'Their seat') + '</dt><dd>' + esc(p.base) + '</dd>' +
-      '<dt>How to know their ships</dt><dd>' + esc(p.marking) + '</dd></dl>' +
-      '<a class="p-link" href="#' + esc(p.hash) + '">Link to this place</a>';
+      '<dt>How to know their ships</dt><dd>' + esc(p.marking) + '</dd></dl>';
+    if (p.wanted && p.wanted.length) {
+      h += '<h3>Wanted</h3><p class="f-note">Ten names, smallest first. The last one runs the whole faction.</p><ol class="wanted">' +
+        p.wanted.map(function (w) {
+          return '<li><details><summary><span class="wn">' + w.n + '</span><span class="wt"><b>' + esc(w.name) + '</b><small>' + esc(w.role) + '</small></span></summary>' +
+            '<div class="wb"><p class="wship"><i>' + esc(w.ship) + '</i>, ' + esc(w.hull) + '</p><p class="wground">Hunting ground: ' + esc(w.ground) + '</p><p>' + esc(w.story) + '</p></div></details></li>';
+        }).join('') + '</ol>';
+    }
+    h += '<a class="p-link" href="#' + esc(p.hash) + '">Link to this place</a>';
     return h;
   }
   function placeHTML(p) {

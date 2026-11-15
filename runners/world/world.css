@@ -220,3 +220,28 @@
 .ship-stats dd{margin:0;font-family:var(--hud);font-weight:600;font-size:.9rem;color:#e9f1f5;line-height:1.2;overflow-wrap:anywhere}
 .sw.sw-roam{background:#0c2338 repeating-linear-gradient(135deg,var(--c) 0 2px,transparent 2px 5px)!important;border:1px dashed var(--c)}
 .p-place .sw{display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:4px}
+/* pirate factions: logo, colours and the wanted board */
+.f-head{display:flex;gap:14px;align-items:center;margin:0 50px 6px 0}
+.f-head h2{margin:0 0 4px}
+.f-logo{flex:none;width:84px;height:84px;border-radius:6px;padding:6px;border:1px solid rgba(255,255,255,.18)}
+.f-colours{display:flex;flex-wrap:wrap;gap:6px 14px;margin:6px 0 12px}
+.fs{display:inline-flex;align-items:center;gap:6px;font-family:var(--hud);font-weight:600;font-size:.85rem;letter-spacing:.04em;color:#c5d3de}
+.fs i{display:inline-block;width:26px;height:14px;border-radius:2px;border:1px solid rgba(255,255,255,.3)}
+.f-char{margin:0 0 14px;padding-left:12px;border-left:2px solid var(--gold);color:#e9f1f5;font-style:italic}
+.f-note{color:#9fb3c4;margin:-4px 0 8px;font-size:.92rem}
+.wanted{list-style:none;margin:0;padding:0}
+.wanted li{border:1px solid rgba(255,255,255,.1);border-radius:4px;margin:0 0 6px;background:rgba(255,255,255,.03)}
+.wanted summary{display:flex;align-items:center;gap:10px;min-height:48px;padding:6px 10px;cursor:pointer;list-style:none}
+.wanted summary::-webkit-details-marker{display:none}
+.wanted summary::after{content:"";margin-left:auto;border:5px solid transparent;border-left-color:var(--gold)}
+.wanted details[open] summary::after{border-left-color:transparent;border-top-color:var(--gold);margin-top:5px}
+.wanted summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.wn{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:3px;background:#1a2634;font:800 1.05rem/1 var(--stencil);color:var(--gold)}
+.wt{display:flex;flex-direction:column;min-width:0}
+.wt b{font-family:var(--hud);font-weight:700;font-size:1.02rem;letter-spacing:.02em;color:#fff;line-height:1.2}
+.wt small{color:#9fb3c4;font-size:.85rem;line-height:1.25}
+.wb{padding:0 12px 10px 50px;color:#dfe8ee}
+.wb p{margin:0 0 6px}
+.wship{font-family:var(--hud);font-weight:600;letter-spacing:.03em;color:#fff}
+.wground{color:#9fb3c4;font-size:.92rem}
+@media(max-width:700px){.wb{padding-left:12px}.f-logo{width:72px;height:72px}}
