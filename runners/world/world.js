@@ -102,6 +102,9 @@
     twin: { name: 'Twin', label: 'Twin rig', col: '#9fd4e8' }, pirate: { name: 'Pirate-held', label: 'Pirate-held rig', col: '#e06666' },
     breakwater: { name: 'Breakwater', label: 'Breakwater rig', col: '#5b9be0' },
     rebuilt: { name: 'Rebuilt on the wreck', label: 'Lantern rig, rebuilt on the wreck', col: '#e3c48a' } };
+  // lantern rig sizes (world-data.js "sz"; none = small): a bigger one is two or three lantern rigs joined by bridges
+  var RIG_SZ = { xl: { name: 'Extra large lantern', kick: 'Lantern rig · extra large: three rigs joined by bridges', glyph: 'lantern3' },
+    medium: { name: 'Medium lantern', kick: 'Lantern rig · medium: two rigs joined by bridges', glyph: 'lantern2' } };
   var RIG_ORDER = ['working', 'destroyed', 'twin', 'pirate', 'breakwater'];
   // who controls a standing rig (world-data.js "ctl"); structure ("st") is separate: a twin is a structure, not a control
   var RIG_CTL = {
@@ -112,8 +115,8 @@
     dark: { name: 'Dark', label: 'Dark rig', col: '#55616c', text: 'No signal. Nobody answers.' },
     breakwater: { name: 'Breakwater', label: 'Breakwater rig', col: '#5b9be0' } };
   // the chips under Rigs: five controls, then three structures
-  var RIG_CHIPS = [['free', 'ctl'], ['housing', 'ctl'], ['tribute', 'ctl'], ['pirate', 'ctl'], ['dark', 'ctl'], ['rebuilt', 'st'], ['destroyed', 'st'], ['twin', 'st'], ['breakwater', 'st']];
-  function rigChip(k) { return RIG_CTL[k] && k !== 'breakwater' ? RIG_CTL[k] : RIG_ST[k]; }
+  var RIG_CHIPS = [['free', 'ctl'], ['housing', 'ctl'], ['tribute', 'ctl'], ['pirate', 'ctl'], ['dark', 'ctl'], ['xl', 'sz'], ['medium', 'sz'], ['rebuilt', 'st'], ['destroyed', 'st'], ['twin', 'st'], ['breakwater', 'st']];
+  function rigChip(k) { return RIG_SZ[k] || (RIG_CTL[k] && k !== 'breakwater' ? RIG_CTL[k] : RIG_ST[k]); }
   function chipName(k) { var c = rigChip(k); return c.chip || c.name; }
 
   // ------------------------------------------------------------------ paths (world metres), built once
@@ -741,7 +744,7 @@
     }
   }
 
-  function markerKind(it) { return it.isRig ? 'rig_' + (it.st || 'working') + '_' + (it.ctl || 'none') : it.isPort ? (it.mystery ? 'aiport' : it.dead ? 'dead' : 'port') : it.kind; }
+  function markerKind(it) { return it.isRig ? 'rig_' + (it.sz ? RIG_SZ[it.sz].glyph : it.st || 'working') + '_' + (it.ctl || 'none') : it.isPort ? (it.mystery ? 'aiport' : it.dead ? 'dead' : 'port') : it.kind; }
   function markerColor(it) { if (it.kind === 'faction') return it.color; return it.isRig ? (it.ctl ? RIG_CTL[it.ctl].col : RIG_ST.destroyed.col) : it.isPort ? (it.mystery ? AI_COL : it.dead ? '#3a4550' : T[it.terr].color) : KIND_COL[it.kind]; }
   function drawGlyph(g, kind, X, Y, col, big, small) {
     if (kind.indexOf('rig_') === 0) { var kp = kind.split('_'); rigGlyph(g, kp[1], kp[2], X, Y, col, small); return; }
@@ -777,6 +780,11 @@
       g.lineWidth = 3.2; g.strokeStyle = dark; g.stroke(); g.lineWidth = 1.5; g.strokeStyle = '#ff6a4d'; g.stroke();
     } else if (st === 'twin') {
       var q = r * 0.78; deck(X - q * 1.15, Y + q * 0.25, q); deck(X + q * 1.15, Y - q * 0.25, q);
+    } else if (st === 'lantern2' || st === 'lantern3') {   // two or three lantern rigs joined by bridges
+      var q2 = r * 0.72, pts = st === 'lantern2' ? [[-1.25, 0], [1.25, 0]] : [[-1.3, 0.75], [1.3, 0.75], [0, -1.15]];
+      g.beginPath(); pts.forEach(function (a, i) { var b2 = pts[(i + 1) % pts.length]; if (st === 'lantern2' && i) return; g.moveTo(X + a[0] * q2, Y + a[1] * q2); g.lineTo(X + b2[0] * q2, Y + b2[1] * q2); });
+      g.lineWidth = 3.4; g.strokeStyle = dark; g.stroke(); g.lineWidth = 1.5; g.strokeStyle = col; g.stroke();
+      pts.forEach(function (a) { deck(X + a[0] * q2, Y + a[1] * q2, q2); });
     } else if (st === 'rebuilt') {   // a lantern rig on a burned platform: the lantern deck with a scorched, broken corner
       deck(X, Y, r);
       g.beginPath(); g.moveTo(X + r + 1.5, Y + r + 1.5); g.lineTo(X + r + 1.5, Y + r * 0.1); g.lineTo(X + r * 0.5, Y + r * 0.45); g.lineTo(X + r * 0.1, Y + r + 1.5); g.closePath();
@@ -789,7 +797,7 @@
   function rigShown(r) {
     if (rigSt === 'all') return true;
     var c = RIG_CHIPS.filter(function (x) { return x[0] === rigSt; })[0];
-    return c && (c[1] === 'ctl' ? r.ctl === rigSt : r.st === rigSt);
+    return c && (c[1] === 'ctl' ? r.ctl === rigSt : c[1] === 'sz' ? r.sz === rigSt : r.st === rigSt);
   }
 
   // which places show: the filter decides; with "All", ports always and minor places as you zoom in
@@ -1214,7 +1222,7 @@
   }
   function rigHTML(r) {
     var s = SEC[r.s], tw = r.twin && BY_HASH[r.twin], cl = r.ctl && RIG_CTL[r.ctl];
-    var kick = r.st === 'destroyed' ? 'Destroyed rig' : r.st === 'rebuilt' ? 'Lantern rig · rebuilt on the wreck' : r.st === 'twin' ? 'Twin rig' : r.st === 'breakwater' ? 'Breakwater rig' : 'Oil rig';
+    var kick = r.st === 'destroyed' ? 'Destroyed rig' : r.st === 'rebuilt' ? 'Lantern rig · rebuilt on the wreck' : r.sz ? RIG_SZ[r.sz].kick : r.st === 'twin' ? 'Twin rig' : r.st === 'breakwater' ? 'Breakwater rig' : 'Oil rig';
     var h = '<div class="p-k">' + esc(kick) + ' · Sector ' + esc(r.s) + '</div>' +
       '<h2 id="panel-title" tabindex="-1">' + esc(r.name) + '</h2>' +
       '<p class="p-place">' + esc(s.p || r.s) + ' · danger ' + esc(s.d) + ', ' + esc(riskWord[s.d]).toLowerCase() + '</p>' +
@@ -1226,6 +1234,7 @@
     else if (r.st === 'rebuilt') h += '<p class="p-about">People built their homes on the burned platform of a destroyed rig.' + (r.wall === 'broken' ? ' A broken piece of its old sea wall still stands.' : ' Its sea wall is gone, so it stands open to the weather.') + '</p>';
     else if (r.st === 'twin') h += '<p class="p-about">Two rigs inside one sea wall.</p>' +
       (tw ? '<p class="p-about">Its partner: <button type="button" class="p-twin" data-open="' + esc(tw.hash) + '">' + esc(tw.name) + ' · ' + esc(tw.s) + '</button></p>' : '');
+    else if (r.sz) h += '<p class="p-about">' + (r.sz === 'xl' ? 'An extra large lantern rig: three rigs joined by bridges, counted as one lantern rig.' : 'A medium lantern rig: two rigs joined by bridges, counted as one lantern rig.') + '</p>';
     else if (r.st === 'breakwater') h += '<p class="p-about">One of the three old rigs joined into Breakwater\'s walled harbour.</p>';
     if (r.st !== 'destroyed' && r.capture && capImages(r.capture).length) h += '<h3>From the game</h3>' + galleryHTML(r.capture, r.name);
     h += seaHTML(s.s) + '<a class="p-link" href="#' + esc(r.hash) + '">Link to this rig</a>';
@@ -1298,6 +1307,7 @@
     if (it.isRig) {
       if (it.st === 'destroyed') return 'Destroyed rig';
       if (it.st === 'rebuilt') return 'Lantern rig, rebuilt on the wreck';
+      if (it.sz) return it.sz === 'xl' ? 'Lantern rig, extra large' : 'Lantern rig, medium';
       var cl = RIG_CTL[it.ctl] || RIG_CTL.free;
       return it.st === 'twin' ? 'Twin rig, ' + (cl.short || cl.name.toLowerCase()) : cl.label;
     }
@@ -1359,7 +1369,8 @@
       var k = ch[0], saved = rigSt; rigSt = k; var n = RIGS.filter(rigShown).length; rigSt = saved;
       var b = document.createElement('button');
       b.type = 'button'; b.dataset.st = k; b.setAttribute('aria-pressed', String(k === rigSt));
-      if (k !== 'all') b.appendChild(glyphCanvas(ch[1] === 'ctl' ? 'rig_working_' + k : 'rig_' + k + '_' + (k === 'breakwater' ? 'breakwater' : k === 'rebuilt' ? 'housing' : 'free'), ch[1] === 'ctl' ? RIG_CTL[k].col : k === 'destroyed' ? RIG_ST.destroyed.col : RIG_CTL[k === 'breakwater' ? 'breakwater' : k === 'rebuilt' ? 'housing' : 'free'].col));
+      if (k !== 'all' && ch[1] === 'sz') b.appendChild(glyphCanvas('rig_' + RIG_SZ[k].glyph + '_housing', RIG_CTL.housing.col));
+      else if (k !== 'all') b.appendChild(glyphCanvas(ch[1] === 'ctl' ? 'rig_working_' + k : 'rig_' + k + '_' + (k === 'breakwater' ? 'breakwater' : k === 'rebuilt' ? 'housing' : 'free'), ch[1] === 'ctl' ? RIG_CTL[k].col : k === 'destroyed' ? RIG_ST.destroyed.col : RIG_CTL[k === 'breakwater' ? 'breakwater' : k === 'rebuilt' ? 'housing' : 'free'].col));
       b.appendChild(document.createTextNode(k === 'all' ? 'All' : chipName(k)));
       var sp = document.createElement('span'); sp.className = 'n'; sp.textContent = n; b.appendChild(sp);
       b.addEventListener('click', function () {
@@ -1455,7 +1466,7 @@
     var ul = document.getElementById('legend-marks');
     var all = { ports: [['port', T.ari.color, 'Port'], ['dead', '#3a4550', 'Dead navy port'], ['aiport', AI_COL, 'Automated port']],
       rigs: ['free', 'housing', 'tribute', 'pirate', 'dark'].map(function (k) { return ['rig_working_' + k, RIG_CTL[k].col, RIG_CTL[k].label]; })
-        .concat([['rig_rebuilt_housing', RIG_CTL.housing.col, 'Lantern rig, rebuilt on the wreck'], ['rig_twin_free', RIG_CTL.free.col, 'Twin rig (two decks)'], ['rig_destroyed_none', RIG_ST.destroyed.col, 'Destroyed rig'], ['rig_breakwater_breakwater', RIG_CTL.breakwater.col, 'Breakwater rig']]),
+        .concat([['rig_lantern2_housing', RIG_CTL.housing.col, 'Medium lantern rig (two joined by bridges)'], ['rig_lantern3_housing', RIG_CTL.housing.col, 'Extra large lantern rig (three joined by bridges)'], ['rig_rebuilt_housing', RIG_CTL.housing.col, 'Lantern rig, rebuilt on the wreck'], ['rig_twin_free', RIG_CTL.free.col, 'Twin rig (two decks)'], ['rig_destroyed_none', RIG_ST.destroyed.col, 'Destroyed rig'], ['rig_breakwater_breakwater', RIG_CTL.breakwater.col, 'Breakwater rig']]),
       pirates: [['faction', '#d0312d', 'Large pirate faction'], ['toll', KIND_COL.toll, 'Toll line'], ['stronghold', KIND_COL.stronghold, 'Pirate stronghold'], ['crew', KIND_COL.crew, 'Pirate crew base']],
       danger: [['gate', KIND_COL.gate, 'Sea gate'], ['drone', KIND_COL.drone, 'Drone water'], ['fallout', KIND_COL.fallout, 'Hot Coast (no rescue)'], ['no_fuel', KIND_COL.no_fuel, 'No-fuel water']],
       wrecks: [['graveyard', KIND_COL.graveyard, 'Ship graveyard'], ['city', KIND_COL.city, 'Drowned city'], ['salvage', KIND_COL.salvage, 'Salvage field']],
