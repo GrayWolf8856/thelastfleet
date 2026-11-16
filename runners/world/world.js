@@ -1176,7 +1176,7 @@
       h += '<h3>Wanted</h3><p class="f-note">Ten names, smallest first. The last one runs the whole faction.</p><ol class="wanted">' +
         p.wanted.map(function (w) {
           return '<li><details><summary><span class="wn">' + w.n + '</span><span class="wt"><b>' + esc(w.name) + '</b><small>' + esc(w.role) + '</small></span></summary>' +
-            '<div class="wb"><p class="wship"><i>' + esc(w.ship) + '</i>, ' + esc(w.hull) + '</p><p class="wground">Hunting ground: ' + esc(w.ground) + '</p><p>' + esc(w.story) + '</p></div></details></li>';
+            '<div class="wb"><p class="wship"><i>' + esc(w.ship) + '</i>, ' + esc(w.hull) + '</p><p class="wground">Hunting ground: ' + esc(w.ground) + '</p>' + (w.known ? '<p><b>Known for:</b> ' + esc(w.known) + '</p>' : '') + '<p>' + esc(w.story) + '</p></div></details></li>';
         }).join('') + '</ol>';
     }
     h += '<p><a class="p-wiki" href="../wiki/factions/' + esc(p.fid) + '.html">Read about ' + esc(p.name.replace(/^The /, 'the ')) + ' in the wiki ›</a></p>';
