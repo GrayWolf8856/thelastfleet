@@ -245,3 +245,5 @@
 .wship{font-family:var(--hud);font-weight:600;letter-spacing:.03em;color:#fff}
 .wground{color:#9fb3c4;font-size:.92rem}
 @media(max-width:700px){.wb{padding-left:12px}.f-logo{width:72px;height:72px}}
+.p-wiki{font-family:var(--hud);font-weight:700;letter-spacing:.05em;text-transform:uppercase;font-size:.9rem;display:inline-flex;align-items:center;min-height:44px}
+.w-back + .w-back{margin-left:14px}

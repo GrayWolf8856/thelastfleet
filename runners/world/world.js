@@ -1153,6 +1153,8 @@
       '<dt>How the door works</dt><dd>' + esc(p.door) + '</dd>' +
       (p.attitude ? '<dt>How they treat runners</dt><dd>' + esc(p.attitude) + '</dd>' : '') + '</dl>';
     h += seaHTML(p.sea);
+    var wid = p.dead ? 'dead-ports' : String(p.id).replace(/_/g, '-');
+    h += '<p><a class="p-wiki" href="../wiki/ports.html#' + esc(wid) + '">This port and its ships in the wiki ›</a></p>';
     h += '<a class="p-link" href="#' + esc(p.hash) + '">Link to this port</a>';
     return h;
   }
@@ -1177,6 +1179,7 @@
             '<div class="wb"><p class="wship"><i>' + esc(w.ship) + '</i>, ' + esc(w.hull) + '</p><p class="wground">Hunting ground: ' + esc(w.ground) + '</p><p>' + esc(w.story) + '</p></div></details></li>';
         }).join('') + '</ol>';
     }
+    h += '<p><a class="p-wiki" href="../wiki/factions/' + esc(p.fid) + '.html">Read about ' + esc(p.name.replace(/^The /, 'the ')) + ' in the wiki ›</a></p>';
     h += '<a class="p-link" href="#' + esc(p.hash) + '">Link to this place</a>';
     return h;
   }
