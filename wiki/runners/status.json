@@ -1,0 +1,2461 @@
+{
+ "title": "The Last Fleet wiki: Runners status",
+ "updated": "2026-11-17T11:22:21-06:00",
+ "statuses": {
+  "final": "Final",
+  "approved": "Approved",
+  "review": "In review",
+  "doing": "In work",
+  "redo": "Redo",
+  "todo": "Planned",
+  "notused": "Not used"
+ },
+ "items": [
+  {
+   "id": "S-01",
+   "section": "ships",
+   "name": "Scrapper",
+   "cls": "Scavenger",
+   "level": 0,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "35557cbddedf85fb237c0a5078d5cacd80ca2d9dd56b39bb93b7b2755103bd00",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-01-scrapper.html"
+  },
+  {
+   "id": "S-02",
+   "section": "ships",
+   "name": "Wisp",
+   "cls": "Smuggler",
+   "level": 1,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "46f4b06663ae20e2111fbc0a9e8cdb6d0c16ac44dd156f5bd9d2a3462b94871b",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-02-wisp.html"
+  },
+  {
+   "id": "S-03",
+   "section": "ships",
+   "name": "Shade",
+   "cls": "Smuggler",
+   "level": 2,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "e145b6b4480052b3a925031d81bf67e25a5961b7c5b322577ac4a270d4fef403",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-03-shade.html"
+  },
+  {
+   "id": "S-04",
+   "section": "ships",
+   "name": "Ghost",
+   "cls": "Smuggler",
+   "level": 3,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "9a22d7ccbf4e0483eb62ab98a30bd285850ced88dbf3259fce8d4e9cc987441e",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-04-ghost.html"
+  },
+  {
+   "id": "S-05",
+   "section": "ships",
+   "name": "Scout skiff",
+   "cls": "Hunter",
+   "level": 1,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "653ef4e7f73c6b0dc94618758cdb4894f37db973d5bc94f43a2f7119616dbe6b",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-05-scout-skiff.html"
+  },
+  {
+   "id": "S-06",
+   "section": "ships",
+   "name": "Dart",
+   "cls": "Hunter",
+   "level": 1,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "0b05f2161bb1784b3561e61ccb74f8d2056a90ca5a420a79a72e9a8c25b1b648",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-06-dart.html"
+  },
+  {
+   "id": "S-07",
+   "section": "ships",
+   "name": "Gunrunner",
+   "cls": "Hunter",
+   "level": 1,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "150458b19006c5c7015bd1be74f55f22fa0a91a953bf9bad8c7d813163341f9f",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-07-gunrunner.html"
+  },
+  {
+   "id": "S-08",
+   "section": "ships",
+   "name": "Skipjack",
+   "cls": "Hunter",
+   "level": 2,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "74af5831088296fd3dfb39f3ecd0f9c3363f86548b780fdfd4572dc2070baa48",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-08-skipjack.html"
+  },
+  {
+   "id": "S-09",
+   "section": "ships",
+   "name": "Armoured runner",
+   "cls": "Hunter",
+   "level": 2,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "da481c93bd40d9829562e9c044051b4203aa5a60cf12b3aac3bdee5cd3ea0aee",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-09-armoured-runner.html"
+  },
+  {
+   "id": "S-10",
+   "section": "ships",
+   "name": "Patrol Escort",
+   "cls": "Hunter",
+   "level": 2,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "aba903fbaad68a338b6d80c30e7846181cf140a276d865806c5c6dd6163a1cd0",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-10-patrol-escort.html"
+  },
+  {
+   "id": "S-11",
+   "section": "ships",
+   "name": "Blockade Runner",
+   "cls": "Hunter",
+   "level": 3,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "e1a71fa5a8e1a2f172084d1c240dc2a2be41c9a301c6cad69b888bb07e738fcd",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-11-blockade-runner.html"
+  },
+  {
+   "id": "S-12",
+   "section": "ships",
+   "name": "Rocket barge",
+   "cls": "Hunter",
+   "level": 3,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "3c31ad75572222d84adb8e71bb9e2dc3b9f938efb0e5bfff1e7412907771d030",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-12-rocket-barge.html"
+  },
+  {
+   "id": "S-13",
+   "section": "ships",
+   "name": "Corvette",
+   "cls": "Hunter",
+   "level": 3,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "b7725686c97c21a8ddf65f2e38f8349e558f40d37b3a5ff46fbce4fd0447a901",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-13-corvette.html"
+  },
+  {
+   "id": "S-14",
+   "section": "ships",
+   "name": "Destroyer",
+   "cls": "Hunter",
+   "level": 4,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "3d6dce9742a8f3e57f49478e4c6aed58f49274452ae8a74a50d0a7d60f840f61",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-14-destroyer.html"
+  },
+  {
+   "id": "S-15",
+   "section": "ships",
+   "name": "Frigate",
+   "cls": "Hunter",
+   "level": 4,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "59763b7c4b22b3feaa03fc56b888454cb4ef97052b8f0fe4ded626b880797304",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-15-frigate.html"
+  },
+  {
+   "id": "S-16",
+   "section": "ships",
+   "name": "Missile cruiser",
+   "cls": "Hunter",
+   "level": 5,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "028172ea4005f4016c792661879784a29d0515f149ac2636eabffaeee46bc1e5",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-16-missile-cruiser.html"
+  },
+  {
+   "id": "S-17",
+   "section": "ships",
+   "name": "Armed liner",
+   "cls": "Hunter",
+   "level": 5,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "d4b41f4e779c24a8aa71f73fe1db3d2ab6eedc53022c5ba032ffdb57af868dec",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-17-armed-liner.html"
+  },
+  {
+   "id": "S-18",
+   "section": "ships",
+   "name": "Battleship",
+   "cls": "Hunter",
+   "level": 5,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "59cad30554c1ea12a18eaaf7ebcd1eaac52fe186bcf16a98ce967a6eb70cd6bd",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-18-battleship.html"
+  },
+  {
+   "id": "S-19",
+   "section": "ships",
+   "name": "Recovery Workboat",
+   "cls": "Scavenger",
+   "level": 1,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "312a2d0f918c41e5c4170ca4fef2151d1f894becf35fc93c431e3e9444f61bf5",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-19-recovery-workboat.html"
+  },
+  {
+   "id": "S-20",
+   "section": "ships",
+   "name": "Salvage launch",
+   "cls": "Scavenger",
+   "level": 1,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "e0f67ce150a2c8587a27fa08faafe900015fedecebb89e98b4c4da80ae760d9a",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-20-salvage-launch.html"
+  },
+  {
+   "id": "S-21",
+   "section": "ships",
+   "name": "Salvage tender",
+   "cls": "Scavenger",
+   "level": 2,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "530d19f8ee73c1e52383389bf30487745fbc453620b45d50995f57df61d1c81c",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-21-salvage-tender.html"
+  },
+  {
+   "id": "S-22",
+   "section": "ships",
+   "name": "Barge-Hound",
+   "cls": "Scavenger",
+   "level": 2,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "8ba892ab91f7fc753fa0ab85be65a55d1fbab964041a1eb3ffa2ea77d90c7b44",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-22-barge-hound.html"
+  },
+  {
+   "id": "S-23",
+   "section": "ships",
+   "name": "Atlas",
+   "cls": "Scavenger",
+   "level": 3,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "45300effac8dfe54892129afa7f742ff29192600f2aaa8153b15ad6716d1a12d",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-23-atlas.html"
+  },
+  {
+   "id": "S-24",
+   "section": "ships",
+   "name": "Salvage dredger",
+   "cls": "Scavenger",
+   "level": 3,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "d43df241fae5220b316b6e8460ed1ffb8baaea48ecf02f00e192289bd85d1811",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-24-salvage-dredger.html"
+  },
+  {
+   "id": "S-25",
+   "section": "ships",
+   "name": "Mule",
+   "cls": "Hauler",
+   "level": 1,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "60ff3be45d73d5ce43ccdd5ec759ecff03cae1e42c431a047f7d0338aa4d1e7e",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-25-mule.html"
+  },
+  {
+   "id": "S-26",
+   "section": "ships",
+   "name": "Supply runner",
+   "cls": "Hauler",
+   "level": 1,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "f49aeacac4614e4aaa204aca43456a7176e4029ab10a8096abdf755660cb0f2e",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-26-supply-runner.html"
+  },
+  {
+   "id": "S-27",
+   "section": "ships",
+   "name": "Workhorse",
+   "cls": "Hauler",
+   "level": 2,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "92b4a6452d33bc1ab224559ecc3854dba2134beb2150ca1ad07b0565463e4dce",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-27-workhorse.html"
+  },
+  {
+   "id": "S-28",
+   "section": "ships",
+   "name": "Landing craft",
+   "cls": "Hauler",
+   "level": 2,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "c88276ec641538dc5c6486b6e88e04fb41966eab29212b6b55fb5fd2348febd7",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-28-landing-craft.html"
+  },
+  {
+   "id": "S-29",
+   "section": "ships",
+   "name": "Freighter",
+   "cls": "Hauler",
+   "level": 3,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "cb97a1610166cd14cba2723a45f49f6324a6153414a02622421df47abefcb93a",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-29-freighter.html"
+  },
+  {
+   "id": "S-30",
+   "section": "ships",
+   "name": "Refitted tanker",
+   "cls": "Hauler",
+   "level": 3,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "b74f280e2e3d20964c19b9b290936a9c749239171ed9021b0f15ebf0df52f4d6",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-30-refitted-tanker.html"
+  },
+  {
+   "id": "S-31",
+   "section": "ships",
+   "name": "Leviathan",
+   "cls": "Hauler",
+   "level": 4,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "e52adca6806656584426da64fca95918776e82498286a7d874114a9820d9d8cd",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-31-leviathan.html"
+  },
+  {
+   "id": "S-32",
+   "section": "ships",
+   "name": "Fleet tanker",
+   "cls": "Hauler",
+   "level": 4,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "6b22a477baa1e54683caa9eebf9e3721ede3d23ccbb779710fef89c600979930",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-32-fleet-tanker.html"
+  },
+  {
+   "id": "S-33",
+   "section": "ships",
+   "name": "Crude tanker",
+   "cls": "Hauler",
+   "level": 5,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "edc1cd9b190e46bd19b78f068b50a6191a998ea347e7dd20d7856514fcadd25a",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-33-crude-tanker.html"
+  },
+  {
+   "id": "S-34",
+   "section": "ships",
+   "name": "Fishing boat",
+   "cls": "Fishing",
+   "level": 1,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "7e936b454456d66fb5a6d33a8417460f38b7d287946a18a5e6c6f4561791bc09",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-34-fishing-boat.html"
+  },
+  {
+   "id": "S-35",
+   "section": "ships",
+   "name": "Trawler",
+   "cls": "Fishing",
+   "level": 2,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "27f441daf2272c046ddcb84a2105b81d6d02e7118c1a94921d1cf2bbb5f578f3",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-35-trawler.html"
+  },
+  {
+   "id": "S-36",
+   "section": "ships",
+   "name": "Seiner",
+   "cls": "Fishing",
+   "level": 3,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "ea325c9be0f274c3390295830d1b7d89606a60799d2e20a6a5fb61ec6c226e9f",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-36-seiner.html"
+  },
+  {
+   "id": "S-37",
+   "section": "ships",
+   "name": "Crab boat",
+   "cls": "Fishing",
+   "level": 4,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "0945a990ac98e399f182cfd6f48a83480f190a11d0de37158b12bd04174ec150",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-37-crab-boat.html"
+  },
+  {
+   "id": "S-38",
+   "section": "ships",
+   "name": "Factory trawler",
+   "cls": "Fishing",
+   "level": 5,
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "ec992ece8bf523ac3946fce0f7ca4ec3a899375339edd331402079c165d3c3ea",
+   "statusLabel": "Final",
+   "page": "runners/ships/s-38-factory-trawler.html"
+  },
+  {
+   "id": "N-01",
+   "section": "npc",
+   "name": "Raider boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "5aaa3b0adbef397cee45317e1aaabbee43b700e85f443df3c873b45e00bdf07a",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-01-raider-boat.html"
+  },
+  {
+   "id": "N-02",
+   "section": "npc",
+   "name": "Raider gunboat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "cf0a27f202efe0d3acae8367d6334bd0a9767fe9836aeb10e3b4092afe2b593a",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-02-raider-gunboat.html"
+  },
+  {
+   "id": "N-03",
+   "section": "npc",
+   "name": "Toll boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "5657a5edc0b4c12fb00ae1811e5fa7fd1e8bff1f7b3b9a90fa49e18b0a40086b",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-03-toll-boat.html"
+  },
+  {
+   "id": "N-04",
+   "section": "npc",
+   "name": "Pirate mother ship",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "1ca7a28fbd6cab43ac9acf9e4524d43b213ce1890db7493213384f11bff26286",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-04-pirate-mother-ship.html"
+  },
+  {
+   "id": "N-05",
+   "section": "npc",
+   "name": "False fishing boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "399510bc2ae9fe743bcbd07f815f8c5f0429a4c92671d35fab2ef12c1141d0a5",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-05-false-fishing-boat.html"
+  },
+  {
+   "id": "N-06",
+   "section": "npc",
+   "name": "Ram tug",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "5b211160a9b69cf57b6ff006c57f5352cdf5d569dbaa9f68c5c3f196589f91c3",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-06-ram-tug.html"
+  },
+  {
+   "id": "N-07",
+   "section": "npc",
+   "name": "Spotter boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "85b7441af0a8077de877766a36dfa1776d527571c7258155cf9da02426b13b2e",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-07-spotter-boat.html"
+  },
+  {
+   "id": "N-08",
+   "section": "npc",
+   "name": "Deserter warship",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "18fbcbea35636e5221b5e1a6dd186efe2aca6e334b5eaceb9e6bd307c802ff02",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-08-deserter-warship.html"
+  },
+  {
+   "id": "N-09",
+   "section": "npc",
+   "name": "ARI cutter",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "28fe7c2cb4a198f38167347a90e525cdd5a837916dd96a9798ba8e92d3082823",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-09-ari-cutter.html"
+  },
+  {
+   "id": "N-10",
+   "section": "npc",
+   "name": "Navy inspection cutter",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "d180a85b9410a9eaa0acc347680fe9c2779e5dc982586d4d7c026f880c303bc3",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-10-navy-inspection-cutter.html"
+  },
+  {
+   "id": "N-11",
+   "section": "npc",
+   "name": "Rig tender",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "14380e43dfb80e0ded15fdf92f056b5149b6a1de719ba974775a43d7897075a6",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-11-rig-tender.html"
+  },
+  {
+   "id": "N-12",
+   "section": "npc",
+   "name": "Laden Workhorse",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "06b0f0491ed9adb8971c43f00084546cb1dfcd443be467c5fdc54191bba05480",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-12-laden-workhorse.html"
+  },
+  {
+   "id": "N-13",
+   "section": "npc",
+   "name": "Laden Freighter",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "9d99dab9d60c97ba5b7fe923111c0d9848679e6c5cee247e6649730606e46153",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-13-laden-freighter.html"
+  },
+  {
+   "id": "N-14",
+   "section": "npc",
+   "name": "Laden Leviathan",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "daa47d5513bab58658195d0627edc5168fab993ebd00be1f1915d0b0e3f83d23",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-14-laden-leviathan.html"
+  },
+  {
+   "id": "N-15",
+   "section": "npc",
+   "name": "Family boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "a1b89798b9ea90b2c1768b52893f47aa2433fd4fc6aa1ec3eeb2fb8c3ef9e62a",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-15-family-boat.html"
+  },
+  {
+   "id": "N-16",
+   "section": "npc",
+   "name": "Refugee ferry",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "01b1b7f8603fd08d1c1d27d872f878555e62d67f39d8a5221e98cb90b0648962",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-16-refugee-ferry.html"
+  },
+  {
+   "id": "N-17",
+   "section": "npc",
+   "name": "Sail conversion",
+   "status": "notused",
+   "decided": "2026-11-15",
+   "statusLabel": "Not used",
+   "page": "runners/npc/n-17-sail-conversion.html"
+  },
+  {
+   "id": "N-18",
+   "section": "npc",
+   "name": "Half and half",
+   "status": "notused",
+   "decided": "2026-11-15",
+   "statusLabel": "Not used",
+   "page": "runners/npc/n-18-half-and-half.html"
+  },
+  {
+   "id": "N-19",
+   "section": "npc",
+   "name": "Open skiff",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "29b529034296b562e45f5964285664ad243687b14cfd60fb12268d49feefd05f",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-19-open-skiff.html"
+  },
+  {
+   "id": "N-20",
+   "section": "npc",
+   "name": "Harbour tug",
+   "status": "notused",
+   "decided": "2026-11-15",
+   "statusLabel": "Not used",
+   "page": "runners/npc/n-20-harbour-tug.html"
+  },
+  {
+   "id": "N-21",
+   "section": "npc",
+   "name": "Barge",
+   "status": "notused",
+   "decided": "2026-11-15",
+   "statusLabel": "Not used",
+   "page": "runners/npc/n-21-barge.html"
+  },
+  {
+   "id": "N-22",
+   "section": "npc",
+   "name": "Market boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "a9521aebdb1216ce85750686e57bdd70c75572ab1719acf55abbb415f871f84e",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-22-market-boat.html"
+  },
+  {
+   "id": "N-23",
+   "section": "npc",
+   "name": "Raft town",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "c1110fe171c5d3db6069d38caf617800ceb5e51e46026ec8eae0a02c6264fc69",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-23-raft-town.html"
+  },
+  {
+   "id": "N-24",
+   "section": "npc",
+   "name": "Twin hull",
+   "status": "notused",
+   "decided": "2026-11-15",
+   "statusLabel": "Not used",
+   "page": "runners/npc/n-24-twin-hull.html"
+  },
+  {
+   "id": "N-25",
+   "section": "npc",
+   "name": "Crew boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "e826d1ed1cfe35a9435cc31bc2c3ea131e82bc47502756f780fd4fb60836c461",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-25-crew-boat.html"
+  },
+  {
+   "id": "N-26",
+   "section": "npc",
+   "name": "Store hulk",
+   "status": "notused",
+   "decided": "2026-11-15",
+   "statusLabel": "Not used",
+   "page": "runners/npc/n-26-store-hulk.html"
+  },
+  {
+   "id": "N-27",
+   "section": "npc",
+   "name": "Lifeboat and life raft",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "62e7da260f5d54ab4284e9db1d18123036120c0b6f41bd67e3645febb5349083",
+   "statusLabel": "Final",
+   "page": "runners/npc/n-27-lifeboat-and-life-raft.html"
+  },
+  {
+   "id": "N-28",
+   "section": "npc",
+   "name": "Gun barge",
+   "status": "notused",
+   "decided": "2026-11-15",
+   "statusLabel": "Not used",
+   "page": "runners/npc/n-28-gun-barge.html"
+  },
+  {
+   "id": "N-29",
+   "section": "npc",
+   "name": "Clinic boat",
+   "status": "notused",
+   "decided": "2026-11-15",
+   "statusLabel": "Not used",
+   "page": "runners/npc/n-29-clinic-boat.html"
+  },
+  {
+   "id": "N-30",
+   "section": "npc",
+   "name": "Bunker boat",
+   "status": "notused",
+   "decided": "2026-11-15",
+   "statusLabel": "Not used",
+   "page": "runners/npc/n-30-bunker-boat.html"
+  },
+  {
+   "id": "R-01",
+   "section": "dressed",
+   "name": "Pirate Wisp",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "6dbca145fe24769f086c1d3e65be87fe42f209f34222e3d77cd6ac037554673e",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-01-pirate-wisp.html"
+  },
+  {
+   "id": "R-02",
+   "section": "dressed",
+   "name": "Pirate Shade",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "7acf3db3bfb535c92f75638fbc55fbc634122bf780d519a1264b1ddf92d816a8",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-02-pirate-shade.html"
+  },
+  {
+   "id": "R-03",
+   "section": "dressed",
+   "name": "Pirate Skipjack",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "e80ac2c4415a0695499b3ee440aec1cc253236bb8c92fbaa61b6af8835d14a9f",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-03-pirate-skipjack.html"
+  },
+  {
+   "id": "R-04",
+   "section": "dressed",
+   "name": "Pirate Blockade Runner",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "fa2fd8329afc480981e09dbcd98298daf43fc31309cb48048a841f2ade782018",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-04-pirate-blockade-runner.html"
+  },
+  {
+   "id": "R-05",
+   "section": "dressed",
+   "name": "Pirate rocket barge",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "31f78ada7588ffc3ac372d3ee044b1252d1b81ac04a3d241e0a48aa40cb51e68",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-05-pirate-rocket-barge.html"
+  },
+  {
+   "id": "R-06",
+   "section": "dressed",
+   "name": "Pirate Corvette",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "adf52988d4fb68fb6c6b048494d7699e5105c8ee6d81b546de99ca7fdbf501a6",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-06-pirate-corvette.html"
+  },
+  {
+   "id": "R-07",
+   "section": "dressed",
+   "name": "Pirate flagship",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "ac59e48fad923c961c82899e82fca8a235e665753af09315638414d94088957c",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-07-pirate-flagship.html"
+  },
+  {
+   "id": "R-08",
+   "section": "dressed",
+   "name": "Pirate landing craft",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "e0db8a7a5165669dec01a97ea2c9bcd613ff92ba6fa24bb14a25f4e2f87c6ac5",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-08-pirate-landing-craft.html"
+  },
+  {
+   "id": "R-09",
+   "section": "dressed",
+   "name": "Pirate Mule",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "905e68e5bb483870f69d33ec768d140a77b3a0d84de6a3522822fe48f64619e3",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-09-pirate-mule.html"
+  },
+  {
+   "id": "R-10",
+   "section": "dressed",
+   "name": "Pirate fuel hulk",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "52dd318a0440c84a1ff1380b4a87ebe6219dc7a59d2d794cc61860b6f376e1da",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-10-pirate-fuel-hulk.html"
+  },
+  {
+   "id": "R-11",
+   "section": "dressed",
+   "name": "Pirate chain boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "492da2a1d68f4d93c65012e8913684b2e78563588b50b99bb646fede2a7fd41d",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-11-pirate-chain-boat.html"
+  },
+  {
+   "id": "R-12",
+   "section": "dressed",
+   "name": "Pirate Scrapper",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "28e9a8b24d64c21d0ad587164db3123a9f57e6c12ba3d00a775a70f208404234",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-12-pirate-scrapper.html"
+  },
+  {
+   "id": "R-13",
+   "section": "dressed",
+   "name": "Navy Patrol Escort",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "2bfc724e4579673cc78f04d295131030253680e97dd7104a1863d2876ccc946e",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-13-navy-patrol-escort.html"
+  },
+  {
+   "id": "R-14",
+   "section": "dressed",
+   "name": "Navy Frigate",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "a758c912656c6cee359f8b32951adfe10035afc393871a7d892b8da8feeac304",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-14-navy-frigate.html"
+  },
+  {
+   "id": "R-15",
+   "section": "dressed",
+   "name": "Navy Destroyer",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "c632ca9438c7650802448a7ed8bb961e3bda3b9209854970307f84a312b91589",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-15-navy-destroyer.html"
+  },
+  {
+   "id": "R-16",
+   "section": "dressed",
+   "name": "Navy Missile Cruiser",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "2ac6b50ffbe61b51d9ef31bd38f8164da7752ff661b30c5ed707f20c568a42eb",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-16-navy-missile-cruiser.html"
+  },
+  {
+   "id": "R-17",
+   "section": "dressed",
+   "name": "Navy Battleship",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "2f0c6d66fd772820c721a08672db9aaf2bfce34f36583efb9f89af18595ae3d7",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-17-navy-battleship.html"
+  },
+  {
+   "id": "R-18",
+   "section": "dressed",
+   "name": "Navy Fleet Tanker",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "69f86a53672b6f76ba9288d89c22f57d7a453be0edf4e52433c03d35ff9cd835",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-18-navy-fleet-tanker.html"
+  },
+  {
+   "id": "R-19",
+   "section": "dressed",
+   "name": "ARI Scout Skiff",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "0574542451fcacc64b8f5105c8e0f69aa268d12c1c60e55f18bdb2984e331a50",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-19-ari-scout-skiff.html"
+  },
+  {
+   "id": "R-20",
+   "section": "dressed",
+   "name": "ARI aid runner",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "eec22f60f25586f4e2628b1e5b5b1c22229f4ec683e1d340dfec9974c911ffb2",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-20-ari-aid-runner.html"
+  },
+  {
+   "id": "R-21",
+   "section": "dressed",
+   "name": "ARI Crude Tanker",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "f7ad5e90761e8f9e95672636794a5891eb77f46e58221180d5f622833ed23ffa",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-21-ari-crude-tanker.html"
+  },
+  {
+   "id": "R-22",
+   "section": "dressed",
+   "name": "Federation fishing boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "f6967bbdab0bdf0f92d60d40c06d6ecb58bc919bbbee668ae80a6af91827cdc4",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-22-federation-fishing-boat.html"
+  },
+  {
+   "id": "R-23",
+   "section": "dressed",
+   "name": "Federation crab boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "5bec0a924a3624db969436a479c09a5ca8fc6d705a0d0840d7b08ebef9f6c70f",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-23-federation-crab-boat.html"
+  },
+  {
+   "id": "R-24",
+   "section": "dressed",
+   "name": "Federation factory trawler",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "3f23d8a90d585144cf505c661eae5861ba9d087970feca9bb60aa930bbb2c188",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-24-federation-factory-trawler.html"
+  },
+  {
+   "id": "R-25",
+   "section": "dressed",
+   "name": "Smuggler Ghost",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "7b0c5cae8634d22191e500272af81b904e6c314a4230bac9297b382426c7e94b",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-25-smuggler-ghost.html"
+  },
+  {
+   "id": "R-26",
+   "section": "dressed",
+   "name": "Breakwater Barge-Hound",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "315a0ccd941a4c192a00f976b6f05a59871b4c65dda39bc66b1e743de27f6c59",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-26-breakwater-barge-hound.html"
+  },
+  {
+   "id": "R-27",
+   "section": "dressed",
+   "name": "Breakwater Atlas",
+   "status": "notused",
+   "decided": "2026-11-15",
+   "statusLabel": "Not used",
+   "page": "runners/dressed/r-27-breakwater-atlas.html"
+  },
+  {
+   "id": "R-28",
+   "section": "dressed",
+   "name": "Scrap crew dredger",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "b228d70b37965242890d272468fb72ef42c7431a20c2858a5ac718861622002f",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-28-scrap-crew-dredger.html"
+  },
+  {
+   "id": "R-29",
+   "section": "dressed",
+   "name": "Passenger ferry",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "a3b5684053422372267d72881dbc460be8418ee272cd8b94bba535b2ec10e523",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-29-passenger-ferry.html"
+  },
+  {
+   "id": "R-30",
+   "section": "dressed",
+   "name": "Bounty hunter",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "40a6a3d9bbc952cee14679f2c81aaa86c5083384b787bbaf7ebbd76e6ce88d97",
+   "statusLabel": "Final",
+   "page": "runners/dressed/r-30-bounty-hunter.html"
+  },
+  {
+   "id": "D-01",
+   "section": "drones",
+   "name": "Patrol drone",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "7d924bd9dfd65ad1d7d2fae8962113d6e1ce467bc20faf0068df41058b1d3929",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-01-patrol-drone.html"
+  },
+  {
+   "id": "D-02",
+   "section": "drones",
+   "name": "Ram drone",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "9a921cba99bbfe2626b7e5fda0b5986b9715a0cac7b26b4559caae655ed10811",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-02-ram-drone.html"
+  },
+  {
+   "id": "D-03",
+   "section": "drones",
+   "name": "Bomb drone",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "1a1d09f90154cf1b56fff98cda938e8462411c8f47f7863060269b4d47bb96fa",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-03-bomb-drone.html"
+  },
+  {
+   "id": "D-04",
+   "section": "drones",
+   "name": "Drone torpedo boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "e6b1879ac112fbb7c7101fcf2f29eef9b6db7eaf873c43d3acad71b30a707c8c",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-04-drone-torpedo-boat.html"
+  },
+  {
+   "id": "D-05",
+   "section": "drones",
+   "name": "Drone gunboat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "520275a93c87e751b4c81ae68f8867a4894248a05a756ebfe5b252f91c3c7e63",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-05-drone-gunboat.html"
+  },
+  {
+   "id": "D-06",
+   "section": "drones",
+   "name": "Drone rocket boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "078b91b2159ef5d56f59fcf2070494605d227cb26717bd887ce979e40e99e463",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-06-drone-rocket-boat.html"
+  },
+  {
+   "id": "D-07",
+   "section": "drones",
+   "name": "Drone minelayer",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "d8b5318b5e302a19ca9816f4bf5205f2e80fed0c9c77f9ec3d9ba021ba33e06e",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-07-drone-minelayer.html"
+  },
+  {
+   "id": "D-08",
+   "section": "drones",
+   "name": "Drone frigate",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "8f4be62860e247fe29a345ea39ee34870d921ac1e61a7d042e48eb10046f6151",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-08-drone-frigate.html"
+  },
+  {
+   "id": "D-09",
+   "section": "drones",
+   "name": "Drone destroyer",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "5411109343530755c1fcfd51856849401119b642940ae1feb938f75f7005033c",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-09-drone-destroyer.html"
+  },
+  {
+   "id": "D-10",
+   "section": "drones",
+   "name": "Escort drone boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "8e91685545bf02b155cdb12d85d5769c58c74e857096bea7155ffb3142409364",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-10-escort-drone-boat.html"
+  },
+  {
+   "id": "D-11",
+   "section": "drones",
+   "name": "Yard tug drone",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "74f935d526a87632875a24304cb754c14fd1560d0edd45314be6adde8d802f08",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-11-yard-tug-drone.html"
+  },
+  {
+   "id": "D-12",
+   "section": "drones",
+   "name": "Collector drone",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "1c0e77977f621b7bcadeb03d05f5ef2388c109646e7208867e5029c5017cbda7",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-12-collector-drone.html"
+  },
+  {
+   "id": "D-13",
+   "section": "drones",
+   "name": "Repair drone",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "67a07f64e4c095dace0267b6aeafe06fc9d73de387652a4a086f3c8ab55abbf8",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-13-repair-drone.html"
+  },
+  {
+   "id": "D-14",
+   "section": "drones",
+   "name": "Sensor buoy",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "43c03179cfa32a41bb5312ada3aba889ad209e3d775d12dfe0a508f25223ef56",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-14-sensor-buoy.html"
+  },
+  {
+   "id": "D-15",
+   "section": "drones",
+   "name": "Charging mooring",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "523e0fc567eb724665bf8d4abbf65f6bd6f37622f06fedbd932c50711d7c674f",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-15-charging-mooring.html"
+  },
+  {
+   "id": "D-16",
+   "section": "drones",
+   "name": "Dead drone hulks",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "3e9df8821da1f2a00eaa1eeb72f94bdbe91b8ab9bc61248027afc51b87dbadc7",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-16-dead-drone-hulks.html"
+  },
+  {
+   "id": "P-TOL-1",
+   "section": "pirates",
+   "name": "Tollmen Gunrunner",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-tol-1-tollmen-gunrunner.html"
+  },
+  {
+   "id": "P-TOL-2",
+   "section": "pirates",
+   "name": "Tollmen Armoured runner",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-tol-2-tollmen-armoured-runner.html"
+  },
+  {
+   "id": "P-TOL-3",
+   "section": "pirates",
+   "name": "Foreclosure (The Tollmen Corvette)",
+   "faction": "tollmen",
+   "status": "approved",
+   "decided": "2026-11-16",
+   "statusLabel": "Approved",
+   "page": "runners/pirates/p-tol-3-foreclosure-the-tollmen-corvette.html"
+  },
+  {
+   "id": "P-TOL-4",
+   "section": "pirates",
+   "name": "Tollmen Missile cruiser",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-tol-4-tollmen-missile-cruiser.html"
+  },
+  {
+   "id": "P-DRI-1",
+   "section": "pirates",
+   "name": "Driftmark Dart",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-dri-1-driftmark-dart.html"
+  },
+  {
+   "id": "P-DRI-2",
+   "section": "pirates",
+   "name": "Sandbar (The Driftmark Skipjack)",
+   "faction": "driftmark",
+   "status": "approved",
+   "decided": "2026-11-16",
+   "statusLabel": "Approved",
+   "page": "runners/pirates/p-dri-2-sandbar-the-driftmark-skipjack.html"
+  },
+  {
+   "id": "P-DRI-3",
+   "section": "pirates",
+   "name": "Driftmark Rocket barge",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-dri-3-driftmark-rocket-barge.html"
+  },
+  {
+   "id": "P-DRI-4",
+   "section": "pirates",
+   "name": "Driftmark Frigate",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-dri-4-driftmark-frigate.html"
+  },
+  {
+   "id": "P-SAL-1",
+   "section": "pirates",
+   "name": "Saltrot Salvage launch",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-sal-1-saltrot-salvage-launch.html"
+  },
+  {
+   "id": "P-SAL-2",
+   "section": "pirates",
+   "name": "Dosimeter (Saltrot Barge-Hound)",
+   "faction": "saltrot",
+   "status": "approved",
+   "decided": "2026-11-16",
+   "statusLabel": "Approved",
+   "page": "runners/pirates/p-sal-2-dosimeter-saltrot-barge-hound.html"
+  },
+  {
+   "id": "P-SAL-3",
+   "section": "pirates",
+   "name": "Saltrot Atlas",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-sal-3-saltrot-atlas.html"
+  },
+  {
+   "id": "P-SAL-4",
+   "section": "pirates",
+   "name": "Saltrot Battleship",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-sal-4-saltrot-battleship.html"
+  },
+  {
+   "id": "P-LON-1",
+   "section": "pirates",
+   "name": "Longliners Fishing boat",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-lon-1-longliners-fishing-boat.html"
+  },
+  {
+   "id": "P-LON-2",
+   "section": "pirates",
+   "name": "Bycatch (The Longliners Trawler)",
+   "faction": "longliners",
+   "status": "approved",
+   "decided": "2026-11-16",
+   "statusLabel": "Approved",
+   "page": "runners/pirates/p-lon-2-bycatch-the-longliners-trawler.html"
+  },
+  {
+   "id": "P-LON-3",
+   "section": "pirates",
+   "name": "Longliners Blockade Runner",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-lon-3-longliners-blockade-runner.html"
+  },
+  {
+   "id": "P-LON-4",
+   "section": "pirates",
+   "name": "Longliners Frigate",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-lon-4-longliners-frigate.html"
+  },
+  {
+   "id": "P-FLO-1",
+   "section": "pirates",
+   "name": "Flotilla Mule",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-flo-1-flotilla-mule.html"
+  },
+  {
+   "id": "P-FLO-2",
+   "section": "pirates",
+   "name": "Convoy 14 (The Flotilla Workhorse)",
+   "faction": "flotilla",
+   "status": "approved",
+   "decided": "2026-11-16",
+   "statusLabel": "Approved",
+   "page": "runners/pirates/p-flo-2-convoy-14-the-flotilla-workhorse.html"
+  },
+  {
+   "id": "P-FLO-3",
+   "section": "pirates",
+   "name": "Flotilla Patrol Escort",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-flo-3-flotilla-patrol-escort.html"
+  },
+  {
+   "id": "P-FLO-4",
+   "section": "pirates",
+   "name": "Flotilla Armed liner",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-flo-4-flotilla-armed-liner.html"
+  },
+  {
+   "id": "P-DEA-1",
+   "section": "pirates",
+   "name": "Deadweight Gunrunner",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-dea-1-deadweight-gunrunner.html"
+  },
+  {
+   "id": "P-DEA-2",
+   "section": "pirates",
+   "name": "Deadweight Patrol Escort",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-dea-2-deadweight-patrol-escort.html"
+  },
+  {
+   "id": "P-DEA-3",
+   "section": "pirates",
+   "name": "Slick (Deadweight Refitted tanker)",
+   "faction": "deadweight",
+   "status": "approved",
+   "decided": "2026-11-16",
+   "statusLabel": "Approved",
+   "page": "runners/pirates/p-dea-3-slick-deadweight-refitted-tanker.html"
+  },
+  {
+   "id": "P-DEA-4",
+   "section": "pirates",
+   "name": "Deadweight Destroyer",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/pirates/p-dea-4-deadweight-destroyer.html"
+  },
+  {
+   "id": "B-T1",
+   "section": "bounties",
+   "name": "Small Change",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-t1-small-change.html"
+  },
+  {
+   "id": "B-T2",
+   "section": "bounties",
+   "name": "Receipt",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-t2-receipt.html"
+  },
+  {
+   "id": "B-T3",
+   "section": "bounties",
+   "name": "Overdue",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-t3-overdue.html"
+  },
+  {
+   "id": "B-T4",
+   "section": "bounties",
+   "name": "Late Fee",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-t4-late-fee.html"
+  },
+  {
+   "id": "B-T5",
+   "section": "bounties",
+   "name": "Lien",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-t5-lien.html"
+  },
+  {
+   "id": "B-T6",
+   "section": "bounties",
+   "name": "Audit",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-t6-audit.html"
+  },
+  {
+   "id": "B-T7",
+   "section": "bounties",
+   "name": "Collections",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-t7-collections.html"
+  },
+  {
+   "id": "B-T8",
+   "section": "bounties",
+   "name": "Foreclosure",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-t8-foreclosure.html"
+  },
+  {
+   "id": "B-T9",
+   "section": "bounties",
+   "name": "Compound Interest",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-t9-compound-interest.html"
+  },
+  {
+   "id": "B-T10",
+   "section": "bounties",
+   "name": "Final Notice",
+   "faction": "tollmen",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-t10-final-notice.html"
+  },
+  {
+   "id": "B-D1",
+   "section": "bounties",
+   "name": "Sounding",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-d1-sounding.html"
+  },
+  {
+   "id": "B-D2",
+   "section": "bounties",
+   "name": "Leadline",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-d2-leadline.html"
+  },
+  {
+   "id": "B-D3",
+   "section": "bounties",
+   "name": "Shoal",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-d3-shoal.html"
+  },
+  {
+   "id": "B-D4",
+   "section": "bounties",
+   "name": "Sandbar",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-d4-sandbar.html"
+  },
+  {
+   "id": "B-D5",
+   "section": "bounties",
+   "name": "Narrows",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-d5-narrows.html"
+  },
+  {
+   "id": "B-D6",
+   "section": "bounties",
+   "name": "False Channel",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-d6-false-channel.html"
+  },
+  {
+   "id": "B-D7",
+   "section": "bounties",
+   "name": "Groundswell",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-d7-groundswell.html"
+  },
+  {
+   "id": "B-D8",
+   "section": "bounties",
+   "name": "Wreck Light",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-d8-wreck-light.html"
+  },
+  {
+   "id": "B-D9",
+   "section": "bounties",
+   "name": "Lockkeeper",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-d9-lockkeeper.html"
+  },
+  {
+   "id": "B-D10",
+   "section": "bounties",
+   "name": "Last Mark",
+   "faction": "driftmark",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-d10-last-mark.html"
+  },
+  {
+   "id": "B-S1",
+   "section": "bounties",
+   "name": "Static",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-s1-static.html"
+  },
+  {
+   "id": "B-S2",
+   "section": "bounties",
+   "name": "Ashfall",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-s2-ashfall.html"
+  },
+  {
+   "id": "B-S3",
+   "section": "bounties",
+   "name": "Half-Life",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-s3-half-life.html"
+  },
+  {
+   "id": "B-S4",
+   "section": "bounties",
+   "name": "Dosimeter",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-s4-dosimeter.html"
+  },
+  {
+   "id": "B-S5",
+   "section": "bounties",
+   "name": "Hot Hold",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-s5-hot-hold.html"
+  },
+  {
+   "id": "B-S6",
+   "section": "bounties",
+   "name": "Black Rain",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-s6-black-rain.html"
+  },
+  {
+   "id": "B-S7",
+   "section": "bounties",
+   "name": "Dead Port",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-s7-dead-port.html"
+  },
+  {
+   "id": "B-S8",
+   "section": "bounties",
+   "name": "Fallout",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-s8-fallout.html"
+  },
+  {
+   "id": "B-S9",
+   "section": "bounties",
+   "name": "Ash Coast",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-s9-ash-coast.html"
+  },
+  {
+   "id": "B-S10",
+   "section": "bounties",
+   "name": "Afterglow",
+   "faction": "saltrot",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-s10-afterglow.html"
+  },
+  {
+   "id": "B-L1",
+   "section": "bounties",
+   "name": "Bait",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-l1-bait.html"
+  },
+  {
+   "id": "B-L2",
+   "section": "bounties",
+   "name": "Snag",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-l2-snag.html"
+  },
+  {
+   "id": "B-L3",
+   "section": "bounties",
+   "name": "Gaff",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-l3-gaff.html"
+  },
+  {
+   "id": "B-L4",
+   "section": "bounties",
+   "name": "Bycatch",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-l4-bycatch.html"
+  },
+  {
+   "id": "B-L5",
+   "section": "bounties",
+   "name": "Flying Fish",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-l5-flying-fish.html"
+  },
+  {
+   "id": "B-L6",
+   "section": "bounties",
+   "name": "Purse Line",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-l6-purse-line.html"
+  },
+  {
+   "id": "B-L7",
+   "section": "bounties",
+   "name": "Protection",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-l7-protection.html"
+  },
+  {
+   "id": "B-L8",
+   "section": "bounties",
+   "name": "Pot Line",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-l8-pot-line.html"
+  },
+  {
+   "id": "B-L9",
+   "section": "bounties",
+   "name": "Swordfish",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-l9-swordfish.html"
+  },
+  {
+   "id": "B-L10",
+   "section": "bounties",
+   "name": "Longline",
+   "faction": "longliners",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-l10-longline.html"
+  },
+  {
+   "id": "B-F1",
+   "section": "bounties",
+   "name": "Convoy 41",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-f1-convoy-41.html"
+  },
+  {
+   "id": "B-F2",
+   "section": "bounties",
+   "name": "Convoy 33",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-f2-convoy-33.html"
+  },
+  {
+   "id": "B-F3",
+   "section": "bounties",
+   "name": "Convoy 27",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-f3-convoy-27.html"
+  },
+  {
+   "id": "B-F4",
+   "section": "bounties",
+   "name": "Convoy 19",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-f4-convoy-19.html"
+  },
+  {
+   "id": "B-F5",
+   "section": "bounties",
+   "name": "Convoy 14",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-f5-convoy-14.html"
+  },
+  {
+   "id": "B-F6",
+   "section": "bounties",
+   "name": "Convoy 9",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-f6-convoy-9.html"
+  },
+  {
+   "id": "B-F7",
+   "section": "bounties",
+   "name": "Convoy 6",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-f7-convoy-6.html"
+  },
+  {
+   "id": "B-F8",
+   "section": "bounties",
+   "name": "Convoy 4",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-f8-convoy-4.html"
+  },
+  {
+   "id": "B-F9",
+   "section": "bounties",
+   "name": "Convoy 2",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-f9-convoy-2.html"
+  },
+  {
+   "id": "B-F10",
+   "section": "bounties",
+   "name": "Convoy 1",
+   "faction": "flotilla",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-f10-convoy-1.html"
+  },
+  {
+   "id": "B-W1",
+   "section": "bounties",
+   "name": "Spill",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-w1-spill.html"
+  },
+  {
+   "id": "B-W2",
+   "section": "bounties",
+   "name": "Bilge",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-w2-bilge.html"
+  },
+  {
+   "id": "B-W3",
+   "section": "bounties",
+   "name": "Drum",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-w3-drum.html"
+  },
+  {
+   "id": "B-W4",
+   "section": "bounties",
+   "name": "Sounding Pipe",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-w4-sounding-pipe.html"
+  },
+  {
+   "id": "B-W5",
+   "section": "bounties",
+   "name": "Load Line",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-w5-load-line.html"
+  },
+  {
+   "id": "B-W6",
+   "section": "bounties",
+   "name": "Slick",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-w6-slick.html"
+  },
+  {
+   "id": "B-W7",
+   "section": "bounties",
+   "name": "Flashpoint",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-w7-flashpoint.html"
+  },
+  {
+   "id": "B-W8",
+   "section": "bounties",
+   "name": "Bunker",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-w8-bunker.html"
+  },
+  {
+   "id": "B-W9",
+   "section": "bounties",
+   "name": "Crude",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-w9-crude.html"
+  },
+  {
+   "id": "B-W10",
+   "section": "bounties",
+   "name": "Deadweight",
+   "faction": "deadweight",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/bounties/b-w10-deadweight.html"
+  },
+  {
+   "id": "E-01",
+   "section": "equipment",
+   "name": "Single MG",
+   "cls": "Weapons",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-01-single-mg.html"
+  },
+  {
+   "id": "E-02",
+   "section": "equipment",
+   "name": "Heavy MG",
+   "cls": "Weapons",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-02-heavy-mg.html"
+  },
+  {
+   "id": "E-03",
+   "section": "equipment",
+   "name": "Twin heavy MG",
+   "cls": "Weapons",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-03-twin-heavy-mg.html"
+  },
+  {
+   "id": "E-04",
+   "section": "equipment",
+   "name": "20 mm light cannon",
+   "cls": "Weapons",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-04-20-mm-light-cannon.html"
+  },
+  {
+   "id": "E-05",
+   "section": "equipment",
+   "name": "20 mm rotary",
+   "cls": "Weapons",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-05-20-mm-rotary.html"
+  },
+  {
+   "id": "E-06",
+   "section": "equipment",
+   "name": "30 mm autocannon",
+   "cls": "Weapons",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-06-30-mm-autocannon.html"
+  },
+  {
+   "id": "E-07",
+   "section": "equipment",
+   "name": "Single 40 mm",
+   "cls": "Weapons",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-07-single-40-mm.html"
+  },
+  {
+   "id": "E-08",
+   "section": "equipment",
+   "name": "57 mm cannon",
+   "cls": "Weapons",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-08-57-mm-cannon.html"
+  },
+  {
+   "id": "E-09",
+   "section": "equipment",
+   "name": "Tracking point defence",
+   "cls": "Weapons",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-09-tracking-point-defence.html"
+  },
+  {
+   "id": "E-10",
+   "section": "equipment",
+   "name": "76 mm cannon",
+   "cls": "Weapons",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-10-76-mm-cannon.html"
+  },
+  {
+   "id": "E-11",
+   "section": "equipment",
+   "name": "Heavy twin cannon",
+   "cls": "Weapons",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-11-heavy-twin-cannon.html"
+  },
+  {
+   "id": "E-12",
+   "section": "equipment",
+   "name": "Destroyer main gun",
+   "cls": "Weapons",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-12-destroyer-main-gun.html"
+  },
+  {
+   "id": "E-13",
+   "section": "equipment",
+   "name": "Cruiser main gun",
+   "cls": "Weapons",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-13-cruiser-main-gun.html"
+  },
+  {
+   "id": "E-14",
+   "section": "equipment",
+   "name": "Triple main gun",
+   "cls": "Weapons",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-14-triple-main-gun.html"
+  },
+  {
+   "id": "E-15",
+   "section": "equipment",
+   "name": "Missile, two sizes",
+   "cls": "Weapons",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-15-missile-two-sizes.html"
+  },
+  {
+   "id": "E-16",
+   "section": "equipment",
+   "name": "Torpedo",
+   "cls": "Weapons",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-16-torpedo.html"
+  },
+  {
+   "id": "E-17",
+   "section": "equipment",
+   "name": "Mine",
+   "cls": "Weapons",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-17-mine.html"
+  },
+  {
+   "id": "E-18",
+   "section": "equipment",
+   "name": "Missile box",
+   "cls": "Weapons",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-18-missile-box.html"
+  },
+  {
+   "id": "E-19",
+   "section": "equipment",
+   "name": "Missile launcher",
+   "cls": "Weapons",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-19-missile-launcher.html"
+  },
+  {
+   "id": "E-20",
+   "section": "equipment",
+   "name": "Twin torpedo tubes",
+   "cls": "Weapons",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-20-twin-torpedo-tubes.html"
+  },
+  {
+   "id": "E-21",
+   "section": "equipment",
+   "name": "Quad torpedo tubes",
+   "cls": "Weapons",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-21-quad-torpedo-tubes.html"
+  },
+  {
+   "id": "E-22",
+   "section": "equipment",
+   "name": "Mine rack",
+   "cls": "Weapons",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-22-mine-rack.html"
+  },
+  {
+   "id": "E-23",
+   "section": "equipment",
+   "name": "20 ft cargo container, five paints",
+   "cls": "Cargo",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-23-20-ft-cargo-container-five-paints.html"
+  },
+  {
+   "id": "E-24",
+   "section": "equipment",
+   "name": "Supply container with working doors",
+   "cls": "Cargo",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-24-supply-container-with-working-doors.html"
+  },
+  {
+   "id": "E-25",
+   "section": "equipment",
+   "name": "Supply container, 10 ft, with doors",
+   "cls": "Cargo",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-25-supply-container-10-ft-with-doors.html"
+  },
+  {
+   "id": "E-26",
+   "section": "equipment",
+   "name": "Pallets, all eight loads",
+   "cls": "Cargo",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-26-pallets-all-eight-loads.html"
+  },
+  {
+   "id": "E-27",
+   "section": "equipment",
+   "name": "Floating loot pallet",
+   "cls": "Cargo",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-27-floating-loot-pallet.html"
+  },
+  {
+   "id": "E-28",
+   "section": "equipment",
+   "name": "Scrap bale",
+   "cls": "Cargo",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-28-scrap-bale.html"
+  },
+  {
+   "id": "E-29",
+   "section": "equipment",
+   "name": "Scrap bin, 20 ft, with heap and press plates",
+   "cls": "Cargo",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-29-scrap-bin-20-ft-with-heap-and-press-plates.html"
+  },
+  {
+   "id": "E-30",
+   "section": "equipment",
+   "name": "Scrap bin, short",
+   "cls": "Cargo",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-30-scrap-bin-short.html"
+  },
+  {
+   "id": "E-31",
+   "section": "equipment",
+   "name": "Fish boxes, a hold-full",
+   "cls": "Cargo",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-31-fish-boxes-a-hold-full.html"
+  },
+  {
+   "id": "E-32",
+   "section": "equipment",
+   "name": "Deck crane and magnet, 6.5 m boom: the pattern",
+   "cls": "Deck gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-32-deck-crane-and-magnet-6-5-m-boom-the-pattern.html"
+  },
+  {
+   "id": "E-33",
+   "section": "equipment",
+   "name": "Deck cranes, 10 m, 15 m and 18 m booms",
+   "cls": "Deck gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-33-deck-cranes-10-m-15-m-and-18-m-booms.html"
+  },
+  {
+   "id": "E-34",
+   "section": "equipment",
+   "name": "Lifting magnet",
+   "cls": "Deck gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-34-lifting-magnet.html"
+  },
+  {
+   "id": "E-35",
+   "section": "equipment",
+   "name": "Tow winch drum",
+   "cls": "Deck gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-35-tow-winch-drum.html"
+  },
+  {
+   "id": "E-36",
+   "section": "equipment",
+   "name": "Press hatch",
+   "cls": "Deck gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-36-press-hatch.html"
+  },
+  {
+   "id": "E-37",
+   "section": "equipment",
+   "name": "Loot net boom, both sides",
+   "cls": "Deck gear",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-37-loot-net-boom-both-sides.html"
+  },
+  {
+   "id": "E-38",
+   "section": "equipment",
+   "name": "Navigation dish",
+   "cls": "Deck gear",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-38-navigation-dish.html"
+  },
+  {
+   "id": "E-39",
+   "section": "equipment",
+   "name": "Net float and float line",
+   "cls": "Fishing gear",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-39-net-float-and-float-line.html"
+  },
+  {
+   "id": "E-40",
+   "section": "equipment",
+   "name": "Net bag",
+   "cls": "Fishing gear",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-40-net-bag.html"
+  },
+  {
+   "id": "E-41",
+   "section": "equipment",
+   "name": "Crab pot buoy",
+   "cls": "Fishing gear",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-41-crab-pot-buoy.html"
+  },
+  {
+   "id": "E-42",
+   "section": "equipment",
+   "name": "Cast net on the water",
+   "cls": "Fishing gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-42-cast-net-on-the-water.html"
+  },
+  {
+   "id": "E-43",
+   "section": "equipment",
+   "name": "Cast net davit",
+   "cls": "Fishing gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-43-cast-net-davit.html"
+  },
+  {
+   "id": "E-44",
+   "section": "equipment",
+   "name": "Net bin",
+   "cls": "Fishing gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-44-net-bin.html"
+  },
+  {
+   "id": "E-45",
+   "section": "equipment",
+   "name": "Stern gantry",
+   "cls": "Fishing gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-45-stern-gantry.html"
+  },
+  {
+   "id": "E-46",
+   "section": "equipment",
+   "name": "Net drum",
+   "cls": "Fishing gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-46-net-drum.html"
+  },
+  {
+   "id": "E-47",
+   "section": "equipment",
+   "name": "Trawl door",
+   "cls": "Fishing gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-47-trawl-door.html"
+  },
+  {
+   "id": "E-48",
+   "section": "equipment",
+   "name": "Trawl net, as it tows",
+   "cls": "Fishing gear",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-48-trawl-net-as-it-tows.html"
+  },
+  {
+   "id": "E-49",
+   "section": "equipment",
+   "name": "Seine power block",
+   "cls": "Fishing gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-49-seine-power-block.html"
+  },
+  {
+   "id": "E-50",
+   "section": "equipment",
+   "name": "Seine net pile",
+   "cls": "Fishing gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-50-seine-net-pile.html"
+  },
+  {
+   "id": "E-51",
+   "section": "equipment",
+   "name": "Crab pot, and stacks of 4 and 6",
+   "cls": "Fishing gear",
+   "status": "approved",
+   "statusLabel": "Approved",
+   "page": "runners/equipment/e-51-crab-pot-and-stacks-of-4-and-6.html"
+  },
+  {
+   "id": "E-52",
+   "section": "equipment",
+   "name": "Pot hauler",
+   "cls": "Fishing gear",
+   "status": "review",
+   "statusLabel": "In review",
+   "page": "runners/equipment/e-52-pot-hauler.html"
+  }
+ ]
+}
