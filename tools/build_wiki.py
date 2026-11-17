@@ -328,6 +328,7 @@ def site_chrome(site):
     header = re.search(r'<header class="site">.*?</header>', t, re.S).group(0)
     footer = re.search(r'<footer class="site big".*?</footer>', t, re.S).group(0)
     header = header.replace(' class="on" aria-current="page"', '')
+    header = re.sub(r'(<a href="[^"]*wiki/")>Wiki</a>', r'\1 class="on" aria-current="page">Wiki</a>', header)
     return header, footer
 
 
