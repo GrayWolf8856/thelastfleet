@@ -1,0 +1,80 @@
+/* Runners wiki. Builds on ../../style.css (fonts, colours, header, footer, .facts-like lists). Generated pages; this file is hand-written. */
+.wiki{padding:22px 0 56px}
+.wiki .wrap{max-width:900px}
+.wiki h1.h-st{font-size:clamp(2.2rem,7vw,3.4rem);margin:0 0 8px}
+.wiki h2{font-family:var(--hud);font-weight:700;font-size:1.35rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin:32px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+.wiki h3{font-family:var(--hud);font-weight:700;font-size:1.1rem;letter-spacing:.05em;text-transform:uppercase;color:#fff;margin:22px 0 8px}
+.wiki p{color:#c5d3de;font-size:1.04rem}
+.wiki a{color:#7dd3fc}
+.wiki-crumbs{font-family:var(--hud);font-weight:600;letter-spacing:.05em;font-size:.9rem;color:#8ea1b3;margin:0 0 14px;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.wiki-crumbs a{color:#9fb3c4;display:inline-flex;align-items:center;min-height:44px}
+.wiki-crumbs b{color:#fff;font-weight:600}
+.wiki-note{display:inline-block;margin:0 0 18px;font-family:var(--hud);font-weight:600;letter-spacing:.03em;font-size:.95rem;color:var(--gold);border-left:2px solid var(--gold);padding:1px 0 1px 10px}
+.wiki-lead{font-size:1.12rem!important;color:#e9f1f5!important}
+.wiki .btns{margin:16px 0 8px}
+.wiki .btn{min-height:44px;display:inline-flex;align-items:center}
+.wiki-sections,.wiki-cards,.ship-list,.wanted-list,.plain{list-style:none;margin:0;padding:0}
+.wiki-sections{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:10px}
+.wiki-sections a{display:block;height:100%;padding:14px 16px;background:var(--bg-soft);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:4px;color:var(--ink)}
+.wiki-sections a:hover{text-decoration:none;border-color:#35506f}
+.wiki-sections b{display:block;font-family:var(--hud);font-size:1.2rem;letter-spacing:.04em;text-transform:uppercase;color:#fff}
+.wiki-sections span{color:var(--ink-soft);font-size:.95rem}
+.wiki-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:10px}
+.wcard{display:flex;gap:12px;align-items:center;padding:10px 12px;min-height:76px;background:var(--bg-soft);border:1px solid var(--line);border-left:3px solid var(--c);border-radius:4px;color:var(--ink)}
+.wcard:hover{text-decoration:none;border-color:#35506f;border-left-color:var(--c)}
+.wcard img{flex:none;border-radius:4px;padding:4px}
+.wcard b{display:block;font-family:var(--hud);font-size:1.1rem;letter-spacing:.04em;text-transform:uppercase;color:#fff}
+.wcard small{display:block;color:var(--ink-soft);font-size:.88rem;line-height:1.3}
+.wiki-cards.big .wcard small{font-size:.92rem}
+.facts{margin:0}
+.facts dt{font-family:var(--spaced);font-weight:600;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:16px 0 3px}
+.facts dd{margin:0;color:#dfe8ee;font-size:1.02rem}
+.f-head,.b-head{display:flex;gap:16px;align-items:center;margin:4px 0 12px}
+.f-logo{flex:none;width:120px;height:120px;border-radius:6px;padding:8px;border:1px solid rgba(255,255,255,.18)}
+.f-logo.sm{width:64px;height:64px;padding:5px}
+.f-colours{display:flex;flex-wrap:wrap;gap:6px 14px;margin:6px 0}
+.fs{display:inline-flex;align-items:center;gap:6px;font-family:var(--hud);font-weight:600;font-size:.88rem;letter-spacing:.04em;color:#c5d3de}
+.fs i{display:inline-block;width:30px;height:16px;border-radius:2px;border:1px solid rgba(255,255,255,.3)}
+.f-draft{font-size:.85rem!important;color:#8ea1b3!important;margin:4px 0 0}
+.f-char{margin:6px 0 10px;padding-left:12px;border-left:2px solid var(--gold);color:#e9f1f5!important;font-style:italic}
+.wanted-list li{margin:0 0 6px}
+.wanted-list a{display:flex;gap:12px;align-items:center;min-height:52px;padding:8px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:4px;color:var(--ink)}
+.wanted-list a:hover{text-decoration:none;border-color:var(--gold)}
+.wn{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:3px;background:#1a2634;font:800 1.15rem/1 var(--stencil);color:var(--gold)}
+.wt{display:flex;flex-direction:column;min-width:0}
+.wt b{font-family:var(--hud);font-weight:700;font-size:1.05rem;color:#fff;line-height:1.2}
+.wt small{color:#9fb3c4;font-size:.88rem}
+.relic{margin:20px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+.pager a{font-family:var(--hud);font-weight:600;letter-spacing:.03em;min-height:44px;display:inline-flex;align-items:center}
+.cap{margin:10px 0 16px}
+.cap img{display:block;width:100%;height:auto;border-radius:4px;border:1px solid rgba(255,255,255,.1)}
+.cap figcaption{font-size:.85rem;color:#8ea1b3;margin-top:4px}
+.nocap{display:grid;place-items:center;text-align:center;aspect-ratio:16/9;max-width:560px;border:1px dashed rgba(217,201,163,.35);border-radius:4px;background:repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 10px,transparent 10px 20px),#0a1622;color:#9fb3c4;font-family:var(--hud);font-weight:600;margin:10px 0 16px}
+.nocap p{margin:0}
+.ship-meta{font-family:var(--hud);font-weight:600;letter-spacing:.04em;color:#e9f1f5!important}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(160px,100%),1fr));gap:8px 16px;margin:12px 0}
+.stats div{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:8px 10px}
+.stats dt{font-family:var(--spaced);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:#8ea1b3}
+.stats dd{margin:2px 0 0;font-family:var(--hud);font-weight:600;font-size:1.05rem;color:#fff}
+.plain li{padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);color:#dfe8ee}
+.cls-jump{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.cls-jump a{font-family:var(--hud);font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(255,255,255,.22);border-radius:4px;padding:0 14px;min-height:44px;display:inline-flex;align-items:center;color:#fff}
+.ship-list li{display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.ship-list a{font-family:var(--hud);font-weight:700;font-size:1.08rem;letter-spacing:.03em;min-height:32px;display:inline-flex;align-items:center}
+.ship-list span{color:#9fb3c4;font-size:.92rem}
+table.wt{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:.98rem}
+table.wt th,table.wt td{text-align:left;padding:8px;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:top;color:#dfe8ee}
+table.wt th{font-family:var(--spaced);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.lr{margin:0 0 26px}
+.lr-pics{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lr-pics figure{margin:0}
+.lr-pics img{display:block;width:100%;height:auto;border-radius:4px;border:1px solid rgba(255,255,255,.1)}
+.lr-pics figcaption{font-size:.85rem;color:#8ea1b3;margin-top:3px}
+.gal-wrap.gal{display:block}
+.sea{border-left:3px solid var(--c);padding-left:14px;margin:0 0 10px}
+.sea h2,.port h2{border-top:0;padding-top:0}
+.port{margin:0 0 18px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.wiki-nav{display:flex;flex-wrap:wrap;gap:6px 16px;margin:40px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+.wiki-nav a{font-family:var(--hud);font-weight:600;letter-spacing:.05em;text-transform:uppercase;font-size:.9rem;min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:600px){.lr-pics{grid-template-columns:1fr}.f-logo{width:88px;height:88px}.f-head{align-items:flex-start}}
