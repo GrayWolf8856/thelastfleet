@@ -1,6 +1,6 @@
 {
  "title": "The Last Fleet wiki: Runners status",
- "updated": "2026-11-17T11:17:40-06:00",
+ "updated": "2026-11-17T11:20:24-06:00",
  "statuses": {
   "final": "Final",
   "approved": "Approved",
@@ -1058,6 +1058,166 @@
    "page": "runners/dressed/r-30-bounty-hunter.html"
   },
   {
+   "id": "D-01",
+   "section": "drones",
+   "name": "Patrol drone",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "7d924bd9dfd65ad1d7d2fae8962113d6e1ce467bc20faf0068df41058b1d3929",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-01-patrol-drone.html"
+  },
+  {
+   "id": "D-02",
+   "section": "drones",
+   "name": "Ram drone",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "9a921cba99bbfe2626b7e5fda0b5986b9715a0cac7b26b4559caae655ed10811",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-02-ram-drone.html"
+  },
+  {
+   "id": "D-03",
+   "section": "drones",
+   "name": "Bomb drone",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "1a1d09f90154cf1b56fff98cda938e8462411c8f47f7863060269b4d47bb96fa",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-03-bomb-drone.html"
+  },
+  {
+   "id": "D-04",
+   "section": "drones",
+   "name": "Drone torpedo boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "e6b1879ac112fbb7c7101fcf2f29eef9b6db7eaf873c43d3acad71b30a707c8c",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-04-drone-torpedo-boat.html"
+  },
+  {
+   "id": "D-05",
+   "section": "drones",
+   "name": "Drone gunboat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "520275a93c87e751b4c81ae68f8867a4894248a05a756ebfe5b252f91c3c7e63",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-05-drone-gunboat.html"
+  },
+  {
+   "id": "D-06",
+   "section": "drones",
+   "name": "Drone rocket boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "078b91b2159ef5d56f59fcf2070494605d227cb26717bd887ce979e40e99e463",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-06-drone-rocket-boat.html"
+  },
+  {
+   "id": "D-07",
+   "section": "drones",
+   "name": "Drone minelayer",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "d8b5318b5e302a19ca9816f4bf5205f2e80fed0c9c77f9ec3d9ba021ba33e06e",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-07-drone-minelayer.html"
+  },
+  {
+   "id": "D-08",
+   "section": "drones",
+   "name": "Drone frigate",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "8f4be62860e247fe29a345ea39ee34870d921ac1e61a7d042e48eb10046f6151",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-08-drone-frigate.html"
+  },
+  {
+   "id": "D-09",
+   "section": "drones",
+   "name": "Drone destroyer",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "5411109343530755c1fcfd51856849401119b642940ae1feb938f75f7005033c",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-09-drone-destroyer.html"
+  },
+  {
+   "id": "D-10",
+   "section": "drones",
+   "name": "Escort drone boat",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "8e91685545bf02b155cdb12d85d5769c58c74e857096bea7155ffb3142409364",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-10-escort-drone-boat.html"
+  },
+  {
+   "id": "D-11",
+   "section": "drones",
+   "name": "Yard tug drone",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "74f935d526a87632875a24304cb754c14fd1560d0edd45314be6adde8d802f08",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-11-yard-tug-drone.html"
+  },
+  {
+   "id": "D-12",
+   "section": "drones",
+   "name": "Collector drone",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "1c0e77977f621b7bcadeb03d05f5ef2388c109646e7208867e5029c5017cbda7",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-12-collector-drone.html"
+  },
+  {
+   "id": "D-13",
+   "section": "drones",
+   "name": "Repair drone",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "67a07f64e4c095dace0267b6aeafe06fc9d73de387652a4a086f3c8ab55abbf8",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-13-repair-drone.html"
+  },
+  {
+   "id": "D-14",
+   "section": "drones",
+   "name": "Sensor buoy",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "43c03179cfa32a41bb5312ada3aba889ad209e3d775d12dfe0a508f25223ef56",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-14-sensor-buoy.html"
+  },
+  {
+   "id": "D-15",
+   "section": "drones",
+   "name": "Charging mooring",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "523e0fc567eb724665bf8d4abbf65f6bd6f37622f06fedbd932c50711d7c674f",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-15-charging-mooring.html"
+  },
+  {
+   "id": "D-16",
+   "section": "drones",
+   "name": "Dead drone hulks",
+   "status": "final",
+   "decided": "2026-11-15",
+   "sha256": "3e9df8821da1f2a00eaa1eeb72f94bdbe91b8ab9bc61248027afc51b87dbadc7",
+   "statusLabel": "Final",
+   "page": "runners/drones/d-16-dead-drone-hulks.html"
+  },
+  {
    "id": "P-TOL-1",
    "section": "pirates",
    "name": "Tollmen Gunrunner",
@@ -1824,8 +1984,8 @@
    "section": "equipment",
    "name": "Single MG",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-01-single-mg.html"
   },
   {
@@ -1833,8 +1993,8 @@
    "section": "equipment",
    "name": "Heavy MG",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-02-heavy-mg.html"
   },
   {
@@ -1842,8 +2002,8 @@
    "section": "equipment",
    "name": "Twin heavy MG",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-03-twin-heavy-mg.html"
   },
   {
@@ -1851,8 +2011,8 @@
    "section": "equipment",
    "name": "20 mm light cannon",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-04-20-mm-light-cannon.html"
   },
   {
@@ -1860,8 +2020,9 @@
    "section": "equipment",
    "name": "20 mm rotary",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-05-20-mm-rotary.html"
   },
   {
@@ -1869,8 +2030,9 @@
    "section": "equipment",
    "name": "30 mm autocannon",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-06-30-mm-autocannon.html"
   },
   {
@@ -1878,8 +2040,8 @@
    "section": "equipment",
    "name": "Single 40 mm",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-07-single-40-mm.html"
   },
   {
@@ -1887,8 +2049,9 @@
    "section": "equipment",
    "name": "57 mm cannon",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-08-57-mm-cannon.html"
   },
   {
@@ -1896,8 +2059,9 @@
    "section": "equipment",
    "name": "Tracking point defence",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-09-tracking-point-defence.html"
   },
   {
@@ -1905,8 +2069,8 @@
    "section": "equipment",
    "name": "76 mm cannon",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-10-76-mm-cannon.html"
   },
   {
@@ -1914,8 +2078,9 @@
    "section": "equipment",
    "name": "Heavy twin cannon",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-11-heavy-twin-cannon.html"
   },
   {
@@ -1923,8 +2088,8 @@
    "section": "equipment",
    "name": "Destroyer main gun",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-12-destroyer-main-gun.html"
   },
   {
@@ -1932,8 +2097,8 @@
    "section": "equipment",
    "name": "Cruiser main gun",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-13-cruiser-main-gun.html"
   },
   {
@@ -1941,8 +2106,8 @@
    "section": "equipment",
    "name": "Triple main gun",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-14-triple-main-gun.html"
   },
   {
@@ -1977,8 +2142,9 @@
    "section": "equipment",
    "name": "Missile box",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-18-missile-box.html"
   },
   {
@@ -1986,8 +2152,9 @@
    "section": "equipment",
    "name": "Missile launcher",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-19-missile-launcher.html"
   },
   {
@@ -1995,8 +2162,9 @@
    "section": "equipment",
    "name": "Twin torpedo tubes",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-20-twin-torpedo-tubes.html"
   },
   {
@@ -2004,8 +2172,9 @@
    "section": "equipment",
    "name": "Quad torpedo tubes",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-21-quad-torpedo-tubes.html"
   },
   {
@@ -2013,8 +2182,9 @@
    "section": "equipment",
    "name": "Mine rack",
    "cls": "Weapons",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "decided": "2026-11-17",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-22-mine-rack.html"
   },
   {
@@ -2022,8 +2192,8 @@
    "section": "equipment",
    "name": "20 ft cargo container, five paints",
    "cls": "Cargo",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-23-20-ft-cargo-container-five-paints.html"
   },
   {
@@ -2049,8 +2219,8 @@
    "section": "equipment",
    "name": "Pallets, all eight loads",
    "cls": "Cargo",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-26-pallets-all-eight-loads.html"
   },
   {
@@ -2148,8 +2318,8 @@
    "section": "equipment",
    "name": "Loot net boom, both sides",
    "cls": "Deck gear",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-37-loot-net-boom-both-sides.html"
   },
   {
@@ -2157,8 +2327,8 @@
    "section": "equipment",
    "name": "Navigation dish",
    "cls": "Deck gear",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-38-navigation-dish.html"
   },
   {
@@ -2166,8 +2336,8 @@
    "section": "equipment",
    "name": "Net float and float line",
    "cls": "Fishing gear",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-39-net-float-and-float-line.html"
   },
   {
@@ -2175,8 +2345,8 @@
    "section": "equipment",
    "name": "Net bag",
    "cls": "Fishing gear",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-40-net-bag.html"
   },
   {
@@ -2184,8 +2354,8 @@
    "section": "equipment",
    "name": "Crab pot buoy",
    "cls": "Fishing gear",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-41-crab-pot-buoy.html"
   },
   {
@@ -2247,8 +2417,8 @@
    "section": "equipment",
    "name": "Trawl net, as it tows",
    "cls": "Fishing gear",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-48-trawl-net-as-it-tows.html"
   },
   {
@@ -2274,8 +2444,8 @@
    "section": "equipment",
    "name": "Crab pot, and stacks of 4 and 6",
    "cls": "Fishing gear",
-   "status": "review",
-   "statusLabel": "In review",
+   "status": "approved",
+   "statusLabel": "Approved",
    "page": "runners/equipment/e-51-crab-pot-and-stacks-of-4-and-6.html"
   },
   {

@@ -26,13 +26,16 @@ DEFAULTS = dict(
     guide=os.environ.get('LASTFLEET_SHIP_GUIDE', RUNNERS + '/ship-guide-site'),
     atlas=os.path.expanduser('~/Documents/Obsidian Vault/Games/Naval Survival RTS/World Atlas/Runners 2055 - Ships.md'),
     lore_from=os.path.expanduser('~/Projects/thelastfleet-site-world'),
+    game=os.environ.get('LASTFLEET_RUNNERS_GAME', RUNNERS + '/project'),
 )
 STATUS_FILE = os.path.join(REPO, 'tools', 'wiki-status.json')
 CACHE = os.path.expanduser('~/Library/Caches/thelastfleet-wiki/stamps.json')
 
-# Words that must never reach the public site. Drone ships and Dex's story are private (the same rule as
-# ship-guide-site/tools/publish_confirmed.py). A sentence holding one is dropped and named in the build log.
-PRIVATE = re.compile(r"\b(dex|dex's|decimus|drones?)\b", re.I)
+# Words that must never reach the public site; a sentence holding one is dropped and named in the build log.
+# Empty for now: Kyle, 17 Nov 2026, made the drone ships and Dex public ("we approved the drone ships already").
+# Add a word here if Kyle marks something private again.
+PRIVATE_WORDS = []
+PRIVATE = re.compile(r"\b(%s)\b" % '|'.join(PRIVATE_WORDS), re.I) if PRIVATE_WORDS else re.compile(r'(?!)')
 # Internal working material: file paths, model files, maker hand-backs, prompts, modeller instructions.
 INTERNAL = re.compile(r"\.glb\b|\.gltf\b|/Volumes|asset-board|from-(chatgpt|claude)|HANDBACK|prompt|modeller|"
                       r"repairs only|do not redesign|rebuild|current-model|parts-kit|check_asset|motion port|\bMP_|"
@@ -67,6 +70,7 @@ SECTIONS = [  # key, title, blurb
     ('dressed', 'Faction-dressed ships', 'Player hulls dressed by the people who sail them: pirates, navies, ARI, the Federation and others.'),
     ('pirates', 'Pirate ships', 'Four refits for each of the six pirate factions: plate, spikes and welded-on guns.'),
     ('bounties', 'Bounty ships', 'The sixty wanted ships, ten for each pirate faction.'),
+    ('drones', 'Drone ships', "Crewless boats left over from the war in Dex's Wake, and the craft that serve them."),
     ('equipment', 'Equipment', 'Guns, cargo, deck gear and fishing gear fitted to the ships.')]
 
 a_show_makers = [False]   # set from --show-makers in main()
@@ -265,15 +269,15 @@ def parse_atlas(path):
     return res
 
 
-def parse_npc_lines(board):
-    """One role line and the size for each NPC boat (from the NPC list; the build instructions are left out)."""
-    p = os.path.join(board, 'CHATGPT_NPC_PROMPT.md')
+def parse_npc_lines(board, fname='CHATGPT_NPC_PROMPT.md', pre='N'):
+    """One role line and the size for each NPC or drone boat (from the boat lists; the build instructions are left out)."""
+    p = os.path.join(board, fname)
     roles, sizes = {}, {}
     if not os.path.isfile(p): return roles, sizes
     t = open(p, encoding='utf-8').read()
-    for m in re.finditer(r'^\| \d+ \| (N-\d\d) \|[^|]*\|[^|]*\|[^|]*\| ([^|]+) \|$', t, re.M): sizes[m.group(1)] = m.group(2).strip()
-    for m in re.finditer(r'^### ((?:N-\d\d[^\n]*?))\n(.*?)(?=\n### |\n## |\Z)', t, re.S | re.M):
-        ids = re.findall(r'N-\d\d', m.group(1))
+    for m in re.finditer(r'^\| \d+ \| (%s-\d\d) \|[^|]*\|[^|]*\|[^|]*\| ([^|]+) \|$' % pre, t, re.M): sizes[m.group(1)] = m.group(2).strip()
+    for m in re.finditer(r'^### ((?:%s-\d\d[^\n]*?))\n(.*?)(?=\n### |\n## |\Z)' % pre, t, re.S | re.M):
+        ids = re.findall(r'%s-\d\d' % pre, m.group(1))
         first = m.group(2).strip().split('\n')[0].strip()
         if first and not first.startswith('-'):
             for i in ids: roles[i] = first
@@ -306,6 +310,16 @@ def parse_pirate_ladder(board):
             items.append((tiers[i] if i < 4 else '', hull, nm.group(1) if nm else None))
         res[fac] = items
     return res
+
+
+def game_files(repo, ref):
+    """File names of every GLB in the Runners game repo at `ref` (read with git; nothing is checked out or changed)."""
+    if not repo or not os.path.isdir(repo):
+        LOG['warnings'].append('Runners game repo not found (%s): no equipment marked as in the game' % repo); return set()
+    r = subprocess.run(['git', '-C', repo, 'ls-tree', '-r', '--name-only', ref], capture_output=True, text=True)
+    if r.returncode:
+        LOG['warnings'].append('could not read %s in the game repo: %s' % (ref, r.stderr.strip()[:200])); return set()
+    return {os.path.basename(x) for x in r.stdout.split('\n') if x.endswith('.glb')}
 
 
 # ---------------------------------------------------------------- page chrome (taken from the site's own Runners page)
@@ -385,6 +399,7 @@ def build_items(a, images):
     npc_roles, npc_sizes = parse_npc_lines(board)
     dress = parse_dress_lines(board)
     titles = {c['title'].lower().replace('-', ' '): cid for cid, c in cards.items() if cid.startswith('S-')}
+    in_game = game_files(a.game, a.game_ref)
     items = []
 
     def hull_card(name):
@@ -417,8 +432,16 @@ def build_items(a, images):
         e = ((c or {}).get('latest') or {}).get(maker) or {}
         return [os.path.join(board, p) for p in e.get('pictures', [])]
 
-    def dir_pics(d):
-        return [os.path.join(d, f) for f in sorted(os.listdir(d))] if d and os.path.isdir(d) else []
+    def dir_pics(d, version=None):
+        """Pictures beside the approved model, plus those in a v<version>-...evidence folder next to it."""
+        if not d or not os.path.isdir(d): return []
+        out = [os.path.join(d, f) for f in sorted(os.listdir(d))]
+        if version is not None:
+            for sub in sorted(os.listdir(d)):
+                sp = os.path.join(d, sub)
+                if os.path.isdir(sp) and re.match(r'v%s[-_]' % version, sub):
+                    out += [os.path.join(sp, f) for f in sorted(os.listdir(sp))]
+        return out
 
     # --- player ships
     for cid in sorted(k for k in cards if re.match(r'S-\d\d$', k)):
@@ -444,7 +467,7 @@ def build_items(a, images):
         it['atlas'] = atlas.get(cid)
         if it['atlas']: it['atlas'] = (clean(it['atlas'][0], cid), clean(it['atlas'][1], cid))
         it['stats'] = dict(level=it['level'], length=st.get('length'), beam=st.get('beam'), speed=st.get('speed'), hp=st.get('hp'), price=fo.get('Price', st.get('price')))
-        pics = it.pop('_pics', []) + latest_pics(c, it.get('maker')) + dir_pics(it.pop('_model_dir', None))
+        pics = it.pop('_pics', []) + latest_pics(c, it.get('maker')) + dir_pics(it.pop('_model_dir', None), it.get('version'))
         it['_pictures'] = pick_pictures(pics, it.get('version'), 3) if it['status'] != 'notused' else []
         it['_photos'] = [p for p in photos if p.get('cardId') == cid and p.get('reviewStatus') != 'historical']
         it['_thumb'] = os.path.join(a.guide, 'thumbs', '%s-%s-v%s.jpg' % (cid, it.get('maker'), it.get('version')))
@@ -458,7 +481,7 @@ def build_items(a, images):
         it = dict(id=cid, section='npc', name=s.get('name') or c.get('title'), kind=s.get('kind') or c.get('kind'), parent=s.get('parentCard') or c.get('parentCard'),
                   status='review', role=clean(npc_roles.get(cid, ''), cid), size=npc_sizes.get(cid))
         decided(cid, it)
-        pics = it.pop('_pics', []) + latest_pics(c, it.get('maker')) + dir_pics(it.pop('_model_dir', None))
+        pics = it.pop('_pics', []) + latest_pics(c, it.get('maker')) + dir_pics(it.pop('_model_dir', None), it.get('version'))
         it['_pictures'] = pick_pictures(pics, it.get('version'), 3) if it['status'] in ('final', 'approved') else []
         it['_thumb'] = os.path.join(a.guide, 'thumbs', '%s-%s-v%s.jpg' % (cid, it.get('maker'), it.get('version')))
         items.append(it)
@@ -471,17 +494,22 @@ def build_items(a, images):
         it = dict(id=cid, section='dressed', name=name, parent=s.get('parentCard'), status='review',
                   owner=re.split(r' ', name)[0] if name else '', what=clean(dl.get('what', ''), cid))
         decided(cid, it)
-        pics = it.pop('_pics', []) + latest_pics(c, it.get('maker')) + dir_pics(it.pop('_model_dir', None))
+        pics = it.pop('_pics', []) + latest_pics(c, it.get('maker')) + dir_pics(it.pop('_model_dir', None), it.get('version'))
         it['_pictures'] = pick_pictures(pics, it.get('version'), 3) if it['status'] in ('final', 'approved') else []
         it['_thumb'] = os.path.join(a.guide, 'thumbs', '%s-%s-v%s.jpg' % (cid, it.get('maker'), it.get('version')))
         items.append(it)
 
-    # --- drone ships: private (Dex's story). Only with --include-drones.
-    if a.include_drones:
-        for cid in sorted(k for k in cards if k.startswith('D-')):
-            c = cards[cid]; it = dict(id=cid, section='drones', name=c['title'], status='review'); decided(cid, it)
-            pics = it.pop('_pics', []) + latest_pics(c, it.get('maker')) + dir_pics(it.pop('_model_dir', None))
-            it['_pictures'] = pick_pictures(pics, it.get('version'), 2); items.append(it)
+    # --- drone ships (public since Kyle, 17 Nov 2026)
+    droles, dsizes = parse_npc_lines(board, 'CHATGPT_DRONE_PROMPT.md', 'D')
+    for cid in sorted(k for k in cards if k.startswith('D-')):
+        c = cards[cid]
+        it = dict(id=cid, section='drones', name=c['title'], status='review', role=clean(droles.get(cid, ''), cid),
+                  size=dsizes.get(cid) or re.sub(r' long$', '', c.get('sub', '')))
+        decided(cid, it)
+        pics = it.pop('_pics', []) + latest_pics(c, it.get('maker')) + dir_pics(it.pop('_model_dir', None), it.get('version'))
+        it['_pictures'] = pick_pictures(pics, it.get('version'), 3) if it['status'] in ('final', 'approved') else []
+        it['_thumb'] = os.path.join(a.guide, 'thumbs', '%s-%s-v%s.jpg' % (cid, it.get('maker'), it.get('version')))
+        items.append(it)
 
     # --- pirate refits (24)
     ladder = parse_pirate_ladder(board)
@@ -524,6 +552,11 @@ def build_items(a, images):
         c = cards[cid]
         it = dict(id=cid, section='equipment', name=c['title'], cls=c.get('group', ''), sub=re.sub(r'\s*·\s*\d+ files?$', '', c.get('sub', '')),
                   status={'approved': 'approved', 'review': 'review', 'doing': 'doing', 'redo': 'redo', 'todo': 'todo'}.get(c.get('status'), 'review'))
+        # Kyle, 17 Nov 2026: "the equipment is approved if it's in the game". In the game = its kit part is in the
+        # Runners game repo (main), or tools/wiki-status.json records it as in the game under another model.
+        kit = [os.path.basename(f) for f in c.get('files') or []]
+        if any(k in in_game for k in kit):
+            it.update(status='approved', decidedBy='In the game (its kit part is in the Runners game)')
         decided(cid, it)
         size = ((c.get('check') or {}).get('size'))
         it['size'] = size
@@ -532,9 +565,15 @@ def build_items(a, images):
         for p in c.get('returned') or []:
             mk = re.search(r'/from-([a-z-]+)/', p)
             if mk: groups.setdefault(mk.group(1), []).append(os.path.join(board, p))
-        # No pictures until a model is approved: candidates stay off the site (Kyle, 17 Nov 2026).
+        # Approved (in the game): one render of the part. Not approved: no pictures (Kyle, 17 Nov 2026).
         it['_candidates'] = []
-        if a.equipment_candidates:
+        if it['status'] in ('final', 'approved'):
+            allp = [p for ps in groups.values() for p in ps if re.search(r'\.(png|jpe?g)$', p, re.I)]
+            view = lambda p: next((k for k, rx in enumerate([r'three_quarter|front_quarter|front-quarter', r'back_quarter|back-quarter', r'front', r'side'])
+                                   if re.search(rx, os.path.basename(p), re.I)), 9)
+            ok = [p for p in allp if not re.search(r'clip|contact|sheet|web_|moving|drop|dmg|frame|_vs_|probe', os.path.basename(p), re.I) and os.path.isfile(p)]
+            it['_pictures'] = sorted(ok, key=view)[:1]
+        elif a.equipment_candidates:
             for mk, ps in sorted(groups.items()):
                 got = pick_pictures(ps, None, 1)
                 if got: it['_candidates'].append((mk, got[0]))
@@ -568,6 +607,9 @@ def make_pictures(items, images):
             it['pictures'].append(dict(src=rel, caption='Render of the current model', alt='The %s' % it['name']))
         # Index thumbnail: the first render (a whole-ship view); the ship guide's own thumbnail if there is none.
         th = it.pop('_thumb', None)
+        if not it['pictures'] and th and os.path.isfile(th) and it['status'] in ('final', 'approved'):
+            rel = images.make(th, 'runners/img/%s/%s-1.jpg' % (sec, base), maxpx=480, quality=82)
+            it['pictures'].append(dict(src=rel, caption='Render of the final model', alt='The %s' % it['name']))
         renders = [p for p in it['pictures'] if 'game' not in os.path.basename(p['src'])] or it['pictures']
         if renders:
             first = renders[0]['src']
@@ -647,6 +689,11 @@ def render_item(it, a, chrome, by_id):
         if it.get('role'): body.append('<p class="wiki-lead">%s</p>' % md_inline(it['role']))
         body.append(gallery(it, W))
         body.append('<h2>Her sheet</h2>' + facts_html([('Kind', 'Sails the sea; the player cannot buy her'), ('Built on', plink if parent else ('Her own hull' if it.get('kind') != 'mod' else '')), ('Length', esc(it.get('size')))]))
+    elif s == 'drones':
+        body.append('<p class="ship-meta">Drone ship · No crew · %s</p>' % esc(it['id']))
+        if it.get('role'): body.append('<p class="wiki-lead">%s</p>' % md_inline(it['role']))
+        body.append(gallery(it, W))
+        body.append('<h2>Her sheet</h2>' + facts_html([('Kind', 'A crewless drone; the player cannot buy her'), ('Size', esc(it.get('size')))]))
     elif s == 'dressed':
         body.append('<p class="ship-meta">Faction-dressed ship · %s · %s</p>' % (esc(it.get('owner')), esc(it['id'])))
         if it.get('what'): body.append('<p class="wiki-lead">%s</p>' % md_inline(it['what']))
@@ -696,6 +743,8 @@ def render_section(key, items, a, chrome, by_id):
             groups.append((ck, cn, cb, [(i, 'Level %s · %s' % (i['level'], i['id'])) for i in g]))
     elif key == 'npc':
         groups.append(('npc', 'NPC ships', 'Built on player hulls, or on hulls of their own.', [(i, i['id'] + (' · on the %s' % by_id[i['parent']]['name'] if i.get('parent') in by_id else '')) for i in items]))
+    elif key == 'drones':
+        groups.append(('drones', 'Drone ships', '', [(i, '%s · %s' % (i['id'], esc(i.get('size') or ''))) for i in items]))
     elif key == 'dressed':
         owners = []
         for i in items:
@@ -781,7 +830,8 @@ def main():
     ap.add_argument('--lore-from', default=DEFAULTS['lore_from'], help='another checkout of this site with runners/wiki/ (lore pages); "" for none')
     ap.add_argument('--site', default=REPO); ap.add_argument('--dry-run', action='store_true')
     ap.add_argument('--no-verify', dest='verify', action='store_false', help="skip checking each final model's SHA-256 against its approval")
-    ap.add_argument('--include-drones', action='store_true', help='also the drone ships (private: Dex). Only if Kyle says so.')
+    ap.add_argument('--game', default=DEFAULTS['game'], help='the Runners game repo (equipment in the game is approved)')
+    ap.add_argument('--game-ref', default='origin/main', help='which branch of the game repo counts as "in the game"')
     ap.add_argument('--show-redactions', action='store_true', help='list every sentence left out as private or internal')
     ap.add_argument('--show-makers', action='store_true', help='name the maker and version on public pages (off: Kyle, 17 Nov 2026)')
     ap.add_argument('--equipment-candidates', action='store_true', help='show unapproved equipment candidates (off: Kyle, 17 Nov 2026)')

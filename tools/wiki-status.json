@@ -1,5 +1,5 @@
 {
- "note": "Kyle's decisions recorded for the wiki. tools/build_wiki.py reads ship-decisions.json (final.html) first, then this file; an entry here wins. Add one entry per decision, with Kyle's words and the date. See tools/WIKI_README.md.",
+ "note": "Kyle's decisions recorded for the wiki. tools/build_wiki.py reads ship-decisions.json (final.html) first, then this file; an entry here wins. Add one entry per decision, with Kyle's words and the date. See tools/WIKI_README.md. Equipment whose kit part is in the Runners game repo (main) is marked approved automatically (Kyle, 17 Nov 2026: \"the equipment is approved if it's in the game\"); entries here cover equipment in the game under another model.",
  "items": {
   "S-13": {
    "facts": {
@@ -36,6 +36,56 @@
    "status": "approved",
    "decided": "2026-11-16",
    "decidedBy": "Kyle: \"I approve just keep building and merging\" (the first six pirate refits)"
+  },
+  "E-05": {
+   "status": "approved",
+   "decided": "2026-11-17",
+   "decidedBy": "Kyle: \"the equipment is approved if it's in the game\". In the Runners game (main) as the 20 mm rotary gun (deck_gun_catalog.gd)."
+  },
+  "E-06": {
+   "status": "approved",
+   "decided": "2026-11-17",
+   "decidedBy": "Kyle: \"the equipment is approved if it's in the game\". In the Runners game (main) as the 30 mm escort autocannon (equipment_catalog.gd)."
+  },
+  "E-08": {
+   "status": "approved",
+   "decided": "2026-11-17",
+   "decidedBy": "Kyle: \"the equipment is approved if it's in the game\". In the Runners game (main) as the 57 mm gun (deck_gun_catalog.gd)."
+  },
+  "E-09": {
+   "status": "approved",
+   "decided": "2026-11-17",
+   "decidedBy": "Kyle: \"the equipment is approved if it's in the game\". In the Runners game (main) as the Point-defence mount (deck_gun_catalog.gd)."
+  },
+  "E-11": {
+   "status": "approved",
+   "decided": "2026-11-17",
+   "decidedBy": "Kyle: \"the equipment is approved if it's in the game\". In the Runners game (main) as the Heavy twin cannon (deck_gun_catalog.gd)."
+  },
+  "E-18": {
+   "status": "approved",
+   "decided": "2026-11-17",
+   "decidedBy": "Kyle: \"the equipment is approved if it's in the game\". In the Runners game (main) as the missile box (lite-missile-box model in game/assets)."
+  },
+  "E-19": {
+   "status": "approved",
+   "decided": "2026-11-17",
+   "decidedBy": "Kyle: \"the equipment is approved if it's in the game\". In the Runners game (main) as the missile launcher (lite-missile-launcher model in game/assets)."
+  },
+  "E-20": {
+   "status": "approved",
+   "decided": "2026-11-17",
+   "decidedBy": "Kyle: \"the equipment is approved if it's in the game\". In the Runners game (main) as the Twin torpedo tubes (ordnance_catalog.gd)."
+  },
+  "E-21": {
+   "status": "approved",
+   "decided": "2026-11-17",
+   "decidedBy": "Kyle: \"the equipment is approved if it's in the game\". In the Runners game (main) as the Quad torpedo tubes (ordnance_catalog.gd)."
+  },
+  "E-22": {
+   "status": "approved",
+   "decided": "2026-11-17",
+   "decidedBy": "Kyle: \"the equipment is approved if it's in the game\". In the Runners game (main) as the Stern mine rack (ordnance_catalog.gd)."
   }
  }
 }
