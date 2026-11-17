@@ -1,0 +1,3 @@
+# GitHub Pages (Jekyll): keep the wiki generator and its notes off the live site.
+exclude:
+  - tools

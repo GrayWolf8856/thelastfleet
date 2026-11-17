@@ -5,7 +5,7 @@ The wiki at `wiki/` on thelastfleet.com is where the Runners ship status now liv
 wiki. Which would be on TheLastFleet website ... it was always the goal and where the source of truth should live anyways."
 
 Every page in `wiki/` is generated. Do not edit the HTML by hand: change the sources or `tools/wiki-status.json`, then run the
-generator again.
+generator again. `tools/` itself is kept off the live site by `_config.yml`.
 
 ## Rules
 
@@ -14,18 +14,22 @@ generator again.
    - No model files of any kind (GLB, glTF, Draco or meshopt copies, FBX, .blend). No 3D viewer.
    - No download links to models, textures or source files.
    - Pictures are renders and screenshots, made into web JPEGs (at most 1600 px). The generator refuses to write a model file.
-2. **Public site.** Only game-facing content goes in: names, roles, pictures, lore and status. These stay out:
+2. **Status and date only** (Kyle, 17 Nov 2026). Public pages do not name the makers (ChatGPT, Claude Opus, Claude Fable
+   and so on) or who approved what. The generator strips notes like "(Kyle, 13 Nov 2026)" and refuses to publish a maker
+   name. Equipment shows no pictures until a model is approved (no candidate pictures). `--show-makers` and
+   `--equipment-candidates` exist only for a local look; never publish with them.
+3. **Public site.** Only game-facing content goes in: names, roles, pictures, lore and status. These stay out:
    - AI prompts, maker hand-back notes, review notes, check results;
    - file paths, model files and hashes of files that are not approved;
    - rejected or archived models;
    - story Kyle keeps private: the words are in `PRIVATE` in the script, which drops any sentence holding one. Those ships
      are left out unless Kyle says otherwise (`--include-drones`).
    - For bounties: rewards, escort counts and health numbers (Kyle, 15 Nov 2026).
-3. **The asset board is read only.** `asset-board/` is frozen by `.active-repair-preservation-hold.json`. The generator only
+4. **The asset board is read only.** `asset-board/` is frozen by `.active-repair-preservation-hold.json`. The generator only
    reads it. Never run `build_asset_board.py`, never touch the hold file, never write into the board.
-4. **Not live until Kyle says so.** Work on a branch and open a draft PR. Kyle merges to `main` (which is the live site) only
+5. **Not live until Kyle says so.** Work on a branch and open a draft PR. Kyle merges to `main` (which is the live site) only
    when he has looked at it.
-5. **The World Atlas is the lore bible.** Quote it or link it; never contradict it. If the atlas does not settle a lore
+6. **The World Atlas is the lore bible.** Quote it or link it; never contradict it. If the atlas does not settle a lore
    question, put a placeholder on the page and ask. Do not guess.
 
 ## Run it
@@ -69,7 +73,7 @@ The status keys are `final`, `approved`, `review`, `doing`, `todo` and `notused`
 | Faction-dressed ships (R-xx) | `5-dressed-ships/dress_specs.json`, one line from the dress list | the approved model's renders |
 | Pirate ships | the ladder in `6-pirate-ships/HANDBACK.md` | `6-pirate-ships/<faction>_<ship>/from-claude/*.png` |
 | Bounty ships | `7-bounty-ships/bounty_ships.json`: name, alias, ship, hull, look only | cut from `7-bounty-ships/sheet_<faction>.png` |
-| Equipment (E-xx) | `board.json` cards | one picture from each maker's latest version |
+| Equipment (E-xx) | `board.json` cards | none until a model is approved |
 
 Pictures are picked by name: whole-ship views (bow quarter, side, stern quarter) first. Close-ups, damage, check sheets,
 drafts and other versions are skipped. To change a pick, change the `GOOD` and `BAD` lists in the script, not the page.

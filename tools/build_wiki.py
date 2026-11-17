@@ -43,12 +43,12 @@ STATUS = {  # key: (label, css class, sort order)
     'review': ('In review', 'st-review', 2), 'doing': ('In work', 'st-doing', 3), 'redo': ('Redo', 'st-doing', 3),
     'todo': ('Planned', 'st-todo', 4), 'notused': ('Not used', 'st-notused', 5)}
 STATUS_HELP = [
-    ('final', 'Kyle approved this model as the final one. It is the model that goes into the game.'),
-    ('approved', 'Kyle approved the design. The final model is not signed off yet.'),
-    ('review', 'Built, waiting for Kyle to look at it.'),
+    ('final', 'The final model: the one that goes into the game.'),
+    ('approved', 'The design is approved. The final model is not signed off yet.'),
+    ('review', 'Built, waiting for review.'),
     ('doing', 'Being built or repaired.'),
     ('todo', 'Planned, not built yet.'),
-    ('notused', 'Kyle decided not to use it. It stays here so the number is not reused.')]
+    ('notused', 'Not used in the game. It stays here so the number is not reused.')]
 MAKERS = {'chatgpt': 'ChatGPT', 'claude': 'Claude', 'claude-opus': 'Claude Opus', 'claude-fable': 'Claude Fable',
           'grok': 'Grok', 'gemini': 'Gemini', 'combined': 'ChatGPT and Claude'}
 CLASSES = [('scavenger', 'Scavenger', 'Salvage boats and tugs. Only Scavengers tow.'),
@@ -69,6 +69,7 @@ SECTIONS = [  # key, title, blurb
     ('bounties', 'Bounty ships', 'The sixty wanted ships, ten for each pirate faction.'),
     ('equipment', 'Equipment', 'Guns, cargo, deck gear and fishing gear fitted to the ships.')]
 
+a_show_makers = [False]   # set from --show-makers in main()
 LOG = {'redacted': [], 'withheld': [], 'warnings': [], 'lore_links': 0, 'lore_missing': []}
 
 
@@ -92,9 +93,16 @@ def md_inline(s):
     return s
 
 
+ATTRIB = re.compile(r'\s*\((?:Kyle|Claude|ChatGPT|Codex)\b[^)]*\)|^(?:Kyle|Claude|ChatGPT)\s*\([^)]*\):\s*')
+MAKER_WORDS = re.compile(r'\b(Kyle|Claude|ChatGPT|Codex|Opus|Fable|Gemini|Grok)\b')
+
+
 def clean(text, where):
-    """Drop sentences that hold private or internal words; log what went."""
+    """Drop sentences that hold private or internal words; log what went. Who-decided-what notes are cut
+    ("(Kyle, 13 Nov 2026)"): public pages show the status and the date only (Kyle, 17 Nov 2026)."""
     if not text: return ''
+    text = ATTRIB.sub('', text.strip())
+    text = re.sub(r'(?m)^(?:Kyle|Claude|ChatGPT)\s*\([^)]*\):\s*', '', text)
     out = []
     for sent in re.split(r'(?<=[.!?])\s+(?=[A-Z"(*])', text.strip()):
         m = PRIVATE.search(sent) or INTERNAL.search(sent)
@@ -524,10 +532,12 @@ def build_items(a, images):
         for p in c.get('returned') or []:
             mk = re.search(r'/from-([a-z-]+)/', p)
             if mk: groups.setdefault(mk.group(1), []).append(os.path.join(board, p))
+        # No pictures until a model is approved: candidates stay off the site (Kyle, 17 Nov 2026).
         it['_candidates'] = []
-        for mk, ps in sorted(groups.items()):
-            got = pick_pictures(ps, None, 1)
-            if got: it['_candidates'].append((mk, got[0]))
+        if a.equipment_candidates:
+            for mk, ps in sorted(groups.items()):
+                got = pick_pictures(ps, None, 1)
+                if got: it['_candidates'].append((mk, got[0]))
         items.append(it)
     return items, bj
 
@@ -541,7 +551,7 @@ def make_pictures(items, images):
             src = os.path.join(os.path.dirname(images.guide_photos), p['src']) if p.get('src') else None
             if src and os.path.isfile(src):
                 rel = images.make(src, 'runners/img/%s/%s-game-%d.jpg' % (sec, base, n))
-                it['pictures'].append(dict(src=rel, caption=clean(p.get('title') or 'In the game', it['id']) + ' (a still from the game)', alt=clean(p.get('alt') or '', it['id'])))
+                it['pictures'].append(dict(src=rel, caption=clean(p.get('title') or 'In the game', it['id']) + ' (a still from the game)', alt='The %s in the game' % it['name']))
         for n, p in enumerate(it.pop('_pictures', []) or [], 1):
             crop = None
             if LABELLED.search(p):   # these renders carry a working label in the top-left corner: cut the top band off
@@ -590,7 +600,7 @@ def gallery(it, depth_to_wiki):
 def status_block(it):
     lab = STATUS[it['status']][0]
     bits = [pill(it['status'])]
-    if it.get('maker') and it['status'] in ('final', 'approved', 'review'):
+    if a_show_makers[0] and it.get('maker') and it['status'] in ('final', 'approved', 'review'):
         who = MAKERS.get(it['maker'], it['maker'])
         bits.append('<span class="st-who">%s%s</span>' % (esc(who), (' v%s' % esc(it['version'])) if it.get('version') else ''))
     if it.get('decided'): bits.append('<span class="st-when">%s %s</span>' % ('Decided' if it['status'] == 'notused' else 'Approved' if it['status'] in ('final', 'approved') else 'Since', esc(it['decided'])))
@@ -734,7 +744,7 @@ def render_runners_home(items, a, chrome, built):
     tally = ''.join('<div><dt>%s</dt><dd>%d</dd></div>' % (esc(STATUS[k][0]), counts.get(k, 0)) for k, _ in STATUS_HELP if counts.get(k))
     body = '''    <h1 class="h-st">Runners</h1>
     <p class="wiki-note">Runners is in development. Details will change.</p>
-    <p class="wiki-lead">Every ship and every piece of gear in Runners, with its pictures and where it stands. When Kyle approves a ship's final model, it is marked Final here.</p>
+    <p class="wiki-lead">Every ship and every piece of gear in Runners, with its pictures and where it stands. When a ship's final model is signed off, it is marked Final here.</p>
     <ul class="wiki-sections">%s</ul>
     <h2>Where things stand</h2>
     <dl class="stats">%s</dl>
@@ -773,7 +783,10 @@ def main():
     ap.add_argument('--no-verify', dest='verify', action='store_false', help="skip checking each final model's SHA-256 against its approval")
     ap.add_argument('--include-drones', action='store_true', help='also the drone ships (private: Dex). Only if Kyle says so.')
     ap.add_argument('--show-redactions', action='store_true', help='list every sentence left out as private or internal')
+    ap.add_argument('--show-makers', action='store_true', help='name the maker and version on public pages (off: Kyle, 17 Nov 2026)')
+    ap.add_argument('--equipment-candidates', action='store_true', help='show unapproved equipment candidates (off: Kyle, 17 Nov 2026)')
     a = ap.parse_args()
+    a_show_makers[0] = a.show_makers
     if not os.path.isfile(a.decisions) and os.path.isfile(DEFAULTS['decisions_fallback']): a.decisions = DEFAULTS['decisions_fallback']
     a.site = os.path.realpath(a.site); a.board = os.path.realpath(a.board)
     if not os.path.isfile(os.path.join(a.site, 'style.css')): sys.exit('%s is not the site.' % a.site)
@@ -796,8 +809,8 @@ def main():
         for i in g: pages['runners/%s/%s' % (k, item_url(i))] = render_item(i, a, chrome, by_id)
     status = dict(title='The Last Fleet wiki: Runners status', updated=datetime.datetime.now().astimezone().isoformat(timespec='seconds'),
                   statuses={k: v[0] for k, v in STATUS.items()},
-                  items=[{k: i.get(k) for k in ('id', 'section', 'name', 'cls', 'level', 'faction', 'status', 'maker', 'version', 'decided', 'sha256', 'fileMatchesApproval') if i.get(k) is not None}
-                         | {'statusLabel': STATUS[i['status']][0], 'makerName': MAKERS.get(i.get('maker'), i.get('maker')) if i.get('maker') else None,
+                  items=[{k: i.get(k) for k in ('id', 'section', 'name', 'cls', 'level', 'faction', 'status', 'decided', 'sha256') + (('maker', 'version') if a.show_makers else ()) if i.get(k) is not None}
+                         | {'statusLabel': STATUS[i['status']][0],
                             'page': 'runners/%s/%s' % (i['section'], item_url(i))} for i in items])
     files = {p: t for p, t in pages.items()}; files['runners/status.json'] = json.dumps(status, indent=1, ensure_ascii=False) + '\n'
     # last guard: nothing private or internal in what is written
@@ -807,6 +820,10 @@ def main():
         for rx in (PRIVATE, re.compile(r'/Volumes|asset-board|from-(chatgpt|claude)|\.glb\b|\.gltf\b|HANDBACK', re.I)):
             m = rx.search(txt)
             if m: bad.append('%s: "%s"' % (p, m.group(0)))
+    if not a.show_makers:
+        for p, t in files.items():
+            m = MAKER_WORDS.search(t)   # text and attributes (alt text too)
+            if m: bad.append('%s: names "%s" (public pages show status and date only)' % (p, m.group(0)))
     for p in list(files):
         if re.search(r'\.(glb|gltf|bin|drc|fbx|blend|obj)$', p, re.I): bad.append('%s: model files are not allowed on the site' % p)
     if bad: sys.exit('STOPPED: private or internal text would be published:\n  ' + '\n  '.join(bad[:30]))
