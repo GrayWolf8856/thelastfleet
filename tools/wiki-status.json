@@ -1,0 +1,41 @@
+{
+ "note": "Kyle's decisions recorded for the wiki. tools/build_wiki.py reads ship-decisions.json (final.html) first, then this file; an entry here wins. Add one entry per decision, with Kyle's words and the date. See tools/WIKI_README.md.",
+ "items": {
+  "S-13": {
+   "facts": {
+    "Price": "26,000 CR"
+   },
+   "decidedBy": "Kyle, 14 Nov 2026: the Corvette costs 26,000 CR (World Atlas, Ships)"
+  },
+  "P-TOL-3": {
+   "status": "approved",
+   "decided": "2026-11-16",
+   "decidedBy": "Kyle: \"I approve just keep building and merging\" (the first six pirate refits)"
+  },
+  "P-DRI-2": {
+   "status": "approved",
+   "decided": "2026-11-16",
+   "decidedBy": "Kyle: \"I approve just keep building and merging\" (the first six pirate refits)"
+  },
+  "P-SAL-2": {
+   "status": "approved",
+   "decided": "2026-11-16",
+   "decidedBy": "Kyle: \"I approve just keep building and merging\" (the first six pirate refits)"
+  },
+  "P-LON-2": {
+   "status": "approved",
+   "decided": "2026-11-16",
+   "decidedBy": "Kyle: \"I approve just keep building and merging\" (the first six pirate refits)"
+  },
+  "P-FLO-2": {
+   "status": "approved",
+   "decided": "2026-11-16",
+   "decidedBy": "Kyle: \"I approve just keep building and merging\" (the first six pirate refits)"
+  },
+  "P-DEA-3": {
+   "status": "approved",
+   "decided": "2026-11-16",
+   "decidedBy": "Kyle: \"I approve just keep building and merging\" (the first six pirate refits)"
+  }
+ }
+}
