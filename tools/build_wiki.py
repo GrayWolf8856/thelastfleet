@@ -693,7 +693,7 @@ def render_item(it, a, chrome, by_id):
         body.append('<p class="ship-meta">Drone ship · No crew · %s</p>' % esc(it['id']))
         if it.get('role'): body.append('<p class="wiki-lead">%s</p>' % md_inline(it['role']))
         body.append(gallery(it, W))
-        body.append('<h2>Her sheet</h2>' + facts_html([('Kind', 'A crewless drone; the player cannot buy her'), ('Size', esc(it.get('size')))]))
+        body.append('<h2>Her sheet</h2>' + facts_html([('Kind', 'A crewless drone'), ('Size', esc(it.get('size')))]))
     elif s == 'dressed':
         body.append('<p class="ship-meta">Faction-dressed ship · %s · %s</p>' % (esc(it.get('owner')), esc(it['id'])))
         if it.get('what'): body.append('<p class="wiki-lead">%s</p>' % md_inline(it['what']))
