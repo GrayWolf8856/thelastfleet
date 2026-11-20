@@ -10,8 +10,8 @@
                   ../tools/voice-intake/SETUP.md. While it is empty the page says submissions open soon.
     RELEASE     = data-release on the form: must match RELEASE_VERSION in ../tools/voice-intake/Code.gs
                   and the version on voice-release.html.
-    DISCORD_URL = the Discord button below (data-link="DISCORD_URL"). Put the invite link in its href and
-                  remove its "hidden" attribute once the server is ready.
+    DISCORD_URL = https://discord.gg/ABnzgjnVR, used in the Discord button and the closed notice below
+                  (data-link="DISCORD_URL"). Change both together if the invite changes.
   Lines: each line has an ID (three capital letters, a dash, two digits) that names its file in Drive.
   Keep IDs unique and never reuse a retired one. Max three script lines per person, plus one line of their own.
 -->
@@ -58,7 +58,7 @@
     makes it into the game, your name goes in the credits.</p>
     <div class="btns">
       <a class="btn gold" href="#record">Record your lines</a>
-      <a class="btn ghost" data-link="DISCORD_URL" href="#" target="_blank" rel="noopener" hidden>Join our Discord</a>
+      <a class="btn ghost" data-link="DISCORD_URL" href="https://discord.gg/ABnzgjnVR" target="_blank" rel="noopener">Join our Discord</a>
     </div>
   </div>
 </section>
@@ -87,7 +87,7 @@
 
     <form class="vform" id="record" data-endpoint="" data-release="v1-2026-11-19" novalidate>
       <div class="vclosed" hidden>
-        <strong>Submissions open soon.</strong> Follow us on Instagram or YouTube to hear when they open.
+        <strong>Submissions open soon.</strong> <a data-link="DISCORD_URL" href="https://discord.gg/ABnzgjnVR" target="_blank" rel="noopener">Join our Discord</a> to hear when they open and to talk lines with other crews.
       </div>
 
       <h2>1. Pick your lines</h2>

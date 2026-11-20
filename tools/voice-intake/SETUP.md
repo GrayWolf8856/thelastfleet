@@ -40,8 +40,8 @@ Put the URL in `runners/voices.html`, on the form line:
 
 Until this is filled in, the page shows "Submissions open soon" and the send button is off.
 
-When the Discord server is ready, put its invite link in the `data-link="DISCORD_URL"` button near the top
-of the same page and remove that button's `hidden` attribute.
+The Discord invite is in two places on the same page, both marked `data-link="DISCORD_URL"`. If the invite
+changes, update both.
 
 ## Day to day
 
