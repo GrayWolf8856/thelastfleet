@@ -13,8 +13,9 @@ var RELEASE_VERSION = 'v1-2026-11-19';
 // The checkbox wording on the page, saved word for word in each agreement record. Keep it in step with voices.html.
 var AGREE_TEXT = 'By typing my name above and ticking this box, I sign and agree to the Fleet Voices release. ' +
   'This is my own voice. I give Crosswake Studios permission to use, edit and add effects to my recordings in ' +
-  'The Last Fleet games, trailers and videos, for free and for good. My voice will never be used to train or ' +
-  'make an AI voice, and the game will never say which voice is mine.';
+  'The Last Fleet games and in trailers, devlogs and posts about them (such as on YouTube, Instagram and TikTok), ' +
+  'for free and for good. My voice will never be used to train or make an AI voice, and the game will never say ' +
+  'which voice is mine.';
 
 var MAX_CLIPS = 4;                       // three script lines plus one line of their own
 var MAX_CLIP_BYTES = 10 * 1024 * 1024;   // 10 MB per recording

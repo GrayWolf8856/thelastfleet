@@ -55,7 +55,7 @@ changes, update both.
   `tools/fleet_voices_ingest.py` strips file metadata and uses only the voice number.
 - **Credits** are one alphabetical list of names (people who wanted credit, Status `Used`). They never sit
   next to a line or a voice.
-- **Delete unused recordings after two years** (release section 8): every few months, delete folders older
+- **Delete unused recordings after two years** (release section 9): every few months, delete folders older
   than two years whose Status isn't `Used`, and clear their sheet rows.
 - **Recordings come in different formats.** Phone browsers send m4a or webm and uploads can be mp3 or wav.
   Convert to the game's format when a line is picked.
@@ -66,7 +66,7 @@ changes, update both.
 - **To change the script**, edit it, then **Deploy** → **Manage deployments** → pencil → **Version: New version**
   → **Deploy**. This keeps the same URL, so the page needs no change.
 - **If someone asks to be removed**, find them by submission ID or email in the sheet, set Status to `Removed`
-  and leave their line out of anything new (release section 7). Delete their email and Discord name from the
+  and leave their line out of anything new (release section 8). Delete their email and Discord name from the
   sheet if they ask, but keep the agreement file while their line is still in a shipped build.
 
 ## Changing the release text
