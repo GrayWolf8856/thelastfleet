@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  Fleet Voices: fans record short radio-chatter lines for Runners. voices.js does the recording and sending.
+  Settings, each used once on this page:
+    ENDPOINT    = data-endpoint on the form below: the Google Apps Script web app URL from
+                  ../tools/voice-intake/SETUP.md. While it is empty the page says submissions open soon.
+    RELEASE     = data-release on the form: must match RELEASE_VERSION in ../tools/voice-intake/Code.gs
+                  and the version on voice-release.html.
+    DISCORD_URL = the Discord button below (data-link="DISCORD_URL"). Put the invite link in its href and
+                  remove its "hidden" attribute once the server is ready.
+  Lines: each line has an ID (three capital letters, a dash, two digits) that names its file in Drive.
+  Keep IDs unique and never reuse a retired one. Max three script lines per person, plus one line of their own.
+-->
+<title>Fleet Voices: put your voice in Runners — The Last Fleet</title>
+<meta name="description" content="Record a line or two of radio chatter for Runners. If your take makes it into the game, your name goes in the credits.">
+<meta name="theme-color" content="#060c14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fleet Voices: put your voice in Runners">
+<meta property="og:description" content="Record a line or two of radio chatter for Runners. If your take makes it into the game, your name goes in the credits.">
+<meta property="og:url" content="https://thelastfleet.com/runners/voices.html">
+<meta property="og:image" content="https://thelastfleet.com/runners/img/06_dawn_cargo.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.png">
+<link rel="preload" href="../fonts/big-shoulders-stencil.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+<script src="voices.js" defer></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap w nav tabbed">
+    <a class="brand b2" href="../index.html"><span class="bm">The Last Fleet</span><span class="bs">Crosswake Studios</span></a>
+    <nav class="links tabs" aria-label="Games">
+      <a href="../holdout/">Holdout</a>
+      <a href="../artemis-protocol/">Artemis Protocol</a>
+      <a href="../runners/" class="on" aria-current="page">Runners</a>
+      <a href="../runners-lite/">Runners Lite</a>
+      <a href="../mayday/">Mayday</a>
+      <a href="../tradewinds/">Tradewinds</a>
+      <a href="../breakwater/">Breakwater</a>
+      <a href="../wiki/">Wiki</a>
+    </nav>
+  </div>
+</header>
+
+<section class="cine short">
+  <img class="cine-bg" src="img/06_dawn_cargo.jpg" alt="" fetchpriority="high" style="--pos:50% 45%">
+  <div class="wrap w cine-in">
+    <div class="kick">Calling all Fleet supporters</div>
+    <h1 class="mega m2">Fleet Voices</h1>
+    <p class="lead">Put your voice on the radio in Runners. When a runner pulls up beside another boat, the crew
+    calls across the water: a fishing tip, a pirate warning, a bad joke. Record a line or two, and if your take
+    makes it into the game, your name goes in the credits.</p>
+    <div class="btns">
+      <a class="btn gold" href="#record">Record your lines</a>
+      <a class="btn ghost" data-link="DISCORD_URL" href="#" target="_blank" rel="noopener" hidden>Join our Discord</a>
+    </div>
+  </div>
+</section>
+
+<div class="page">
+  <div class="wrap prose" style="max-width:820px">
+
+    <h2>How it works</h2>
+    <ol>
+      <li>Pick up to three lines below. You can add one line of your own too.</li>
+      <li>Record each one right here on your phone or computer, or upload a recording you made.</li>
+      <li>Fill in the name you want in the credits, tick the two boxes and send.</li>
+    </ol>
+
+    <h2>Recording tips</h2>
+    <ul>
+      <li>Find a quiet room. Turn off the TV and music.</li>
+      <li>Hold your phone about a hand's width from your mouth.</li>
+      <li>Say the line three times, a little differently each time, with a short pause between.</li>
+      <li>Sound like someone on a working boat calling across the water. No swearing, no pirate "arr".</li>
+      <li>Change a word or two if it sounds more natural in your voice.</li>
+      <li>Every accent is welcome. The fleet comes from all over.</li>
+    </ul>
+    <p>Recording here needs your microphone. If it doesn't start (for example inside the Instagram or TikTok app),
+    open this page in Safari or Chrome, or record a voice memo and upload it.</p>
+
+    <form class="vform" id="record" data-endpoint="" data-release="v1-2026-11-19" novalidate>
+      <div class="vclosed" hidden>
+        <strong>Submissions open soon.</strong> Follow us on Instagram or YouTube to hear when they open.
+      </div>
+
+      <h2>1. Pick your lines</h2>
+      <p class="vcount" aria-live="polite">Pick up to three lines. <span>0 of 3 picked.</span></p>
+
+      <fieldset class="vgroup">
+        <legend>Fishing boats <small>Friendly, a bit tired</small></legend>
+        <label class="vline"><input type="checkbox" name="line" value="FSH-01"><span>Fish are running thick out here today.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="FSH-02"><span>Don't run over my nets, runner.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="FSH-03"><span>Slow day. Barely filled one crate.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="FSH-04"><span>Nothing biting out here. Try further out, past the rigs.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="FSH-05"><span>Got fresh catch if you're hungry. Fair price.</span></label>
+      </fieldset>
+
+      <fieldset class="vgroup">
+        <legend>Cargo and trade <small>Busy, matter-of-fact</small></legend>
+        <label class="vline"><input type="checkbox" name="line" value="CRG-01"><span>Got fuel to spare if you're buying.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="CRG-02"><span>Running heavy, can't stop. Safe travels.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="CRG-03"><span>Whatever you're hauling, I hope it pays better than mine.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="CRG-04"><span>Port's paying double for medicine this week.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="CRG-05"><span>Late again. They're going to dock my pay.</span></label>
+      </fieldset>
+
+      <fieldset class="vgroup">
+        <legend>Scavengers <small>Guarded, proud of a find</small></legend>
+        <label class="vline"><input type="checkbox" name="line" value="SLV-01"><span>Wreck off to the north. Picked clean already, don't bother.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="SLV-02"><span>Found anything good out here? Me neither.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="SLV-03"><span>This scrap's mine. Go find your own.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="SLV-04"><span>Pulled a whole engine off a wreck yesterday. Best day all year.</span></label>
+      </fieldset>
+
+      <fieldset class="vgroup">
+        <legend>Rigs and ports <small>Gossip, local know-how</small></legend>
+        <label class="vline"><input type="checkbox" name="line" value="RIG-01"><span>Rig's taking deliveries until sundown.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="RIG-02"><span>Don't tie up at that rig. The toll's robbery.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="RIG-03"><span>Heard the port's hiring runners. Steady work, lousy pay.</span></label>
+      </fieldset>
+
+      <fieldset class="vgroup">
+        <legend>Warnings and rumors <small>Serious, looking out for you</small></legend>
+        <label class="vline"><input type="checkbox" name="line" value="WRN-01"><span>Pirates were spotted east of here. Keep your lights low.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="WRN-02"><span>Weather's turning tonight. Find a harbor.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="WRN-03"><span>Watch the shallows ahead. Lost a hull there last month.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="WRN-04"><span>Drones were over the water this morning. Stay clear.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="WRN-05"><span>Saw smoke on the horizon. Somebody's having a bad day.</span></label>
+      </fieldset>
+
+      <fieldset class="vgroup">
+        <legend>Greetings and banter <small>Easygoing, dry humor</small></legend>
+        <label class="vline"><input type="checkbox" name="line" value="HEY-01"><span>Morning, runner.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="HEY-02"><span>Nice hull. Shame about the paint.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="HEY-03"><span>Keep your distance, friend. Nothing personal.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="HEY-04"><span>Evening. Calm water tonight, for once.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="HEY-05"><span>You look like you've had a long run. Haven't we all.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="HEY-06"><span>Easy on the throttle, you're swamping my deck.</span></label>
+      </fieldset>
+
+      <fieldset class="vgroup">
+        <legend>Pirates <small>Cold, threatening, no swearing</small></legend>
+        <label class="vline"><input type="checkbox" name="line" value="PIR-01"><span>That's a lot of cargo for a boat that small.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="PIR-02"><span>Keep moving. We're watching you.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="PIR-03"><span>Nice boat. Be a shame if something happened to it.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="PIR-04"><span>Drop your cargo and we'll let you sail home.</span></label>
+        <label class="vline"><input type="checkbox" name="line" value="PIR-05"><span>Run all you want. We know where you're going.</span></label>
+      </fieldset>
+
+      <fieldset class="vgroup">
+        <legend>Your own line <small>Optional, one only</small></legend>
+        <label class="vline own"><input type="checkbox" name="line" value="OWN"><span>I want to add a line of my own.</span></label>
+        <div class="vown" hidden>
+          <label for="ownText">Type what you say, so we can check it:</label>
+          <input type="text" id="ownText" name="ownText" maxlength="200" placeholder="e.g. Tide's coming in fast, mind the reef.">
+          <p class="vnote">Keep it short and about life on the water. No swearing, no real people, no quotes from films,
+          shows or other games. We may not use it.</p>
+        </div>
+      </fieldset>
+
+      <h2>2. About you</h2>
+      <div class="vfields">
+        <label>Name for the credits
+          <input type="text" name="creditName" maxlength="40" autocomplete="nickname" required placeholder="Your name or handle">
+        </label>
+        <div class="vradio" role="radiogroup" aria-label="Credit">
+          <label><input type="radio" name="credit" value="name" checked> Credit me by this name</label>
+          <label><input type="radio" name="credit" value="none"> Don't credit me</label>
+        </div>
+        <label>Email
+          <input type="email" name="email" maxlength="120" autocomplete="email" required placeholder="So we can tell you if your line is used">
+        </label>
+        <label>Discord name <small>(optional)</small>
+          <input type="text" name="discord" maxlength="40" autocomplete="off">
+        </label>
+        <label class="vhp" aria-hidden="true">Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <h2>3. Agree and send</h2>
+      <div class="consent-box">
+        <label class="vcheck"><input type="checkbox" name="agree" required>
+          <span>I agree to the <a href="voice-release.html" target="_blank">Fleet Voices release</a>. This is my own
+          voice. I give Crosswake Studios permission to use, edit and add effects to my recordings in The Last Fleet
+          games, trailers and videos, for free and for good. My voice will never be used to train or make an AI
+          voice.</span></label>
+        <label class="vcheck"><input type="checkbox" name="adult" required>
+          <span>I am 18 or older.</span></label>
+      </div>
+
+      <div class="vmsg" role="status" aria-live="polite"></div>
+      <div class="btns"><button type="submit" class="btn gold">Send my recordings</button></div>
+      <p class="vnote">Your recordings and details go to our own Google account. We never sell them or add you to a
+      mailing list. See section 7 of the <a href="voice-release.html" target="_blank">release</a>.</p>
+    </form>
+
+    <div class="vdone highlight" hidden tabindex="-1">
+      <h2 style="margin-top:0">Recordings received</h2>
+      <p>Thank you for lending the fleet your voice. Your submission ID is <strong class="vid-out"></strong>. Keep it
+      in case you want to ask us about your recordings. We email you if your line makes it into the game.</p>
+      <div class="btns"><a class="btn ghost" href="voices.html">Record more lines</a></div>
+    </div>
+  </div>
+</div>
+
+<section class="cta" id="follow" aria-labelledby="follow-title">
+  <div class="wrap w">
+    <div class="kick c">Stay aboard</div>
+    <h2 class="h-st" id="follow-title">Follow The Last Fleet</h2>
+    <p>Choose a platform for trailers, devlogs and game news.</p>
+    <div class="btns">
+      <a class="btn gold" href="https://www.youtube.com/@TheLastFleetGame?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a>
+      <a class="btn ghost" href="https://www.instagram.com/thelastfleetgame/" target="_blank" rel="noopener">Follow on Instagram</a>
+      <a class="btn ghost" href="https://www.facebook.com/profile.php?id=61595243946174" target="_blank" rel="noopener">Follow on Facebook</a>
+      <a class="btn ghost" href="https://www.tiktok.com/@thelastfleetgame" target="_blank" rel="noopener">Follow on TikTok</a>
+      <a class="btn ghost" href="https://x.com/TheLastFleet" target="_blank" rel="noopener">Follow on X</a>
+      <a class="btn ghost" href="https://patreon.com/TheLastFleetArtemisProtocol" target="_blank" rel="noopener">Support on Patreon</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site big" id="contact">
+  <div class="wrap w">
+    <div class="cols">
+      <div>
+        <a class="brand b2" href="../index.html"><span class="bm">The Last Fleet</span><span class="bs">Crosswake Studios</span></a>
+        <p class="blurb">Naval games in one shared universe. Every choice leaves a wake.</p>
+      </div>
+      <div>
+        <h4>Games</h4>
+        <a href="../holdout/">Holdout</a>
+        <a href="../artemis-protocol/">Artemis Protocol</a>
+        <a href="../runners/">Runners</a>
+        <a href="../runners-lite/">Runners Lite</a>
+        <a href="../mayday/">Mayday</a>
+        <a href="../tradewinds/">Tradewinds</a>
+        <a href="../breakwater/">Breakwater</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="https://www.youtube.com/@TheLastFleetGame" rel="noopener">YouTube</a>
+        <a href="https://instagram.com/thelastfleetgame" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61595243946174" rel="noopener">Facebook</a>
+        <a href="https://tiktok.com/@thelastfleetgame" rel="noopener">TikTok</a>
+        <a href="https://x.com/TheLastFleet" rel="noopener">X</a>
+        <a href="https://patreon.com/TheLastFleetArtemisProtocol" rel="noopener">Patreon</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:kyleecosper@gmail.com">kyleecosper@gmail.com</a>
+        <a href="../holdout/support.html">Holdout support</a>
+        <a href="../holdout/privacy.html">Holdout privacy</a>
+      </div>
+    </div>
+    <div class="fine">© 2026 Crosswake Studios</div>
+  </div>
+</footer>
+
+</body>
+</html>

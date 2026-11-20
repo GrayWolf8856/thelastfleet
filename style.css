@@ -376,3 +376,48 @@ a.tag-pill:hover{text-decoration:none;color:#fff}
 .fac h3{font-family:var(--hud);font-weight:700;font-size:1.35rem;letter-spacing:.03em;text-transform:uppercase;color:#fff;margin:6px 0 6px}
 .fac p{margin:0;color:var(--ink-soft)}
 @media(max-width:600px){.follow span{width:100%;text-align:center;margin:0}}
+
+/* Fleet Voices form (runners/voices.html) */
+.vform[hidden],.vform [hidden],.vdone[hidden],.btn[hidden]{display:none!important}
+.vform h2{margin-top:2.4rem}
+.vcount{color:var(--ink-soft)}
+.vgroup{border:1px solid var(--line);border-radius:6px;padding:8px 16px 14px;margin:0 0 16px;background:rgba(255,255,255,.02)}
+.vgroup legend{font-family:var(--hud);font-weight:700;font-size:1.1rem;letter-spacing:.05em;text-transform:uppercase;color:#fff;padding:0 6px}
+.vgroup legend small{font-family:var(--spaced);font-weight:500;font-size:.62rem;letter-spacing:.2em;color:var(--gold);margin-left:8px}
+.vline{display:flex;gap:12px;align-items:flex-start;padding:9px 4px;border-top:1px solid rgba(255,255,255,.05);cursor:pointer;color:#dbe5ec;font-size:1.04rem}
+.vgroup legend + .vline{border-top:0}
+.vline input{width:20px;height:20px;margin-top:3px;flex:none;accent-color:var(--gold)}
+.vline.off{opacity:.45;cursor:not-allowed}
+.vline:has(input:checked) span{color:#fff;font-weight:600}
+.vline.done span::after{content:" ✓";color:var(--gold)}
+.rec{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:2px 0 12px 36px;padding:12px 14px;border-radius:6px;background:var(--night);border:1px solid var(--line)}
+.rec .rb{display:inline-flex;align-items:center;gap:9px;font-family:var(--hud);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.95rem;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.34);border-radius:4px;padding:9px 16px;cursor:pointer}
+.rec .rb:hover{border-color:#fff}
+.rec .dot{width:11px;height:11px;border-radius:50%;background:var(--accent)}
+.rec .rb.on{border-color:var(--accent);background:rgba(255,64,52,.14)}
+.rec .rb.on .dot{animation:vblink 1s steps(2) infinite}
+@keyframes vblink{50%{opacity:.2}}
+.rec .rt{font-family:var(--hud);font-weight:600;color:var(--ink-soft);min-width:2.6em}
+.rec audio{height:36px;max-width:100%;flex:1 1 220px}
+.rec .up{font-size:.9rem;color:#7dd3fc;cursor:pointer;text-decoration:underline}
+.rec .up input{position:absolute;width:1px;height:1px;opacity:0}
+.rec .up:focus-within{outline:2px solid var(--gold);outline-offset:2px}
+.vown{margin:4px 0 6px 36px}
+.vown label{display:block;color:#c5d3de;margin-bottom:6px}
+.vform input[type=text],.vform input[type=email]{width:100%;font:inherit;font-size:1rem;color:#fff;background:var(--night);border:1px solid #2b4360;border-radius:4px;padding:11px 12px;margin-top:6px}
+.vform input[type=text]:focus,.vform input[type=email]:focus{outline:none;border-color:var(--gold)}
+.vfields{display:grid;gap:16px}
+.vfields > label{color:#dbe5ec;font-weight:600}
+.vfields small{color:var(--ink-soft);font-weight:400}
+.vradio{display:flex;flex-wrap:wrap;gap:8px 22px;color:#dbe5ec;margin-top:-6px}
+.vradio input{accent-color:var(--gold)}
+.vhp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.vcheck{display:flex;gap:12px;align-items:flex-start;color:#dbe5ec;padding:6px 0;cursor:pointer}
+.vcheck input{width:20px;height:20px;margin-top:3px;flex:none;accent-color:var(--gold)}
+.vnote{font-size:.9rem;color:var(--ink-soft)}
+.vmsg{min-height:1.6em;margin:6px 0 12px;color:#7dd3fc;font-weight:600}
+.vmsg.bad{color:#ff8a80}
+.vclosed{background:#2a1c08;border:1px solid var(--gold-soft);border-radius:6px;padding:14px 16px;margin:10px 0 0;color:#f3dfb6}
+.vform button.btn{border:0;cursor:pointer}
+.vform button[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+@media(max-width:560px){.rec,.vown{margin-left:0}}
