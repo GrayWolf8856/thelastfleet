@@ -49,6 +49,14 @@ changes, update both.
   by line ID, and an `agreement.txt` with exactly what they ticked. You also get an email for each one.
 - **The sheet** has a **Status** column, set to `New`. Change it to `Used`, `Not used` or `Removed` as you go.
   Names marked `Used` with credit wanted are the ones for the game credits.
+- **Keep voices anonymous.** When a line goes into the game, give the person a voice number (v001, v002, …)
+  and write that number in the sheet's Notes column. That sheet is the only place a voice number and a
+  person are linked. Nothing with a name, email or FV- ID goes into the game repo. The game's
+  `tools/fleet_voices_ingest.py` strips file metadata and uses only the voice number.
+- **Credits** are one alphabetical list of names (people who wanted credit, Status `Used`). They never sit
+  next to a line or a voice.
+- **Delete unused recordings after two years** (release section 8): every few months, delete folders older
+  than two years whose Status isn't `Used`, and clear their sheet rows.
 - **Recordings come in different formats.** Phone browsers send m4a or webm and uploads can be mp3 or wav.
   Convert to the game's format when a line is picked.
 - **To pause submissions**, open **Project Settings** → **Script Properties** and add `CLOSED` = `yes`. The page
@@ -58,7 +66,7 @@ changes, update both.
 - **To change the script**, edit it, then **Deploy** → **Manage deployments** → pencil → **Version: New version**
   → **Deploy**. This keeps the same URL, so the page needs no change.
 - **If someone asks to be removed**, find them by submission ID or email in the sheet, set Status to `Removed`
-  and leave their line out of anything new (release section 6). Delete their email and Discord name from the
+  and leave their line out of anything new (release section 7). Delete their email and Discord name from the
   sheet if they ask, but keep the agreement file while their line is still in a shipped build.
 
 ## Changing the release text
