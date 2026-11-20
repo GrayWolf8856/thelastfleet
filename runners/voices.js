@@ -171,6 +171,7 @@
     if (form.querySelector('input[value=OWN]').checked && !ownText) return say('Type the words of your own line.', true);
     if (!f.creditName.value.trim()) { f.creditName.focus(); return say('Add the name you want in the credits.', true); }
     if (!f.email.checkValidity() || !f.email.value.trim()) { f.email.focus(); return say('Add a working email address.', true); }
+    if (f.signature.value.trim().length < 2) { f.signature.focus(); return say('Sign with your full name.', true); }
     if (!f.agree.checked) return say('Please tick the box to agree to the Fleet Voices release.', true);
     if (!f.adult.checked) return say('Please confirm you are 18 or older. We can only take recordings from adults.', true);
 
@@ -187,6 +188,7 @@
           release: form.dataset.release,
           agree: f.agree.checked,
           adult: f.adult.checked,
+          signature: f.signature.value.trim(),
           creditName: f.creditName.value.trim(),
           credit: form.querySelector('input[name=credit]:checked').value,
           email: f.email.value.trim(),
