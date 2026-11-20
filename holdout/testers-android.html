@@ -9,6 +9,7 @@
     TESTFLIGHT_URL = https://testflight.apple.com/join/Jsg5tdva
     GROUP_URL = https://groups.google.com/g/holdout-android-testers/about
     OPTIN_URL = https://play.google.com/apps/testing/com.kylecosper.holdout
+    PLAY_APP_URL = intent://details?id=com.kylecosper.holdout (opens the Play Store app; falls back to the Play web page)
 -->
 <title>Test Holdout on Android — The Last Fleet: Holdout</title>
 <meta name="description" content="Play Holdout: The Last Fleet early on Android through Google Play and help us find bugs before launch.">
@@ -71,9 +72,24 @@
       <a class="btn ghost" data-link="OPTIN_URL" href="https://play.google.com/apps/testing/com.kylecosper.holdout" target="_blank" rel="noopener">Open the Google Play test page</a>
     </div>
 
-    <h3>Step 3: Get the game and play</h3>
-    <p>Get Holdout from the Play Store link on that page ($1.99, and it's yours to keep). Keep it installed
-    for at least 14 days. Google requires testers to stay opted in for 14 days before the game can launch.</p>
+    <h3>Step 3: Get the game in the Play Store app</h3>
+    <p>On your Android phone, tap the button below. It opens Holdout in the <strong>Play Store app</strong>,
+    where you tap <strong>Buy</strong> ($1.99, and it's yours to keep), then <strong>Install</strong>.</p>
+    <div class="btns">
+      <a class="btn gold" data-link="PLAY_APP_URL" href="intent://details?id=com.kylecosper.holdout#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.kylecosper.holdout;end">Open Holdout in the Play Store app</a>
+    </div>
+    <p>Keep it installed for at least 14 days. Google requires testers to stay opted in for 14 days before
+    the game can launch.</p>
+
+    <h3>If something doesn't work</h3>
+    <ul>
+      <li><strong>"Item not found"</strong>: you just became a tester. Google can take up to an hour to show
+      you the game. Wait a bit and try again.</li>
+      <li><strong>Buy keeps spinning in the browser</strong>: buy inside the Play Store app instead, using the
+      button above.</li>
+      <li><strong>Still not showing</strong>: make sure the Play Store app is using the same Google account you
+      joined the group with. Tap your picture in the Play Store app to switch accounts.</li>
+    </ul>
 
     <h2>Feedback</h2>
     <p>Found a bug or have an idea? Email <a href="mailto:kyleecosper@gmail.com">kyleecosper@gmail.com</a>,
