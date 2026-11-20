@@ -415,6 +415,8 @@ a.tag-pill:hover{text-decoration:none;color:#fff}
 .vcheck{display:flex;gap:12px;align-items:flex-start;color:#dbe5ec;padding:6px 0;cursor:pointer}
 .vcheck input{width:20px;height:20px;margin-top:3px;flex:none;accent-color:var(--gold)}
 .vnote{font-size:.9rem;color:var(--ink-soft)}
+.vsign{display:block;color:#dbe5ec;font-weight:600;margin-bottom:12px}
+.vsign small{display:block;font-weight:400;color:var(--ink-soft);font-size:.85rem;margin-top:4px}
 .vmsg{min-height:1.6em;margin:6px 0 12px;color:#7dd3fc;font-weight:600}
 .vmsg.bad{color:#ff8a80}
 .vclosed{background:#2a1c08;border:1px solid var(--gold-soft);border-radius:6px;padding:14px 16px;margin:10px 0 0;color:#f3dfb6}

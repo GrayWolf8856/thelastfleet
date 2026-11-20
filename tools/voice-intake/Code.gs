@@ -32,7 +32,7 @@ function setup() {
     var ss = SpreadsheetApp.create('Fleet Voices submissions log');
     var sh = ss.getSheets()[0];
     sh.setName('Submissions');
-    sh.appendRow(['Submitted at', 'Submission ID', 'Credit name', 'Credit wanted', 'Email', 'Discord',
+    sh.appendRow(['Submitted at', 'Submission ID', 'Signed name', 'Credit name', 'Credit wanted', 'Email', 'Discord',
       'Lines', 'Own line text', 'Folder', 'Release version', 'Agreed to release', 'Confirmed 18+',
       'Status', 'Notes']);
     sh.setFrozenRows(1);
@@ -89,6 +89,7 @@ function doPost(e) {
     folder.createFile(id + ' agreement.txt', [
       'Submission: ' + id,
       'Received: ' + now.toISOString(),
+      'Signed (typed full name): ' + d.signature,
       'Credit name: ' + d.creditName,
       'Credit wanted: ' + (d.credit === 'none' ? 'No credit' : 'Credit by this name'),
       'Email: ' + d.email,
@@ -96,14 +97,14 @@ function doPost(e) {
       'Lines: ' + lines.join(', '),
       'Own line text: ' + (d.ownText || ''),
       'Release version: ' + d.release,
-      'Ticked "I agree to the Fleet Voices release": ' + (d.agree === true),
+      'Ticked "By typing my name above and ticking this box, I sign and agree to the Fleet Voices release": ' + (d.agree === true),
       'Ticked "I am 18 or older": ' + (d.adult === true),
       'Page: ' + (d.page || ''),
       'Browser: ' + (d.ua || '')
     ].join('\n'), MimeType.PLAIN_TEXT);
 
     SpreadsheetApp.openById(props.getProperty('SHEET_ID')).getSheetByName('Submissions').appendRow([
-      now, id, cell_(d.creditName), d.credit === 'none' ? 'No credit' : 'Credit', cell_(d.email),
+      now, id, cell_(d.signature), cell_(d.creditName), d.credit === 'none' ? 'No credit' : 'Credit', cell_(d.email),
       cell_(d.discord || ''), lines.join(', '), cell_(d.ownText || ''), folder.getUrl(), d.release,
       'Yes', 'Yes', 'New', ''
     ]);
@@ -126,6 +127,7 @@ function check_(d) {
   if (d.release !== RELEASE_VERSION) return 'This page is out of date. Please reload it and try again.';
   if (d.agree !== true) return 'Please tick the box to agree to the release.';
   if (d.adult !== true) return 'Please confirm you are 18 or older.';
+  if (typeof d.signature !== 'string' || d.signature.trim().length < 2 || d.signature.length > 80) return 'Please sign with your full name.';
   if (typeof d.creditName !== 'string' || !d.creditName.trim() || d.creditName.length > 40) return 'Please give a name of up to 40 characters.';
   if (typeof d.email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email) || d.email.length > 120) return 'Please give a working email address.';
   if (d.discord && (typeof d.discord !== 'string' || d.discord.length > 40)) return 'The Discord name is too long.';
