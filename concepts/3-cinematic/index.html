@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept 3 · Cinematic — The Last Fleet</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../favicon.png">
+<style>
+@font-face{font-family:"Big Shoulders Stencil";src:url(../../fonts/big-shoulders-stencil.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Saira";src:url(../../fonts/saira.woff2) format("woff2");font-weight:100 900;font-display:swap}
+:root{--bg:#0a0908;--ink:#f4efe6;--soft:#a39d92;--gold:#e3b55c;--line:rgba(244,239,230,.12)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Saira",system-ui,sans-serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.w{max-width:1360px;margin:0 auto;padding:0 48px}
+.st{font-family:"Big Shoulders Stencil",Impact,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.01em;line-height:.86}
+.cap{font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:500}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:30;mix-blend-mode:normal}
+.nav .w{display:flex;justify-content:space-between;align-items:center;height:92px}
+.nav .brand{font-size:.8rem;letter-spacing:.34em;text-transform:uppercase;font-weight:600}
+.nav nav{display:flex;gap:40px;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase}
+.nav nav a{opacity:.8}.nav nav a:hover{opacity:1;color:var(--gold)}
+.menu{display:none;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;background:none;border:0;color:#fff;padding:0;display:none;align-items:center;gap:10px}
+.menu i{display:inline-block;width:24px;height:8px;border-top:1.5px solid #fff;border-bottom:1.5px solid #fff}
+
+/* hero */
+.hero{position:relative;height:100vh;min-height:720px;max-height:1000px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:scale(1.06);animation:push 22s ease-out forwards}
+@keyframes push{to{transform:scale(1)}}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg) 2%,rgba(10,9,8,.35) 42%,rgba(10,9,8,.3) 70%,rgba(10,9,8,.65) 100%)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 220px rgba(0,0,0,.75)}
+.hero .w{position:relative;z-index:2;width:100%;padding-bottom:50px}
+.hero .cap{margin-bottom:18px;text-shadow:0 1px 12px rgba(0,0,0,.9)}
+.mega{font-size:clamp(5rem,17.5vw,17rem);margin:0 0 0 -.04em;color:#fff;text-shadow:0 10px 60px rgba(0,0,0,.5)}
+.under{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;margin-top:30px;padding-top:28px;border-top:1px solid var(--line)}
+.under p{margin:0;max-width:560px;color:#d8d2c7;font-size:1.08rem}
+.play{display:flex;align-items:center;gap:18px;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase}
+.play b{width:68px;height:68px;border-radius:50%;border:1px solid rgba(255,255,255,.6);display:grid;place-items:center;transition:.3s}
+.play b::before{content:"";margin-left:4px;border-left:14px solid #fff;border-top:9px solid transparent;border-bottom:9px solid transparent}
+.play:hover b{background:var(--gold);border-color:var(--gold)}
+.scroll{position:absolute;z-index:2;right:48px;top:50%;writing-mode:vertical-rl;font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--soft)}
+
+/* marquee */
+.marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:22px 0}
+.marq div{display:inline-block;animation:mq 40s linear infinite}
+.marq span{font-size:2.4rem;margin-right:40px;color:transparent;-webkit-text-stroke:1px rgba(244,239,230,.4)}
+.marq span.f{color:var(--gold);-webkit-text-stroke:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* chapters */
+.ch{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:640px;border-bottom:1px solid var(--line)}
+.ch .pic{position:relative;overflow:hidden}
+.ch .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s}
+.ch:hover .pic img{transform:scale(1.04)}
+.ch .txt{display:flex;flex-direction:column;justify-content:center;padding:80px 90px}
+.ch.flip .pic{order:2}
+.ch .num{font-size:9rem;color:transparent;-webkit-text-stroke:1px rgba(227,181,92,.55);margin-bottom:-20px}
+.ch h2{font-size:clamp(3.4rem,6vw,6rem);margin:10px 0 22px}
+.ch p{color:#cfc8bc;max-width:46ch;font-size:1.05rem;margin:0 0 30px}
+.link{display:inline-flex;gap:14px;align-items:center;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+.link::after{content:"";width:46px;height:1px;background:var(--gold);transition:.3s}
+.link:hover::after{width:80px}
+.meta{display:flex;gap:30px;margin-bottom:30px;font-size:.8rem;color:var(--soft)}
+.meta b{display:block;color:var(--ink);font-weight:500;font-size:.95rem}
+
+/* more games rail */
+.more{padding:110px 0}
+.more .head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px}
+.more h2{font-size:clamp(3rem,5vw,5rem);margin:12px 0 0}
+.rail{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.card{position:relative;aspect-ratio:3/4.2;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;isolation:isolate}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .8s,filter .8s;filter:grayscale(.35)}
+.card:hover img{transform:scale(1.06);filter:none}
+.card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(10,9,8,.95) 10%,transparent 60%)}
+.card h3{font-size:2.2rem;margin:6px 0 4px}
+.card small{color:var(--soft);font-size:.82rem}
+.card.blank{background:linear-gradient(160deg,#1a1712,#0d0c0a);border:1px solid var(--line)}
+
+/* quote / join */
+.join{position:relative;padding:160px 0;text-align:center;overflow:hidden}
+.join img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32}
+.join::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at center,transparent 20%,var(--bg) 78%)}
+.join .w{position:relative;z-index:2}
+.join h2{font-size:clamp(3.6rem,9vw,8.5rem);margin:18px 0 26px}
+.join p{max-width:520px;margin:0 auto 38px;color:#d8d2c7}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{padding:17px 34px;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600;border:1px solid rgba(244,239,230,.4)}
+.btn.g{background:var(--gold);border-color:var(--gold);color:#14110c}
+.btn:hover{border-color:var(--gold)}
+.soc{display:flex;gap:30px;justify-content:center;flex-wrap:wrap;margin-top:50px;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--soft)}
+.soc a:hover{color:var(--gold)}
+
+footer{border-top:1px solid var(--line);padding:46px 0}
+footer .w{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+
+@media(max-width:1000px){
+  .w{padding:0 32px}
+  .nav nav{display:none}.menu{display:flex}
+  .scroll{display:none}
+  .hero{max-height:820px;min-height:640px}
+  .ch{grid-template-columns:1fr;min-height:0}.ch .pic{height:420px}.ch.flip .pic{order:0}
+  .ch .txt{padding:56px 32px}
+  .ch .num{font-size:6rem}
+  .rail{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:640px){
+  .w{padding:0 22px}
+  .nav .w{height:70px}
+  .nav .brand{font-size:.7rem;letter-spacing:.26em}
+  .hero{height:88vh;min-height:600px}
+  .hero img.bg{object-position:30% 50%}
+  .mega{font-size:5.6rem;line-height:.84}
+  .under{grid-template-columns:1fr;gap:24px}
+  .under p{font-size:1rem}
+  .marq span{font-size:1.7rem}
+  .ch .pic{height:300px}
+  .ch .txt{padding:44px 22px}
+  .ch h2{font-size:3.6rem}
+  .meta{gap:20px}
+  .more{padding:72px 0}
+  .more .head{display:block}
+  .rail{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:72%;overflow-x:auto;scroll-snap-type:x mandatory;margin-right:-22px;padding-right:22px}
+  .card{scroll-snap-align:start}
+  .join{padding:100px 0}
+  .btn{width:100%;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="w">
+    <a class="brand" href="#">Crosswake Studios</a>
+    <nav><a href="#games">Games</a><a href="#trailer">Trailers</a><a href="../../wiki/">Wiki</a><a href="#join">Join</a></nav>
+    <button class="menu" aria-label="Menu">Menu <i></i></button>
+  </div>
+</header>
+
+<section class="hero">
+  <img class="bg" src="../../artemis-protocol/img/10_artemis_dusk.jpg" alt="" fetchpriority="high">
+  <span class="scroll">Scroll · One drowned world</span>
+  <div class="w">
+    <div class="cap">One drowned world · Seven games</div>
+    <h1 class="mega st">The Last<br>Fleet</h1>
+    <div class="under">
+      <p>A drowned Earth after a war that nobody won. The last ships of the old navies, and the people who salvage, trade and run cargo around them, try to survive.</p>
+      <a class="play" id="trailer" href="https://www.youtube.com/watch?v=8trrPTSpZI4"><b></b>Watch the trailer</a>
+    </div>
+  </div>
+</section>
+
+<div class="marq" aria-hidden="true"><div>
+  <span class="st f">Artemis Protocol</span><span class="st">Holdout</span><span class="st f">Runners</span><span class="st">Runners Lite</span><span class="st f">Mayday</span><span class="st">Tradewinds</span><span class="st f">Breakwater</span>
+  <span class="st f">Artemis Protocol</span><span class="st">Holdout</span><span class="st f">Runners</span><span class="st">Runners Lite</span><span class="st f">Mayday</span><span class="st">Tradewinds</span><span class="st f">Breakwater</span>
+</div></div>
+
+<section id="games">
+  <article class="ch">
+    <div class="pic"><img src="../../artemis-protocol/img/06_artemis_storm_front.jpg" alt=""></div>
+    <div class="txt">
+      <div class="num st">01</div>
+      <div class="cap">Naval survival RTS</div>
+      <h2 class="st">Artemis<br>Protocol</h2>
+      <div class="meta"><span>Platform<b>Mac &amp; Windows</b></span><span>Status<b>Patreon playtest</b></span></div>
+      <p>Command the carrier ARTEMIS and the last of her battle group. Salvage wrecks, take oil rigs and build a new fleet from scrap, because nothing like the old ships will ever be built again.</p>
+      <a class="link" href="../../artemis-protocol/">Enter the game</a>
+    </div>
+  </article>
+  <article class="ch flip">
+    <div class="pic"><img src="../../holdout/img/05_decimus.jpg" alt=""></div>
+    <div class="txt">
+      <div class="num st">02</div>
+      <div class="cap">Twin-stick naval shooter</div>
+      <h2 class="st">Holdout</h2>
+      <div class="meta"><span>Platform<b>iPhone</b></span><span>Status<b>App Store · $1.99</b></span></div>
+      <p>One ship against fifty waves of a drone fleet. Steer with your left thumb, aim and fire with your right.</p>
+      <a class="link" href="../../holdout/">Enter the game</a>
+    </div>
+  </article>
+</section>
+
+<section class="more">
+  <div class="w">
+    <div class="head">
+      <div><div class="cap">More from the drowned world</div><h2 class="st">Every choice<br>leaves a wake</h2></div>
+    </div>
+    <div class="rail">
+      <a class="card" href="../../runners/"><img src="../../runners/img/03_dusk_sun.jpg" alt="" style="object-position:40% 50%"><span class="cap">Supply runner</span><h3 class="st">Runners</h3><small>Mac &amp; Windows · In development</small></a>
+      <a class="card" href="../../runners-lite/"><img src="../../runners-lite/img/05_storm.jpg" alt=""><span class="cap">iPhone</span><h3 class="st">Runners Lite</h3><small>In development</small></a>
+      <a class="card" href="../../tradewinds/"><img src="../../tradewinds/img/01_rig_golden_hour.jpg" alt=""><span class="cap">Trading post</span><h3 class="st">Tradewinds</h3><small>In development</small></a>
+      <a class="card" href="../../mayday/"><img src="../../mayday/img/01_title.jpg" alt=""><span class="cap">Radio rescue</span><h3 class="st">Mayday</h3><small>In development</small></a>
+      <a class="card blank" href="../../breakwater/"><span class="cap">Port builder</span><h3 class="st">Breakwater</h3><small>First look to come</small></a>
+    </div>
+  </div>
+</section>
+
+<section class="join" id="join">
+  <img src="../../artemis-protocol/img/13_fleet_formation.jpg" alt="">
+  <div class="w">
+    <div class="cap">Testers wanted</div>
+    <h2 class="st">Come aboard</h2>
+    <p>Play Holdout early on iPhone or Android. The first 50 testers get the game free.</p>
+    <div class="btns"><a class="btn g" href="../../holdout/testers.html">Sign up to test</a><a class="btn" href="https://discord.gg/N4xDqqQ7GF">Join our Discord</a></div>
+    <div class="soc"><a href="https://www.youtube.com/@TheLastFleetGame">YouTube</a><a href="https://www.instagram.com/thelastfleetgame/">Instagram</a><a href="https://www.tiktok.com/@thelastfleetgame">TikTok</a><a href="https://x.com/TheLastFleet">X</a><a href="https://patreon.com/TheLastFleetArtemisProtocol">Patreon</a></div>
+  </div>
+</section>
+
+<footer><div class="w"><span>© 2026 Crosswake Studios</span><span>Every choice leaves a wake</span></div></footer>
+</body>
+</html>
