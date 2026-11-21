@@ -5,236 +5,340 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Last Fleet — Naval games from Crosswake Studios</title>
 <meta name="description" content="One drowned world, seven games. Crosswake Studios makes naval games set in The Last Fleet: Holdout, Artemis Protocol, Runners, Runners Lite, Mayday, Tradewinds and Breakwater.">
-<meta name="theme-color" content="#060c14">
+<meta name="theme-color" content="#0a0908">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Last Fleet — Naval games from Crosswake Studios">
 <meta property="og:description" content="One drowned world, seven games. Crosswake Studios makes naval games set in The Last Fleet: Holdout, Artemis Protocol, Runners, Runners Lite, Mayday, Tradewinds and Breakwater.">
 <meta property="og:url" content="https://thelastfleet.com/">
-<meta property="og:image" content="https://thelastfleet.com/artemis-protocol/img/11_artemis_sunset_moon.jpg">
+<meta property="og:image" content="https://thelastfleet.com/artemis-protocol/img/10_artemis_dusk.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.png">
 <link rel="preload" href="fonts/big-shoulders-stencil.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css">
 <script src="site.js" defer></script>
+<!--
+  The homepage has its own styles (the game pages use style.css).
+  Look: cinematic. Big stencil titles over full-screen game art, gold accents.
+-->
+<style>
+@font-face{font-family:"Big Shoulders Stencil";src:url(fonts/big-shoulders-stencil.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Saira";src:url(fonts/saira.woff2) format("woff2");font-weight:100 900;font-display:swap}
+:root{--bg:#0a0908;--ink:#f4efe6;--soft:#a39d92;--gold:#e3b55c;--line:rgba(244,239,230,.12)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Saira",system-ui,sans-serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.w{max-width:1360px;margin:0 auto;padding:0 48px}
+.st{font-family:"Big Shoulders Stencil",Impact,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.01em;line-height:.86}
+.cap{font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:500}
+
+/* Header: transparent over the hero, solid once the page scrolls (site.js-free: see script at the end) */
+.nav{position:fixed;top:0;left:0;right:0;z-index:30;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(10,9,8,.92);backdrop-filter:blur(10px);border-color:var(--line)}
+.nav .w{display:flex;justify-content:space-between;align-items:center;height:84px}
+.nav .brand{display:flex;flex-direction:column;line-height:1.1}
+.nav .brand b{font-family:"Big Shoulders Stencil",Impact,sans-serif;font-weight:800;text-transform:uppercase;font-size:1.5rem;letter-spacing:.02em}
+.nav .brand span{font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--soft)}
+.nav nav{display:flex;gap:36px;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase}
+.nav nav a{opacity:.85}.nav nav a:hover{opacity:1;color:var(--gold)}
+.menu{display:none;font:inherit;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;background:none;border:0;color:#fff;padding:10px 0;align-items:center;gap:10px;cursor:pointer}
+.menu i{display:inline-block;width:24px;height:8px;border-top:1.5px solid #fff;border-bottom:1.5px solid #fff}
+.drawer{display:none;position:fixed;inset:0;z-index:40;background:rgba(10,9,8,.97);backdrop-filter:blur(12px);padding:100px 32px 40px;overflow:auto}
+.drawer.open{display:block}
+.drawer a{display:block;padding:10px 0;border-bottom:1px solid var(--line)}
+.drawer a.st{font-size:2.2rem}
+.drawer .cap{display:block;margin:28px 0 6px}
+.drawer .x{position:absolute;top:26px;right:32px;font:inherit;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;background:none;border:0;color:#fff;cursor:pointer;padding:10px 0}
+
+/* Hero */
+.hero{position:relative;height:100vh;min-height:720px;max-height:1000px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:scale(1.06);animation:push 22s ease-out forwards}
+@keyframes push{to{transform:scale(1)}}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg) 2%,rgba(10,9,8,.35) 42%,rgba(10,9,8,.3) 70%,rgba(10,9,8,.65) 100%)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 220px rgba(0,0,0,.75)}
+.hero .w{position:relative;z-index:2;width:100%;padding-bottom:50px}
+.tester{display:inline-flex;align-items:center;gap:12px;margin-bottom:26px;padding:7px 16px 7px 7px;border:1px solid rgba(227,181,92,.45);background:rgba(10,9,8,.55);backdrop-filter:blur(8px);font-size:.84rem}
+.tester b{background:var(--gold);color:#14110c;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;padding:4px 9px;font-weight:700}
+.tester:hover{border-color:var(--gold)}
+.hero .cap{display:block;margin-bottom:18px;text-shadow:0 1px 12px rgba(0,0,0,.9)}
+.mega{font-size:clamp(5rem,17.5vw,17rem);margin:0 0 0 -.04em;color:#fff;text-shadow:0 10px 60px rgba(0,0,0,.5)}
+.under{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;margin-top:30px;padding-top:28px;border-top:1px solid var(--line)}
+.under p{margin:0;max-width:560px;color:#d8d2c7;font-size:1.08rem}
+.play{display:flex;align-items:center;gap:18px;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase}
+.play b{width:68px;height:68px;border-radius:50%;border:1px solid rgba(255,255,255,.6);display:grid;place-items:center;transition:.3s}
+.play b::before{content:"";margin-left:4px;border-left:14px solid #fff;border-top:9px solid transparent;border-bottom:9px solid transparent}
+.play:hover b{background:var(--gold);border-color:var(--gold)}
+.scroll{position:absolute;z-index:2;right:48px;top:50%;writing-mode:vertical-rl;font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--soft)}
+
+/* Game-name ticker */
+.marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:22px 0}
+.marq div{display:inline-block;animation:mq 40s linear infinite}
+.marq:hover div{animation-play-state:paused}
+.marq a{display:inline-block;font-size:2.4rem;margin-right:40px;color:transparent;-webkit-text-stroke:1px rgba(244,239,230,.4);transition:color .2s}
+.marq a.f{color:var(--gold);-webkit-text-stroke:0}
+.marq a:hover{color:#fff;-webkit-text-stroke:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* Featured games: one chapter each */
+.ch{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:640px;border-bottom:1px solid var(--line)}
+.ch .pic{position:relative;overflow:hidden}
+.ch .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s}
+.ch:hover .pic img{transform:scale(1.04)}
+.ch .txt{display:flex;flex-direction:column;justify-content:center;padding:80px 90px}
+.ch.flip .pic{order:2}
+.ch .num{font-size:9rem;color:transparent;-webkit-text-stroke:1px rgba(227,181,92,.55);margin-bottom:-20px}
+.ch h2{font-size:clamp(3.4rem,6vw,6rem);margin:10px 0 22px}
+.ch p{color:#cfc8bc;max-width:46ch;font-size:1.05rem;margin:0 0 30px}
+.links{display:flex;gap:34px;flex-wrap:wrap}
+.link{display:inline-flex;gap:14px;align-items:center;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+.link::after{content:"";width:46px;height:1px;background:var(--gold);transition:.3s}
+.link:hover::after{width:80px}
+.link.dim{color:var(--soft)}.link.dim::after{background:var(--soft)}
+.meta{display:flex;gap:30px;margin-bottom:30px;font-size:.8rem;color:var(--soft)}
+.meta b{display:block;color:var(--ink);font-weight:500;font-size:.95rem}
+
+/* More games */
+.more{padding:110px 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:40px}
+.head h2{font-size:clamp(3rem,5vw,5rem);margin:12px 0 0}
+.head p{color:var(--soft);max-width:380px;margin:0}
+.rail{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.card{position:relative;aspect-ratio:3/4.2;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;isolation:isolate}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .8s,filter .8s;filter:grayscale(.35)}
+.card:hover img{transform:scale(1.06);filter:none}
+.card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(10,9,8,.95) 10%,transparent 60%)}
+.card h3{font-size:2.2rem;margin:6px 0 4px}
+.card p{margin:0 0 8px;color:#cfc8bc;font-size:.86rem;line-height:1.45}
+.card small{color:var(--soft);font-size:.78rem}
+.card.blank{background:linear-gradient(160deg,#1a1712,#0d0c0a);border:1px solid var(--line)}
+
+/* Trailers: site.js swaps a.yt[data-yt] for the YouTube player when pressed */
+.watch{padding:110px 0;border-top:1px solid var(--line);background:linear-gradient(180deg,#0d0c0a,var(--bg))}
+.feat{display:grid;grid-template-columns:1.7fr 1fr;gap:18px;margin-bottom:18px}
+.yt{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:#000}
+.yt img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.yt:hover img{transform:scale(1.04)}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt .pb{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;border:1px solid rgba(255,255,255,.7);background:rgba(10,9,8,.45);backdrop-filter:blur(4px);display:grid;place-items:center;transition:.3s}
+.yt .pb::before{content:"";margin-left:4px;border-left:14px solid #fff;border-top:9px solid transparent;border-bottom:9px solid transparent}
+.yt:hover .pb{background:var(--gold);border-color:var(--gold)}
+.feat .yt .pb{width:88px;height:88px;margin:-44px 0 0 -44px}
+.side{display:grid;gap:18px;align-content:start}
+.vt{margin-top:10px}
+.vt b{display:block;font-weight:500;font-size:.95rem}
+.vt span{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.vids{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sub{margin-top:44px}
+
+/* Join */
+.join{position:relative;padding:160px 0;text-align:center;overflow:hidden}
+.join img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32}
+.join::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at center,transparent 20%,var(--bg) 78%)}
+.join .w{position:relative;z-index:2}
+.join h2{font-size:clamp(3.6rem,9vw,8.5rem);margin:18px 0 26px}
+.join p{max-width:520px;margin:0 auto 38px;color:#d8d2c7}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{padding:17px 34px;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600;border:1px solid rgba(244,239,230,.4)}
+.btn.g{background:var(--gold);border-color:var(--gold);color:#14110c}
+.btn:hover{border-color:var(--gold)}
+.soc{display:flex;gap:30px;justify-content:center;flex-wrap:wrap;margin-top:50px;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--soft)}
+.soc a:hover{color:var(--gold)}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:70px 0 40px;font-size:.9rem}
+.cols{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:40px}
+.cols h4{margin:0 0 14px;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.cols a{display:block;color:var(--soft);padding:3px 0}
+.cols a:hover{color:var(--ink)}
+.cols .st{font-size:2rem}
+.cols p{color:var(--soft);margin:12px 0 0;max-width:34ch}
+.fine{margin-top:50px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+
+@media(prefers-reduced-motion:reduce){.hero img.bg,.marq div{animation:none}html{scroll-behavior:auto}}
+@media(max-width:1000px){
+  .w{padding:0 32px}
+  .nav nav{display:none}.menu{display:flex}
+  .scroll{display:none}
+  .hero{max-height:820px;min-height:640px}
+  .ch{grid-template-columns:1fr;min-height:0}.ch .pic{height:420px}.ch.flip .pic{order:0}
+  .ch .txt{padding:56px 32px}
+  .ch .num{font-size:6rem}
+  .rail{grid-template-columns:repeat(3,1fr)}
+  .feat{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr}
+  .vids{grid-template-columns:repeat(2,1fr)}
+  .cols{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .w{padding:0 22px}
+  .nav .w{height:70px}
+  .nav .brand b{font-size:1.25rem}
+  .hero{height:92vh;min-height:620px}
+  .hero img.bg{object-position:30% 50%}
+  .tester{font-size:.76rem;margin-bottom:20px}
+  .mega{font-size:5.6rem;line-height:.84}
+  .under{grid-template-columns:1fr;gap:24px}
+  .under p{font-size:1rem}
+  .marq a{font-size:1.7rem}
+  .ch .pic{height:300px}
+  .ch .txt{padding:44px 22px}
+  .ch h2{font-size:3.6rem}
+  .meta{gap:20px}
+  .more,.watch{padding:72px 0}
+  .head{display:block}.head p{margin-top:14px}
+  .rail{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:72%;overflow-x:auto;scroll-snap-type:x mandatory;margin-right:-22px;padding-right:22px}
+  .card{scroll-snap-align:start}
+  .side,.vids{grid-template-columns:1fr}
+  .join{padding:100px 0}
+  .btn{width:100%;text-align:center}
+  .cols{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
-<header class="site">
-  <div class="wrap w nav tabbed">
-    <a class="brand b2" href="index.html"><span class="bm">The Last Fleet</span><span class="bs">Crosswake Studios</span></a>
-    <nav class="links tabs" aria-label="Games">
-      <a href="holdout/">Holdout</a>
-      <a href="artemis-protocol/">Artemis Protocol</a>
-      <a href="runners/">Runners</a>
-      <a href="runners-lite/">Runners Lite</a>
-      <a href="mayday/">Mayday</a>
-      <a href="tradewinds/">Tradewinds</a>
-      <a href="breakwater/">Breakwater</a>
+<header class="nav" id="top">
+  <div class="w">
+    <a class="brand" href="index.html"><b>The Last Fleet</b><span>Crosswake Studios</span></a>
+    <nav aria-label="Site">
+      <a href="#games">Games</a>
+      <a href="#watch">Trailers</a>
       <a href="wiki/">Wiki</a>
+      <a href="#join">Join</a>
     </nav>
+    <button class="menu" type="button" aria-controls="drawer" aria-expanded="false">Menu <i></i></button>
   </div>
 </header>
 
-<aside class="tbar" aria-label="Testers wanted">
-  <div class="wrap w tbar-in">
-    <span class="tbar-tag">Testers wanted</span>
-    <span class="tbar-msg">Play Holdout early on iPhone or Android. The first 50 testers get the game free.</span>
-    <span class="tbar-links">
-      <a class="tbar-go" href="holdout/testers.html">Sign up to test</a>
-      <a class="tbar-dc" href="https://discord.gg/N4xDqqQ7GF" target="_blank" rel="noopener">Join our Discord</a>
-    </span>
-  </div>
-</aside>
+<div class="drawer" id="drawer" role="dialog" aria-label="Menu">
+  <button class="x" type="button">Close ✕</button>
+  <span class="cap">The games</span>
+  <a class="st" href="artemis-protocol/">Artemis Protocol</a>
+  <a class="st" href="holdout/">Holdout</a>
+  <a class="st" href="runners/">Runners</a>
+  <a class="st" href="runners-lite/">Runners Lite</a>
+  <a class="st" href="tradewinds/">Tradewinds</a>
+  <a class="st" href="mayday/">Mayday</a>
+  <a class="st" href="breakwater/">Breakwater</a>
+  <span class="cap">More</span>
+  <a href="#watch">Trailers</a>
+  <a href="wiki/">Wiki</a>
+  <a href="holdout/testers.html">Test Holdout early</a>
+  <a href="https://discord.gg/N4xDqqQ7GF" target="_blank" rel="noopener">Discord</a>
+</div>
 
-<section class="cine">
-  <img class="cine-bg" src="artemis-protocol/img/11_artemis_sunset_moon.jpg" alt="" fetchpriority="high" style="--pos:38% 50%">
-  <div class="wrap w cine-in">
-    <div class="kick">Crosswake Studios</div>
-    <h1 class="mega">The Last Fleet</h1>
-    <p class="tagline">One drowned world. Seven games.</p>
-    <p class="lead">A drowned Earth after a war that nobody won. The last ships of the old navies, and the people who salvage, trade and run cargo around them, try to survive.</p>
-    <div class="btns">
-      <a class="btn gold" href="#trailer"><span class="tri"></span>Watch the trailer</a>
-      <a class="btn ghost" href="#games">See the games</a>
-      <a class="btn ghost" href="#follow">Follow us</a>
+<section class="hero">
+  <img class="bg" src="artemis-protocol/img/10_artemis_dusk.jpg" alt="The carrier ARTEMIS and her battle group at dusk" fetchpriority="high">
+  <span class="scroll" aria-hidden="true">Scroll · One drowned world</span>
+  <div class="w">
+    <a class="tester" href="holdout/testers.html"><b>Testers wanted</b>Play Holdout early. The first 50 testers get it free →</a>
+    <span class="cap">One drowned world · Seven games</span>
+    <h1 class="mega st">The Last<br>Fleet</h1>
+    <div class="under">
+      <p>A drowned Earth after a war that nobody won. The last ships of the old navies, and the people who salvage, trade and run cargo around them, try to survive.</p>
+      <a class="play" href="#watch"><b></b>Watch the trailer</a>
     </div>
   </div>
 </section>
 
-<section class="feature" id="trailer">
-  <img class="f-bg" src="artemis-protocol/img/07_fleet_at_night_beacon.jpg" alt="" loading="lazy">
-  <div class="wrap w f-in">
-    <div>
-      <div class="kick">Featured game</div>
-      <a href="artemis-protocol/"><img class="wordmark" src="artemis-protocol/img/wordmark.png" alt="The Last Fleet: Artemis Protocol" width="900" height="253"></a>
-      <div class="plat">Naval survival RTS · Coming to Mac and Windows</div>
+<div class="marq"><div>
+  <a class="st f" href="artemis-protocol/">Artemis Protocol</a><a class="st" href="holdout/">Holdout</a><a class="st f" href="runners/">Runners</a><a class="st" href="runners-lite/">Runners Lite</a><a class="st f" href="mayday/">Mayday</a><a class="st" href="tradewinds/">Tradewinds</a><a class="st f" href="breakwater/">Breakwater</a>
+  <span aria-hidden="true"><a class="st f" href="artemis-protocol/" tabindex="-1">Artemis Protocol</a><a class="st" href="holdout/" tabindex="-1">Holdout</a><a class="st f" href="runners/" tabindex="-1">Runners</a><a class="st" href="runners-lite/" tabindex="-1">Runners Lite</a><a class="st f" href="mayday/" tabindex="-1">Mayday</a><a class="st" href="tradewinds/" tabindex="-1">Tradewinds</a><a class="st f" href="breakwater/" tabindex="-1">Breakwater</a></span>
+</div></div>
+
+<!-- Featured games. To feature a different game, swap a chapter's picture, text and links. -->
+<section id="games">
+  <article class="ch">
+    <div class="pic"><img src="artemis-protocol/img/06_artemis_storm_front.jpg" alt="ARTEMIS under fire in a storm" loading="lazy"></div>
+    <div class="txt">
+      <div class="num st" aria-hidden="true">01</div>
+      <div class="cap">Naval survival RTS</div>
+      <h2 class="st">Artemis<br>Protocol</h2>
+      <div class="meta"><span>Platform<b>Mac &amp; Windows</b></span><span>Status<b>Patreon playtest</b></span></div>
       <p>The war is over. Nobody won. Command the carrier ARTEMIS and the last of her battle group: salvage wrecks, take oil rigs and build a new fleet from scrap, because nothing like the old ships will ever be built again.</p>
-      <div class="btns">
-        <a class="btn gold" href="artemis-protocol/">Explore the game</a>
-        <a class="btn ghost" href="https://patreon.com/TheLastFleetArtemisProtocol" rel="noopener">Playtest on Patreon</a>
-      </div>
+      <div class="links"><a class="link" href="artemis-protocol/">Explore the game</a><a class="link dim" href="https://patreon.com/TheLastFleetArtemisProtocol" rel="noopener">Playtest on Patreon</a></div>
     </div>
-    <a class="yt" href="https://www.youtube.com/watch?v=8trrPTSpZI4" data-yt="8trrPTSpZI4" rel="noopener" aria-label="Play: The Strike: Battle Trailer"><img src="img/yt/8trrPTSpZI4.jpg" alt="" loading="lazy"><span class="play"></span></a>
-  </div>
+  </article>
+  <article class="ch flip">
+    <div class="pic"><img src="holdout/img/05_decimus.jpg" alt="A dreadnought fighting off a drone fleet in Holdout" loading="lazy"></div>
+    <div class="txt">
+      <div class="num st" aria-hidden="true">02</div>
+      <div class="cap">Twin-stick naval shooter</div>
+      <h2 class="st">Holdout</h2>
+      <div class="meta"><span>Platform<b>iPhone</b></span><span>Status<b>Submitted to the App Store · US$1.99</b></span></div>
+      <p>One ship against fifty waves of a drone fleet. Steer with your left thumb, aim and fire with your right.</p>
+      <div class="links"><a class="link" href="holdout/">Explore the game</a><a class="link dim" href="holdout/testers.html">Test it early</a></div>
+    </div>
+  </article>
 </section>
 
-<section class="sec" id="games">
-  <div class="wrap w">
-    <div class="sec-h">
-      <div class="kick">The games</div>
-      <h2>Seven games, one universe</h2>
-      <p>Strategy, shooters, trading and rescue, all on the same drowned sea. Each game has its own page.</p>
+<section class="more">
+  <div class="w">
+    <div class="head">
+      <div><div class="cap">More from the drowned world</div><h2 class="st">Every choice<br>leaves a wake</h2></div>
+      <p>Strategy, shooters, trading and rescue, all on the same sea. Each game has its own page.</p>
     </div>
-    <!--
-      One card per game; the whole card is a link to the game's page.
-      To add a game: copy a card, add a folder with its page, and add a tab to the header on every page.
-    -->
-    <div class="gcs">
-      <a class="gc" href="holdout/">
-        <div class="gc-img"><img src="img/cards/holdout.jpg" alt="A dreadnought firing on enemy ships in The Last Fleet: Holdout" loading="lazy"></div>
-        <div class="gc-body">
-          <div class="kind">Twin-stick naval shooter · iPhone</div>
-          <h3>Holdout</h3>
-          <p>One ship against fifty waves of a drone fleet. Steer with your left thumb, aim and fire with your right.</p>
-          <div class="gc-s"><span class="pill live">Submitted to the App Store · US$1.99</span><span class="arrow">Game page →</span></div>
-        </div>
-      </a>
-      <a class="gc" href="runners/">
-        <div class="gc-img"><img src="img/cards/runners.jpg" alt="Boats fighting at sunset in Runners" loading="lazy"></div>
-        <div class="gc-body">
-          <div class="kind">Third-person supply runner · Mac and Windows</div>
-          <h3>Runners</h3>
-          <p>You are one runner with a small cargo boat in the flooded world of The Last Fleet. Haul cargo between oil rigs and ports, salvage scrap, buy and sell, upgrade the boat and outrun pirates.</p>
-          <div class="gc-s"><span class="pill">In development</span><span class="arrow">Game page →</span></div>
-        </div>
-      </a>
-      <a class="gc" href="runners-lite/">
-        <div class="gc-img"><img src="img/cards/runners-lite.jpg" alt="A cargo ship under fire in Runners Lite" loading="lazy"></div>
-        <div class="gc-body">
-          <div class="kind">Runners for iPhone</div>
-          <h3>Runners Lite</h3>
-          <p>Shoot, trade, scavenge. The iPhone version of Runners: run supplies, trade, salvage and fight pirates across the home waters, working up from a rusty old boat called the Scrapper.</p>
-          <div class="gc-s"><span class="pill">In development</span><span class="arrow">Game page →</span></div>
-        </div>
-      </a>
-      <a class="gc" href="tradewinds/">
-        <div class="gc-img"><img src="img/cards/tradewinds.jpg" alt="An oil rig trading post at golden hour in Tradewinds" loading="lazy"></div>
-        <div class="gc-body">
-          <div class="kind">Trading-post management</div>
-          <h3>Tradewinds</h3>
-          <p>Run a remote oil rig on the frontier and grow it into a major trading post. Keep the pumps running, trade with whoever sails by, and send runners out on routes where the far ones pay more and pirates can take everything on board.</p>
-          <div class="gc-s"><span class="pill">In development</span><span class="arrow">Game page →</span></div>
-        </div>
-      </a>
-      <a class="gc" href="mayday/">
-        <div class="gc-img"><img src="img/cards/mayday.jpg" alt="The Last Fleet: Mayday. Listen, locate, rescue." loading="lazy"></div>
-        <div class="gc-body">
-          <div class="kind">Radio rescue puzzle</div>
-          <h3>Mayday</h3>
-          <p>You work the distress radio on an oil rig. Calls come in garbled, some callers lie, and some are raiders setting a trap. Work out where each caller is and send the right response before time runs out.</p>
-          <div class="gc-s"><span class="pill">In development</span><span class="arrow">Game page →</span></div>
-        </div>
-      </a>
-      <a class="gc" href="breakwater/">
-        <div class="gc-img blue"><span>First look to come</span></div>
-        <div class="gc-body">
-          <div class="kind">Port builder</div>
-          <h3>Breakwater</h3>
-          <p>A SimCity-style port-building game, grown out of the port builder in our strategy game.</p>
-          <div class="gc-s"><span class="pill">In development</span><span class="arrow">Game page →</span></div>
-        </div>
-      </a>
+    <div class="rail">
+      <a class="card" href="runners/"><img src="runners/img/03_dusk_sun.jpg" alt="A cargo boat running at dusk in Runners" loading="lazy" style="object-position:40% 50%"><span class="cap">Supply runner</span><h3 class="st">Runners</h3><p>Haul cargo between rigs and ports, salvage scrap and outrun pirates.</p><small>Mac &amp; Windows · In development</small></a>
+      <a class="card" href="runners-lite/"><img src="runners-lite/img/05_storm.jpg" alt="A boat in a storm in Runners Lite" loading="lazy"><span class="cap">iPhone</span><h3 class="st">Runners Lite</h3><p>Shoot, trade, scavenge. Work up from a rusty boat called the Scrapper.</p><small>In development</small></a>
+      <a class="card" href="tradewinds/"><img src="tradewinds/img/01_rig_golden_hour.jpg" alt="An oil rig trading post at golden hour in Tradewinds" loading="lazy"><span class="cap">Trading post</span><h3 class="st">Tradewinds</h3><p>Grow a remote oil rig into a major trading post.</p><small>In development</small></a>
+      <a class="card" href="mayday/"><img src="mayday/img/01_title.jpg" alt="The Last Fleet: Mayday. Listen, locate, rescue." loading="lazy"><span class="cap">Radio rescue</span><h3 class="st">Mayday</h3><p>Work the distress radio. Some callers lie, some are raiders.</p><small>In development</small></a>
+      <a class="card blank" href="breakwater/"><span class="cap">Port builder</span><h3 class="st">Breakwater</h3><p>A SimCity-style port-building game.</p><small>First look to come</small></a>
     </div>
   </div>
 </section>
 
-<section class="sec dark" id="watch">
-  <div class="wrap w">
-    <div class="sec-h">
-      <div class="kick">Watch</div>
-      <h2>From the channel</h2>
+<section class="watch" id="watch">
+  <div class="w">
+    <div class="head">
+      <div><div class="cap">Watch</div><h2 class="st">From the channel</h2></div>
       <p>Trailers and devlogs go up on YouTube as the games are built.</p>
     </div>
+    <div class="feat">
+      <div>
+        <a class="yt" href="https://www.youtube.com/watch?v=8trrPTSpZI4" data-yt="8trrPTSpZI4" rel="noopener" aria-label="Play: The Strike: Battle Trailer"><img src="img/yt/8trrPTSpZI4.jpg" alt="" loading="lazy"><span class="pb"></span></a>
+        <div class="vt"><span>Artemis Protocol</span><b>The Strike: Battle Trailer</b></div>
+      </div>
+      <div class="side">
+        <div><a class="yt" href="https://www.youtube.com/watch?v=Z2cgZ6neqJo" data-yt="Z2cgZ6neqJo" rel="noopener" aria-label="Play: Holdout: Official Trailer"><img src="img/yt/Z2cgZ6neqJo.jpg" alt="" loading="lazy"><span class="pb"></span></a><div class="vt"><span>Holdout</span><b>Official Trailer</b></div></div>
+        <div><a class="yt" href="https://www.youtube.com/watch?v=Lfe_hi3H2gM" data-yt="Lfe_hi3H2gM" rel="noopener" aria-label="Play: Runners Lite: Gameplay Trailer"><img src="img/yt/Lfe_hi3H2gM.jpg" alt="" loading="lazy"><span class="pb"></span></a><div class="vt"><span>Runners Lite</span><b>Gameplay Trailer</b></div></div>
+      </div>
+    </div>
     <div class="vids">
-      <div class="vid">
-        <a class="yt sm" href="https://www.youtube.com/watch?v=Z2cgZ6neqJo" data-yt="Z2cgZ6neqJo" rel="noopener" aria-label="Play: Holdout: Official Trailer"><img src="img/yt/Z2cgZ6neqJo.jpg" alt="" loading="lazy"><span class="play"></span></a>
-        <div class="t">Holdout: Official Trailer</div>
-        <div class="k">Holdout</div>
-      </div>
-      <div class="vid">
-        <a class="yt sm" href="https://www.youtube.com/watch?v=Lfe_hi3H2gM" data-yt="Lfe_hi3H2gM" rel="noopener" aria-label="Play: Runners Lite: Gameplay Trailer"><img src="img/yt/Lfe_hi3H2gM.jpg" alt="" loading="lazy"><span class="play"></span></a>
-        <div class="t">Runners Lite: Gameplay Trailer</div>
-        <div class="k">Runners Lite</div>
-      </div>
-      <div class="vid">
-        <a class="yt sm" href="https://www.youtube.com/watch?v=pmIqmhCRDtY" data-yt="pmIqmhCRDtY" rel="noopener" aria-label="Play: Walker: Story Trailer"><img src="img/yt/pmIqmhCRDtY.jpg" alt="" loading="lazy"><span class="play"></span></a>
-        <div class="t">Walker: Story Trailer</div>
-        <div class="k">Artemis Protocol</div>
-      </div>
-      <div class="vid">
-        <a class="yt sm" href="https://www.youtube.com/watch?v=Ay5fLcXxLkc" data-yt="Ay5fLcXxLkc" rel="noopener" aria-label="Play: No Safe Harbour: Battle Trailer"><img src="img/yt/Ay5fLcXxLkc.jpg" alt="" loading="lazy"><span class="play"></span></a>
-        <div class="t">No Safe Harbour: Battle Trailer</div>
-        <div class="k">Artemis Protocol</div>
-      </div>
-      <div class="vid">
-        <a class="yt sm" href="https://www.youtube.com/watch?v=Fom_Mmcvwfk" data-yt="Fom_Mmcvwfk" rel="noopener" aria-label="Play: Hold the Line: Battle Trailer"><img src="img/yt/Fom_Mmcvwfk.jpg" alt="" loading="lazy"><span class="play"></span></a>
-        <div class="t">Hold the Line: Battle Trailer</div>
-        <div class="k">Artemis Protocol</div>
-      </div>
-      <div class="vid">
-        <a class="yt sm" href="https://www.youtube.com/watch?v=lcz7AJKq-sI" data-yt="lcz7AJKq-sI" rel="noopener" aria-label="Play: Pre-War: Story Trailer"><img src="img/yt/lcz7AJKq-sI.jpg" alt="" loading="lazy"><span class="play"></span></a>
-        <div class="t">Pre-War: Story Trailer</div>
-        <div class="k">Artemis Protocol</div>
-      </div>
-      <div class="vid">
-        <a class="yt sm" href="https://www.youtube.com/watch?v=z6z_SnuqZjY" data-yt="z6z_SnuqZjY" rel="noopener" aria-label="Play: Decimus: Story Trailer"><img src="img/yt/z6z_SnuqZjY.jpg" alt="" loading="lazy"><span class="play"></span></a>
-        <div class="t">Decimus: Story Trailer</div>
-        <div class="k">Artemis Protocol</div>
-      </div>
-      <div class="vid">
-        <a class="yt sm" href="https://www.youtube.com/watch?v=zrNLmsmvsWg" data-yt="zrNLmsmvsWg" rel="noopener" aria-label="Play: Devlog 18: Air Wing at Sea"><img src="img/yt/zrNLmsmvsWg.jpg" alt="" loading="lazy"><span class="play"></span></a>
-        <div class="t">Devlog 18: Air Wing at Sea</div>
-        <div class="k">Artemis Protocol</div>
-      </div>
+      <div><a class="yt" href="https://www.youtube.com/watch?v=pmIqmhCRDtY" data-yt="pmIqmhCRDtY" rel="noopener" aria-label="Play: Walker: Story Trailer"><img src="img/yt/pmIqmhCRDtY.jpg" alt="" loading="lazy"><span class="pb"></span></a><div class="vt"><span>Artemis Protocol</span><b>Walker: Story Trailer</b></div></div>
+      <div><a class="yt" href="https://www.youtube.com/watch?v=Ay5fLcXxLkc" data-yt="Ay5fLcXxLkc" rel="noopener" aria-label="Play: No Safe Harbour: Battle Trailer"><img src="img/yt/Ay5fLcXxLkc.jpg" alt="" loading="lazy"><span class="pb"></span></a><div class="vt"><span>Artemis Protocol</span><b>No Safe Harbour: Battle Trailer</b></div></div>
+      <div><a class="yt" href="https://www.youtube.com/watch?v=Fom_Mmcvwfk" data-yt="Fom_Mmcvwfk" rel="noopener" aria-label="Play: Hold the Line: Battle Trailer"><img src="img/yt/Fom_Mmcvwfk.jpg" alt="" loading="lazy"><span class="pb"></span></a><div class="vt"><span>Artemis Protocol</span><b>Hold the Line: Battle Trailer</b></div></div>
+      <div><a class="yt" href="https://www.youtube.com/watch?v=lcz7AJKq-sI" data-yt="lcz7AJKq-sI" rel="noopener" aria-label="Play: Pre-War: Story Trailer"><img src="img/yt/lcz7AJKq-sI.jpg" alt="" loading="lazy"><span class="pb"></span></a><div class="vt"><span>Artemis Protocol</span><b>Pre-War: Story Trailer</b></div></div>
+      <div><a class="yt" href="https://www.youtube.com/watch?v=z6z_SnuqZjY" data-yt="z6z_SnuqZjY" rel="noopener" aria-label="Play: Decimus: Story Trailer"><img src="img/yt/z6z_SnuqZjY.jpg" alt="" loading="lazy"><span class="pb"></span></a><div class="vt"><span>Artemis Protocol</span><b>Decimus: Story Trailer</b></div></div>
+      <div><a class="yt" href="https://www.youtube.com/watch?v=zrNLmsmvsWg" data-yt="zrNLmsmvsWg" rel="noopener" aria-label="Play: Devlog 18: Air Wing at Sea"><img src="img/yt/zrNLmsmvsWg.jpg" alt="" loading="lazy"><span class="pb"></span></a><div class="vt"><span>Artemis Protocol</span><b>Devlog 18: Air Wing at Sea</b></div></div>
     </div>
-    <div class="more"><a class="btn ghost" href="https://www.youtube.com/@TheLastFleetGame?sub_confirmation=1" rel="noopener">Subscribe on YouTube</a></div>
+    <div class="btns sub"><a class="btn" href="https://www.youtube.com/@TheLastFleetGame?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a></div>
   </div>
 </section>
 
-<section class="cta" id="follow" aria-labelledby="follow-title">
-  <div class="wrap w">
-    <div class="kick c">Stay aboard</div>
-    <h2 class="h-st" id="follow-title">Follow The Last Fleet</h2>
-    <p>Choose a platform for trailers, devlogs and game news.</p>
-    <div class="btns">
-      <a class="btn gold" href="https://www.youtube.com/@TheLastFleetGame?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a>
-      <a class="btn ghost" href="https://discord.gg/N4xDqqQ7GF" target="_blank" rel="noopener">Join our Discord</a>
-      <a class="btn ghost" href="https://www.instagram.com/thelastfleetgame/" target="_blank" rel="noopener">Follow on Instagram</a>
-      <a class="btn ghost" href="https://www.facebook.com/profile.php?id=61595243946174" target="_blank" rel="noopener">Follow on Facebook</a>
-      <a class="btn ghost" href="https://www.tiktok.com/@thelastfleetgame" target="_blank" rel="noopener">Follow on TikTok</a>
-      <a class="btn ghost" href="https://x.com/TheLastFleet" target="_blank" rel="noopener">Follow on X</a>
-      <a class="btn ghost" href="https://patreon.com/TheLastFleetArtemisProtocol" target="_blank" rel="noopener">Support on Patreon</a>
+<section class="join" id="join" aria-labelledby="join-title">
+  <img src="artemis-protocol/img/13_fleet_formation.jpg" alt="" loading="lazy">
+  <div class="w">
+    <div class="cap">Testers wanted</div>
+    <h2 class="st" id="join-title">Come aboard</h2>
+    <p>Play Holdout early on iPhone or Android. The first 50 testers get the game free. Then follow along for trailers, devlogs and game news.</p>
+    <div class="btns"><a class="btn g" href="holdout/testers.html">Sign up to test</a><a class="btn" href="https://discord.gg/N4xDqqQ7GF" target="_blank" rel="noopener">Join our Discord</a></div>
+    <div class="soc">
+      <a href="https://www.youtube.com/@TheLastFleetGame?sub_confirmation=1" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/thelastfleetgame/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/profile.php?id=61595243946174" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.tiktok.com/@thelastfleetgame" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://x.com/TheLastFleet" target="_blank" rel="noopener">X</a>
+      <a href="https://patreon.com/TheLastFleetArtemisProtocol" target="_blank" rel="noopener">Patreon</a>
     </div>
   </div>
 </section>
 
-<section class="sec" id="studio">
-  <div class="wrap w studio">
-    <div>
-      <div class="kick">The studio</div>
-      <h2 class="h-st">Crosswake Studios</h2>
-      <p class="motto">Every choice leaves a wake.</p>
-    </div>
-    <p>We make naval games, from strategy and shooters to trading and rescue, where opposing sides have understandable motives and every choice leaves consequences behind. All of our games share one universe, The Last Fleet.</p>
-  </div>
-</section>
-
-<footer class="site big" id="contact">
-  <div class="wrap w">
+<footer id="contact">
+  <div class="w">
     <div class="cols">
       <div>
-        <a class="brand b2" href="index.html"><span class="bm">The Last Fleet</span><span class="bs">Crosswake Studios</span></a>
-        <p class="blurb">Naval games in one shared universe. Every choice leaves a wake.</p>
+        <div class="st">Crosswake Studios</div>
+        <p>We make naval games where opposing sides have understandable motives and every choice leaves consequences behind. All of them share one universe, The Last Fleet.</p>
       </div>
       <div>
         <h4>Games</h4>
@@ -245,10 +349,12 @@
         <a href="mayday/">Mayday</a>
         <a href="tradewinds/">Tradewinds</a>
         <a href="breakwater/">Breakwater</a>
+        <a href="wiki/">Wiki</a>
       </div>
       <div>
         <h4>Follow</h4>
         <a href="https://www.youtube.com/@TheLastFleetGame" rel="noopener">YouTube</a>
+        <a href="https://discord.gg/N4xDqqQ7GF" rel="noopener">Discord</a>
         <a href="https://instagram.com/thelastfleetgame" rel="noopener">Instagram</a>
         <a href="https://www.facebook.com/profile.php?id=61595243946174" rel="noopener">Facebook</a>
         <a href="https://tiktok.com/@thelastfleetgame" rel="noopener">TikTok</a>
@@ -262,9 +368,30 @@
         <a href="holdout/privacy.html">Holdout privacy</a>
       </div>
     </div>
-    <div class="fine">© 2026 Crosswake Studios</div>
+    <div class="fine"><span>© 2026 Crosswake Studios</span><span>Every choice leaves a wake</span></div>
   </div>
 </footer>
 
+<script>
+// Homepage only: solid header after scrolling, and the phone menu.
+(function () {
+  var nav = document.querySelector('.nav');
+  function onScroll() { nav.classList.toggle('solid', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var drawer = document.getElementById('drawer');
+  var btn = document.querySelector('.menu');
+  function set(open) {
+    drawer.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  btn.addEventListener('click', function () { set(true); });
+  drawer.querySelector('.x').addEventListener('click', function () { set(false); });
+  drawer.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+})();
+</script>
 </body>
 </html>
