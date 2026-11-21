@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Concept 2 · Tactical — The Last Fleet</title>
+<title>Beta 2 · Tactical — The Last Fleet</title>
 <meta name="robots" content="noindex">
-<link rel="icon" href="../../favicon.png">
+<link rel="icon" href="../favicon.png">
 <style>
-@font-face{font-family:"Big Shoulders Stencil";src:url(../../fonts/big-shoulders-stencil.woff2) format("woff2");font-weight:100 900;font-display:swap}
-@font-face{font-family:"Rajdhani";src:url(../../fonts/rajdhani-500.woff2) format("woff2");font-weight:500;font-display:swap}
-@font-face{font-family:"Rajdhani";src:url(../../fonts/rajdhani-600.woff2) format("woff2");font-weight:600;font-display:swap}
-@font-face{font-family:"Rajdhani";src:url(../../fonts/rajdhani-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Big Shoulders Stencil";src:url(../fonts/big-shoulders-stencil.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Rajdhani";src:url(../fonts/rajdhani-500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Rajdhani";src:url(../fonts/rajdhani-600.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Rajdhani";src:url(../fonts/rajdhani-700.woff2) format("woff2");font-weight:700;font-display:swap}
 :root{--bg:#07090b;--ink:#e8ece9;--soft:#8b958f;--amber:#ffaa2b;--red:#ff4034;--line:rgba(255,170,43,.22);--grid:rgba(255,255,255,.035);--max:1280px}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Rajdhani",system-ui,sans-serif;font-weight:500;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;
@@ -40,7 +40,7 @@ img{display:block;max-width:100%}
 
 /* hero */
 .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
-.hero-img{position:absolute;inset:0;background:url(../../artemis-protocol/img/09_ciws_tracers_night.jpg) 60% 50%/cover}
+.hero-img{position:absolute;inset:0;background:url(../artemis-protocol/img/09_ciws_tracers_night.jpg) 60% 50%/cover}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(7,9,11,.97) 0%,rgba(7,9,11,.7) 40%,rgba(7,9,11,.1) 75%),linear-gradient(0deg,rgba(7,9,11,1) 0%,transparent 30%)}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px)}
 .hero .hw{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr 1fr;gap:40px;min-height:760px;align-items:center;padding-top:40px;padding-bottom:40px}
@@ -165,8 +165,8 @@ footer .st{font-size:1.4rem;color:#fff}
 <header class="nav">
   <div class="w">
     <a class="brand" href="#"><span class="st">The Last Fleet</span><span class="mono">Crosswake Studios</span></a>
-    <nav class="links"><a class="on" href="#games">Fleet</a><a href="#intel">Intel</a><a href="../../wiki/">Wiki</a><a href="#comms">Comms</a></nav>
-    <a class="go" href="../../holdout/testers.html">Enlist as tester</a>
+    <nav class="links"><a class="on" href="#games">Fleet</a><a href="#intel">Intel</a><a href="../wiki/">Wiki</a><a href="#comms">Comms</a></nav>
+    <a class="go" href="../holdout/testers.html">Enlist as tester</a>
     <button class="burger mono" aria-label="Menu">Menu ☰</button>
   </div>
 </header>
@@ -200,13 +200,13 @@ footer .st{font-size:1.4rem;color:#fff}
       <p>Strategy, shooters, trading and rescue. Every game is a different job on the same sea.</p>
     </div>
     <div class="roster">
-      <a class="row cn" href="../../artemis-protocol/"><div class="n st">01</div><div class="pic"><img src="../../artemis-protocol/img/12_artemis_001_bow.jpg" alt=""></div><div class="tx"><div class="mono">Naval survival RTS · Mac &amp; Windows</div><h3 class="st">Artemis Protocol</h3><p>Command the carrier ARTEMIS and the last of her battle group. Salvage wrecks, take oil rigs and build a fleet from scrap.</p></div><div class="stat"><span class="lamp y">Patreon playtest</span><span class="open">Open file →</span></div></a>
-      <a class="row" href="../../holdout/"><div class="n st">02</div><div class="pic"><img src="../../holdout/img/03_dreadnought.jpg" alt=""></div><div class="tx"><div class="mono">Twin-stick naval shooter · iPhone</div><h3 class="st">Holdout</h3><p>One ship against fifty waves of a drone fleet. Steer with your left thumb, aim and fire with your right.</p></div><div class="stat"><span class="lamp g">App Store · $1.99</span><span class="open">Open file →</span></div></a>
-      <a class="row" href="../../runners/"><div class="n st">03</div><div class="pic"><img src="../../runners/img/02_boarding_fire.jpg" alt=""></div><div class="tx"><div class="mono">Third-person supply runner · PC</div><h3 class="st">Runners</h3><p>One runner, one small cargo boat. Haul cargo between oil rigs and ports, salvage scrap and outrun pirates.</p></div><div class="stat"><span class="lamp">In development</span><span class="open">Open file →</span></div></a>
-      <a class="row" href="../../runners-lite/"><div class="n st">04</div><div class="pic"><img src="../../runners-lite/img/03_pirate_chase.jpg" alt=""></div><div class="tx"><div class="mono">Runners for iPhone</div><h3 class="st">Runners Lite</h3><p>Shoot, trade, scavenge. Work up from a rusty old boat called the Scrapper.</p></div><div class="stat"><span class="lamp">In development</span><span class="open">Open file →</span></div></a>
-      <a class="row" href="../../tradewinds/"><div class="n st">05</div><div class="pic"><img src="../../tradewinds/img/02_rig_built_up.jpg" alt=""></div><div class="tx"><div class="mono">Trading-post management</div><h3 class="st">Tradewinds</h3><p>Run a remote oil rig and grow it into a major trading post. Far routes pay more, and pirates can take everything.</p></div><div class="stat"><span class="lamp">In development</span><span class="open">Open file →</span></div></a>
-      <a class="row" href="../../mayday/"><div class="n st">06</div><div class="pic"><img src="../../mayday/img/04_listen.jpg" alt=""></div><div class="tx"><div class="mono">Radio rescue puzzle</div><h3 class="st">Mayday</h3><p>Work the distress radio on an oil rig. Callers come in garbled, some lie, some are raiders setting a trap.</p></div><div class="stat"><span class="lamp">In development</span><span class="open">Open file →</span></div></a>
-      <a class="row" href="../../breakwater/"><div class="n st">07</div><div class="pic nil mono">Classified · first look to come</div><div class="tx"><div class="mono">Port builder</div><h3 class="st">Breakwater</h3><p>A SimCity-style port-building game, grown out of the port builder in our strategy game.</p></div><div class="stat"><span class="lamp">In development</span><span class="open">Open file →</span></div></a>
+      <a class="row cn" href="../artemis-protocol/"><div class="n st">01</div><div class="pic"><img src="../artemis-protocol/img/12_artemis_001_bow.jpg" alt=""></div><div class="tx"><div class="mono">Naval survival RTS · Mac &amp; Windows</div><h3 class="st">Artemis Protocol</h3><p>Command the carrier ARTEMIS and the last of her battle group. Salvage wrecks, take oil rigs and build a fleet from scrap.</p></div><div class="stat"><span class="lamp y">Patreon playtest</span><span class="open">Open file →</span></div></a>
+      <a class="row" href="../holdout/"><div class="n st">02</div><div class="pic"><img src="../holdout/img/03_dreadnought.jpg" alt=""></div><div class="tx"><div class="mono">Twin-stick naval shooter · iPhone</div><h3 class="st">Holdout</h3><p>One ship against fifty waves of a drone fleet. Steer with your left thumb, aim and fire with your right.</p></div><div class="stat"><span class="lamp g">App Store · $1.99</span><span class="open">Open file →</span></div></a>
+      <a class="row" href="../runners/"><div class="n st">03</div><div class="pic"><img src="../runners/img/02_boarding_fire.jpg" alt=""></div><div class="tx"><div class="mono">Third-person supply runner · PC</div><h3 class="st">Runners</h3><p>One runner, one small cargo boat. Haul cargo between oil rigs and ports, salvage scrap and outrun pirates.</p></div><div class="stat"><span class="lamp">In development</span><span class="open">Open file →</span></div></a>
+      <a class="row" href="../runners-lite/"><div class="n st">04</div><div class="pic"><img src="../runners-lite/img/03_pirate_chase.jpg" alt=""></div><div class="tx"><div class="mono">Runners for iPhone</div><h3 class="st">Runners Lite</h3><p>Shoot, trade, scavenge. Work up from a rusty old boat called the Scrapper.</p></div><div class="stat"><span class="lamp">In development</span><span class="open">Open file →</span></div></a>
+      <a class="row" href="../tradewinds/"><div class="n st">05</div><div class="pic"><img src="../tradewinds/img/02_rig_built_up.jpg" alt=""></div><div class="tx"><div class="mono">Trading-post management</div><h3 class="st">Tradewinds</h3><p>Run a remote oil rig and grow it into a major trading post. Far routes pay more, and pirates can take everything.</p></div><div class="stat"><span class="lamp">In development</span><span class="open">Open file →</span></div></a>
+      <a class="row" href="../mayday/"><div class="n st">06</div><div class="pic"><img src="../mayday/img/04_listen.jpg" alt=""></div><div class="tx"><div class="mono">Radio rescue puzzle</div><h3 class="st">Mayday</h3><p>Work the distress radio on an oil rig. Callers come in garbled, some lie, some are raiders setting a trap.</p></div><div class="stat"><span class="lamp">In development</span><span class="open">Open file →</span></div></a>
+      <a class="row" href="../breakwater/"><div class="n st">07</div><div class="pic nil mono">Classified · first look to come</div><div class="tx"><div class="mono">Port builder</div><h3 class="st">Breakwater</h3><p>A SimCity-style port-building game, grown out of the port builder in our strategy game.</p></div><div class="stat"><span class="lamp">In development</span><span class="open">Open file →</span></div></a>
     </div>
   </div>
 </section>
@@ -218,10 +218,10 @@ footer .st{font-size:1.4rem;color:#fff}
       <p>Trailers and devlogs go up on YouTube as the games are built.</p>
     </div>
     <div class="intel">
-      <a class="vid cn" href="https://www.youtube.com/watch?v=8trrPTSpZI4"><img src="../../img/yt/8trrPTSpZI4.jpg" alt=""><span class="rec mono"><span class="dot"></span>Rec · featured</span><span class="pl"></span><div class="cap"><span class="mono">Artemis Protocol</span><b>The Strike: Battle Trailer</b></div></a>
+      <a class="vid cn" href="https://www.youtube.com/watch?v=8trrPTSpZI4"><img src="../img/yt/8trrPTSpZI4.jpg" alt=""><span class="rec mono"><span class="dot"></span>Rec · featured</span><span class="pl"></span><div class="cap"><span class="mono">Artemis Protocol</span><b>The Strike: Battle Trailer</b></div></a>
       <div class="feed">
-        <a class="vid" href="https://www.youtube.com/watch?v=Z2cgZ6neqJo"><img src="../../img/yt/Z2cgZ6neqJo.jpg" alt=""><span class="pl"></span><div class="cap"><span class="mono">Holdout</span><b>Official Trailer</b></div></a>
-        <a class="vid" href="https://www.youtube.com/watch?v=Lfe_hi3H2gM"><img src="../../img/yt/Lfe_hi3H2gM.jpg" alt=""><span class="pl"></span><div class="cap"><span class="mono">Runners Lite</span><b>Gameplay Trailer</b></div></a>
+        <a class="vid" href="https://www.youtube.com/watch?v=Z2cgZ6neqJo"><img src="../img/yt/Z2cgZ6neqJo.jpg" alt=""><span class="pl"></span><div class="cap"><span class="mono">Holdout</span><b>Official Trailer</b></div></a>
+        <a class="vid" href="https://www.youtube.com/watch?v=Lfe_hi3H2gM"><img src="../img/yt/Lfe_hi3H2gM.jpg" alt=""><span class="pl"></span><div class="cap"><span class="mono">Runners Lite</span><b>Gameplay Trailer</b></div></a>
       </div>
     </div>
   </div>
@@ -234,7 +234,7 @@ footer .st{font-size:1.4rem;color:#fff}
         <div class="mono">Comms open · all channels</div>
         <h2 class="st">Report for duty</h2>
         <p>Play Holdout early on iPhone or Android. The first 50 testers get the game free. Join the Discord for news, builds and devlogs.</p>
-        <div class="btns"><a class="btn a" href="../../holdout/testers.html">Sign up to test</a><a class="btn o" href="https://discord.gg/N4xDqqQ7GF">Join Discord</a></div>
+        <div class="btns"><a class="btn a" href="../holdout/testers.html">Sign up to test</a><a class="btn o" href="https://discord.gg/N4xDqqQ7GF">Join Discord</a></div>
       </div>
       <div class="ch">
         <a href="https://www.youtube.com/@TheLastFleetGame">YouTube <span>CH-01</span></a>
