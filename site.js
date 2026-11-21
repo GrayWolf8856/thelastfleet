@@ -53,4 +53,36 @@
   // Phone: bring the current game's tab into view in the scrolling tab strip.
   var on = document.querySelector('nav.links.tabs a.on');
   if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'center' });
+
+  // Visit counter: GoatCounter (no cookies, no personal data). Dashboard: https://thelastfleet.goatcounter.com
+  var gc = document.createElement('script');
+  gc.async = true;
+  gc.src = 'https://gc.zgo.at/count.js';
+  gc.dataset.goatcounter = 'https://thelastfleet.goatcounter.com/count';
+  document.head.appendChild(gc);
+
+  // Count presses on links that leave the site (beta sign-ups, stores, Discord) and on video plays.
+  var named = [
+    [/testflight\.apple\.com/, 'beta-iphone-testflight'],
+    [/groups\.google\.com\/g\/holdout-android-testers/, 'beta-android-group'],
+    [/play\.google\.com\/apps\/testing/, 'beta-android-play-optin'],
+    [/^intent:|play\.google\.com\/store/, 'android-play-store'],
+    [/play\.google\.com\/redeem/, 'android-play-redeem'],
+    [/apps\.apple\.com/, 'iphone-app-store'],
+    [/discord\.(gg|com)/, 'discord'],
+    [/^mailto:/, 'email']
+  ];
+  function event(path, title) {
+    if (window.goatcounter && window.goatcounter.count)
+      window.goatcounter.count({ path: path, title: title, event: true });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    if (a.matches('a.yt[data-yt]')) return event('play-video/' + a.dataset.yt, a.getAttribute('aria-label') || 'Video');
+    var href = a.getAttribute('href');
+    for (var i = 0; i < named.length; i++)
+      if (named[i][0].test(href)) return event('click/' + named[i][1], location.pathname);
+    if (a.host && a.host !== location.host && /^https?:/.test(a.protocol)) event('out/' + a.host, location.pathname);
+  }, true);
 })();
