@@ -476,6 +476,8 @@ def build_items(a, images):
         if it['atlas']: it['atlas'] = (clean(it['atlas'][0], cid), clean(it['atlas'][1], cid))
         it['stats'] = dict(level=it['level'], length=st.get('length'), beam=st.get('beam'), speed=st.get('speed'), hp=st.get('hp'), price=fo.get('Price', st.get('price')))
         pics = it.pop('_pics', []) + latest_pics(c, it.get('maker')) + dir_pics(it.pop('_model_dir', None), it.get('version'))
+        if (overrides.get(cid) or {}).get('pictures'):   # better renders made for the wiki (the Haulers, 25 Nov 2026)
+            pics = dir_pics(os.path.join(board, overrides[cid]['pictures']))
         it['_pictures'] = pick_pictures(pics, it.get('version'), 3) if it['status'] != 'notused' else []
         it['_photos'] = [p for p in photos if p.get('cardId') == cid and p.get('reviewStatus') != 'historical']
         it['_thumb'] = os.path.join(a.guide, 'thumbs', '%s-%s-v%s.jpg' % (cid, it.get('maker'), it.get('version')))
