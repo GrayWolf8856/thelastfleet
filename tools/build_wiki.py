@@ -477,7 +477,7 @@ def build_items(a, images):
         it['stats'] = dict(level=it['level'], length=st.get('length'), beam=st.get('beam'), speed=st.get('speed'), hp=st.get('hp'), price=fo.get('Price', st.get('price')))
         pics = it.pop('_pics', []) + latest_pics(c, it.get('maker')) + dir_pics(it.pop('_model_dir', None), it.get('version'))
         if (overrides.get(cid) or {}).get('pictures'):   # better renders made for the wiki (the Haulers, 25 Nov 2026)
-            pics = dir_pics(os.path.join(board, overrides[cid]['pictures']))
+            pics = sorted(dir_pics(os.path.join(board, overrides[cid]['pictures'])), key=lambda q: 'full_load' not in os.path.basename(q))   # loaded views first
         it['_pictures'] = pick_pictures(pics, it.get('version'), 3) if it['status'] != 'notused' else []
         it['_photos'] = [p for p in photos if p.get('cardId') == cid and p.get('reviewStatus') != 'historical']
         it['_thumb'] = os.path.join(a.guide, 'thumbs', '%s-%s-v%s.jpg' % (cid, it.get('maker'), it.get('version')))
@@ -627,7 +627,7 @@ def make_pictures(items, images):
                 w, h = picture_px(p); band = round(h * 0.075)
                 if w and h: crop = (band, 1, h - band, w - 2)   # sips will not crop at the full width
             rel = images.make(p, 'runners/img/%s/%s-%d.jpg' % (sec, base, n), crop=crop)
-            it['pictures'].append(dict(src=rel, caption='Render of the %s model' % ('final' if it['status'] == 'final' else 'current'), alt='The %s' % it['name']))
+            it['pictures'].append(dict(src=rel, caption='Render of the %s model%s' % ('final' if it['status'] == 'final' else 'current', ', fully loaded' if 'full_load' in os.path.basename(p) else ''), alt='The %s' % it['name']))
         for mk, p in it.pop('_candidates', []) or []:
             rel = images.make(p, 'runners/img/%s/%s-%s.jpg' % (sec, base, mk))
             it['pictures'].append(dict(src=rel, caption='Candidate by %s' % MAKERS.get(mk, mk), alt='%s, candidate by %s' % (it['name'], MAKERS.get(mk, mk))))
