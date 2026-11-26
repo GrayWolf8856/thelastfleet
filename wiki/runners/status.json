@@ -1,6 +1,6 @@
 {
  "title": "The Last Fleet wiki: Runners status",
- "updated": "2026-11-17T11:22:21-06:00",
+ "updated": "2026-11-25T21:37:06-06:00",
  "statuses": {
   "final": "Final",
   "approved": "Approved",
@@ -466,6 +466,17 @@
    "sha256": "ec992ece8bf523ac3946fce0f7ca4ec3a899375339edd331402079c165d3c3ea",
    "statusLabel": "Final",
    "page": "runners/ships/s-38-factory-trawler.html"
+  },
+  {
+   "id": "S-00",
+   "section": "ships",
+   "name": "Rust bucket",
+   "cls": "Scavenger",
+   "level": 0,
+   "status": "approved",
+   "decided": "2026-11-18",
+   "statusLabel": "Approved",
+   "page": "runners/ships/s-00-rust-bucket.html"
   },
   {
    "id": "N-01",

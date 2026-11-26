@@ -429,6 +429,13 @@ def build_items(a, images):
             if 'facts' in o: it['_fact_override'] = o['facts']
             if o.get('publishStory'): it['_publish_story'] = True
 
+    def text_overrides(cid, it):
+        """A player ship's lead line, look and how-she-works list from tools/wiki-status.json, when the story card is out of date."""
+        o = overrides.get(cid) or {}
+        for k in ('quote', 'look'):
+            if k in o: it[k] = clean(o[k], cid)
+        if 'works' in o: it['works'] = [x for x in (clean(b, cid) for b in o['works']) if x]
+
     def latest_pics(c, maker):
         e = ((c or {}).get('latest') or {}).get(maker) or {}
         return [os.path.join(board, p) for p in e.get('pictures', [])]
@@ -473,6 +480,26 @@ def build_items(a, images):
         it['_photos'] = [p for p in photos if p.get('cardId') == cid and p.get('reviewStatus') != 'historical']
         it['_thumb'] = os.path.join(a.guide, 'thumbs', '%s-%s-v%s.jpg' % (cid, it.get('maker'), it.get('version')))
         it['lore'] = 'runners/wiki/ships/%s.html' % slug(c['title'])
+        text_overrides(cid, it)
+        items.append(it)
+
+    # --- player ships with no board card of their own: a version of a board ship, recorded in tools/wiki-status.json
+    # with "versionOf" (the Rust bucket starter, built from the Scrapper; her own card, Kyle 25 Nov 2026)
+    ships = {i['id']: i for i in items if i['section'] == 'ships'}
+    for cid, o in sorted(overrides.items()):
+        base = ships.get(o.get('versionOf'))
+        if not base: continue
+        it = dict(base, id=cid, name=o['name'], parent=base['id'], status='review', maker=None, version=None, decided=None, decidedBy=None,
+                  sha256=None, note=None, story=None, atlas=None, lore=None, _photos=[], _thumb=None)
+        decided(cid, it)
+        fo = it.pop('_fact_override', {}) or {}
+        it['table'] = [(k, fo.get(k, v)) for k, v in base['table']]
+        it['stats'] = dict(base['stats'], price=fo.get('Price', base['stats'].get('price')))
+        text_overrides(cid, it)
+        if o.get('atlas'): it['atlas'] = (clean(o['atlas'], cid), '')
+        skip = re.compile('|'.join(o.get('skipPictures') or ['(?!)']), re.I)   # e.g. a labelled contact sheet beside the renders
+        pics = [p for p in dir_pics(os.path.join(board, o.get('pictures', ''))) if not skip.search(os.path.basename(p))]
+        it['_pictures'] = pick_pictures(pics, None, 3) if it['status'] != 'notused' else []
         items.append(it)
 
     # --- NPC ships
@@ -677,7 +704,7 @@ def render_item(it, a, chrome, by_id):
         rows = [(k, md_inline(v)) for k, v in it['table']] or [
             ('Size', '%s m long, %s m beam' % (st['length'], st['beam']) if st.get('length') else None), ('Speed', '%s m/s' % st['speed'] if st.get('speed') else None),
             ('Hull', '%s HP' % st['hp'] if st.get('hp') else None), ('Price', 'Free' if st.get('price') == 0 else ('%s CR' % fmt_num(st['price']) if st.get('price') else None))]
-        body.append('<h2>Her sheet</h2>' + facts_html([('Class', esc(it['cls'])), ('Level', esc(it['level']))] + rows))
+        body.append('<h2>Her sheet</h2>' + facts_html([('Class', esc(it['cls'])), ('Level', esc(it['level'])), ('Built on', plink if parent else None)] + rows))
         if it.get('look'): body.append('<h2>Her look</h2><p>%s</p>' % md_inline(it['look']))
         if it.get('works'): body.append('<h2>How she works</h2><ul class="plain">%s</ul>' % ''.join('<li>%s</li>' % md_inline(x) for x in it['works']))
         if it.get('features'): body.append('<h2>Ideas for her</h2><p class="f-draft">Proposals, not decided yet.</p><ul class="plain">%s</ul>' % ''.join('<li>%s</li>' % md_inline(x) for x in it['features']))
