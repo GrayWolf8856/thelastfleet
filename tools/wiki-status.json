@@ -86,6 +86,51 @@
    "status": "approved",
    "decided": "2026-11-17",
    "decidedBy": "Kyle: \"the equipment is approved if it's in the game\". In the Runners game (main) as the Stern mine rack (ordnance_catalog.gd)."
+  },
+  "S-00": {
+   "versionOf": "S-01",
+   "name": "Rust bucket",
+   "status": "approved",
+   "decided": "2026-11-18",
+   "decidedBy": "Kyle, 17 Nov 2026: the starter is the Rust bucket, her own model. In both games since 18 Nov 2026 (Runners PR #75; Lite has the same model). Kyle, 25 Nov 2026: give her her own card, since every player starts in her.",
+   "pictures": "2-ships/S-01-scrapper/starter-rust-bucket",
+   "skipPictures": [
+    "overview"
+   ],
+   "quote": "The boat every player starts in: a Scrapper that was due for the scrapyard. Booker gives the Runner a boat nobody wanted.",
+   "look": "The Scrapper run down: bent rails, the wheelhouse roof rusted through, the windows boarded up, and rust streaks and patched plating from bow to stern.",
+   "works": [
+    "Starter: every player begins in her, free. Every first ship of the other lines is traded up from her.",
+    "Refit: at ARI's yard she can be traded in and rebuilt as a clean Scrapper for 500 CR.",
+    "Cargo: 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Scrap: her deck crane swings its magnet out over the side, lifts scrap from the water and drops it in the open bin on deck. Holds 8 units.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. Her magnet crane lifts a pallet aboard onto one of her 3 pallet places, so a full deck takes no more.",
+    "Towing: none. She has no winch.",
+    "Fighting: 1 weapon mount (1 small). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 45 m/s top speed, 90 hull points. Her plating is rotten through in places, so she is a little slower and weaker than a clean Scrapper (48 m/s, 100)."
+   ],
+   "facts": {
+    "Speed / hull": "45 m/s, 90 HP",
+    "Price": "Free (starter)"
+   },
+   "atlas": "Starter: the player's Scrapper is the **Rust bucket**, her own model: the approved Scrapper made into a boat that was due for the scrapyard: bent rails, roof rusted through, windows boarded up. Booker gives the Runner a boat nobody wanted. The clean Scrapper is the one you can buy. Because she's in bad shape the Rust bucket is slightly slower and weaker: 45 m/s and 90 hull points (clean Scrapper 48 m/s, 100)."
+  },
+  "S-01": {
+   "quote": "The clean Scrapper: the starter Rust bucket rebuilt at ARI's yard. Picks up loose scrap and carries a few pallets. Cannot tow.",
+   "look": "A small harbour workboat: dark hull with a raised bow, tan wheelhouse just forward of midships with a mast, radar and short funnel, a crane on the foredeck, and a long flat after deck with stern rails. The starter, the Rust bucket, is this boat run down and has a page of her own.",
+   "works": [
+    "Refit: players start in the Rust bucket, the same boat run down. At ARI's yard she is traded in and rebuilt as this clean Scrapper for 500 CR, a little faster and tougher. Every ship offered from the Rust bucket is offered from her too.",
+    "Cargo: 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Scrap: her deck crane swings its magnet out over the side, lifts scrap from the water and drops it in the open bin on deck. Holds 8 units.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. Her magnet crane lifts a pallet aboard onto one of her 3 pallet places, so a full deck takes no more.",
+    "Towing: none. She has no winch.",
+    "Fighting: 1 weapon mount (1 small). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 48 m/s top speed, 100 hull points."
+   ],
+   "facts": {
+    "Price": "500 CR (a refit of the Rust bucket at ARI's yard)"
+   },
+   "decidedBy": "Kyle, 17 Nov 2026: the starter is the Rust bucket; the clean Scrapper is the one you can buy (game: scrapper_refit, 500 CR, 48 m/s, 100 HP)."
   }
  }
 }
