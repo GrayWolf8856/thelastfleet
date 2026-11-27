@@ -230,6 +230,35 @@ def pick_pictures(cands, version, n):
     return out
 
 
+# A ship's own picture folder (tools/wiki-status.json "pictures"), e.g. the container-deck renders of 26 Nov 2026.
+# Kyle, 26 Nov 2026: "On the website make sure we show the models fully loaded instead of empty." Loaded views come
+# first (the loaded bow quarter is also the list thumbnail); empty views, before/after and check sheets, bridge views,
+# x-rays and old versions are left out. A loaded close-up may fill a gap.
+LOADED = re.compile(r'full_load|(?<![a-z])loaded', re.I)
+NOT_PUBLIC = re.compile(r'empty|before|after|bridge|xray|x-ray|check|(^|[_-])v1_', re.I)
+
+
+def pick_loaded(cands, n):
+    scored = []
+    for i, p in enumerate(cands):
+        if not p or not os.path.isfile(p): continue
+        base = os.path.basename(p).lower()
+        if NOT_PUBLIC.search(base): continue
+        loaded = bool(LOADED.search(base))
+        s = score_picture(p, None)
+        if s is None and loaded and 'close' in base and re.search(r'\.(png|jpe?g)$', base): s = 0
+        if s is None: continue
+        scored.append((not loaded, -s, i, p))
+    scored.sort()
+    out, sizes = [], set()
+    for _, _, _, p in scored:
+        sz = os.path.getsize(p)
+        if sz in sizes: continue
+        sizes.add(sz); out.append(p)
+        if len(out) >= n: break
+    return out
+
+
 # ---------------------------------------------------------------- reading the sources
 def parse_story_card(path):
     """The public part of a ship's STORY_CARD.md: her one-line purpose, look, how she works, special features,
@@ -435,6 +464,29 @@ def build_items(a, images):
         for k in ('quote', 'look'):
             if k in o: it[k] = clean(o[k], cid)
         if 'works' in o: it['works'] = [x for x in (clean(b, cid) for b in o['works']) if x]
+        if 'features' in o: it['features'] = [x for x in (clean(b, cid) for b in o['features']) if x]
+
+    def own_pictures(cid, it, status):
+        """Pictures from the ship's own folder in tools/wiki-status.json ("pictures": a folder under the asset board or the
+        ship guide), loaded views first and captioned so; "extraPictures" adds named files from it with their own caption
+        (the Smugglers' hidden-hold x-ray)."""
+        o = overrides.get(cid) or {}
+        if not o.get('pictures'): return None
+        folder = o['pictures']
+        if not os.path.isabs(folder):
+            folder = next((f for f in (os.path.join(board, folder), os.path.join(a.guide, folder)) if os.path.isdir(f)), os.path.join(board, folder))
+        if not os.path.isdir(folder): LOG['warnings'].append('%s: picture folder not found: %s' % (cid, o['pictures']))
+        skip = re.compile('|'.join(o.get('skipPictures') or ['(?!)']), re.I)   # e.g. a labelled contact sheet beside the renders
+        pics = [p for p in dir_pics(folder) if not skip.search(os.path.basename(p))]
+        if status == 'notused': return []
+        out = pick_loaded(pics, 3)
+        it['_captions'] = {p: 'fully loaded' for p in out if LOADED.search(os.path.basename(p))}
+        for x in o.get('extraPictures') or []:
+            p = os.path.join(folder, x['file'])
+            if os.path.isfile(p):
+                out.append(p); it['_captions'][p] = clean(x.get('caption', ''), cid)
+            else: LOG['warnings'].append('%s: extra picture not found: %s' % (cid, x['file']))
+        return out
 
     def latest_pics(c, maker):
         e = ((c or {}).get('latest') or {}).get(maker) or {}
@@ -476,8 +528,11 @@ def build_items(a, images):
         if it['atlas']: it['atlas'] = (clean(it['atlas'][0], cid), clean(it['atlas'][1], cid))
         it['stats'] = dict(level=it['level'], length=st.get('length'), beam=st.get('beam'), speed=st.get('speed'), hp=st.get('hp'), price=fo.get('Price', st.get('price')))
         pics = it.pop('_pics', []) + latest_pics(c, it.get('maker')) + dir_pics(it.pop('_model_dir', None), it.get('version'))
-        it['_pictures'] = pick_pictures(pics, it.get('version'), 3) if it['status'] != 'notused' else []
-        it['_photos'] = [p for p in photos if p.get('cardId') == cid and p.get('reviewStatus') != 'historical']
+        own = own_pictures(cid, it, it['status'])
+        it['_pictures'] = own if own is not None else (pick_pictures(pics, it.get('version'), 3) if it['status'] != 'notused' else [])
+        # Game stills show the model in the game; a ship with her own picture folder (the container decks, 26 Nov 2026)
+        # shows only those renders, since the older stills show her empty, before the rework.
+        it['_photos'] = [] if own is not None else [p for p in photos if p.get('cardId') == cid and p.get('reviewStatus') != 'historical']
         it['_thumb'] = os.path.join(a.guide, 'thumbs', '%s-%s-v%s.jpg' % (cid, it.get('maker'), it.get('version')))
         it['lore'] = 'runners/wiki/ships/%s.html' % slug(c['title'])
         text_overrides(cid, it)
@@ -497,9 +552,8 @@ def build_items(a, images):
         it['stats'] = dict(base['stats'], price=fo.get('Price', base['stats'].get('price')))
         text_overrides(cid, it)
         if o.get('atlas'): it['atlas'] = (clean(o['atlas'], cid), '')
-        skip = re.compile('|'.join(o.get('skipPictures') or ['(?!)']), re.I)   # e.g. a labelled contact sheet beside the renders
-        pics = [p for p in dir_pics(os.path.join(board, o.get('pictures', ''))) if not skip.search(os.path.basename(p))]
-        it['_pictures'] = pick_pictures(pics, None, 3) if it['status'] != 'notused' else []
+        it.pop('_captions', None)
+        it['_pictures'] = own_pictures(cid, it, it['status']) or []
         items.append(it)
 
     # --- NPC ships
@@ -619,13 +673,16 @@ def make_pictures(items, images):
             if src and os.path.isfile(src):
                 rel = images.make(src, 'runners/img/%s/%s-game-%d.jpg' % (sec, base, n))
                 it['pictures'].append(dict(src=rel, caption=clean(p.get('title') or 'In the game', it['id']) + ' (a still from the game)', alt='The %s in the game' % it['name']))
+        caps = it.pop('_captions', None) or {}
         for n, p in enumerate(it.pop('_pictures', []) or [], 1):
             crop = None
             if LABELLED.search(p):   # these renders carry a working label in the top-left corner: cut the top band off
                 w, h = picture_px(p); band = round(h * 0.075)
                 if w and h: crop = (band, 1, h - band, w - 2)   # sips will not crop at the full width
             rel = images.make(p, 'runners/img/%s/%s-%d.jpg' % (sec, base, n), crop=crop)
-            it['pictures'].append(dict(src=rel, caption='Render of the %s model' % ('final' if it['status'] == 'final' else 'current'), alt='The %s' % it['name']))
+            cap = 'Render of the %s model' % ('final' if it['status'] == 'final' else 'current')
+            if caps.get(p): cap += ', ' + caps[p]
+            it['pictures'].append(dict(src=rel, caption=cap, alt='The %s%s' % (it['name'], ', fully loaded' if caps.get(p) == 'fully loaded' else '')))
         for mk, p in it.pop('_candidates', []) or []:
             rel = images.make(p, 'runners/img/%s/%s-%s.jpg' % (sec, base, mk))
             it['pictures'].append(dict(src=rel, caption='Candidate by %s' % MAKERS.get(mk, mk), alt='%s, candidate by %s' % (it['name'], MAKERS.get(mk, mk))))

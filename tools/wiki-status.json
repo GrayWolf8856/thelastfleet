@@ -91,18 +91,15 @@
    "versionOf": "S-01",
    "name": "Rust bucket",
    "status": "approved",
-   "decided": "2026-11-18",
-   "decidedBy": "Kyle, 17 Nov 2026: the starter is the Rust bucket, her own model. In both games since 18 Nov 2026 (Runners PR #75; Lite has the same model). Kyle, 25 Nov 2026: give her her own card, since every player starts in her.",
-   "pictures": "2-ships/S-01-scrapper/starter-rust-bucket",
-   "skipPictures": [
-    "overview"
-   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 17 Nov 2026: the starter is the Rust bucket, her own model. In both games since 18 Nov 2026 (Runners PR #75; Lite has the same model). Kyle, 25 Nov 2026: give her her own card, since every player starts in her. Kyle, 25 Nov 2026 (World Atlas, Storage): \"The starter Rust bucket carries one container plus her three pallet places (was three pallets only)\". Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\"",
+   "pictures": "wiki-renders/container-deck-other-ships/S-00-rust-bucket/v2",
    "quote": "The boat every player starts in: a Scrapper that was due for the scrapyard. Booker gives the Runner a boat nobody wanted.",
    "look": "The Scrapper run down: bent rails, the wheelhouse roof rusted through, the windows boarded up, and rust streaks and patched plating from bow to stern.",
    "works": [
     "Starter: every player begins in her, free. Every first ship of the other lines is traded up from her.",
     "Refit: at ARI's yard she can be traded in and rebuilt as a clean Scrapper for 500 CR.",
-    "Cargo: 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Cargo: 1 × 20 ft container on marked deck spots and 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
     "Scrap: her deck crane swings its magnet out over the side, lifts scrap from the water and drops it in the open bin on deck. Holds 8 units.",
     "Loot: sunk pirates leave pallets floating, each with a random load. Her magnet crane lifts a pallet aboard onto one of her 3 pallet places, so a full deck takes no more.",
     "Towing: none. She has no winch.",
@@ -111,16 +108,18 @@
    ],
    "facts": {
     "Speed / hull": "45 m/s, 90 HP",
-    "Price": "Free (starter)"
+    "Price": "Free (starter)",
+    "Containers on deck": "1 × 20 ft",
+    "Pallet places": "3"
    },
    "atlas": "Starter: the player's Scrapper is the **Rust bucket**, her own model: the approved Scrapper made into a boat that was due for the scrapyard: bent rails, roof rusted through, windows boarded up. Booker gives the Runner a boat nobody wanted. The clean Scrapper is the one you can buy. Because she's in bad shape the Rust bucket is slightly slower and weaker: 45 m/s and 90 hull points (clean Scrapper 48 m/s, 100)."
   },
   "S-01": {
-   "quote": "The clean Scrapper: the starter Rust bucket rebuilt at ARI's yard. Picks up loose scrap and carries a few pallets. Cannot tow.",
+   "quote": "The clean Scrapper: the starter Rust bucket rebuilt at ARI's yard. Picks up loose scrap and carries one container and a few pallets. Cannot tow.",
    "look": "A small harbour workboat: dark hull with a raised bow, tan wheelhouse just forward of midships with a mast, radar and short funnel, a crane on the foredeck, and a long flat after deck with stern rails. The starter, the Rust bucket, is this boat run down and has a page of her own.",
    "works": [
     "Refit: players start in the Rust bucket, the same boat run down. At ARI's yard she is traded in and rebuilt as this clean Scrapper for 500 CR, a little faster and tougher. Every ship offered from the Rust bucket is offered from her too.",
-    "Cargo: 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Cargo: 1 × 20 ft container on marked deck spots and 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
     "Scrap: her deck crane swings its magnet out over the side, lifts scrap from the water and drops it in the open bin on deck. Holds 8 units.",
     "Loot: sunk pirates leave pallets floating, each with a random load. Her magnet crane lifts a pallet aboard onto one of her 3 pallet places, so a full deck takes no more.",
     "Towing: none. She has no winch.",
@@ -128,9 +127,419 @@
     "Handling: 48 m/s top speed, 100 hull points."
    ],
    "facts": {
-    "Price": "500 CR (a refit of the Rust bucket at ARI's yard)"
+    "Price": "500 CR (a refit of the Rust bucket at ARI's yard)",
+    "Containers on deck": "1 × 20 ft"
    },
-   "decidedBy": "Kyle, 17 Nov 2026: the starter is the Rust bucket; the clean Scrapper is the one you can buy (game: scrapper_refit, 500 CR, 48 m/s, 100 HP)."
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\" Kyle, 17 Nov 2026: the starter is the Rust bucket; the clean Scrapper is the one you can buy (game: scrapper_refit, 500 CR, 48 m/s, 100 HP).",
+   "pictures": "wiki-renders/container-deck-other-ships/S-01-scrapper/v2",
+   "decided": "2026-11-26"
+  },
+  "S-19": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-19-recovery-workboat/v2",
+   "facts": {
+    "Containers on deck": "2 × 20 ft"
+   },
+   "quote": "First tug. Pulls small wrecks home, with a smaller scrap bin and two containers of salvage.",
+   "works": [
+    "Cargo: 2 × 20 ft containers on marked deck spots and 2 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Scrap: her deck crane swings its magnet out over the side, lifts scrap from the water and drops it in the open bin on deck. Holds 16 units.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. Her magnet crane lifts a pallet aboard onto one of her 2 pallet places, so a full deck takes no more.",
+    "Towing: a line from the stern winch is made fast to a wreck and she drags it home. Wrecks up to about 58 m.",
+    "Fighting: 2 weapon mounts (2 small). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 38 m/s top speed, 200 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-20": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-20-salvage-launch/v2",
+   "facts": {
+    "Containers on deck": "1 × 20 ft"
+   },
+   "works": [
+    "Cargo: 1 × 20 ft container on marked deck spots and 2 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Scrap: her deck crane swings its magnet out over the side, lifts scrap from the water and drops it in the open bin on deck. Holds 24 units.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. Her magnet crane lifts a pallet aboard onto one of her 2 pallet places, so a full deck takes no more.",
+    "Towing: a line from the stern winch is made fast to a wreck and she drags it home. Wrecks up to about 54 m.",
+    "Fighting: 1 weapon mount (1 small). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 40 m/s top speed, 160 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-21": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-21-salvage-tender/v2",
+   "facts": {
+    "Containers on deck": "3 × 20 ft"
+   },
+   "quote": "Mid-size tug. Tows medium wrecks and brings home three containers of salvage.",
+   "works": [
+    "Cargo: 3 × 20 ft containers on marked deck spots and 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Scrap: her deck crane swings its magnet out over the side, lifts scrap from the water and drops it in the open bin on deck. Holds 32 units.",
+    "Compactor (Kyle, 13 Nov 2026): a scrap compactor is built into her beside the bin. It presses scrap from the bin into pallets of bales that can be sold and sets each one out on deck, so her pallet places, hold and containers can all carry scrap. How much scrap makes a pallet is not decided.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. Her magnet crane lifts a pallet aboard onto one of her 3 pallet places, so a full deck takes no more.",
+    "Towing: a line from the stern winch is made fast to a wreck and she drags it home. Wrecks up to about 112 m.",
+    "Fighting: 3 weapon mounts (2 small, 1 medium). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 34 m/s top speed, 400 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-22": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-22-barge-hound/v2",
+   "facts": {
+    "Containers on deck": "2 × 20 ft"
+   },
+   "works": [
+    "Cargo: 2 × 20 ft containers on marked deck spots and 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Scrap: her deck crane swings its magnet out over the side, lifts scrap from the water and drops it in the open bin on deck. Holds 50 units.",
+    "Compactor (Kyle, 13 Nov 2026): a scrap compactor is built into her beside the bin. It presses scrap from the bin into pallets of bales that can be sold and sets each one out on deck, so her pallet places, hold and containers can all carry scrap. How much scrap makes a pallet is not decided.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. Her magnet crane lifts a pallet aboard onto one of her 3 pallet places, so a full deck takes no more.",
+    "Towing: a line from the stern winch is made fast to a wreck and she drags it home. Wrecks up to about 104 m.",
+    "Fighting: 3 weapon mounts (2 small, 1 medium). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 33 m/s top speed, 450 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-23": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-23-atlas/v2",
+   "facts": {
+    "Containers on deck": "8 × 20 ft"
+   },
+   "quote": "Top Scavenger. Tows the largest wrecks and carries eight containers of salvage beside a big scrap store.",
+   "works": [
+    "Cargo: 8 × 20 ft containers on marked deck spots and 4 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Scrap: her deck crane swings its magnet out over the side, lifts scrap from the water and drops it in the open bin on deck. Holds 64 units.",
+    "Compactor (Kyle, 13 Nov 2026): a scrap compactor is built into her beside the bin. It presses scrap from the bin into pallets of bales that can be sold and sets each one out on deck, so her pallet places, hold and containers can all carry scrap. How much scrap makes a pallet is not decided.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. Her magnet crane lifts a pallet aboard onto one of her 4 pallet places, so a full deck takes no more.",
+    "Towing: a line from the stern winch is made fast to a wreck and she drags it home. Wrecks up to about 197 m.",
+    "Fighting: 7 weapon mounts (4 small, 3 medium). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 30 m/s top speed, 1000 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-24": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-24-salvage-dredger/v2",
+   "facts": {
+    "Containers on deck": "4 × 20 ft"
+   },
+   "works": [
+    "Cargo: 4 × 20 ft containers on marked deck spots and 4 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Scrap: her deck crane swings its magnet out over the side, lifts scrap from the water and drops it in the open bin on deck. Holds 100 units.",
+    "Compactor (Kyle, 13 Nov 2026): a scrap compactor is built into her beside the bin. It presses scrap from the bin into pallets of bales that can be sold and sets each one out on deck, so her pallet places, hold and containers can all carry scrap. How much scrap makes a pallet is not decided.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. Her magnet crane lifts a pallet aboard onto one of her 4 pallet places, so a full deck takes no more.",
+    "Towing: a line from the stern winch is made fast to a wreck and she drags it home. Wrecks up to about 173 m.",
+    "Fighting: 5 weapon mounts (3 small, 2 medium). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 30 m/s top speed, 850 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-05": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-05-scout-skiff/v2",
+   "facts": {
+    "Containers on deck": "1 × 20 ft",
+    "Pallet places": "none: her container stands over the engine hatch"
+   },
+   "works": [
+    "Cargo: 1 × 20 ft container, standing on a stool over the engine hatch. She has no loose pallet places: she carries 8 pallets in the box instead of 1 on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 2 weapon mounts (2 small). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 60 m/s top speed, 80 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-06": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-06-dart/v2",
+   "facts": {
+    "Containers on deck": "1 × 20 ft"
+   },
+   "works": [
+    "Cargo: 1 × 20 ft container on marked deck spots and 1 pallet on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her one pallet place, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 2 weapon mounts (1 small, 1 medium). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 54 m/s top speed, 110 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-07": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-07-gunrunner/v2",
+   "facts": {
+    "Containers on deck": "1 × 20 ft"
+   },
+   "works": [
+    "Cargo: 1 × 20 ft container on marked deck spots and 2 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 2 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 3 weapon mounts (2 small, 1 medium). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 42 m/s top speed, 220 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-10": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-10-patrol-escort/v2",
+   "facts": {
+    "Containers on deck": "2 × 20 ft"
+   },
+   "works": [
+    "Cargo: 2 × 20 ft containers on marked deck spots and 2 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Below deck: stores hold, 20 units. A deck hatch opens onto it and the crane works straight down through the hatch.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 2 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 5 weapon mounts (3 small, 1 medium, 1 large). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 40 m/s top speed, 600 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-12": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-12-rocket-barge/v2",
+   "facts": {
+    "Containers on deck": "3 × 20 ft"
+   },
+   "works": [
+    "Cargo: 3 × 20 ft containers on marked deck spots and 2 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 2 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 6 weapon mounts (2 small, 2 medium, 2 large). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 34 m/s top speed, 600 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-17": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-17-armed-liner/v2",
+   "facts": {
+    "Containers on deck": "6 × 20 ft"
+   },
+   "works": [
+    "Cargo: 6 × 20 ft containers on marked deck spots and 6 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Below deck: stores hold, 120 units. A deck hatch opens onto it and the crane works straight down through the hatch.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 6 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 12 weapon mounts (6 small, 4 medium, 2 large). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 34 m/s top speed, 2200 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-34": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-34-fishing-boat/v2",
+   "facts": {
+    "Containers on deck": "1 × 20 ft"
+   },
+   "works": [
+    "Cargo: 1 × 20 ft container on marked deck spots and 2 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 2 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fishing: She stops (under 2 m/s) and throws a cast net beside her: a ring of floats about 6.5 m across lands on the water, draws shut, sinks, and comes back aboard about 8 seconds later with the catch. A small catch each throw.",
+    "The catch: it goes down the fish-hold hatch (10 units) and shows as fish boxes and crab crates on her pallet places. At the berth a crane lifts it off.",
+    "Fighting: 1 weapon mount (1 small). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 36 m/s top speed, 130 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-36": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-36-seiner/v2",
+   "facts": {
+    "Containers on deck": "2 × 20 ft"
+   },
+   "works": [
+    "Cargo: 2 × 20 ft containers on marked deck spots and 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 3 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fishing: A school of fish shows as a dark patch on the water. Within 80 m of it she drops an end buoy, then steams a full circle round the school, paying a long float line (about 520 m, a float every 5 m) off the pile on her stern. Back at the buoy she closes the ring and the power block hauls the net in. A big catch from one set.",
+    "The catch: it goes down the fish-hold hatch (40 units) and shows as fish boxes and crab crates on her pallet places. At the berth a crane lifts it off.",
+    "Fighting: 3 weapon mounts (2 small, 1 medium). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 34 m/s top speed, 550 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-26": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-26-supply-runner/v2",
+   "facts": {
+    "Containers on deck": "1 × 20 ft"
+   },
+   "quote": "Cheap, quick delivery boat: one container, six pallets on deck and a small stores hold.",
+   "works": [
+    "Cargo: 1 × 20 ft container on marked deck spots and 6 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Below deck: stores hold, 12 units. A deck hatch opens onto it and the crane works straight down through the hatch.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 6 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 1 weapon mount (1 small). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 46 m/s top speed, 110 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-25": {
+   "pictures": "2-ships/S-25-mule/container-deck-v3/pictures",
+   "facts": {
+    "Containers on deck": "8 × 20 ft, two high"
+   },
+   "quote": "First container ship: eight boxes, slow and steady.",
+   "look": "Her boxes sit on the hatch covers, held by twistlocks and lashings, like a real cargo ship: no tall frames on deck. Her wheelhouse stands high on a two-deck deckhouse with an outside stair, so the bridge sees the sea over the top boxes.",
+   "works": [
+    "Cargo: 8 × 20 ft containers, two high on her hatch covers, and 2 pallets on deck. A crane at the berth lifts the boxes on and off from above; nothing rolls on.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 2 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 2 weapon mounts (2 small). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 36 m/s top speed, 180 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-27": {
+   "pictures": "2-ships/S-27-workhorse/container-deck-v3/pictures",
+   "facts": {
+    "Containers on deck": "18 × 20 ft, two high (the forward bay one high)"
+   },
+   "quote": "The standard box carrier: eighteen containers.",
+   "look": "Her boxes sit on the hatch covers, held by twistlocks and lashings, like a real cargo ship: no tall frames on deck.",
+   "works": [
+    "Cargo: 18 × 20 ft containers on her hatch covers, two high, and 4 pallets on deck. The forward bay is one high, so the bridge can see the sea over it. A crane at the berth lifts the boxes on and off from above; nothing rolls on.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 4 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 3 weapon mounts (2 small, 1 medium). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 34 m/s top speed, 450 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-28": {
+   "pictures": "2-ships/S-28-landing-craft/container-deck-v2/pictures",
+   "facts": {
+    "Containers on deck": "6 × 20 ft, one high, in the well deck"
+   },
+   "quote": "Lands cargo on any shore: six containers, six pallets and a stores hold.",
+   "works": [
+    "Cargo: 6 × 20 ft containers, one high in the well deck, and 6 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Below deck: stores hold, 30 units. A deck hatch opens onto it and the crane works straight down through the hatch.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 6 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 3 weapon mounts (3 small). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 34 m/s top speed, 380 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-29": {
+   "pictures": "2-ships/S-29-freighter/container-deck-v3/pictures",
+   "facts": {
+    "Containers on deck": "28 × 20 ft, two high (the forward bay one high)"
+   },
+   "quote": "Twenty-eight containers, plus stores below.",
+   "look": "Her boxes sit on the hatch covers, held by twistlocks and lashings, like a real cargo ship: no tall frames on deck.",
+   "works": [
+    "Cargo: 28 × 20 ft containers on her hatch covers, two high, and 6 pallets on deck. The forward bay is one high, so the bridge can see the sea over it. A crane at the berth lifts the boxes on and off from above; nothing rolls on.",
+    "Below deck: stores hold, 30 units. A deck hatch opens onto it and the crane works straight down through the hatch.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 6 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 4 weapon mounts (3 small, 1 medium). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 31 m/s top speed, 850 hull points."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-30": {
+   "pictures": "2-ships/S-30-refitted-tanker/container-deck-v2/pictures",
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-31": {
+   "pictures": "2-ships/S-31-leviathan/container-deck-v2/pictures",
+   "facts": {
+    "Containers on deck": "72 × 20 ft, two high",
+    "Weapon mounts": "16: 16 small, 8 each side (light guns only)",
+    "Price": "100,000 CR"
+   },
+   "quote": "The most containers of any ship: seventy-two, plus stores below. The dearest ship in the game. She carries light guns only, 8 down each side.",
+   "look": "Her boxes sit on the hatch covers, held by twistlocks and lashings, like a real cargo ship: no tall frames on deck.",
+   "works": [
+    "Cargo: 72 × 20 ft containers on her hatch covers, two high, and 8 pallets on deck. A crane at the berth lifts the boxes on and off from above; nothing rolls on.",
+    "Below deck: stores hold, 60 units. A deck hatch opens onto it and the crane works straight down through the hatch.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 8 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 16 weapon mounts (16 small, 8 down each side): light guns only. The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 28 m/s top speed, 1500 hull points."
+   ],
+   "features": [
+    "Proposal: container spots are marked on deck with corner sockets, so every box has a visible home."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-32": {
+   "pictures": "2-ships/S-32-fleet-tanker/container-deck-v2/pictures",
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-33": {
+   "pictures": "2-ships/S-33-crude-tanker/container-deck-v2/pictures",
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-02": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-02-wisp/v2",
+   "extraPictures": [
+    {
+     "file": "xray_hidden_pallets.png",
+     "caption": "x-ray view: the hidden hold for 4 pallets, under her container"
+    }
+   ],
+   "facts": {
+    "Containers on deck": "1 × 20 ft, standing over the hidden hold",
+    "Pallet places": "2 on deck, in plain sight (ordinary cargo)",
+    "Hidden pallets": "4, in the hidden hold in the hull"
+   },
+   "quote": "Small, fast and plain. One container and two pallets of honest cargo on deck, and a small hidden compartment for four more pallets under the box.",
+   "works": [
+    "Smuggling: 4 pallets ride in the hidden hold in her hull. Her one container stands over the whole hold: a crane lifts the box off, a disguised hatch in the deck opens, and the hidden pallets go straight down. Shut, nothing shows. High income, high risk.",
+    "Honest cargo, in plain sight: 1 × 20 ft container (8 pallets) and 2 pallets on deck. That is 10 pallets of honest cargo against 4 hidden. Loaded by crane.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 2 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 1 weapon mount (1 small). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 54 m/s top speed, 90 hull points."
+   ],
+   "features": [
+    "Hidden compartment: a hatch set flush in the deck, made to look like ordinary deck plating, over a small hold for 4 pallets, 2 by 2. Her container stands on top of it.",
+    "With the box in place nothing shows: she looks like a launch carrying one container and two pallets.",
+    "Everything smuggled is pallets, hidden in the hull. No smuggled goods ride in a container or in sight.",
+    "The hidden hold is a real, hollow space in the hull, with clear sky over its opening so a crane can lower pallets in and lift them out.",
+    "The way in is hidden and animated. When it is shut, nothing on deck gives it away: no handles, hinges or seams that an ordinary ship would not have."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-03": {
+   "pictures": "wiki-renders/container-deck-other-ships/S-03-shade/v2",
+   "extraPictures": [
+    {
+     "file": "xray_hidden_pallets.png",
+     "caption": "x-ray view: the hidden hold for 8 pallets, under the trap door"
+    }
+   ],
+   "facts": {
+    "Containers on deck": "2 × 20 ft, real; one sits on the trap door of the hidden hold",
+    "Hidden pallets": "8 (one container's worth), in the hidden hold in the hull"
+   },
+   "quote": "Mid smuggler: two containers and eight pallets on deck; one container sits on the trap door of an 8-pallet hidden hold.",
+   "works": [
+    "Smuggling: 8 pallets ride in the hidden hold in her hull. The way in is a trap door under one of her real containers: a crane lifts the container off, then works straight down through the door. Shut, nothing shows. High income, high risk.",
+    "Honest cargo, in plain sight: 8 pallets on deck and 2 real 20 ft containers (16 pallets). That is 24 pallets of honest cargo against 8 hidden. Loaded by crane.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 8 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 2 weapon mounts (2 small). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 57 m/s top speed, 200 hull points."
+   ],
+   "features": [
+    "Trap door: her containers are real, ordinary containers that carry cargo. One of them sits on a trap door in the deck. A crane lifts that container off, the trap door opens, and the hidden hold is below.",
+    "Hidden hold size: 8 pallets, one container's worth, under the trap door, so every pallet is straight below the door and the crane can reach it.",
+    "The trap door is the size of the container above it and looks like plain deck with ordinary container sockets at its corners.",
+    "With the containers in place she looks like a small cargo boat carrying two boxes and a row of pallets.",
+    "Everything smuggled is pallets, hidden in the hull. No smuggled goods ride in a container or in sight.",
+    "The hidden hold is a real, hollow space in the hull, with clear sky over its opening so a crane can lower pallets in and lift them out.",
+    "The way in is hidden and animated. When it is shut, nothing on deck gives it away: no handles, hinges or seams that an ordinary ship would not have."
+   ],
+   "decided": "2026-11-26",
+   "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-18": {
+   "quote": "The heaviest hitter: three main-gun barbettes and the strongest hull. The slowest Hunter and the dearest warship in the game.",
+   "decidedBy": "Kyle, 26 Nov 2026: the Leviathan (100,000 CR) is now the dearest ship"
   }
  }
 }
