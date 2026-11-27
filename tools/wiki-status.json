@@ -536,6 +536,10 @@
    ],
    "decided": "2026-11-26",
    "decidedBy": "Kyle, 26 Nov 2026: the container-deck model is approved (containers on deck with hatch covers and twistlocks, no cage frames; every ship carries at least 1 container, 8 pallets = 1 container). Numbers from the World Atlas, Runners 2055 - Ships (final numbers as built, 26 Nov 2026). Kyle, 26 Nov 2026, on the pictures: \"On the website make sure we show the models fully loaded instead of empty.\""
+  },
+  "S-18": {
+   "quote": "The heaviest hitter: three main-gun barbettes and the strongest hull. The slowest Hunter and the dearest warship in the game.",
+   "decidedBy": "Kyle, 26 Nov 2026: the Leviathan (100,000 CR) is now the dearest ship"
   }
  }
 }
