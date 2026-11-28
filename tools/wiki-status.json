@@ -3,10 +3,19 @@
  "items": {
   "S-13": {
    "facts": {
-    "Price": "26,000 CR"
+    "Price": "26,000 CR",
+    "Containers on deck": "7 × 20 ft, one high"
    },
-   "decidedBy": "Kyle, 14 Nov 2026: the Corvette costs 26,000 CR (World Atlas, Ships)",
-   "pictures": "wiki-renders/loaded-approved/S-13-corvette"
+   "decidedBy": "Kyle, 14 Nov 2026: the Corvette costs 26,000 CR (World Atlas, Ships); Kyle, 27 Nov 2026: warships carry more cargo, one high (World Atlas, Ships)",
+   "pictures": "wiki-renders/loaded-approved/S-13-corvette",
+   "works": [
+    "Cargo: 7 × 20 ft containers, one high so every gun fires clear over them: 4 across behind the bridge and 3 on the stern deck. Plus 2 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Below deck: stores hold, 30 units. A deck hatch opens onto it and the crane works straight down through the hatch.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 2 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 9 weapon mounts (4 small, 3 medium, 2 large). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 38 m/s top speed, 1100 hull points."
+   ],
+   "quote": "All-round warship: a strong hull, two large guns, seven containers and a stores hold."
   },
   "P-TOL-3": {
    "status": "approved",
@@ -540,8 +549,18 @@
   },
   "S-18": {
    "quote": "The heaviest hitter: three main-gun barbettes and the strongest hull. The slowest Hunter and the dearest warship in the game.",
-   "decidedBy": "Kyle, 26 Nov 2026: the Leviathan (100,000 CR) is now the dearest ship",
-   "pictures": "wiki-renders/loaded-approved/S-18-battleship"
+   "decidedBy": "Kyle, 26 Nov 2026: the Leviathan (100,000 CR) is now the dearest ship; Kyle, 27 Nov 2026: warships carry more cargo, one high (World Atlas, Ships)",
+   "pictures": "wiki-renders/loaded-approved/S-18-battleship",
+   "facts": {
+    "Containers on deck": "5 × 20 ft, one high"
+   },
+   "works": [
+    "Cargo: 5 × 20 ft containers, one high so every gun fires clear over them: 3 across between the superstructure and the aft turret and 2 beside the aft deckhouse. Plus 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Below deck: stores hold, 50 units. A deck hatch opens onto it and the crane works straight down through the hatch.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 3 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 14 weapon mounts (6 small, 4 medium, 1 large, 3 main-gun barbette). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 32 m/s top speed, 3000 hull points."
+   ]
   },
   "S-04": {
    "pictures": "wiki-renders/loaded-approved/S-04-ghost"
@@ -556,13 +575,46 @@
    "pictures": "wiki-renders/loaded-approved/S-11-blockade-runner"
   },
   "S-14": {
-   "pictures": "wiki-renders/loaded-approved/S-14-destroyer"
+   "pictures": "wiki-renders/loaded-approved/S-14-destroyer",
+   "facts": {
+    "Containers on deck": "10 × 20 ft, one high"
+   },
+   "works": [
+    "Cargo: 10 × 20 ft containers, one high so every gun fires clear over them: 5 across behind the bridge, 2 beside the stores hatch and 3 on the stern deck. Plus 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Below deck: stores hold, 30 units. A deck hatch opens onto it and the crane works straight down through the hatch.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 3 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 9 weapon mounts (4 small, 3 medium, 1 large, 1 main-gun barbette). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 40 m/s top speed, 1700 hull points."
+   ],
+   "decidedBy": "Kyle, 27 Nov 2026: warships carry more cargo, one high (World Atlas, Ships)"
   },
   "S-15": {
-   "pictures": "wiki-renders/loaded-approved/S-15-frigate"
+   "pictures": "wiki-renders/loaded-approved/S-15-frigate",
+   "facts": {
+    "Containers on deck": "11 × 20 ft, one high"
+   },
+   "works": [
+    "Cargo: 11 × 20 ft containers, one high so every gun fires clear over them: 5 across behind the bridge, 2 beside the stores hatch, 2 beside the aft guns and 2 on the stern deck. Plus 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Below deck: stores hold, 40 units. A deck hatch opens onto it and the crane works straight down through the hatch.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 3 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 12 weapon mounts (4 small, 4 medium, 4 large). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 38 m/s top speed, 1900 hull points."
+   ],
+   "decidedBy": "Kyle, 27 Nov 2026: warships carry more cargo, one high (World Atlas, Ships)"
   },
   "S-16": {
-   "pictures": "wiki-renders/loaded-approved/S-16-missile-cruiser"
+   "pictures": "wiki-renders/loaded-approved/S-16-missile-cruiser",
+   "facts": {
+    "Containers on deck": "11 × 20 ft, one high"
+   },
+   "works": [
+    "Cargo: 11 × 20 ft containers, one high so every gun fires clear over them: 4, 3 and 2 in rows behind the bridge and 2 on the stern deck. Plus 3 pallets on deck. A crane at the berth lifts cargo on and off from above; nothing rolls on.",
+    "Below deck: stores hold, 40 units. A deck hatch opens onto it and the crane works straight down through the hatch.",
+    "Loot: sunk pirates leave pallets floating, each with a random load. A net boom on each side swings out over the water and scoops a pallet up as she drives past. It lands on one of her 3 pallet places, so a full deck takes no more. She has no magnet, so she cannot lift scrap.",
+    "Fighting: 14 weapon mounts (6 small, 4 medium, 3 large, 1 main-gun barbette). The player buys and fits the guns; each one trains and fires on its own pad.",
+    "Handling: 38 m/s top speed, 2400 hull points."
+   ],
+   "decidedBy": "Kyle, 27 Nov 2026: warships carry more cargo, one high (World Atlas, Ships)"
   },
   "S-35": {
    "pictures": "wiki-renders/loaded-approved/S-35-trawler"
