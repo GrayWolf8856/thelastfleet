@@ -5,7 +5,8 @@
    "facts": {
     "Price": "26,000 CR"
    },
-   "decidedBy": "Kyle, 14 Nov 2026: the Corvette costs 26,000 CR (World Atlas, Ships)"
+   "decidedBy": "Kyle, 14 Nov 2026: the Corvette costs 26,000 CR (World Atlas, Ships)",
+   "pictures": "wiki-renders/loaded-approved/S-13-corvette"
   },
   "P-TOL-3": {
    "status": "approved",
@@ -539,7 +540,38 @@
   },
   "S-18": {
    "quote": "The heaviest hitter: three main-gun barbettes and the strongest hull. The slowest Hunter and the dearest warship in the game.",
-   "decidedBy": "Kyle, 26 Nov 2026: the Leviathan (100,000 CR) is now the dearest ship"
+   "decidedBy": "Kyle, 26 Nov 2026: the Leviathan (100,000 CR) is now the dearest ship",
+   "pictures": "wiki-renders/loaded-approved/S-18-battleship"
+  },
+  "S-04": {
+   "pictures": "wiki-renders/loaded-approved/S-04-ghost"
+  },
+  "S-08": {
+   "pictures": "wiki-renders/loaded-approved/S-08-skipjack"
+  },
+  "S-09": {
+   "pictures": "wiki-renders/loaded-approved/S-09-armoured-runner"
+  },
+  "S-11": {
+   "pictures": "wiki-renders/loaded-approved/S-11-blockade-runner"
+  },
+  "S-14": {
+   "pictures": "wiki-renders/loaded-approved/S-14-destroyer"
+  },
+  "S-15": {
+   "pictures": "wiki-renders/loaded-approved/S-15-frigate"
+  },
+  "S-16": {
+   "pictures": "wiki-renders/loaded-approved/S-16-missile-cruiser"
+  },
+  "S-35": {
+   "pictures": "wiki-renders/loaded-approved/S-35-trawler"
+  },
+  "S-37": {
+   "pictures": "wiki-renders/loaded-approved/S-37-crab-boat"
+  },
+  "S-38": {
+   "pictures": "wiki-renders/loaded-approved/S-38-factory-trawler"
   }
  }
 }
